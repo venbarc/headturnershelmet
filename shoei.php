@@ -27,7 +27,7 @@
             <nav id="sgoei" class="top-0 z-30 w-full px-6 py-1">
                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
 
-                    <a class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline " href="#">
+                    <a class="y-30 text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline " href="#">
                         SHOEI PREMIUM HELMETS
                     </a>
                 </div>

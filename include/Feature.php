@@ -49,13 +49,12 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-950">
                             SHOEI
                         </h4>
-                        <a href="shoei.php" class="flex justify-center text-base font-medium text-body-color hover:text-blue-500">
-                            Visit Shop!
-                            <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1 hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
-
+                        <a href="shoei.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                            <span class="relative text-black group-hover:text-white">Shop Now</span>
                         </a>
+
                     </div>
                 </div>
                 <div class="w-full px-4 md:w-1/2 lg:w-1/4 sm:w-1/4 min-[600px]:w-1/4 min-[375px]:w-2/4">
@@ -66,12 +65,12 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-950">
                             ARAI
                         </h4>
-                        <a href="arai.php" class="flex justify-center text-base font-medium text-body-color hover:text-blue-500">
-                            Visit Shop
-                            <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1 hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
+                        <a href="arai.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                            <span class="relative text-black group-hover:text-white">Shop Now</span>
                         </a>
+
                     </div>
                 </div>
                 <div class="w-full px-4 md:w-1/2 lg:w-1/4 sm:w-1/4 min-[600px]:w-1/4 min-[375px]:w-2/4">
@@ -80,12 +79,12 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-950">
                             SHARK
                         </h4>
-                        <a href="shark.php" class="flex justify-center text-base font-medium text-body-color hover:text-blue-500">
-                            Visit Shop
-                            <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1 hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
+                        <a href="shark.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                            <span class="relative text-black group-hover:text-white">Shop Now</span>
                         </a>
+
                     </div>
                 </div>
                 <div class="w-full px-4 md:w-1/2 lg:w-1/4 sm:w-1/4 min-[600px]:w-1/4 min-[375px]:w-2/4">
@@ -94,12 +93,13 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-950">
                             AGV
                         </h4>
-                        <a href="agv.php" class="flex justify-center text-base font-medium text-body-color hover:text-blue-500">
-                            Visit Shop
-                            <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1 hover:text-blue-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                            </svg>
+
+                        <a href="shoei.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                            <span class="relative text-black group-hover:text-white">Shop Now</span>
                         </a>
+
                     </div>
                 </div>
             </div>

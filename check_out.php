@@ -38,16 +38,15 @@
         <img class="object-cover object-center h-24 m-2 border rounded-md w-28" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
         <div class="flex flex-col w-full px-4 py-4">
           <span class="font-semibold">Nike Air Max Pro 8888 - Super Light</span>
-          <span class="float-right text-gray-400">42EU - 8.5US</span>
-          <p class="mt-auto text-lg font-bold">$238.99</p>
+          <p class="float-right text-gray-400">Size : <span class="text-red-600">XS</span></p>
+          <p class="text-lg font-bold">₱45,000</p>
         </div>
       </div>
     </div>
 
     <p class="mt-8 text-lg font-medium">Payments Methods</p>
     <form class="grid gap-6 mt-5">
-
-      <div class="relative"><!-- END J & T -->
+      <div class="relative">
         <input class="hidden peer" id="radio_1" type="radio" name="radio" checked />
         <span class="box-content absolute block w-3 h-3 -translate-y-1/2 bg-white border-8 border-gray-300 rounded-full peer-checked:border-gray-700 right-4 top-1/2"></span>
         <label class="flex p-4 border border-gray-300 rounded-lg cursor-pointer select-none peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50" for="radio_1">
@@ -57,9 +56,8 @@
             <p class="text-sm leading-6 text-slate-500">Delivery: 2-4 Days</p>
           </div>
         </label>
-      </div>  <!-- END J & T -->
-
-      <div class="relative">  <!-- CASH ON Delivery -->
+      </div>
+      <div class="relative">
         <input class="hidden peer" id="radio_2" type="radio" name="radio" checked />
         <span class="box-content absolute block w-3 h-3 -translate-y-1/2 bg-white border-8 border-gray-300 rounded-full peer-checked:border-gray-700 right-4 top-1/2"></span>
         <label class="flex p-4 border border-gray-300 rounded-lg cursor-pointer select-none peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50" for="radio_2">
@@ -69,19 +67,18 @@
             <p class="text-sm leading-6 text-slate-500">Delivery: 2-4 Days</p>
           </div>
         </label>
-      </div>       <!--END CASH ON Delivery -->
-
-      <div class="relative"> <!-- START ONLINE PAYMENT -->
-        <input class="hidden peer" id="radio_2" type="radio" name="radio" checked />
+      </div>
+      <div class="relative">
+        <input class="hidden peer" id="radio_3" type="radio" name="radio" checked />
         <span class="box-content absolute block w-3 h-3 -translate-y-1/2 bg-white border-8 border-gray-300 rounded-full peer-checked:border-gray-700 right-4 top-1/2"></span>
-        <label class="flex p-4 border border-gray-300 rounded-lg cursor-pointer select-none peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50" for="radio_2">
+        <label class="flex p-4 border border-gray-300 rounded-lg cursor-pointer select-none peer-checked:border-2 peer-checked:border-gray-700 peer-checked:bg-gray-50" for="radio_3">
           <img class="object-contain w-14" src="/images/oG8xsl3xsOkwkMsrLGKM4.png" alt="" />
           <div class="ml-5">
-            <span class="mt-2 font-semibold">E- wallet</span>
-            <p class="text-sm leading-6 text-slate-500">Gcash ,7-eleven CLiQQ, Maya ,etc.</p>
+            <span class="mt-2 font-semibold">E-wallet</span>
+            <p class="text-sm leading-6 text-slate-500">GCASH ,MAYA ,7-eleven CLiQQ</p>
           </div>
         </label>
-      </div><!--END ONLINE PAYMENT -->
+      </div>
     </form>
   </div>
   <div class="px-4 pt-8 mt-10 bg-gray-50 lg:mt-0">
@@ -123,10 +120,9 @@
       <label for="billing-address" class="block mt-4 mb-2 text-sm font-medium">Billing Address</label>
       <div class="flex flex-col sm:flex-row">
         <div class="relative flex-shrink-0 sm:w-7/12">
-        <label for="billing-address" class="block mt-4 mb-2 text-sm">Region ,Province,City,Barangay</label>
-          <input type="text" id="billing-address" name="billing-address" class="w-full px-4 py-3 text-sm border border-gray-200 rounded-md shadow-sm outline-none pl-11 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Region ,Province,City,Barangay" />
+          <input type="text" id="billing-address" name="billing-address" class="w-full px-4 py-3 text-sm border border-gray-200 rounded-md shadow-sm outline-none pl-11 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="Street Address" />
           <div class="absolute inset-y-0 left-0 inline-flex items-center px-3 pointer-events-none">
-            <img class="object-contain w-4 h-4" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg" alt="" />
+            <img class="object-contain w-4 h-4" src="https://flagpack.xyz/_nuxt/4c829b6c0131de7162790d2f897a90fd.svg" alt="" />
           </div>
         </div>
         <select type="text" name="billing-state" class="w-full px-4 py-3 text-sm border border-gray-200 rounded-md shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500">
@@ -134,6 +130,7 @@
         </select>
         <input type="text" name="billing-zip" class="flex-shrink-0 px-4 py-3 text-sm border border-gray-200 rounded-md shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500" placeholder="ZIP" />
       </div>
+
       <!-- Total -->
       <div class="py-2 mt-6 border-t border-b">
         <div class="flex items-center justify-between">

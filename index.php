@@ -122,11 +122,6 @@
     ?>
 
     <!-- ====== Faq Section Start -->
-    <button id="navbarToggler" class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[12px] ring-primary focus:ring-2 lg:hidden">
-        <span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-        <span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-        <span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-    </button>
     <section class="relative z-20 overflow-hidden bg-gray-300 pt-20 pb-12  lg:pb-[90px]">
         <div class="container">
             <div class="flex flex-wrap -mx-4">

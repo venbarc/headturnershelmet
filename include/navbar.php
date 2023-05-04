@@ -1,9 +1,9 @@
     <!-- ====== Navbar Section Start -->
     <div class="fixed left-0 z-40 flex items-center w-full bg-fixed bg-cover" style="background-image: url('header7.png');">
       <div class="container">
-        <div class="flex items-center justify-between w-full px-4">
+        <div class="flex items-center justify-between w-full pt-12 md:pt-8 lg:pt-4">
           <div>
-            <button id="navbarToggler" class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[12px] ring-primary focus:ring-2 lg:hidden">
+            <button id="navbarToggler" class="absolute right-4 top-1/2 block -translate-y-1/2  rounded-lg px-3 py-[24px] ring-primary focus:ring-2 lg:hidden">
               <span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
               <span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
               <span class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>

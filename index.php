@@ -28,7 +28,7 @@
                                 <h1 class="my-3 text-sm font-bold leading-tight text-center text-gray-300 opacity-75 md:text-xl md:text-left ">
                                     Discover style and safety at
                                     <span class="text-3xl font-extrabold text-transparent max-[320px]:text-3xl lg:text-6xl xl:text-8xl 2xl:text-9xl  md:text-6xl bg-clip-text bg-gradient-to-r from-white via-gray-500 to-gray-300 max-[760px]:text-5xl">
-                                        HEADTURNER
+                                        HEADTURNER'S
                                     </span>
                                 </h1>
 

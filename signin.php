@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In | Play Tailwind</title>
+    <title>Sign In | Headturner's</title>
     <link
       rel="shortcut icon"
       href="assets/images/favicon.png"
@@ -55,7 +55,7 @@
                 id="navbarCollapse"
                 class="absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:px-4 lg:shadow-none xl:px-6"
               >
-                <ul class="blcok lg:flex">
+                <ul class="block lg:flex">
                   <li class="relative group">
                     <a
                       href="#home"

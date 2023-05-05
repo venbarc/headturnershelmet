@@ -22,8 +22,8 @@
 </head>
 
 <body class="antialiased ">
-    <!-- ====== About hero Start -->
-    <section id="hero" class="bg-gray-950 pt-20 pb-20 lg:pt-[120px] lg:pb-[120px] bg-fixed bg-cover" style="background-image: url('header7.png');">
+    <!-- ======  hero Start -->
+    <section id="hero" class="bg-gray-950 pt-32 pb-20 lg:pt-[220px] lg:pb-[120px] bg-fixed bg-cover" style="background-image: url('header7.png');">
         <div class="container">
             <div class="wow fadeInUp" data-wow-delay=".2s">
                 <div class="flex flex-wrap -mx-4">
@@ -44,7 +44,7 @@
                                 </p>
                                 <!--SOCIAL MEDIA   -->
                                 <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start sm:mt-0">
-                                    <a href="https://www.facebook.com/HeadTurnerMCgears" target="_blank" class="text-gray-200 hover:text-indigo-600 ">
+                                    <a href="https://www.facebook.com/HeadTurnerMCgears" target="_blank" class="text-gray-200 hover:text-black ">
                                         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" aria-hidden="true">
                                             <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
                                         </svg>
@@ -135,11 +135,11 @@
                         <div class="items-center justify-between overflow-hidden border lg:flex">
                             <div class="w-full py-12 px-7 sm:px-12 md:p-16 lg:max-w-[565px] lg:py-9 lg:px-16 xl:max-w-[640px] xl:p-[70px]">
                                 <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
-                                    <a href="#_" class="relative inline-block px-4 py-2 font-medium group">
+                                    <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
                                         <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                                         <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                                         <span class="relative text-black group-hover:text-white">About Us</span>
-                                    </a>
+                                    </p>
                                 </span>
                                 <h2 class="mb-6 text-3xl font-bold text-dark sm:text-4xl sm:leading-snug 2xl:text-[40px]">
                                     Welcome to HeadTurner's Helmets
@@ -169,14 +169,18 @@
     <!-- ====== About Section End -->
 
     <!-- ====== Faq Section Start -->
-    <section class="relative z-20 overflow-hidden bg-gray-300 pt-20 pb-12  lg:pb-[90px]">
+    <section  id="navbarToggler" class="relative z-20 overflow-hidden bg-gray-300 pt-20 pb-12  lg:pb-[90px]">
         <div class="container">
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full px-4">
                     <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
-                        <span class="block mb-2 text-lg font-semibold text-indigo-600">
-                            FAQ
-                        </span>
+                    <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
+                                    <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
+                                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                        <span class="relative text-black group-hover:text-white">FAQ</span>
+                                    </p>
+                                </span>
                         <h2 class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl text-gray-950">
                             Any Questions? Answered
                         </h2>
@@ -336,9 +340,13 @@
             <div class="flex flex-wrap">
                 <div class="w-full mx-4">
                     <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
-                        <span class="block mb-2 text-lg font-semibold text-indigo-600">
-                            TESTIMONIALS
-                        </span>
+                    <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
+                                    <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
+                                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                        <span class="relative text-black group-hover:text-white">Testimonials</span>
+                                    </p>
+                                </span>
                         <h2 class="mb-4 text-3xl font-bold text-gray-300 sm:text-4xl md:text-[42px]">
                             What our Customer Say
                         </h2>
@@ -500,9 +508,13 @@
                 <div class="w-full px-4 lg:w-7/12 xl:w-8/12 ">
                     <div class="ud-contact-content-wrapper">
                         <div class="ud-contact-title mb-12 lg:mb-[150px]">
-                            <span class="mb-5 text-base font-semibold text-indigo-600">
-                                CONTACT US
-                            </span>
+                        <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
+                                    <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
+                                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                        <span class="relative text-black group-hover:text-white">Contact Us</span>
+                                    </p>
+                                </span>
                             <h2 class="text-[35px] font-semibold text-gray-900 pb-4">
                                 Let's talk about
                                 <br />
@@ -520,7 +532,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-6 text-lg font-semibold">Our Location</h5>
-                                    <p class="text-base text-indigo-600">
+                                    <p class="text-base text-black">
                                         Blk 3 Lot 26 Phase 2 Bella Solana Barangay Bigaa Cabuyao Laguna
                                     </p>
                                 </div>
@@ -533,7 +545,7 @@
                                 </div>
                                 <div>
                                     <h5 class="mb-6 text-lg font-semibold">How Can We Help?</h5>
-                                    <p class="text-base text-indigo-600">headturnermc@yahoo.com</p>
+                                    <p class="text-base text-black">headturnermc@yahoo.com</p>
                                 </div>
                             </div>
                         </div>

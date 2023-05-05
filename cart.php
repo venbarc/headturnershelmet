@@ -20,10 +20,10 @@
 
 <body class="antialiased ">
 
-  <section class="h-full py-12 bg-gray-300 sm:py-16 lg:py-24">
+  <section class="h-full py-12 bg-gray-300 sm:py-16 lg:py-44">
     <div class="px-4 mx-auto sm:px-6 lg:px-8">
       <div class="flex items-center justify-center">
-        <h1 class="text-4xl font-semibold text-gray-900">Your Cart</h1>
+        <h1 class="text-4xl font-bold text-gray-900">Your Cart</h1>
       </div>
 
       <div class="max-w-2xl mx-auto mt-8 md:mt-12">
@@ -93,16 +93,16 @@
             <div class="py-2 mt-6 border-t border-b">
               <div class="flex items-center justify-between">
                 <p class="text-sm text-gray-400">Subtotal</p>
-                <p class="text-lg font-semibold text-gray-900">$399.00</p>
+                <p class="text-lg font-semibold text-gray-900">₱399.00</p>
               </div>
               <div class="flex items-center justify-between">
                 <p class="text-sm text-gray-400">Shipping</p>
-                <p class="text-lg font-semibold text-gray-900">$8.00</p>
+                <p class="text-lg font-semibold text-gray-900">₱8.00</p>
               </div>
             </div>
             <div class="flex items-center justify-between mt-6">
               <p class="text-sm font-medium text-gray-900">Total</p>
-              <p class="text-2xl font-semibold text-gray-900"><span class="text-xs font-normal text-gray-400">USD</span> 408.00</p>
+              <p class="text-2xl font-semibold text-gray-900"><span class="text-xs font-normal text-gray-400">PHP</span> 408.00</p>
             </div>
 
             <div class="mt-6 text-end">

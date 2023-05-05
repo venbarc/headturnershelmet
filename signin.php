@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pricing | Play Tailwind</title>
+    <title>Sign In | Play Tailwind</title>
     <link
       rel="shortcut icon"
       href="assets/images/favicon.png"
@@ -22,20 +22,20 @@
   <body>
     <!-- ====== Navbar Section Start -->
     <div
-      class="ud-header absolute top-0 left-0 z-40 flex w-full items-center bg-transparent"
+      class="absolute top-0 left-0 z-40 flex items-center w-full bg-transparent ud-header"
     >
       <div class="container">
-        <div class="relative -mx-4 flex items-center justify-between">
-          <div class="w-60 max-w-full px-4">
-            <a href="index.html" class="navbar-logo block w-full py-5">
+        <div class="relative flex items-center justify-between -mx-4">
+          <div class="max-w-full px-4 w-60">
+            <a href="index.html" class="block w-full py-5 navbar-logo">
               <img
                 src="assets/images/logo/logo-white.svg"
                 alt="logo"
-                class="header-logo w-full"
+                class="w-full header-logo"
               />
             </a>
           </div>
-          <div class="flex w-full items-center justify-between px-4">
+          <div class="flex items-center justify-between w-full px-4">
             <div>
               <button
                 id="navbarToggler"
@@ -56,47 +56,47 @@
                 class="absolute right-4 top-full hidden w-full max-w-[250px] rounded-lg bg-white py-5 shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:py-0 lg:px-4 lg:shadow-none xl:px-6"
               >
                 <ul class="blcok lg:flex">
-                  <li class="group relative">
+                  <li class="relative group">
                     <a
                       href="#home"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70"
+                      class="flex py-2 mx-8 text-base ud-menu-scroll text-dark group-hover:text-primary lg:mr-0 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70"
                     >
                       Home
                     </a>
                   </li>
-                  <li class="group relative">
+                  <li class="relative group">
                     <a
                       href="/#about"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
+                      class="flex py-2 mx-8 text-base ud-menu-scroll text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
                     >
                       About
                     </a>
                   </li>
-                  <li class="group relative">
+                  <li class="relative group">
                     <a
                       href="/#pricing"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
+                      class="flex py-2 mx-8 text-base ud-menu-scroll text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
                     >
                       Pricing
                     </a>
                   </li>
-                  <li class="group relative">
+                  <li class="relative group">
                     <a
                       href="/#team"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
+                      class="flex py-2 mx-8 text-base ud-menu-scroll text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
                     >
                       Team
                     </a>
                   </li>
-                  <li class="group relative">
+                  <li class="relative group">
                     <a
                       href="/#contact"
-                      class="ud-menu-scroll mx-8 flex py-2 text-base text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
+                      class="flex py-2 mx-8 text-base ud-menu-scroll text-dark group-hover:text-primary lg:mr-0 lg:ml-7 lg:inline-flex lg:py-6 lg:px-0 lg:text-white lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
                     >
                       Contact
                     </a>
                   </li>
-                  <li class="submenu-item group relative">
+                  <li class="relative submenu-item group">
                     <a
                       href="javascript:void(0)"
                       class="relative mx-8 flex py-2 text-base text-dark after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:-translate-y-1/2 after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-primary lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:text-white lg:after:right-0 lg:group-hover:text-white lg:group-hover:opacity-70 xl:ml-12"
@@ -136,6 +136,7 @@
                       >
                         Blog Details Page
                       </a>
+
                       <a
                         href="signup.html"
                         class="block rounded py-[10px] px-4 text-sm text-body-color hover:text-primary"
@@ -159,16 +160,16 @@
                 </ul>
               </nav>
             </div>
-            <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+            <div class="justify-end hidden pr-16 sm:flex lg:pr-0">
               <a
                 href="signin.html"
-                class="loginBtn py-3 px-7 text-base font-medium text-white hover:opacity-70"
+                class="py-3 text-base font-medium text-white loginBtn px-7 hover:opacity-70"
               >
                 Sign In
               </a>
               <a
                 href="signup.html"
-                class="signUpBtn rounded-lg bg-white bg-opacity-20 py-3 px-6 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
+                class="px-6 py-3 text-base font-medium text-white duration-300 ease-in-out bg-white rounded-lg signUpBtn bg-opacity-20 hover:bg-opacity-100 hover:text-dark"
               >
                 Sign Up
               </a>
@@ -184,10 +185,10 @@
       class="relative z-10 overflow-hidden bg-primary pt-[120px] pb-[100px] md:pt-[130px] lg:pt-[160px]"
     >
       <div class="container">
-        <div class="-mx-4 flex flex-wrap items-center">
+        <div class="flex flex-wrap items-center -mx-4">
           <div class="w-full px-4">
             <div class="text-center">
-              <h1 class="text-4xl font-semibold text-white">Pricing Page</h1>
+              <h1 class="text-4xl font-semibold text-white">Log In Page</h1>
             </div>
           </div>
         </div>
@@ -260,499 +261,343 @@
     </div>
     <!-- ====== Banner Section End -->
 
-    <!-- ====== Pricing Section Start -->
-    <section
-      id="pricing"
-      class="relative z-20 overflow-hidden bg-white pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]"
-    >
+    <!-- ====== Forms Section Start -->
+    <section class="bg-[#F4F7FF] py-14 lg:py-20">
       <div class="container">
-        <div class="-mx-4 flex flex-wrap">
+        <div class="flex flex-wrap -mx-4">
           <div class="w-full px-4">
-            <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
-              <span class="mb-2 block text-lg font-semibold text-primary">
-                Pricing Table
-              </span>
-              <h2
-                class="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[40px]"
+            <div
+              class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-14 px-8 text-center sm:px-12 md:px-[60px]"
+              data-wow-delay=".15s"
+            >
+              <div class="mb-10 text-center">
+                <a
+                  href="javascript:void(0)"
+                  class="mx-auto inline-block max-w-[160px]"
+                >
+                  <img src="assets/images/logo/logo.svg" alt="logo" />
+                </a>
+              </div>
+              <form>
+                <div class="mb-6">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none"
+                  />
+                </div>
+                <div class="mb-6">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    class="bordder-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none"
+                  />
+                </div>
+                <div class="mb-10">
+                  <input
+                    type="submit"
+                    value="Sign In"
+                    class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer bordder-primary bg-primary hover:shadow-md"
+                  />
+                </div>
+              </form>
+              <p class="mb-6 text-base text-[#adadad]">Connect With</p>
+              <ul class="flex justify-between mb-12 -mx-2">
+                <li class="w-full px-2">
+                  <a
+                    href="javascript:void(0)"
+                    class="flex h-11 items-center justify-center rounded-md bg-[#4064AC] transition hover:bg-opacity-90"
+                  >
+                    <svg
+                      width="10"
+                      height="20"
+                      viewBox="0 0 10 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M9.29878 8H7.74898H7.19548V7.35484V5.35484V4.70968H7.74898H8.91133C9.21575 4.70968 9.46483 4.45161 9.46483 4.06452V0.645161C9.46483 0.290323 9.24343 0 8.91133 0H6.89106C4.70474 0 3.18262 1.80645 3.18262 4.48387V7.29032V7.93548H2.62912H0.747223C0.359774 7.93548 0 8.29032 0 8.80645V11.129C0 11.5806 0.304424 12 0.747223 12H2.57377H3.12727V12.6452V19.129C3.12727 19.5806 3.43169 20 3.87449 20H6.47593C6.64198 20 6.78036 19.9032 6.89106 19.7742C7.00176 19.6452 7.08478 19.4194 7.08478 19.2258V12.6774V12.0323H7.66596H8.91133C9.2711 12.0323 9.54785 11.7742 9.6032 11.3871V11.3548V11.3226L9.99065 9.09677C10.0183 8.87097 9.99065 8.6129 9.8246 8.35484C9.76925 8.19355 9.52018 8.03226 9.29878 8Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li class="w-full px-2">
+                  <a
+                    href="javascript:void(0)"
+                    class="flex h-11 items-center justify-center rounded-md bg-[#1C9CEA] transition hover:bg-opacity-90"
+                  >
+                    <svg
+                      width="22"
+                      height="16"
+                      viewBox="0 0 22 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M19.5516 2.75538L20.9 1.25245C21.2903 0.845401 21.3968 0.53229 21.4323 0.375734C20.3677 0.939335 19.3742 1.1272 18.7355 1.1272H18.4871L18.3452 1.00196C17.4935 0.344423 16.429 0 15.2935 0C12.8097 0 10.8581 1.81605 10.8581 3.91389C10.8581 4.03914 10.8581 4.22701 10.8935 4.35225L11 4.97847L10.2548 4.94716C5.7129 4.82192 1.9871 1.37769 1.38387 0.782779C0.390323 2.34834 0.958064 3.85127 1.56129 4.79061L2.76774 6.54403L0.851613 5.6047C0.887097 6.91977 1.45484 7.95303 2.55484 8.7045L3.5129 9.33072L2.55484 9.67515C3.15806 11.272 4.50645 11.9296 5.5 12.18L6.8129 12.4932L5.57097 13.2446C3.58387 14.4971 1.1 14.4031 0 14.3092C2.23548 15.6869 4.89677 16 6.74194 16C8.12581 16 9.15484 15.8748 9.40322 15.7808C19.3387 13.7143 19.8 5.8865 19.8 4.32094V4.10176L20.0129 3.97652C21.2194 2.97456 21.7161 2.44227 22 2.12916C21.8935 2.16047 21.7516 2.22309 21.6097 2.2544L19.5516 2.75538Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </a>
+                </li>
+                <li class="w-full px-2">
+                  <a
+                    href="javascript:void(0)"
+                    class="flex h-11 items-center justify-center rounded-md bg-[#D64937] transition hover:bg-opacity-90"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.8477 8.17132H9.29628V10.643H15.4342C15.1065 14.0743 12.2461 15.5574 9.47506 15.5574C5.95916 15.5574 2.8306 12.8821 2.8306 9.01461C2.8306 5.29251 5.81018 2.47185 9.47506 2.47185C12.2759 2.47185 13.9742 4.24567 13.9742 4.24567L15.7024 2.47185C15.7024 2.47185 13.3783 0.000145544 9.35587 0.000145544C4.05223 -0.0289334 0 4.30383 0 8.98553C0 13.5218 3.81386 18 9.44526 18C14.4212 18 17.9967 14.7141 17.9967 9.79974C18.0264 8.78198 17.8477 8.17132 17.8477 8.17132Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+              <a
+                href="javascript:void(0)"
+                class="mb-2 inline-block text-base text-[#adadad] hover:text-primary"
               >
-                Our Pricing Plan
-              </h2>
-              <p
-                class="text-lg leading-relaxed text-body-color sm:text-xl sm:leading-relaxed"
-              >
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
+                Forget Password?
+              </a>
+              <p class="text-base text-[#adadad]">
+                Not a member yet?
+                <a href="signup.html" class="text-primary hover:underline">
+                  Sign Up
+                </a>
               </p>
-            </div>
-          </div>
-        </div>
 
-        <div class="flex flex-wrap items-center justify-center">
-          <div class="w-full md:w-1/2 lg:w-1/3">
-            <div
-              class="wow fadeInUp relative z-10 mb-10 overflow-hidden rounded-xl border border-primary border-opacity-20 bg-white py-10 px-8 text-center shadow-pricing sm:p-12 lg:py-10 lg:px-6 xl:p-12"
-              data-wow-delay=".15s
-              "
-            >
-              <span
-                class="mb-2 block text-base font-medium uppercase text-dark"
-              >
-                STARTING FROM
-              </span>
-              <h2 class="mb-9 text-[28px] font-semibold text-primary">
-                € 19.99/mo
-              </h2>
-
-              <div class="mb-10">
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  1 User
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  All UI components
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  Lifetime access
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  Free updates
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  Use on 1 (one) project
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  3 Months support
-                </p>
+              <div>
+                <span class="absolute top-1 right-1">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="1.39737"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="1.39737"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="1.39737"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="1.39737"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 14.0086)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 14.0086)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 14.0086)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 14.0086)"
+                      fill="#3056D3"
+                    />
+                  </svg>
+                </span>
+                <span class="absolute left-1 bottom-1">
+                  <svg
+                    width="29"
+                    height="40"
+                    viewBox="0 0 29 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="2.288"
+                      cy="25.9912"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 25.9912)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="25.9911"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 25.9911)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="25.9911"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 25.9911)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="2.288"
+                      cy="13.6944"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 13.6944)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="13.6943"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 13.6943)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="13.6943"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 13.6943)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="2.288"
+                      cy="38.0087"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 38.0087)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="2.288"
+                      cy="1.39739"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 1.39739)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="38.0089"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 38.0089)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="38.0089"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 38.0089)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="1.39761"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 1.39761)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="1.39761"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 1.39761)"
+                      fill="#3056D3"
+                    />
+                  </svg>
+                </span>
               </div>
-              <div class="w-full">
-                <a
-                  href="javascript:void(0)"
-                  class="inline-block rounded-full border border-[#D4DEFF] bg-transparent py-4 px-11 text-center text-base font-medium text-primary transition duration-300 ease-in-out hover:border-primary hover:bg-primary hover:text-white"
-                >
-                  Purchase Now
-                </a>
-              </div>
-              <span
-                class="absolute left-0 bottom-0 z-[-1] block h-14 w-14 rounded-tr-full bg-primary"
-              >
-              </span>
-            </div>
-          </div>
-          <div class="w-full md:w-1/2 lg:w-1/3">
-            <div
-              class="wow fadeInUp relative z-10 mb-10 overflow-hidden rounded-xl bg-primary bg-gradient-to-b from-primary to-[#179BEE] py-10 px-8 text-center shadow-pricing sm:p-12 lg:py-10 lg:px-6 xl:p-12"
-              data-wow-delay=".1s
-              "
-            >
-              <span
-                class="mb-5 inline-block rounded-full border border-white bg-white py-2 px-6 text-base font-semibold uppercase text-primary"
-              >
-                POPULAR
-              </span>
-              <span
-                class="mb-2 block text-base font-medium uppercase text-white"
-              >
-                STARTING FROM
-              </span>
-              <h2 class="mb-9 text-[28px] font-semibold text-white">
-                € 19.99/mo
-              </h2>
-
-              <div class="mb-10">
-                <p class="mb-1 text-base font-medium leading-loose text-white">
-                  5 User
-                </p>
-                <p class="mb-1 text-base font-medium leading-loose text-white">
-                  All UI components
-                </p>
-                <p class="mb-1 text-base font-medium leading-loose text-white">
-                  Lifetime access
-                </p>
-                <p class="mb-1 text-base font-medium leading-loose text-white">
-                  Free updates
-                </p>
-                <p class="mb-1 text-base font-medium leading-loose text-white">
-                  Use on 1 (one) project
-                </p>
-                <p class="mb-1 text-base font-medium leading-loose text-white">
-                  4 Months support
-                </p>
-              </div>
-              <div class="w-full">
-                <a
-                  href="javascript:void(0)"
-                  class="inline-block rounded-full border border-white bg-white py-4 px-11 text-center text-base font-medium text-dark transition duration-300 ease-in-out hover:border-dark hover:bg-dark hover:text-white"
-                >
-                  Purchase Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="w-full md:w-1/2 lg:w-1/3">
-            <div
-              class="wow fadeInUp relative z-10 mb-10 overflow-hidden rounded-xl border border-primary border-opacity-20 bg-white py-10 px-8 text-center shadow-pricing sm:p-12 lg:py-10 lg:px-6 xl:p-12"
-              data-wow-delay=".15s
-              "
-            >
-              <span
-                class="mb-2 block text-base font-medium uppercase text-dark"
-              >
-                STARTING FROM
-              </span>
-              <h2 class="mb-9 text-[28px] font-semibold text-primary">
-                € 70.99/mo
-              </h2>
-
-              <div class="mb-10">
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  1 User
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  All UI components
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  Lifetime access
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  Free updates
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  Use on unlimited project
-                </p>
-                <p
-                  class="mb-1 text-base font-medium leading-loose text-body-color"
-                >
-                  4 Months support
-                </p>
-              </div>
-              <div class="w-full">
-                <a
-                  href="javascript:void(0)"
-                  class="inline-block rounded-full border border-[#D4DEFF] bg-transparent py-4 px-11 text-center text-base font-medium text-primary transition duration-300 ease-in-out hover:border-primary hover:bg-primary hover:text-white"
-                >
-                  Purchase Now
-                </a>
-              </div>
-
-              <span
-                class="absolute right-0 top-0 z-[-1] block h-14 w-14 rounded-bl-full bg-secondary"
-              >
-              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- ====== Pricing Section End -->
-
-    <!-- ====== Faq Section Start -->
-    <section
-      class="relative z-20 overflow-hidden bg-[#f3f4ff] pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]"
-    >
-      <div class="container">
-        <div class="-mx-4 flex flex-wrap">
-          <div class="w-full px-4">
-            <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
-              <span class="mb-2 block text-lg font-semibold text-primary">
-                FAQ
-              </span>
-              <h2
-                class="mb-4 text-3xl font-bold text-dark sm:text-4xl md:text-[42px]"
-              >
-                Any Questions? Answered
-              </h2>
-              <p
-                class="text-lg leading-relaxed text-body-color sm:text-xl sm:leading-relaxed"
-              >
-                There are many variations of passages of Lorem Ipsum available
-                but the majority have suffered alteration in some form.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="-mx-4 flex flex-wrap">
-          <div class="w-full px-4 lg:w-1/2">
-            <div
-              class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-5 sm:p-8"
-              data-wow-delay=".1s
-              "
-            >
-              <button class="faq-btn flex w-full items-center text-left">
-                <div
-                  class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="icon fill-current"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base font-semibold text-black sm:text-lg">
-                    How to use UIdeck?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content hidden pl-[62px]">
-                <p class="py-3 text-base leading-relaxed text-body-color">
-                  It takes 2-3 weeks to get your first blog post ready. That
-                  includes the in-depth research & creation of your monthly
-                  content marketing strategy that we do before writing your
-                  first blog post, Ipsum available .
-                </p>
-              </div>
-            </div>
-            <div
-              class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-5 sm:p-8"
-              data-wow-delay=".15s
-              "
-            >
-              <button class="faq-btn flex w-full items-center text-left">
-                <div
-                  class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="icon fill-current"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base font-semibold text-black sm:text-lg">
-                    How to download icons from LineIcons?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content hidden pl-[62px]">
-                <p class="py-3 text-base leading-relaxed text-body-color">
-                  It takes 2-3 weeks to get your first blog post ready. That
-                  includes the in-depth research & creation of your monthly
-                  content marketing strategy that we do before writing your
-                  first blog post, Ipsum available .
-                </p>
-              </div>
-            </div>
-            <div
-              class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-5 sm:p-8"
-              data-wow-delay=".2s
-              "
-            >
-              <button class="faq-btn flex w-full items-center text-left">
-                <div
-                  class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="icon fill-current"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base font-semibold text-black sm:text-lg">
-                    Is GrayGrids part of UIdeck?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content hidden pl-[62px]">
-                <p class="py-3 text-base leading-relaxed text-body-color">
-                  It takes 2-3 weeks to get your first blog post ready. That
-                  includes the in-depth research & creation of your monthly
-                  content marketing strategy that we do before writing your
-                  first blog post, Ipsum available .
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="w-full px-4 lg:w-1/2">
-            <div
-              class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-5 sm:p-8"
-              data-wow-delay=".1s
-              "
-            >
-              <button class="faq-btn flex w-full items-center text-left">
-                <div
-                  class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="icon fill-current"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base font-semibold text-black sm:text-lg">
-                    Can I use this template for commercial project?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content hidden pl-[62px]">
-                <p class="py-3 text-base leading-relaxed text-body-color">
-                  It takes 2-3 weeks to get your first blog post ready. That
-                  includes the in-depth research & creation of your monthly
-                  content marketing strategy that we do before writing your
-                  first blog post, Ipsum available .
-                </p>
-              </div>
-            </div>
-            <div
-              class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-5 sm:p-8"
-              data-wow-delay=".15s
-              "
-            >
-              <button class="faq-btn flex w-full items-center text-left">
-                <div
-                  class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="icon fill-current"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base font-semibold text-black sm:text-lg">
-                    Do you have plan to releasing Play Pro?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content hidden pl-[62px]">
-                <p class="py-3 text-base leading-relaxed text-body-color">
-                  It takes 2-3 weeks to get your first blog post ready. That
-                  includes the in-depth research & creation of your monthly
-                  content marketing strategy that we do before writing your
-                  first blog post, Ipsum available .
-                </p>
-              </div>
-            </div>
-            <div
-              class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] bg-white p-5 sm:p-8"
-              data-wow-delay=".2s
-              "
-            >
-              <button class="faq-btn flex w-full items-center text-left">
-                <div
-                  class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-primary"
-                >
-                  <svg
-                    width="17"
-                    height="10"
-                    viewBox="0 0 17 10"
-                    class="icon fill-current"
-                  >
-                    <path
-                      d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                      fill="#3056D3"
-                      stroke="#3056D3"
-                    />
-                  </svg>
-                </div>
-                <div class="w-full">
-                  <h4 class="text-base font-semibold text-black sm:text-lg">
-                    Where and how to host this template?
-                  </h4>
-                </div>
-              </button>
-              <div class="faq-content hidden pl-[62px]">
-                <p class="py-3 text-base leading-relaxed text-body-color">
-                  It takes 2-3 weeks to get your first blog post ready. That
-                  includes the in-depth research & creation of your monthly
-                  content marketing strategy that we do before writing your
-                  first blog post, Ipsum available .
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="absolute bottom-0 right-0 z-[-1]">
-        <svg
-          width="1440"
-          height="886"
-          viewBox="0 0 1440 886"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            opacity="0.5"
-            d="M193.307 -273.321L1480.87 1014.24L1121.85 1373.26C1121.85 1373.26 731.745 983.231 478.513 729.927C225.976 477.317 -165.714 85.6993 -165.714 85.6993L193.307 -273.321Z"
-            fill="url(#paint0_linear)"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear"
-              x1="1308.65"
-              y1="1142.58"
-              x2="602.827"
-              y2="-418.681"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#3056D3" stop-opacity="0.36" />
-              <stop offset="1" stop-color="#F5F2FD" stop-opacity="0" />
-              <stop offset="1" stop-color="#F5F2FD" stop-opacity="0.096144" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-    </section>
-    <!-- ====== Faq Section End -->
+    <!-- ====== Forms Section End -->
 
     <!-- ====== Footer Section Start -->
     <footer
@@ -760,9 +605,9 @@
       data-wow-delay=".15s"
     >
       <div class="container">
-        <div class="-mx-4 flex flex-wrap">
+        <div class="flex flex-wrap -mx-4">
           <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-4/12 xl:w-3/12">
-            <div class="mb-10 w-full">
+            <div class="w-full mb-10">
               <a
                 href="javascript:void(0)"
                 class="mb-6 inline-block max-w-[160px]"
@@ -777,7 +622,7 @@
                 We create digital experiences for brands and companies by using
                 technology.
               </p>
-              <div class="-mx-3 flex items-center">
+              <div class="flex items-center -mx-3">
                 <a
                   href="javascript:void(0)"
                   class="px-3 text-[#dddddd] hover:text-white"
@@ -848,8 +693,8 @@
             </div>
           </div>
           <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-2/12 xl:w-2/12">
-            <div class="mb-10 w-full">
-              <h4 class="mb-9 text-lg font-semibold text-white">About Us</h4>
+            <div class="w-full mb-10">
+              <h4 class="text-lg font-semibold text-white mb-9">About Us</h4>
               <ul>
                 <li>
                   <a
@@ -887,8 +732,8 @@
             </div>
           </div>
           <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
-            <div class="mb-10 w-full">
-              <h4 class="mb-9 text-lg font-semibold text-white">Features</h4>
+            <div class="w-full mb-10">
+              <h4 class="text-lg font-semibold text-white mb-9">Features</h4>
               <ul>
                 <li>
                   <a
@@ -926,8 +771,8 @@
             </div>
           </div>
           <div class="w-full px-4 sm:w-1/2 md:w-1/2 lg:w-3/12 xl:w-2/12">
-            <div class="mb-10 w-full">
-              <h4 class="mb-9 text-lg font-semibold text-white">
+            <div class="w-full mb-10">
+              <h4 class="text-lg font-semibold text-white mb-9">
                 Our Products
               </h4>
               <ul>
@@ -967,8 +812,8 @@
             </div>
           </div>
           <div class="w-full px-4 md:w-2/3 lg:w-6/12 xl:w-3/12">
-            <div class="mb-10 w-full">
-              <h4 class="mb-9 text-lg font-semibold text-white">Partners</h4>
+            <div class="w-full mb-10">
+              <h4 class="text-lg font-semibold text-white mb-9">Partners</h4>
               <ul class="flex flex-wrap items-center">
                 <li>
                   <a
@@ -1056,11 +901,11 @@
 
       <div class="mt-12 border-t border-opacity-40 py-8 lg:mt-[60px]">
         <div class="container">
-          <div class="-mx-4 flex flex-wrap">
+          <div class="flex flex-wrap -mx-4">
             <div class="w-full px-4 md:w-2/3 lg:w-1/2">
               <div class="my-1">
                 <div
-                  class="-mx-3 flex items-center justify-center md:justify-start"
+                  class="flex items-center justify-center -mx-3 md:justify-start"
                 >
                   <a
                     href="javascript:void(0)"
@@ -1084,7 +929,7 @@
               </div>
             </div>
             <div class="w-full px-4 md:w-1/3 lg:w-1/2">
-              <div class="my-1 flex justify-center md:justify-end">
+              <div class="flex justify-center my-1 md:justify-end">
                 <p class="text-base text-[#f3f4fe]">
                   Designed and Developed by
                   <a

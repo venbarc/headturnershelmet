@@ -14,11 +14,16 @@
     // navigation bar 
     include 'include/navbar.php';
     ?>
+    <!-- ==== WOW JS ==== -->
+    <script src="assets/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </head>
 
 <body class="antialiased ">
     <!-- ====== About hero Start -->
-    <section id="about" class="bg-gray-950 pt-20 pb-20 lg:pt-[120px] lg:pb-[120px] bg-fixed bg-cover" style="background-image: url('header7.png');">
+    <section id="hero" class="bg-gray-950 pt-20 pb-20 lg:pt-[120px] lg:pb-[120px] bg-fixed bg-cover" style="background-image: url('header7.png');">
         <div class="container">
             <div class="wow fadeInUp" data-wow-delay=".2s">
                 <div class="flex flex-wrap -mx-4">
@@ -60,12 +65,12 @@
 
                                 </div>
                                 <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
-                                    <a href="shark.php" class="inline-flex items-center justify-center px-6 py-2 mt-4 text-base font-medium text-center text-gray-900 bg-blue-500 rounded-full focus:outline-none hover:bg-gray-500 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-200 ">
-                                        Visit Shop
-                                        <svg aria-hidden="true" class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                        </svg>
+                                    <a href="shoei.php" class="relative inline-block px-4 py-2 font-medium group">
+                                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                        <span class="relative text-black group-hover:text-white">Shop Now</span>
                                     </a>
+
                                 </div>
                             </div>
 
@@ -120,6 +125,48 @@
     // sample product display
     include 'include/sample_product.php';
     ?>
+
+    <!-- ====== About Section Start -->
+    <section id="about" class="bg-gray-300 pt-20 pb-20 lg:pt-[120px] lg:pb-[120px]">
+        <div class="container">
+            <div class="bg-gray-200 wow fadeInUp" data-wow-delay=".2s">
+                <div class="flex flex-wrap -mx-4">
+                    <div class="w-full px-4">
+                        <div class="items-center justify-between overflow-hidden border lg:flex">
+                            <div class="w-full py-12 px-7 sm:px-12 md:p-16 lg:max-w-[565px] lg:py-9 lg:px-16 xl:max-w-[640px] xl:p-[70px]">
+                                <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
+                                    <a href="#_" class="relative inline-block px-4 py-2 font-medium group">
+                                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                        <span class="relative text-black group-hover:text-white">About Us</span>
+                                    </a>
+                                </span>
+                                <h2 class="mb-6 text-3xl font-bold text-dark sm:text-4xl sm:leading-snug 2xl:text-[40px]">
+                                    Welcome to HeadTurner's Helmets
+                                </h2>
+                                <p class="text-base leading-relaxed mb-9 text-body-color">
+                                    We are a team of passionate helmet enthusiasts who are dedicated to providing our customers with high-quality helmets at competitive prices.
+                                </p>
+                                <p class="text-base leading-relaxed mb-9 text-body-color">
+                                    Our goal is to make it easy for you to find the perfect helmet for your needs, whether you're a motorcycle rider, a cyclist, or someone who just wants to stay safe while enjoying outdoor activities. We have a wide variety of helmets available, including full-face helmets, open-face helmets, modular helmets, dirt bike helmets, and more.
+                                </p>
+                                <p class="text-base leading-relaxed mb-9 text-body-color">
+                                    We believe that safety should always come first, which is why we only sell helmets that meet safety standards such as DOT, ECE, or Snell. We also understand that comfort and style are important factors when choosing a helmet, so we offer a range of materials and designs to suit your preferences.
+                                </p>
+
+                            </div>
+                            <div class="text-center">
+                                <div class="relative z-10 inline-block">
+                                    <img src="assets/images/about/about-image.svg" alt="image" class="mx-auto lg:ml-auto" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== About Section End -->
 
     <!-- ====== Faq Section Start -->
     <section class="relative z-20 overflow-hidden bg-gray-300 pt-20 pb-12  lg:pb-[90px]">
@@ -443,9 +490,96 @@
         </div>
     </section>
     <!-- ====== Testimonials End ====== -->
+
+    <!-- CONTACT START -->
+    <!-- ====== Contact Start ====== -->
+    <section id="contact" class="relative  bg-gray-200  md:py-[100px]">
+        <div class="absolute top-0 left-0 z-[-1] h-1/2 w-full lg:h-[45%] xl:h-1/2"></div>
+        <div class="container px-4">
+            <div class="flex flex-wrap items-center -mx-4 ">
+                <div class="w-full px-4 lg:w-7/12 xl:w-8/12 ">
+                    <div class="ud-contact-content-wrapper">
+                        <div class="ud-contact-title mb-12 lg:mb-[150px]">
+                            <span class="mb-5 text-base font-semibold text-indigo-600">
+                                CONTACT US
+                            </span>
+                            <h2 class="text-[35px] font-semibold text-gray-900 pb-4">
+                                Let's talk about
+                                <br />
+                                Love to hear from you!
+                            </h2>
+                        </div>
+                        <hr class="my-6 border-gray-800 sm:mx-auto lg:my-8" />
+                        <div class="flex flex-wrap justify-between mb-12 lg:mb-0 ">
+                            <div class="mb-8 flex w-[330px] max-w-full">
+                                <div class="mr-6 text-[32px] text-gray-900">
+                                    <svg width="29" height="35" viewbox="0 0 29 35" class="fill-current">
+                                        <path d="M14.5 0.710938C6.89844 0.710938 0.664062 6.72656 0.664062 14.0547C0.664062 19.9062 9.03125 29.5859 12.6406 33.5234C13.1328 34.0703 13.7891 34.3437 14.5 34.3437C15.2109 34.3437 15.8672 34.0703 16.3594 33.5234C19.9688 29.6406 28.3359 19.9062 28.3359 14.0547C28.3359 6.67188 22.1016 0.710938 14.5 0.710938ZM14.9375 32.2109C14.6641 32.4844 14.2812 32.4844 14.0625 32.2109C11.3828 29.3125 2.57812 19.3594 2.57812 14.0547C2.57812 7.71094 7.9375 2.625 14.5 2.625C21.0625 2.625 26.4219 7.76562 26.4219 14.0547C26.4219 19.3594 17.6172 29.2578 14.9375 32.2109Z" />
+                                        <path d="M14.5 8.58594C11.2734 8.58594 8.59375 11.2109 8.59375 14.4922C8.59375 17.7188 11.2187 20.3984 14.5 20.3984C17.7812 20.3984 20.4062 17.7734 20.4062 14.4922C20.4062 11.2109 17.7266 8.58594 14.5 8.58594ZM14.5 18.4297C12.3125 18.4297 10.5078 16.625 10.5078 14.4375C10.5078 12.25 12.3125 10.4453 14.5 10.4453C16.6875 10.4453 18.4922 12.25 18.4922 14.4375C18.4922 16.625 16.6875 18.4297 14.5 18.4297Z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-6 text-lg font-semibold">Our Location</h5>
+                                    <p class="text-base text-indigo-600">
+                                        Blk 3 Lot 26 Phase 2 Bella Solana Barangay Bigaa Cabuyao Laguna
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mb-8 flex w-[330px] max-w-full">
+                                <div class="mr-6 text-[32px] text-gray-900">
+                                    <svg width="34" height="25" viewbox="0 0 34 25" class="fill-current">
+                                        <path d="M30.5156 0.960938H3.17188C1.42188 0.960938 0 2.38281 0 4.13281V20.9219C0 22.6719 1.42188 24.0938 3.17188 24.0938H30.5156C32.2656 24.0938 33.6875 22.6719 33.6875 20.9219V4.13281C33.6875 2.38281 32.2656 0.960938 30.5156 0.960938ZM30.5156 2.875C30.7891 2.875 31.0078 2.92969 31.2266 3.09375L17.6094 11.3516C17.1172 11.625 16.5703 11.625 16.0781 11.3516L2.46094 3.09375C2.67969 2.98438 2.89844 2.875 3.17188 2.875H30.5156ZM30.5156 22.125H3.17188C2.51562 22.125 1.91406 21.5781 1.91406 20.8672V5.00781L15.0391 12.9922C15.5859 13.3203 16.1875 13.4844 16.7891 13.4844C17.3906 13.4844 17.9922 13.3203 18.5391 12.9922L31.6641 5.00781V20.8672C31.7734 21.5781 31.1719 22.125 30.5156 22.125Z" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h5 class="mb-6 text-lg font-semibold">How Can We Help?</h5>
+                                    <p class="text-base text-indigo-600">headturnermc@yahoo.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full px-4 lg:w-5/12 xl:w-4/12">
+                    <div class="wow fadeInUp rounded-lg bg-gray-100 py-10 px-8 sm:py-12 sm:px-10 md:p-[60px] lg:p-10 lg:py-12 lg:px-10 2xl:p-[60px]" data-wow-delay=".2s
+                                                  ">
+                        <h3 class="mb-8 text-2xl font-semibold md:text-[26px]">
+                            Send us a Message
+                        </h3>
+                        <form>
+                            <div class="mb-6">
+                                <label for="fullName" class="block text-xs text-gray-950">Full Name*</label>
+                                <input type="text" name="fullName" placeholder="Jane Doe" class="w-full border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none" />
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-xs text-gray-950">Email*</label>
+                                <input type="email" name="email" placeholder="example@yourmail.com" class="w-full border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none" />
+                            </div>
+                            <div class="mb-6">
+                                <label for="phone" class="block text-xs text-gray-950">Phone*</label>
+                                <input type="text" name="phone" placeholder="+63912345678" class="w-full border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none" />
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-xs text-gray-950">Message*</label>
+                                <textarea name="message" rows="1" placeholder="  type your message here" class="w-full resize-none border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"></textarea>
+                            </div>
+                            <div class="mb-0">
+                                <button type="submit" class="relative inline-block px-4 py-2 font-medium group">
+                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                    <span class="relative text-black group-hover:text-white">Send Message</span>
+                                </button>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== Contact End ====== -->
+    <!-- CONTACT END  -->
     <?php
-    // navigation bar 
-    include 'include/contact.php';
     // navigation bar 
     include 'include/footer.php';
     // footer link

@@ -6,9 +6,13 @@
             <div class="w-full px-4 lg:w-7/12 xl:w-8/12 ">
                 <div class="ud-contact-content-wrapper">
                     <div class="ud-contact-title mb-12 lg:mb-[150px]">
-                        <span class="mb-5 text-base font-semibold text-indigo-600">
-                            CONTACT US
-                        </span>
+                    <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
+                                <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
+                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                    <span class="relative text-black group-hover:text-white">Contact Us</span>
+                                </p>
+                            </span>
                         <h2 class="text-[35px] font-semibold text-gray-900 pb-4">
                             Let's talk about
                             <br />
@@ -26,7 +30,7 @@
                             </div>
                             <div>
                                 <h5 class="mb-6 text-lg font-semibold">Our Location</h5>
-                                <p class="text-base text-indigo-600">
+                                <p class="text-base text-black">
                                     Blk 3 Lot 26 Phase 2 Bella Solana Barangay Bigaa Cabuyao Laguna
                                 </p>
                             </div>
@@ -39,7 +43,7 @@
                             </div>
                             <div>
                                 <h5 class="mb-6 text-lg font-semibold">How Can We Help?</h5>
-                                <p class="text-base text-indigo-600">headturnermc@yahoo.com</p>
+                                <p class="text-base text-black">headturnermc@yahoo.com</p>
                             </div>
                         </div>
                     </div>
@@ -47,7 +51,7 @@
             </div>
             <div class="w-full px-4 lg:w-5/12 xl:w-4/12">
                 <div class="wow fadeInUp rounded-lg bg-gray-100 py-10 px-8 sm:py-12 sm:px-10 md:p-[60px] lg:p-10 lg:py-12 lg:px-10 2xl:p-[60px]" data-wow-delay=".2s
-                                                  ">
+                                                ">
                     <h3 class="mb-8 text-2xl font-semibold md:text-[26px]">
                         Send us a Message
                     </h3>
@@ -66,12 +70,16 @@
                         </div>
                         <div class="mb-6">
                             <label for="message" class="block text-xs text-gray-950">Message*</label>
-                            <textarea name="message" rows="1" placeholder="type your message here" class="w-full resize-none border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"></textarea>
+                            <textarea name="message" rows="1" placeholder="  type your message here" class="w-full resize-none border-0 border-b border-[#f1f1f1] py-4 focus:border-primary focus:outline-none"></textarea>
                         </div>
                         <div class="mb-0">
-                            <button type="submit" class="inline-flex items-center justify-center px-6 py-4 text-base font-medium text-gray-300 transition duration-300 ease-in-out bg-indigo-600 rounded hover:bg-gray-800">
-                                Send Message
+                            <button type="submit" class="relative inline-block px-4 py-2 font-medium group">
+                                <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                <span class="relative text-black group-hover:text-white">Send Message</span>
                             </button>
+
+
                         </div>
                     </form>
                 </div>
@@ -79,4 +87,3 @@
         </div>
     </div>
 </section>
-<!-- ====== Contact End ====== -->

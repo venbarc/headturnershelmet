@@ -1,3 +1,6 @@
+
+<?php session_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,6 @@
 
 <body>
     <?php
-        session_start();
         include "connect.php";
         include "navbar.php";
 

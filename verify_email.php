@@ -1,3 +1,6 @@
+
+<?php session_start()?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +23,7 @@
   </script>
 
   <?php
-    session_start();
+    
     include "connect.php";
   ?>
 </head>

@@ -1,3 +1,5 @@
+<?php session_start() ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +8,6 @@
     <title>About | HEADTURNER'S</title>
     
     <?php
-    session_start();
     include "connect.php";
     include "include/header_link.php";
 

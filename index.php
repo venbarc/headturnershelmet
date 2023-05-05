@@ -1,3 +1,6 @@
+        
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -7,33 +10,39 @@
     <title>Home | HEADTURNER'S</title>
 
     <?php
-        session_start();
         // include "connect.php";
         include "include/header_link.php";
 
         // navigation bar 
         include 'include/navbar.php';
 
-        // // Check if user is signed in
-        // if(isset($_SESSION['user_id']))
-        // {
-        //     $user_id = $_SESSION['user_id'];
-        //     // get user statement data 
-        //     $stmt_get_user = $conn->prepare("select * from users where id = ? ");
-        //     $stmt_get_user->bind_param('i', $user_id);
-        //     $stmt_get_user->execute();   
-        //     $res_get_user = $stmt_get_user->get_result();
+        // Check if user is signed in
+        if(isset($_SESSION['user_id']))
+        {
+            $user_id = $_SESSION['user_id'];
+            // get user statement data 
+            $stmt_get_user = $conn->prepare("select * from users where id = ? ");
+            $stmt_get_user->bind_param('i', $user_id);
+            $stmt_get_user->execute();   
+            $res_get_user = $stmt_get_user->get_result();
             
-        //     // fetch users data
-        //     $user = $res_get_user->fetch_assoc();
+            // fetch users data
+            $user = $res_get_user->fetch_assoc();
 
-        //     $email = $user['email'];
-        //     $fname = $user['fname']; 
-        //     $contact = $user['contact']; 
-        //     $address = $user['contact']; 
-        //     $image = $user['image']; 
-        //     $date_reg = $user['date_reg']; 
-        // }
+            $email = $user['email'];
+            $fname = $user['fname']; 
+            $contact = $user['contact']; 
+            $address = $user['contact']; 
+            $image = $user['image']; 
+            $date_reg = $user['date_reg']; 
+        }
+        else{
+            ?>
+            <script>
+                location.href = "login.php";
+            </script>
+            <?php
+        }
     ?>
     <!-- ==== WOW JS ==== -->
     <script src="assets/js/wow.min.js"></script>

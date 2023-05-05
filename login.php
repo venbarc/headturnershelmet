@@ -1,3 +1,6 @@
+
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +20,7 @@
   </script>
 
   <?php
-    session_start();
+    
     include "connect.php";
   ?>
 </head>
@@ -204,6 +207,7 @@
                             $id = $row['id'];
                             // Start the session and allow login
                             $_SESSION['user_id'] = $id;
+                            echo $_SESSION['user_id'];
                             // Redirect user to profile 
                             ?>
                               <script>

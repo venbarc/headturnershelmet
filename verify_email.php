@@ -5,10 +5,13 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login </title>
+  <title>Verification Email </title>
   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
   <link rel="stylesheet" href="assets/css/animate.css" />
   <link rel="stylesheet" href="assets/css/tailwind.css" />
+
+  <!-- my own css  -->
+  <link rel="stylesheet" href="assets/css/addons.css">
 
   <!-- ==== WOW JS ==== -->
   <script src="assets/js/wow.min.js"></script>
@@ -137,7 +140,18 @@
       <div class="flex flex-wrap items-center -mx-4">
         <div class="w-full px-4">
           <div class="text-center">
-            <h1 class="text-4xl font-semibold text-white">Login Here</h1>
+            <?php
+                if(isset($_GET['email']))
+                {
+                    $email = $_GET['email'];
+                    echo'
+                        <h3 class="text-1xl font-semibold text-white">We have sent your verification pin on your email</h3>
+                        <h1 class="text-2xl font-semibold text-white" style="text-decoration:underline;">
+                            '.$email.'
+                        </h1>
+                    ';
+                }
+            ?>
           </div>
         </div>
       </div>
@@ -147,16 +161,14 @@
         <svg width="495" height="470" viewBox="0 0 495 470" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="55" cy="442" r="138" stroke="white" stroke-opacity="0.04" stroke-width="50" />
           <circle cx="446" r="39" stroke="white" stroke-opacity="0.04" stroke-width="20" />
-          <path d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z" stroke="white"
-            stroke-opacity="0.08" stroke-width="12" />
+          <path d="M245.406 137.609L233.985 94.9852L276.609 106.406L245.406 137.609Z" stroke="white" stroke-opacity="0.08" stroke-width="12" />
         </svg>
       </span>
       <span class="absolute top-0 right-0 z-[-1]">
         <svg width="493" height="470" viewBox="0 0 493 470" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="462" cy="5" r="138" stroke="white" stroke-opacity="0.04" stroke-width="50" />
           <circle cx="49" cy="470" r="39" stroke="white" stroke-opacity="0.04" stroke-width="20" />
-          <path d="M222.393 226.701L272.808 213.192L259.299 263.607L222.393 226.701Z" stroke="white"
-            stroke-opacity="0.06" stroke-width="13" />
+          <path d="M222.393 226.701L272.808 213.192L259.299 263.607L222.393 226.701Z" stroke="white" stroke-opacity="0.06" stroke-width="13" />
         </svg>
       </span>
     </div>
@@ -171,75 +183,24 @@
           <div class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-14 px-8 text-center sm:px-12 md:px-[60px]" data-wow-delay=".15s">
             <div class="mb-10 text-center">
                 <!-- <img src="assets/images/logo/logo.svg" alt="logo" /> -->
-                <strong>Welcome Back</strong>
+                <strong>Verify your Email</strong>
             </div>
-
             <?php
-                if(isset($_POST['login']))
-                {
-                    $email = $_POST['email'];
-                    $pass = $_POST['pass'];
-
-                    // check if data is in database 
-                    $stmt = $conn->prepare("select * from users where email = ? ");
-                    $stmt->bind_param('s', $email);
-                    $stmt->execute();
-                    $res = $stmt->get_result();
-
-                    if($res->num_rows == 1)
-                    {
-                        $row = $res->fetch_assoc();
-                        $pass_hash = $row['pass'];
-
-                        if(password_verify($pass, $pass_hash))
-                        {
-                            $id = $row['id'];
-                            // Start the session and allow login
-                            $_SESSION['user_id'] = $id;
-                            // Redirect user to profile 
-                            ?>
-                              <script>
-                                location.href = "profile.php";
-                              </script>
-                            <?php
-                            exit();
-                        }
-                        else
-                        {
-                            echo'<div class="popup-message"> Credentials Does not match, Pls try again. </div>'; 
-                        }
-                    }
-                    else
-                    {
-                        echo'<div class="popup-message"> Credentials Does not match, Pls try again. </div>'; 
-                    }
-                }
+               
             ?>
-            <form method="post">
+            <form method="post" id="pin_code">
+              <!-- pin code here  -->
               <div class="mb-6">
-                <input type="email" placeholder="Email" name="name" required
+                <input type="text" maxlength="6" required
                   class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
               </div>
-              <div class="mb-6">
-                <input type="password" placeholder="Password" name="pass" required
-                  class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
-              </div>
+              <!-- submit here  -->
               <div class="mb-10">
-                <input type="submit" value="Sign In"
-                  class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:shadow-md" />
+                <button type="submit"  name="submit_pin" class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:shadow-md">
+                  Verify
+                </button>
               </div>
             </form>
-
-            <!-- forget password and register link here  -->
-            <a href="javascript:void(0)" class="mb-2 inline-block text-base text-[#adadad] hover:text-primary">
-              Forget Password?
-            </a>
-            <p class="text-base text-[#adadad]">
-              Not a member yet?
-              <a href="register.php" class="text-primary hover:underline">
-                Register
-              </a>
-            </p>
 
             <div>
               <span class="absolute top-1 right-1">

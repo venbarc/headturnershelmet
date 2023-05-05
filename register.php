@@ -178,7 +178,7 @@
               <!-- <img src="assets/images/logo/logo.svg" alt="logo" /> -->
               <strong>Come Join us now</strong>
             </div>
-            <!-- if form is submitted  -->
+            <!-- if register is submitted  -->
             <?php 
                 if(isset($_POST['register']))
                 {
@@ -198,7 +198,7 @@
                     $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
 
                     // check if email exist in users database 
-                    $stmt = $conn->prepare("select * from users where = ?");
+                    $stmt = $conn->prepare("select * from users where email = ?");
                     $stmt->bind_param('s', $email);
                     $stmt->execute();
                     $res = $stmt->get_result();
@@ -224,7 +224,7 @@
                     {
                         // insert data 
                         $stmt = $conn->prepare("insert into users (email, fname, contact, address, pass, pin) values (?,?,?,?,?,?) ");
-                        $stmt->bind_param('ssissi',$email, $fname, $contact, $address, $pass, $pin);
+                        $stmt->bind_param('ssissi',$email, $fname, $contact, $address, $hash_pass, $pin);
                         $stmt->execute();
 
                         if($stmt->affected_rows > 0)
@@ -241,25 +241,27 @@
                             $mail->Host = 'smtp.gmail.com';
                             $mail->SMTPAuth = true;
                             
-                            // erovoutika mails 
-                            $mail->Username = 'headturners@headturnershelmet.com';
-                            // erovoutika password form gmail 
-                            $mail->Password = '';
+                            // headturners password form gmail 
+                            $mail->Username = 'headturners09@gmail.com';
+                            $mail->Password = 'hbmjzwzpjjlxxhsg';
                             $mail->SMTPSecure = 'tls';
                             $mail->Port = 587;
 
-                            $mail->setFrom('erovoutikamails@gmail.com', 'Headturners Verification');
+                            $mail->setFrom('headturners09@gmail.com', 'Headturners Verification Pin');
                             // users email 
                             $mail->addAddress($email);
                             $mail->isHTML(true);
                             $mail->Subject = 'Verification Pin';
                             $mail->Body = '
-                            <center>
+                            <div style="border: 5px dashed black; padding: 5%; margin: 0 15%">
                                 <h1> 
-                                    Verify your Account here <br>
-                                    Your verification pin: <br> ' . $pin . '</span> 
+                                  Verify your Account here  <br>
                                 </h1> 
-                            </center>
+                                <h2>
+                                  Your verification pin: <br> 
+                                  <span style="text-decoration: underline;"> ' . $pin . '</span> 
+                                </h4>
+                            </div>
                             ';
                             $mail->send();
                         }
@@ -285,7 +287,7 @@
               </div>
               <!-- contact here  -->
               <div class="mb-6">
-                <input type="contact" placeholder="Contact" name="contact" pattern="[0-9]{11}" maxlength="11" minlength="11" required
+                <input type="contact" placeholder="Contact (63+)" name="contact" pattern="[0-9]{10}" maxlength="10" minlength="10" required
                   class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
               </div>
               <!-- address here  -->

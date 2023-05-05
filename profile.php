@@ -97,7 +97,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 space-x-3 font-medium text-gray-700 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
+                <a href="" class="flex items-center p-2 space-x-3 font-medium text-gray-700 rounded-md hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline">
                     <span class="text-gray-600">
                         <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
@@ -119,11 +119,8 @@
   <!-- ====== Forms Section End -->
 
   <?php
-        // navigation bar 
-        include 'include/contact.php';
-    // navigation bar 
+    include 'include/contact.php';
     include 'include/footer.php';
-    // footer link
     include "include/footer_link.php";
     ?>
 

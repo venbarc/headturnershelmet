@@ -181,26 +181,93 @@
       <div class="flex flex-wrap -mx-4">
         <div class="w-full px-4">
           <div class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-14 px-8 text-center sm:px-12 md:px-[60px]" data-wow-delay=".15s">
-            <div class="mb-10 text-center">
-                <!-- <img src="assets/images/logo/logo.svg" alt="logo" /> -->
-                <strong>Verify your Email</strong>
-            </div>
+            
             <?php
-               
+               // if the pin is posted 
+               if(isset($_POST['submit_pin']))
+               {
+                    $pin = $_POST['pin'];
+                    
+                    $stmt = $conn->prepare("select * from users where email = ?");
+                    $stmt->bind_param('s', $email);
+                    $stmt->execute();
+                    $res = $stmt->get_result();
+
+                    if($res->num_rows > 0)
+                    {
+                        // get the pin in database 
+                        $row = mysqli_fetch_assoc($res);
+                        $pin_db = $row['pin'];
+
+                        if($pin == $pin_db)
+                        {
+                            // update activation in database if pin matched 
+                            $stmt = $conn->prepare("update users set verification = 1 and email = ?");
+                            $stmt->bind_param('s', $email);
+                            $stmt->execute();
+                        }
+                        else{
+                            echo '
+                            <div>
+                                Verification Pin Does not match, Please check you email.
+                            </div>
+                            ';
+                        }
+                    }
+                    else{
+                       echo'
+                        <div>Something went wrong</div>
+                       '; 
+                    }
+               }
             ?>
-            <form method="post" id="pin_code">
-              <!-- pin code here  -->
-              <div class="mb-6">
-                <input type="text" maxlength="6" required
-                  class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
-              </div>
-              <!-- submit here  -->
-              <div class="mb-10">
-                <button type="submit"  name="submit_pin" class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:shadow-md">
-                  Verify
-                </button>
-              </div>
-            </form>
+
+            <?php
+                // check if email already activated
+                $stmt = $conn->prepare("select * from users where email = ? and verification = 0");
+                $stmt->bind_param('s', $email);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                
+                if($res->num_rows > 0)
+                {
+                    ?>
+                    <div class="mb-10 text-center">
+                        <strong>Verify your Email</strong>
+                    </div>
+                    <form method="post" id="pin_code">
+                        <!-- pin code here  -->
+                        <div class="mb-6">
+                            <input type="text" maxlength="6" name="pin" required
+                            class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
+                        </div>
+                        <!-- submit here  -->
+                        <div class="mb-10">
+                            <button type="submit"  name="submit_pin" class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:shadow-md">
+                            Verify
+                            </button>
+                        </div>
+                    </form>
+                    <?php
+                }
+                else{
+                    echo'
+                    <div class="mb-10 text-center">
+                        <strong style="color: #28a745;">Verification Successful</strong>
+                    </div>
+                    <div>
+                        <h3>
+                            <span style="color : #007bff; text-decoration: underline;">'.$email.'</span>
+                            has been Verified.
+                        </h3>
+                        <h3 style="color: #007bff;">
+                            <a href="login.php?email='.$email.'">Login here</a>
+                        </h3>
+                    </div>
+                    ';
+                }
+            ?>
+            
 
             <div>
               <span class="absolute top-1 right-1">

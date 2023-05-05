@@ -170,10 +170,10 @@
         <div class="w-full px-4">
           <div class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-14 px-8 text-center sm:px-12 md:px-[60px]" data-wow-delay=".15s">
             <div class="mb-10 text-center">
-                <!-- <img src="assets/images/logo/logo.svg" alt="logo" /> -->
                 <strong>Welcome Back</strong>
             </div>
 
+            <!-- if login is submitted  -->
             <?php
                 if(isset($_POST['login']))
                 {
@@ -206,18 +206,19 @@
                         }
                         else
                         {
-                            echo'<div class="popup-message"> Credentials Does not match, Pls try again. </div>'; 
+                            echo'<div> Credentials Does not match, Pls try again. </div>'; 
                         }
                     }
                     else
                     {
-                        echo'<div class="popup-message"> Credentials Does not match, Pls try again. </div>'; 
+                        echo'<div> Credentials Does not match, Pls try again. </div>'; 
                     }
                 }
             ?>
+
             <form method="post">
               <div class="mb-6">
-                <input type="email" placeholder="Email" name="name" required
+                <input type="email" name="email" <?php echo isset($_GET['email']) ? "value='".$_GET['email']."'" : "placeholder=Email" ?> required
                   class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
               </div>
               <div class="mb-6">
@@ -225,7 +226,7 @@
                   class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
               </div>
               <div class="mb-10">
-                <input type="submit" value="Sign In"
+                <input type="submit" value="Login" name="login"
                   class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:shadow-md" />
               </div>
             </form>

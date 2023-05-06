@@ -1,6 +1,6 @@
 <?php
 
-$conn = mysqli_connect('localhost', 'root', '', 'headturners_db');
+$conn = mysqli_connect('localhost', 'wokolndo_headturner_user', 'headturners09', 'wokolndo_headturner_db');
 
 if(!$conn)
 {

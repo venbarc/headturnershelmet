@@ -37,9 +37,9 @@
     else
     {
         ?>
-            <script>
+            <!-- <script>
                 location.href = "login.php";
-            </script>
+            </script> -->
         <?php
     }
     

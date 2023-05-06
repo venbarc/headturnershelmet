@@ -44,11 +44,7 @@
             <?php
         }
     ?>
-    <!-- ==== WOW JS ==== -->
-    <script src="assets/js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
+
 </head>
 
 <body class="antialiased ">
@@ -473,7 +469,7 @@
                             </div>
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Ben</h4>
-                                <p class="text-xs text-[#969696]">rip @ Trorex</p>
+                                <p class="text-xs text-[#969696]">ben @ obre</p>
                             </div>
                         </div>
                     </div>

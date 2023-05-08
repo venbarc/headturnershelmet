@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="assets/css/addons.css">
 
   <?php
-  include "connect.php";
-  include "include/header_link.php";
+  include 'connect.php';
+  include 'include/header_link.php';
 
-  // navigation bar 
+  // navigation bar
   include 'include/navbar.php';
   ?>
 
@@ -24,7 +24,8 @@
 
 
   <!-- ====== Banner Section Start -->
-  <div class="relative z-10 overflow-hidden pt-[120px] pb-[100px] md:pt-[130px] lg:pt-[160px] bg-fixed bg-cover" style="background-image: url('header7.png');">
+  <div class="relative z-10 overflow-hidden pt-[120px] pb-[100px] md:pt-[130px] lg:pt-[160px] bg-fixed bg-cover"
+    style="background-image: url('header7.png');">
     <div class="container">
       <div class="flex flex-wrap items-center -mx-4">
         <div class="w-full px-4">
@@ -52,26 +53,28 @@
     <div class="container">
       <div class="flex flex-wrap -mx-4">
         <div class="w-full px-4">
-          <div class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-gray-100 py-14 px-8 text-center sm:px-12 md:px-[60px]" data-wow-delay=".15s">
+          <div
+            class="wow fadeInUp relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-gray-100 py-14 px-8 text-center sm:px-12 md:px-[60px]"
+            data-wow-delay=".15s">
 
             <?php
-            // if the pin is posted 
+            // if the pin is posted
             if (isset($_POST['submit_pin'])) {
               $pin = $_POST['pin'];
 
-              $stmt = $conn->prepare("select * from users where email = ?");
+              $stmt = $conn->prepare('select * from users where email = ?');
               $stmt->bind_param('s', $email);
               $stmt->execute();
               $res = $stmt->get_result();
 
               if ($res->num_rows > 0) {
-                // get the pin in database 
+                // get the pin in database
                 $row = mysqli_fetch_assoc($res);
                 $pin_db = $row['pin'];
 
                 if ($pin == $pin_db) {
-                  // update activation in database if pin matched 
-                  $stmt = $conn->prepare("update users set verification = 1 and email = ?");
+                  // update activation in database if pin matched
+                  $stmt = $conn->prepare('update users set verification = 1 and email = ?');
                   $stmt->bind_param('s', $email);
                   $stmt->execute();
                 } else {
@@ -111,31 +114,34 @@
 
             <?php
             // check if email already activated
-            $stmt = $conn->prepare("select * from users where email = ? and verification = 0");
+            $stmt = $conn->prepare('select * from users where email = ? and verification = 0');
             $stmt->bind_param('s', $email);
             $stmt->execute();
             $res = $stmt->get_result();
 
             if ($res->num_rows > 0) {
-            ?>
+              ?>
               <div class="mb-10 text-center">
                 <strong>Verify your Email</strong>
               </div>
               <form method="post" id="pin_code">
                 <!-- pin code here  -->
                 <div class="mb-6">
-                  <input type="text" maxlength="6" name="pin" required class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
+                  <input type="text" maxlength="6" name="pin" required
+                    class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
                 </div>
                 <!-- submit here  -->
                 <div class="mb-10">
-                <button type="submit" name="submit_pin" class="relative inline-block px-4 py-2 font-medium group">
-<span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-<span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-<span class="relative text-black group-hover:text-white">Verify</span>
-            </button>
+                  <button type="submit" name="submit_pin" class="relative inline-block px-4 py-2 font-medium group">
+                    <span
+                      class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                    <span
+                      class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                    <span class="relative text-black group-hover:text-white">Verify</span>
+                  </button>
                 </div>
               </form>
-            <?php
+              <?php
             } else {
               echo '
               <div id="alert-additional-content-3" class="p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800" role="alert">
@@ -170,9 +176,9 @@
   <!-- ====== Forms Section End -->
 
   <?php
-  include "contact.php";
+  include 'contact.php';
   include 'include/footer.php';
-  include "include/footer_link.php";
+  include 'include/footer_link.php';
   ?>
 
 </body>

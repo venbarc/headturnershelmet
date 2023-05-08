@@ -9,10 +9,10 @@
   <title>Register | HEADTURNER'S</title>
 
   <?php
-  include "connect.php";
-  include "include/header_link.php";
+  include 'connect.php';
+  include 'include/header_link.php';
 
-  // navigation bar 
+  // navigation bar
   include 'include/navbar.php';
 
   // email set up /////////////////////////////////////////////////
@@ -21,15 +21,14 @@
   require 'PHPMailer-master/src/Exception.php';
 
   // Check if user is signed in
-  if(isset($_SESSION['user_id']))
-  {
-      ?>
-        <script>
-          location.href = "404.php";
-        </script>
-      <?php
+  if (isset($_SESSION['user_id'])) {
+    ?>
+    <script>
+      location.href = "404.php";
+    </script>
+    <?php
   }
-  
+
   ?>
 
 </head>
@@ -78,17 +77,17 @@
                 $address = $_POST['address'];
                 $pass = $_POST['pass'];
                 $cpass = $_POST['cpass'];
-                $msg = array();
+                $msg = [];
                 $error = false;
 
-                // generate pin 
+                // generate pin
                 $pin = rand(100000, 999999);
 
-                // hashed password 
+                // hashed password
                 $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-                // check if email exist in users database 
-                $stmt = $conn->prepare("select * from users where email = ?");
+                // check if email exist in users database
+                $stmt = $conn->prepare('select * from users where email = ?');
                 $stmt->bind_param('s', $email);
                 $stmt->execute();
                 $res = $stmt->get_result();
@@ -110,7 +109,7 @@
                         ';
                   $error = true;
                 }
-                // check if password and confirm password match 
+                // check if password and confirm password match
                 if ($pass != $cpass) {
                   $msg[] = '
                   <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
@@ -126,37 +125,33 @@
 </div>
                         ';
                   $error = true;
-                } 
-                else
-                if (!$error) 
-                {
-                  // insert data 
-                  $stmt = $conn->prepare("insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ");
+                } elseif (!$error) {
+                  // insert data
+                  $stmt = $conn->prepare('insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ');
                   $stmt->bind_param('sssissi', $email, $fname, $lname, $contact, $address, $hash_pass, $pin);
                   $stmt->execute();
 
-                  if ($stmt->affected_rows > 0) 
-                  {
+                  if ($stmt->affected_rows > 0) {
                     ?>
                     <script>
-                      location.href = "verify_email.php?email=<?php echo $email ?>";
+                      location.href = "verify_email.php?email=<?php echo $email; ?>";
                     </script>
                     <?php
 
-                    //SMTP settings
+                    // SMTP settings
                     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
 
-                    // headturners password form gmail 
+                    // headturners password form gmail
                     $mail->Username = 'headturners09@gmail.com';
                     $mail->Password = 'hbmjzwzpjjlxxhsg';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
 
                     $mail->setFrom('headturners09@gmail.com', 'Headturners Verification Pin');
-                    // users email 
+                    // users email
                     $mail->addAddress($email);
                     $mail->isHTML(true);
                     $mail->Subject = 'Verification Pin';
@@ -174,7 +169,7 @@
                     $mail->send();
                   }
                 }
-                // display error message 
+                // display error message
                 foreach ($msg as $dis_msg) {
                   echo $dis_msg;
                 }
@@ -211,8 +206,8 @@
                   <label class="block mb-2 text-sm font-bold text-gray-700" for="contact">
                     Contact (+63)
                   </label>
-                  <input type="contact" placeholder="Contact (63+)" name="contact" pattern="[0-9]{10}" maxlength="10" minlength="10"
-                    minlength="10" required
+                  <input type="contact" placeholder="Contact (63+)" name="contact" pattern="[0-9]{10}" maxlength="10"
+                    minlength="10" minlength="10" required
                     class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
                 </div>
 
@@ -276,11 +271,11 @@
       <section>
 
 
-      <?php
-        include "contact.php";
+        <?php
+        include 'contact.php';
         include 'include/footer.php';
-        include "include/footer_link.php";
-      ?>
+        include 'include/footer_link.php';
+        ?>
 
 </body>
 

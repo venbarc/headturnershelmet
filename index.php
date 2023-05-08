@@ -10,7 +10,7 @@
     <title>Home | HEADTURNER'S</title>
 
     <?php
-        // include "connect.php";
+        include "connect.php";
         include "include/header_link.php";
 
         // navigation bar 
@@ -31,10 +31,14 @@
 
             $email = $user['email'];
             $fname = $user['fname']; 
+            $lname = $user['lname']; 
             $contact = $user['contact']; 
-            $address = $user['contact']; 
+            $address = $user['address']; 
             $image = $user['image']; 
-            $date_reg = $user['date_reg']; 
+            $date_reg = $user['date_reg'];
+            
+            // formatted date 
+            $formattedDate = (new DateTime($user['date_reg']))->format('F j, Y');
         }
     ?>
 

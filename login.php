@@ -14,6 +14,15 @@
 
   // navigation bar 
   include 'include/navbar.php';
+  
+  if(isset($_SESSION['user_id']))
+  {
+      ?>
+        <script>
+          location.href = "404.php";
+        </script>
+      <?php
+  }
   ?>
 
 </head>
@@ -62,38 +71,48 @@
                 $stmt->execute();
                 $res = $stmt->get_result();
 
-                if ($res->num_rows == 1) {
+                if ($res->num_rows == 1) 
+                {
                   $row = $res->fetch_assoc();
                   $pass_hash = $row['pass'];
 
-                  if (password_verify($pass, $pass_hash)) {
+                  if (password_verify($pass, $pass_hash)) 
+                  {
                     // check if the user is verified
                     $stmt = $conn->prepare("select * from users where email = ? and verification = 1");
                     $stmt->bind_param('s', $email);
                     $stmt->execute();
                     $res = $stmt->get_result();
 
-                    if ($res->num_rows > 0) {
+                    if ($res->num_rows > 0) 
+                    {
                       $id = $row['id'];
                       // Start the session and allow login
                       $_SESSION['user_id'] = $id;
                       echo $_SESSION['user_id'];
                       // Redirect user to profile 
                       ?>
-                      <script>
-                        location.href = "profile.php";
-                      </script>
+                        <script>
+                          location.href = "profile.php";
+                        </script>
                       <?php
                       exit();
-                    } else {
-                      echo '<div> Please check 
-                            <span style="color: #007bff; text-decoration: underline;">' . $email . '</span> for email verification!</div>';
+                    } 
+                    else 
+                    {
+                      echo '
+                      <div class="msg_001"> 
+                        Please check 
+                        <span style="color: #007bff; text-decoration: underline;">' . $email . '</span> for email verification!
+                      </div>';
                     }
-                  } else {
-                    echo '<div> Credentials Does not match, Pls try again. </div>';
                   }
-                } else {
-                  echo '<div> Credentials Does not match, Pls try again. </div>';
+                  else {
+                    echo '<div class="msg_001"> Credentials Does not match, Pls try again. </div>';
+                  }
+                } 
+                else {
+                  echo '<div class="msg_001"> Credentials Does not match, Pls try again. </div>';
                 }
               }
               ?>
@@ -147,12 +166,11 @@
       </div>
       <section>
 
-
-        <?php
+      <?php
         include "contact.php";
         include 'include/footer.php';
         include "include/footer_link.php";
-        ?>
+      ?>
 
 </body>
 

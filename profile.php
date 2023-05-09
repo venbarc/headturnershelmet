@@ -12,7 +12,8 @@
     include "include/header_link.php";
 
     // Check if user is signed in
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['user_id']))
+    {
         $user_id = $_SESSION['user_id'];
         // get user statement data 
         $stmt_get_user = $conn->prepare("select * from users where id = ? ");
@@ -29,12 +30,14 @@
         $address = $user['contact'];
         $image = $user['image'];
         $date_reg = $user['date_reg'];
-    } else {
+    } 
+    else 
+    {
         ?>
-                    <!-- <script>
-                location.href = "login.php";
-            </script> -->
-                <?php
+        <script>
+            location.href = "login.php";
+        </script>
+        <?php
     }
 
     ?>

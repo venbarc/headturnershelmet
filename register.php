@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register | HEADTURNER'S</title>
+  <title>Register | HEADTURNERS</title>
 
   <?php
   include 'connect.php';
@@ -69,8 +69,7 @@
 
               <!-- if register is submitted  -->
               <?php
-              if (isset($_POST['register'])) 
-              {
+              if (isset($_POST['register'])) {
                 $email = $_POST['email'];
                 $fname = $_POST['fname'];
                 $lname = $_POST['lname'];
@@ -94,8 +93,7 @@
                 $res = $stmt->get_result();
 
                 // if email is already in database
-                if ($res->num_rows > 0) 
-                {
+                if ($res->num_rows > 0) {
                   $msg[] = '
                   <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                     <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -111,8 +109,7 @@
                   $error = true;
                 }
                 // check if password and confirm password match
-                if ($pass != $cpass) 
-                {
+                if ($pass != $cpass) {
                   $msg[] = '
                   <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                     <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -127,40 +124,37 @@
                   </div>
                         ';
                   $error = true;
-                } 
-                else if (!$error) 
-                {
+                } else if (!$error) {
                   // insert data
                   $stmt = $conn->prepare('insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ');
                   $stmt->bind_param('sssissi', $email, $fname, $lname, $contact, $address, $hash_pass, $pin);
                   $stmt->execute();
 
-                  if ($stmt->affected_rows > 0) 
-                  {
+                  if ($stmt->affected_rows > 0) {
                     ?>
-                    <script>
-                      location.href = "verify_email.php?email=<?php echo $email; ?>";
-                    </script>
-                    <?php
+                      <script>
+                        location.href = "verify_email.php?email=<?php echo $email; ?>";
+                      </script>
+                      <?php
 
-                    // SMTP settings
-                    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-                    $mail->isSMTP();
-                    $mail->Host = 'smtp.gmail.com';
-                    $mail->SMTPAuth = true;
+                      // SMTP settings
+                      $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+                      $mail->isSMTP();
+                      $mail->Host = 'smtp.gmail.com';
+                      $mail->SMTPAuth = true;
 
-                    // headturners password form gmail
-                    $mail->Username = 'headturners09@gmail.com';
-                    $mail->Password = 'hbmjzwzpjjlxxhsg';
-                    $mail->SMTPSecure = 'tls';
-                    $mail->Port = 587;
+                      // headturners password form gmail
+                      $mail->Username = 'headturners09@gmail.com';
+                      $mail->Password = 'hbmjzwzpjjlxxhsg';
+                      $mail->SMTPSecure = 'tls';
+                      $mail->Port = 587;
 
-                    $mail->setFrom('headturners09@gmail.com', 'Headturners Verification Pin');
-                    // users email
-                    $mail->addAddress($email);
-                    $mail->isHTML(true);
-                    $mail->Subject = 'Verification Pin';
-                    $mail->Body = '
+                      $mail->setFrom('headturners09@gmail.com', 'Headturners Verification Pin');
+                      // users email
+                      $mail->addAddress($email);
+                      $mail->isHTML(true);
+                      $mail->Subject = 'Verification Pin';
+                      $mail->Body = '
                           <div style="border: 5px dashed black; padding: 5%; margin: 0 15%">
                               <h1> 
                                 Verify your Account here  <br>
@@ -171,7 +165,7 @@
                               </h4>
                           </div>
                           ';
-                    $mail->send();
+                      $mail->send();
                   }
                 }
                 // display error message

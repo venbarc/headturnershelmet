@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Log In | HEADTURNER'S</title>
+  <title>Log In | HEADTURNERS</title>
   <!-- my own css  -->
   <link rel="stylesheet" href="assets/css/addons.css">
 

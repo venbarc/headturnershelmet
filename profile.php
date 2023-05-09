@@ -2,54 +2,58 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile | HEADTURNERS</title>
-    
-    <?php
-    include "connect.php";
-    include "include/header_link.php";
 
-    // Check if user is signed in
-    if (isset($_SESSION['user_id']))
-    {
-        $user_id = $_SESSION['user_id'];
-        // get user statement data 
-        $stmt_get_user = $conn->prepare("select * from users where id = ? ");
-        $stmt_get_user->bind_param('i', $user_id);
-        $stmt_get_user->execute();
-        $res_get_user = $stmt_get_user->get_result();
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | HEADTURNERS</title>
 
-        // fetch users data
-        $user = $res_get_user->fetch_assoc();
+  <?php
+  include "connect.php";
+  include "include/header_link.php";
 
-        $email = $user['email'];
-        $fname = $user['fname'];
-        $lname = $user['lname'];
-        $contact = $user['contact'];
-        $address = $user['address'];
-        $image = $user['image'];
-        $date_reg = $user['date_reg'];
+  // Check if user is signed in
+  if (isset($_SESSION['user_id'])) 
+  {
+    $user_id = $_SESSION['user_id'];
+    // get user statement data 
+    $stmt_get_user = $conn->prepare("select * from users where id = ? ");
+    $stmt_get_user->bind_param('i', $user_id);
+    $stmt_get_user->execute();
+    $res_get_user = $stmt_get_user->get_result();
 
-        // formatted date 
-        $formattedDate = (new DateTime($user['date_reg']))->format('F j, Y');
-    } 
-    else 
-    {
-        ?>
-        <script>
-            location.href = "login.php";
-        </script>
-        <?php
-    }
+    // fetch users data
+    $user = $res_get_user->fetch_assoc();
 
-    ?>
+    $email = $user['email'];
+    $fname = $user['fname'];
+    $lname = $user['lname'];
+    $contact = $user['contact'];
+    $address = $user['address'];
+    $image = $user['image'];
+    $date_reg = $user['date_reg'];
 
-  </head> 
+    // formatted date 
+    $formattedDate = (new DateTime($user['date_reg']))->format('F j, Y');
+  } 
+  else 
+  {
+      ?>
+      <script>
+          location.href = "login.php";
+      </script>
+      <?php
+  }
+
+
+
+  ?>
+
+</head>
 
 
 <body class="antialiased ">
+
 
 <!-- navigation bar  -->
 <nav class="fixed top-0 z-50 py-6 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -58,32 +62,45 @@
       <div class="flex items-center justify-start">
         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
             <span class="sr-only">Open sidebar</span>
-            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-               <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" fill-rule="evenodd"
+                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+              </path>
             </svg>
-         </button>
-      </div>
-      <div class="navbar-center hidden lg:flex z-60">
-      <ul class="menu menu-horizontal px-1">
-        <li> <a href="index.php"
+          </button>
+        </div>
+        <div class="navbar-center hidden lg:flex z-60">
+          <ul class="menu menu-horizontal px-1">
+            <li> <a href="index.php"
+                class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
+                <span
+                  class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                <span class="relative text-black group-hover:text-white">Home</span>
+              </a></li>
+            <li> <a href="../index.php#about"
+                class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
+                <span
+                  class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                <span class="relative text-black group-hover:text-white">About</span>
+              </a></li>
+            <li> <a href="#contact"
+                class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
+                <span
+                  class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                <span class="relative text-black group-hover:text-white">Contact</span>
+              </a></li>
+          </ul>
+          <!-- dropdown arrow -->
+          <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
             class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
             <span
               class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
             <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-            <span class="relative text-black group-hover:text-white">Home</span>
-          </a></li>
-        <li> <a href="../index.php#about"
-            class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
-            <span
-              class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-            <span class="relative text-black group-hover:text-white">About</span>
-          </a></li>
-        <li> <a href="#contact"
-            class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
-            <span
-              class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+            
             <span class="relative text-black group-hover:text-white">Contact</span>
           </a></li>
       </ul>
@@ -637,20 +654,52 @@
                             </button>
                         </form>
                     </div>
+                    <p>It’s better to have:</p>
+                    <ul>
+                      <li class="flex items-center mb-1">
+                        <svg class="w-4 h-4 mr-2 text-green-400 dark:text-green-500" aria-hidden="true"
+                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        Upper & lower case letters
+                      </li>
+                      <li class="flex items-center mb-1">
+                        <svg class="w-4 h-4 mr-2 text-gray-300 dark:text-gray-400" aria-hidden="true"
+                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        A symbol (#$&)
+                      </li>
+                      <li class="flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-gray-300 dark:text-gray-400" aria-hidden="true"
+                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                        A longer password (min. 8 chars.)
+                      </li>
+                    </ul>
+                  </div>
+                  <div data-popper-arrow></div>
                 </div>
+
             </div>
         </div> 
 
-        
     </div>
 
     <?php
-        include 'contact.php';
-        include 'include/footer.php';
-        include "include/footer_link.php";
+    include 'contact.php';
+    include 'include/footer.php';
+    include "include/footer_link.php";
     ?>
 
-</div>
+  </div>
 
 </body>
 

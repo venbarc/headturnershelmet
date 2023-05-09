@@ -1,4 +1,4 @@
-<section class="navbar bg-gray-200 fixed z-30 lg:px-12">
+<section class="navbar bg-gray-200 fixed z-50 lg:px-12">
   <div class="navbar bg-gray-200 lg:px-24 justify-around">
     <div class="navbar-start">
       <div class="dropdown">
@@ -150,30 +150,32 @@
                 $image = '
                             <img src="' . $image . '">
                         ';
-              }
-              echo $image;
-              ?>
-            </div>
-          </label>
-          <div tabindex="0" class="mt-3 card card-compact dropdown-content w-42 bg-base-100 shadow">
-            <div class="card-body">
-              <div class="card-actions">
-                <a href="profile.php"
-                  class="flex justify-center relative inline-block px-12 py-2 w-full text-sm font-medium group">
-                  <span
-                    class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                  <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                  <span class="relative text-black flex  group-hover:text-white">Profile</span>
-                </a>
-                <div class="card-actions">
-                  <a data-modal-target="logout-modal" data-modal-toggle="logout-modal"
-                    class="flex justify-center relative inline-block px-12 py-2 w-full text-sm font-medium group">
-                    <span
-                      class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                    <span
-                      class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                    <span class="relative text-black group-hover:text-white">Logout</span>
-                  </a>
+                    }
+                    echo $image;
+                  ?>
+                </div>
+              </label>
+              <div tabindex="0" class="mt-3 card card-compact dropdown-content w-42 bg-base-100 shadow">
+                <div class="card-body">
+                  <div class="card-actions">
+                    <a href="profile.php?tab=personal_profile"
+                      class="flex justify-center relative inline-block px-12 py-2 w-full text-sm font-medium group">
+                      <span
+                        class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                      <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                      <span class="relative text-black flex group-hover:text-white">Profile</span>
+                    </a>
+                    <div class="card-actions">
+                      <a data-modal-target="logout-modal" data-modal-toggle="logout-modal"
+                        class="flex justify-center relative inline-block px-12 py-2 w-full text-sm font-medium group">
+                        <span
+                          class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                        <span
+                          class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                        <span class="relative text-black group-hover:text-white">Logout</span>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

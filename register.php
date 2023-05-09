@@ -205,8 +205,7 @@
                   <label class="block mb-2 text-sm font-bold text-gray-700" for="contact">
                     Contact (+63)
                   </label>
-                  <input type="contact" placeholder="Contact (63+)" name="contact" pattern="[0-9]{10}" maxlength="10"
-                    minlength="10" minlength="10" required
+                  <input type="contact" placeholder="Contact (63+)" name="contact" maxlength="10" minlength="10" required
                     class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
                 </div>
 

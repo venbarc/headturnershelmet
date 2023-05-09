@@ -265,10 +265,10 @@
 
   <!-- ====== Forms Section End -->
 
-    <?php
-        include 'contact.php';
-        include 'include/footer.php';
-        include "include/footer_link.php";
+  <?php
+    include 'contact.php';
+    include 'include/footer.php';
+    include "include/footer_link.php";
     ?>
 
 

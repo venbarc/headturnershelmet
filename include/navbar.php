@@ -96,6 +96,17 @@
     <?php
       if(isset($_SESSION['user_id']))
       {
+        $user_id = $_SESSION['user_id'];
+        // get user statement data 
+        $stmt_get_user = $conn->prepare("select * from users where id = ? ");
+        $stmt_get_user->bind_param('i', $user_id);
+        $stmt_get_user->execute();   
+        $res_get_user = $stmt_get_user->get_result();
+        // fetch users data
+        $user = $res_get_user->fetch_assoc();
+        // fetch image 
+        $image = $user['image']; 
+        
         ?>
           <div class="flex-none">
             <!-- cart drop down  -->

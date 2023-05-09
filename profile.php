@@ -11,7 +11,6 @@
     include "connect.php";
     include "include/header_link.php";
 
-
     // Check if user is signed in
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
@@ -44,7 +43,6 @@
 
 
 <body class="antialiased ">
-
 
 <nav class="fixed top-0 z-50 py-6 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -237,74 +235,70 @@
         <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
             <h3 class="mb-4 text-xl font-semibold dark:text-white">Order History</h3>
             <div class="mb-6">
-            
-            <div class="relative overflow-x-auto">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                TRANSACTION
-                </th>
-                <th scope="col" class="px-1 py-3">
-                DATE & TIME
-                </th>
-                <th scope="col" class="px-6 py-3">
-                Amount
-                </th>
-                <th scope="col" class="px-6 py-3">
-                 Status 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="py-4">
-                    11/2/22
-                </td>
-                <td class="px-6 py-4">
-                ₱ 47,00
-                </td>
-                <td class=" py-4">
-                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Complete</span>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="py-4">
-                    02/11/22
-                </td>
-                <td class="px-6 py-4">
-                ₱ 78,00
-                </td>
-                <td class="py-4">
-                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Complete</span>
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="py-4">
-                    03/23/23
-                </td>
-                <td class="px-6 py-4">
-                ₱ 14,00
-                </td>
-                <td class="py-4">
-                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">Cancelled</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-
-            
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                TRANSACTION
+                                </th>
+                                <th scope="col" class="px-1 py-3">
+                                DATE & TIME
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                Amount
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                Status 
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Apple MacBook Pro 17"
+                                </th>
+                                <td class="py-4">
+                                    11/2/22
+                                </td>
+                                <td class="px-6 py-4">
+                                ₱ 47,00
+                                </td>
+                                <td class=" py-4">
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Complete</span>
+                                </td>
+                            </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Microsoft Surface Pro
+                                </th>
+                                <td class="py-4">
+                                    02/11/22
+                                </td>
+                                <td class="px-6 py-4">
+                                ₱ 78,00
+                                </td>
+                                <td class="py-4">
+                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">Complete</span>
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Magic Mouse 2
+                                </th>
+                                <td class="py-4">
+                                    03/23/23
+                                </td>
+                                <td class="px-6 py-4">
+                                ₱ 14,00
+                                </td>
+                                <td class="py-4">
+                                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">Cancelled</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
@@ -445,18 +439,15 @@
             </form>
         </div>
     </div>
-    
-</div>
-<?php
-include 'contact.php';
-include 'include/footer.php';
-include "include/footer_link.php";
-?>
 </div>
 
+    <?php
+        include 'contact.php';
+        include 'include/footer.php';
+        include "include/footer_link.php";
+    ?>
 
-
-
+</div>
 
 </body>
 

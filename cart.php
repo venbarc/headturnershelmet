@@ -8,7 +8,7 @@
 
   <?php
   session_start();
-  // include "connect.php";
+  include "connect.php";
   include "include/header_link.php";
 
   // navigation bar 

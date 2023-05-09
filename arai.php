@@ -10,6 +10,7 @@
     <title>About | HEADTURNER'S</title>
 
     <?php
+    include "connect.php";
     include "include/header_link.php";
     include 'include/navbar.php';
     ?>

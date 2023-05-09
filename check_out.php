@@ -7,11 +7,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About | HEADTURNER'S</title>
+    <title>Check Out | HEADTURNERS</title>
 
     <?php
     
-    // include "connect.php";
+    include "connect.php";
     include "include/header_link.php";
 
     // navigation bar 

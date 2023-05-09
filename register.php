@@ -9,10 +9,10 @@
   <title>Register | HEADTURNER'S</title>
 
   <?php
-  include "connect.php";
-  include "include/header_link.php";
+  include 'connect.php';
+  include 'include/header_link.php';
 
-  // navigation bar 
+  // navigation bar
   include 'include/navbar.php';
 
   // email set up /////////////////////////////////////////////////
@@ -21,15 +21,14 @@
   require 'PHPMailer-master/src/Exception.php';
 
   // Check if user is signed in
-  if(isset($_SESSION['user_id']))
-  {
-      ?>
-        <script>
-          location.href = "404.php";
-        </script>
-      <?php
+  if (isset($_SESSION['user_id'])) {
+    ?>
+    <script>
+      location.href = "404.php";
+    </script>
+    <?php
   }
-  
+
   ?>
 
 </head>
@@ -78,17 +77,17 @@
                 $address = $_POST['address'];
                 $pass = $_POST['pass'];
                 $cpass = $_POST['cpass'];
-                $msg = array();
+                $msg = [];
                 $error = false;
 
-                // generate pin 
+                // generate pin
                 $pin = rand(100000, 999999);
 
-                // hashed password 
+                // hashed password
                 $hash_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-                // check if email exist in users database 
-                $stmt = $conn->prepare("select * from users where email = ?");
+                // check if email exist in users database
+                $stmt = $conn->prepare('select * from users where email = ?');
                 $stmt->bind_param('s', $email);
                 $stmt->execute();
                 $res = $stmt->get_result();
@@ -96,47 +95,63 @@
                 // if email is already in database
                 if ($res->num_rows > 0) {
                   $msg[] = '
-                            <div class="msg_001"> Email not available! </div>
+                  <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+  <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+  <span class="sr-only">Info</span>
+  <div class="ml-3 text-sm font-medium">
+    Email Not Available!
+  </div>
+  <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+    <span class="sr-only">Close</span>
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+  </button>
+</div>
                         ';
                   $error = true;
                 }
-                // check if password and confirm password match 
+                // check if password and confirm password match
                 if ($pass != $cpass) {
                   $msg[] = '
-                            <div class="msg_001"> Password and Confirm password does not match! </div>
+                  <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+  <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+  <span class="sr-only">Info</span>
+  <div class="ml-3 text-sm font-medium">
+    Password and Confirm Password Does not match!
+  </div>
+  <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+    <span class="sr-only">Close</span>
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+  </button>
+</div>
                         ';
                   $error = true;
-                } 
-                else
-                if (!$error) 
-                {
-                  // insert data 
-                  $stmt = $conn->prepare("insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ");
+                } elseif (!$error) {
+                  // insert data
+                  $stmt = $conn->prepare('insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ');
                   $stmt->bind_param('sssissi', $email, $fname, $lname, $contact, $address, $hash_pass, $pin);
                   $stmt->execute();
 
-                  if ($stmt->affected_rows > 0) 
-                  {
+                  if ($stmt->affected_rows > 0) {
                     ?>
                     <script>
-                      location.href = "verify_email.php?email=<?php echo $email ?>";
+                      location.href = "verify_email.php?email=<?php echo $email; ?>";
                     </script>
                     <?php
 
-                    //SMTP settings
+                    // SMTP settings
                     $mail = new PHPMailer\PHPMailer\PHPMailer(true);
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
 
-                    // headturners password form gmail 
+                    // headturners password form gmail
                     $mail->Username = 'headturners09@gmail.com';
                     $mail->Password = 'hbmjzwzpjjlxxhsg';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port = 587;
 
                     $mail->setFrom('headturners09@gmail.com', 'Headturners Verification Pin');
-                    // users email 
+                    // users email
                     $mail->addAddress($email);
                     $mail->isHTML(true);
                     $mail->Subject = 'Verification Pin';
@@ -154,7 +169,7 @@
                     $mail->send();
                   }
                 }
-                // display error message 
+                // display error message
                 foreach ($msg as $dis_msg) {
                   echo $dis_msg;
                 }
@@ -191,8 +206,8 @@
                   <label class="block mb-2 text-sm font-bold text-gray-700" for="contact">
                     Contact (+63)
                   </label>
-                  <input type="contact" placeholder="Contact (63+)" name="contact" pattern="[0-9]{10}" maxlength="10" minlength="10"
-                    minlength="10" required
+                  <input type="contact" placeholder="Contact (63+)" name="contact" pattern="[0-9]{10}" maxlength="10"
+                    minlength="10" minlength="10" required
                     class="border-[#E9EDF4] w-full rounded-md border bg-[#FCFDFE] py-3 px-5 text-base text-body-color placeholder-[#ACB6BE] outline-none transition focus:border-primary focus-visible:shadow-none" />
                 </div>
 
@@ -236,13 +251,13 @@
                 </div>
                 <hr class="mb-6 border-t" />
                 <!-- privacy and policy  -->
-                <p class="mb-4 text-base text-[#adadad]">
+                <p class="mb-4 text-base text-gray-700">
                   By creating an account you are agree with our
                   <a href="javascript:void(0)" class="text-primary hover:underline">Privacy</a> and
                   <a href="javascript:void(0)" class="text-primary hover:underline">Policy</a>
                 </p>
                 <!-- already have an account link  -->
-                <p class="text-base text-[#adadad]">
+                <p class="text-base text-gray-700">
                   Already have an account?
                   <a href="login.php" class="text-primary hover:underline">
                     Login
@@ -256,11 +271,11 @@
       <section>
 
 
-      <?php
-        include "contact.php";
+        <?php
+        include 'contact.php';
         include 'include/footer.php';
-        include "include/footer_link.php";
-      ?>
+        include 'include/footer_link.php';
+        ?>
 
 </body>
 

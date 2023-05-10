@@ -182,6 +182,7 @@
 
     </section>
 
+    <!-- ABOUT SHARK HELMET -->
     <section class="">
 
         <div class="container px-6 mx-auto">
@@ -211,210 +212,211 @@
     </section>
 
 
-    <div class="flex items-center justify-center px-4 py-12 md:px-6 2xl:px-0 2xl:container 2xl:mx-auto">
-        <div class="flex flex-col items-start justify-start w-full space-y-8">
-            <div class="flex items-start justify-start">
-                <p class="text-3xl font-semibold leading-7 text-gray-800 lg:text-4xl lg:leading-9 dark:text-white ">
-                    Customer Reviews</p>
-            </div>
+    <!-- REVIEWS -->
 
-
-            <!-- product 1 -->
-            <div class="flex flex-col items-start justify-start w-full p-8 bg-gray-50 dark:bg-gray-800">
-                <div class="flex flex-col justify-between w-full md:flex-row">
-                    <div class="flex flex-row items-start justify-between">
-                        <p class="text-xl font-medium leading-normal text-gray-800 md:text-2xl dark:text-white">
-                            Shark Spartan GT Carbon Skin Full Face Helmet</p>
-                    </div>
-                    <!-- STAR RATING  -->
-                    <div class="flex items-center mb-4 text-yellow-300">
-                        <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                            </path>
-                        </svg>
-                        <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                            </path>
-                        </svg>
-                        <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                            </path>
-                        </svg>
-                        <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                            </path>
-                        </svg>
-                        <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                            </path>
-                        </svg>
-                    </div>
-
-                    <!-- STAR RATING  -->
+    <section class="container px-6 mx-auto">
+        <div class="flex items-center justify-center px-4 py-12 md:px-6 2xl:px-0 2xl:container 2xl:mx-auto">
+            <div class="flex flex-col items-start justify-start w-full space-y-8">
+                <!-- REVIEW HEADER -->
+                <div class="flex items-start justify-start">
+                    <p class="text-3xl font-bold leading-7 text-gray-800 lg:text-4xl lg:leading-9  ">
+                        Customer Reviews</p>
                 </div>
 
-                <div id="menu" class="md:block">
-                    <p class="w-full mt-3 text-base leading-normal text-gray-600 dark:text-white md:w-9/12 xl:w-5/6">
-                        high-quality and good Customer service
-                    </p>
-                    <div class="flex-row items-start justify-start hidden mt-6 space-x-4 md:flex">
-                        <div>
-                            <a target="_blank"
-                                href="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89665440_124012725853354_6280785291192041472_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH1Wv9c4Xr5baZ0rFlVhvfq0wGfmIISmrHTAZ-YghKasVOwFILHcWlUgU1IXQ65V0Q2H4Sn3deIKyreqkiAyoB0&_nc_ohc=HIiGcUeGA0oAX-RquP4&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBia3MdaWh8NbvcoQhyTnrjrF431rQ1ZiuS3UxlrHsfcQ&oe=64818D86">
-                                <img class="h-32"
-                                    src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89665440_124012725853354_6280785291192041472_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH1Wv9c4Xr5baZ0rFlVhvfq0wGfmIISmrHTAZ-YghKasVOwFILHcWlUgU1IXQ65V0Q2H4Sn3deIKyreqkiAyoB0&_nc_ohc=HIiGcUeGA0oAX-RquP4&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBia3MdaWh8NbvcoQhyTnrjrF431rQ1ZiuS3UxlrHsfcQ&oe=64818D86"
-                                    alt="product1" />
-                            </a>
+                <div class="flex flex-col items-start justify-start w-full p-8 bg-gray-100 dark:bg-gray-800">
+                    <div class="flex flex-col justify-between w-full md:flex-row">
+                        <!-- PRODUCT NAME TO REVIEW -->
+                        <div class="flex flex-row items-start justify-between">
+                            <p class="text-xl font-bold leading-normal text-gray-800 md:text-2xl ">
+                                Shark Spartan GT Carbon Skin Full Face Helmet</p>
                         </div>
-                        <div>
-                            <img class="h-32"
-                                src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89873814_124012762520017_8161881211929624576_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGMVZcbjCbevBd2rVtDQSlzwTmsZPQl16DBOaxk9CXXoB3-oymJubJkwsYhwW5serwSauujR_-u23aCr19Ebki2&_nc_ohc=eD0ZPp5j1wkAX-iVMAO&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfDWMxDK1_7oOsQCTrvfHn5Jzn8RH9gD8tT270xk8cKpBg&oe=64817D1A"
-                                alt="product2" />
+                        <!-- Star ratings -->
+                        <div class="flex items-center  text-yellow-300">
+                            <!--STAR 1  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 2  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 3  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 4  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 5  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+
                         </div>
-                        <div class="hidden md:block">
-                            <img class="h-32"
-                                src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89833222_124012799186680_8106668664310202368_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeED4eXh2VKdTcmGeHnxEJkvgkhcMy3wNiuCSFwzLfA2K6GDGgiMcTf-_jZ1oHmh06T-SbniAA9FkPmiUR2ef7sX&_nc_ohc=Ryd6qvTLWWUAX8A-BoN&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBqtMGCawgTcnbbLafdoy_G4TN8w1gvGI_umiDLLQlViQ&oe=648188D5"
-                                alt="product3" />
-                        </div>
+                        <!--end Star ratings -->
                     </div>
-                    <div class="pt-8 md:hidden carousel cursor-none"
-                        data-flickity='{ "wrapAround": true,"pageDots": false }'>
-                        <div class="carousel-cell">
-                            <div class="relative h-full md:w-full">
-                                <img src="https://i.ibb.co/QXzVpHp/vincent-wachowiak-8g-Cm-EBVl6a-I-unsplash-1.png"
-                                    alt="bag" class="object-cover w-full h-full object-fit" />
+
+                    <div id="menu" class="md:block">
+                        <div class="mt-6 flex justify-start items-center flex-row space-x-2.5">
+                            <div>
+                                <img src="https://i.ibb.co/QcqyrVG/Mask-Group.png" alt="girl-avatar" />
+                            </div>
+                            <div class="flex flex-col items-start justify-start space-y-2">
+                                <p class="text-base font-medium leading-none text-gray-800 ">Jake David
+                                </p>
+                                <p class="text-sm leading-none text-gray-600 ">23 Nov 2022</p>
                             </div>
                         </div>
-                        <div class="carousel-cell">
-                            <div class="relative h-full md:w-full">
-                                <img src="https://i.ibb.co/znYKsbc/vincent-wachowiak-z-P316-KSOX0-E-unsplash-1.png"
-                                    alt="shoes" class="object-cover w-full h-full object-fit" />
+                        <p class="w-full mt-3 text-base leading-normal text-gray-600  md:w-12/12 xl:w-6/6">
+                            Sobrang Ganda ! and ang bait ng seller !
+                        </p>
+                        <!-- PRODUCT -->
+                        <div class="flex-row items-start justify-start hidden mt-6 space-x-4 md:flex">
+                            <!-- PRODUCT 1 -->
+                            <div>
+                                <a target="_blank"
+                                    href="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89665440_124012725853354_6280785291192041472_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH1Wv9c4Xr5baZ0rFlVhvfq0wGfmIISmrHTAZ-YghKasVOwFILHcWlUgU1IXQ65V0Q2H4Sn3deIKyreqkiAyoB0&_nc_ohc=HIiGcUeGA0oAX-RquP4&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBia3MdaWh8NbvcoQhyTnrjrF431rQ1ZiuS3UxlrHsfcQ&oe=64818D86">
+                                    <img class="h-32"
+                                        src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89665440_124012725853354_6280785291192041472_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH1Wv9c4Xr5baZ0rFlVhvfq0wGfmIISmrHTAZ-YghKasVOwFILHcWlUgU1IXQ65V0Q2H4Sn3deIKyreqkiAyoB0&_nc_ohc=HIiGcUeGA0oAX-RquP4&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBia3MdaWh8NbvcoQhyTnrjrF431rQ1ZiuS3UxlrHsfcQ&oe=64818D86"
+                                        alt="product1" />
+                                </a>
+                            </div>
+
+                            <!-- PRODUCT 2 -->
+                            <div>
+                                <a
+                                    href="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89873814_124012762520017_8161881211929624576_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGMVZcbjCbevBd2rVtDQSlzwTmsZPQl16DBOaxk9CXXoB3-oymJubJkwsYhwW5serwSauujR_-u23aCr19Ebki2&_nc_ohc=eD0ZPp5j1wkAX-iVMAO&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfDWMxDK1_7oOsQCTrvfHn5Jzn8RH9gD8tT270xk8cKpBg&oe=64817D1A">
+                                    <img class="h-32"
+                                        src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89873814_124012762520017_8161881211929624576_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeGMVZcbjCbevBd2rVtDQSlzwTmsZPQl16DBOaxk9CXXoB3-oymJubJkwsYhwW5serwSauujR_-u23aCr19Ebki2&_nc_ohc=eD0ZPp5j1wkAX-iVMAO&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfDWMxDK1_7oOsQCTrvfHn5Jzn8RH9gD8tT270xk8cKpBg&oe=64817D1A"
+                                        alt="product2" />
+                                </a>
+                            </div>
+
+                            <!-- PRODUCT 3 -->
+                            <div class="hidden md:block">
+                                <a
+                                    href="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89833222_124012799186680_8106668664310202368_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeED4eXh2VKdTcmGeHnxEJkvgkhcMy3wNiuCSFwzLfA2K6GDGgiMcTf-_jZ1oHmh06T-SbniAA9FkPmiUR2ef7sX&_nc_ohc=Ryd6qvTLWWUAX8A-BoN&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBqtMGCawgTcnbbLafdoy_G4TN8w1gvGI_umiDLLQlViQ&oe=648188D5">
+                                    <img class="h-32"
+                                        src="https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.6435-9/89833222_124012799186680_8106668664310202368_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeED4eXh2VKdTcmGeHnxEJkvgkhcMy3wNiuCSFwzLfA2K6GDGgiMcTf-_jZ1oHmh06T-SbniAA9FkPmiUR2ef7sX&_nc_ohc=Ryd6qvTLWWUAX8A-BoN&_nc_ht=scontent.fmnl13-2.fna&oh=00_AfBqtMGCawgTcnbbLafdoy_G4TN8w1gvGI_umiDLLQlViQ&oe=648188D5"
+                                        alt="product3" />
+                                </a>
                             </div>
                         </div>
-                        <div class="carousel-cell">
-                            <div class="relative h-full md:w-full">
-                                <img src="https://i.ibb.co/QXzVpHp/vincent-wachowiak-8g-Cm-EBVl6a-I-unsplash-1.png"
-                                    alt="wallet" class="object-cover w-full h-full object-fit" />
-                            </div>
-                        </div>
-                        <div class="carousel-cell">
-                            <div class="relative h-full md:w-full">
-                                <img src="https://i.ibb.co/znYKsbc/vincent-wachowiak-z-P316-KSOX0-E-unsplash-1.png"
-                                    alt="wallet" class="object-cover w-full h-full object-fit" />
-                            </div>
-                        </div>
-                        <div class="carousel-cell">
-                            <div class="relative h-full md:w-full">
-                                <img src="https://i.ibb.co/QXzVpHp/vincent-wachowiak-8g-Cm-EBVl6a-I-unsplash-1.png"
-                                    alt="wallet" class="object-cover w-full h-full object-fit" />
-                            </div>
-                        </div>
-                        <div class="carousel-cell">
-                            <div class="relative h-full md:w-full">
-                                <img src="https://i.ibb.co/znYKsbc/vincent-wachowiak-z-P316-KSOX0-E-unsplash-1.png"
-                                    alt="wallet" class="object-cover w-full h-full object-fit" />
-                            </div>
-                        </div>
-                        <div class="carousel-cell"></div>
+                        <!-- end of product -->
                     </div>
-                    <div class="mt-6 flex justify-start items-center flex-row space-x-2.5">
-                        <div>
-                            <img src="https://i.ibb.co/QcqyrVG/Mask-Group.png" alt="girl-avatar" />
+
+                    <!-- REVIEW PRODUCT 2 -->
+                    <div class="flex flex-col justify-between w-full md:flex-row mt-6">
+                        <!-- PRODUCT NAME TO REVIEW -->
+                        <div class="flex flex-row items-start justify-between">
+                            <p class="text-xl font-bold leading-normal text-gray-800 md:text-2xl ">
+                                Shark RacerPro GP Martinator</p>
                         </div>
-                        <div class="flex flex-col items-start justify-start space-y-2">
-                            <p class="text-base font-medium leading-none text-gray-800 dark:text-white">Anna Kendrick
-                            </p>
-                            <p class="text-sm leading-none text-gray-600 dark:text-white">14 July 2021</p>
+                        <!-- Star ratings -->
+                        <div class="flex items-center  text-yellow-300">
+                            <!--STAR 1  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 2  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 3  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 4  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+                            <!--STAR 5  -->
+                            <svg aria-hidden="true" class="w-7 h-7" fill="gray" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                </path>
+                            </svg>
+
                         </div>
+                        <!--end Star ratings -->
+                    </div>
+
+                    <div id="menu" class="md:block">
+                        <div class="mt-6 flex justify-start items-center flex-row space-x-2.5">
+                            <div>
+                                <img class="h-14 w-14 rounded-full"
+                                    src="https://static01.nyt.com/images/2021/10/13/science/13shatner-launch-oldest-person-sub/13shatner-launch-oldest-person-sub-superJumbo.jpg?quality=75&auto=webp"
+                                    alt="boy-avatar" />
+                            </div>
+                            <div class="flex flex-col items-start justify-start space-y-2">
+                                <p class="text-base font-medium leading-none text-gray-800 ">William Shatner
+                                </p>
+                                <p class="text-sm leading-none text-gray-600 ">14 July 2021</p>
+                            </div>
+                        </div>
+                        <p class="w-full mt-3 text-base leading-normal text-gray-600  md:w-12/12 xl:w-6/6">
+                            high-quality and good Customer service
+                        </p>
+                        <!-- PRODUCT -->
+                        <div class="flex-row items-start justify-start hidden mt-6 space-x-4 md:flex">
+                            <!-- PRODUCT 1 -->
+                            <div>
+                                <a target="_blank"
+                                    href="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.6435-9/104233610_154159356172024_5893453477269628135_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH6qIuF8Qr-cKqh0jyTIqOh50M5RhQF0KjnQzlGFAXQqHJNcLaLhLKUvT642UDnfJES18zC2scMvgci219xL0Hn&_nc_ohc=hsyWQqlsNjgAX8W171H&_nc_ht=scontent.fcrk4-1.fna&oh=00_AfAWXyNziWvWPZtsDbsVFoaWECMZHAZdFrfh1TtFrAEekg&oe=64832DF7">
+                                    <img class="h-32"
+                                        src="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.6435-9/104233610_154159356172024_5893453477269628135_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeH6qIuF8Qr-cKqh0jyTIqOh50M5RhQF0KjnQzlGFAXQqHJNcLaLhLKUvT642UDnfJES18zC2scMvgci219xL0Hn&_nc_ohc=hsyWQqlsNjgAX8W171H&_nc_ht=scontent.fcrk4-1.fna&oh=00_AfAWXyNziWvWPZtsDbsVFoaWECMZHAZdFrfh1TtFrAEekg&oe=64832DF7"
+                                        alt="product1" />
+                                </a>
+                            </div>
+
+                            <!-- PRODUCT 2 -->
+                            <div>
+                                <a
+                                    href="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.6435-9/82947289_154159376172022_8230141418113889212_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeFCn90CIaPPvEr1Lkc_MyTBFbhOCmVKzEkVuE4KZUrMSdbSGLFRKADTKlBeiAUI-4BwAX-tGBpKBgqYlK7sg8_n&_nc_ohc=e2ep70HovUMAX_pPmac&_nc_ht=scontent.fcrk4-1.fna&oh=00_AfD4YZzOPQ4es8CFsJ5ugELl2l8keWn0NmTMBQpw0xfHJw&oe=6483453A">
+                                    <img class="h-32"
+                                        src="https://scontent.fcrk4-1.fna.fbcdn.net/v/t1.6435-9/82947289_154159376172022_8230141418113889212_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_eui2=AeFCn90CIaPPvEr1Lkc_MyTBFbhOCmVKzEkVuE4KZUrMSdbSGLFRKADTKlBeiAUI-4BwAX-tGBpKBgqYlK7sg8_n&_nc_ohc=e2ep70HovUMAX_pPmac&_nc_ht=scontent.fcrk4-1.fna&oh=00_AfD4YZzOPQ4es8CFsJ5ugELl2l8keWn0NmTMBQpw0xfHJw&oe=6483453A"
+                                        alt="product2" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- end of product -->
                     </div>
                 </div>
-
-
-                <!-- PRODUCCT 2 -->
-
-
 
 
             </div>
         </div>
-    </div>
-    <style>
-        .carousel-cell {
-            width: 150px;
-            height: 150px;
 
-            margin-right: 24px;
-            counter-increment: carousel-cell;
-        }
-
-        .carousel-cell:before {
-            display: block;
-            width: 20%;
-        }
-
-        .flickity-slider {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: -260px !important;
-        }
-
-        .flickity-button {
-            position: absolute !important;
-            inset: 0 !important;
-            top: 50% !important;
-            left: 80% !important;
-            background: white;
-            border: 0px;
-            color: #27272a;
-        }
-
-        .flickity-prev-next-button:hover {
-            background-color: #27272a;
-            color: white;
-        }
-
-        .flickity-prev-next-button.previous {
-            visibility: hidden;
-        }
-
-        .flickity-prev-next-button.next {
-            margin-left: 50px;
-            width: 48px;
-            height: 48px;
-            visibility: hidden;
-        }
-
-        .flickity-enabled.is-draggable .flickity-viewport {
-            cursor: none;
-            cursor: default;
-        }
-
-        .flickity-prev-next-button .flickity-button-icon {
-            margin-left: 2px;
-            margin-top: 2px;
-            width: 24px;
-            height: 24px;
-        }
-    </style>
-
-
-
-
-
-
-
-    <!-- ====== Forms Section End -->
+    </section>
 
     <?php
     // navigation bar 

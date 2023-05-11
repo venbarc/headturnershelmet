@@ -98,16 +98,12 @@
                                     </a>
 
                                 </div>
-                                <div
-                                    class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
-                                    <a href="shoei.php" class="relative inline-block px-4 py-2 font-medium group">
-                                        <span
-                                            class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                        <span
-                                            class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
+                                    <a href="shop.php?product=shoei" class="relative inline-block px-4 py-2 font-medium group">
+                                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                                         <span class="relative text-black group-hover:text-white">Shop Now</span>
                                     </a>
-
                                 </div>
                             </div>
 
@@ -165,9 +161,9 @@
     </section>
 
     <?php
-    include 'include/Feature.php';
-    include 'include/sample_product.php';
-    include "about.php";
+        include 'include/Feature.php';
+        include 'include/sample_product.php';
+        include "about.php";
     ?>
 
     <!-- ====== Faq Section Start -->
@@ -225,8 +221,7 @@
                         </div>
                     </div>
                     <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".15s
-                                                  ">
+                        data-wow-delay=".15s">
                         <button class="flex items-center w-full text-left faq-btn">
                             <div
                                 class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
@@ -279,8 +274,7 @@
                 </div>
                 <div class="w-full px-4 lg:w-1/2">
                     <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".1s
-                                                  ">
+                        data-wow-delay=".1s">
                         <button class="flex items-center w-full text-left faq-btn">
                             <div
                                 class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
@@ -305,8 +299,7 @@
                         </div>
                     </div>
                     <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".15s
-                                                  ">
+                        data-wow-delay=".15s">
                         <button class="flex items-center w-full text-left faq-btn">
                             <div
                                 class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
@@ -331,8 +324,7 @@
                         </div>
                     </div>
                     <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200 "
-                        data-wow-delay=".2s
-                                                  ">
+                        data-wow-delay=".2s">
                         <button class="flex items-center w-full text-left faq-btn">
                             <div
                                 class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">

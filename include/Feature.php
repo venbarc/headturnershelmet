@@ -4,34 +4,33 @@
             <div class="flex flex-wrap -mx-4">
                 <div class="max-w-screen-xl mx-auto mt-2 mb-12 ">
                     <div class="grid grid-cols-2 gap-8 max-[320px]:hidden max-[414px]:hidden  min-[320px]:grid-cols-9 max-[600px]:grid-cols-9 text-gray-300 sm:grid-cols-9 md:grid-cols-9 lg:grid-cols-9">
-                        <a href="#" class="flex items-center justify-center">
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/airoh.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/arai.png" alt="">
-                        </a>
-
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/HJC.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/kabuto.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/Agnnew.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/nolan.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/shark.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/shoei.png" alt="">
-                        </a>
-                        <a href="#" class="flex items-center justify-center">
+                        </div>
+                        <div class="flex items-center justify-center">
                             <img src="helmets_logo/suomy.png" alt="">
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <div class="w-full px-4">
@@ -53,12 +52,11 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-900">
                             SHOEI
                         </h4>
-                        <a href="shoei.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                        <a href="shop.php?product=shoei" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
                             <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                             <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                             <span class="relative text-black group-hover:text-white">Shop Now</span>
                         </a>
-
                     </div>
                 </div>
                 <div class="w-full px-4 md:w-1/2 lg:w-1/4 sm:w-1/4 min-[600px]:w-1/4 min-[375px]:w-2/4">
@@ -69,7 +67,7 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-900">
                             ARAI
                         </h4>
-                        <a href="arai.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                        <a href="shop.php?product=arai" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
                             <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                             <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                             <span class="relative text-black group-hover:text-white">Shop Now</span>
@@ -83,7 +81,7 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-900">
                             SHARK
                         </h4>
-                        <a href="shark.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                        <a href="shop.php?product=shark" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
                             <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                             <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                             <span class="relative text-black group-hover:text-white">Shop Now</span>
@@ -97,8 +95,7 @@
                         <h4 class="flex justify-center mb-3 text-xl font-extrabold text-gray-900">
                             AGV
                         </h4>
-
-                        <a href="shoei.php" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                        <a href="shop.php?product=avg" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
                             <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                             <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                             <span class="relative text-black group-hover:text-white">Shop Now</span>

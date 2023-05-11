@@ -14,7 +14,7 @@
                                 </p>
                             </span>
                             <h2 class="mb-6 text-3xl font-bold text-dark sm:text-4xl sm:leading-snug 2xl:text-[40px]">
-                                Welcome to HeadTurner's Helmets
+                                Welcome to HeadTurners Helmets
                             </h2>
                             <p class="text-base leading-relaxed mb-9 text-body-color">
                                 We are a team of passionate helmet enthusiasts who are dedicated to providing our customers with high-quality helmets at competitive prices.

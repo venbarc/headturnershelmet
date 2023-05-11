@@ -114,16 +114,16 @@
       <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
           <li>
-            <a href="shark.php" class="block px-4 py-2 hover:bg-gray-100">SHARK</a>
+            <a href="shop.php?product=shark" class="block px-4 py-2 hover:bg-gray-100">SHARK</a>
           </li>
           <li>
-            <a href="shoei.php" class="block px-4 py-2 hover:bg-gray-100">SHOEI</a>
+            <a href="shop.php?product=shoei" class="block px-4 py-2 hover:bg-gray-100">SHOEI</a>
           </li>
           <li>
-            <a href="agv.php" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
+            <a href="shop.php?product=avg" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
           </li>
           <li>
-            <a href="arai.php" class="block px-4 py-2 hover:bg-gray-100">ARAI</a>
+            <a href="shop.php?product=arai" class="block px-4 py-2 hover:bg-gray-100">ARAI</a>
           </li>
         </ul>
       </div>
@@ -252,16 +252,8 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "settings" }} bg-gray-100 dark:bg-gray-700 {{ end }}">
-                        <svg class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path clip-rule="evenodd" fill-rule="evenodd" d="M8.34 1.804A1 1 0 019.32 1h1.36a1 1 0 01.98.804l.295 1.473c.497.144.971.342 1.416.587l1.25-.834a1 1 0 011.262.125l.962.962a1 1 0 01.125 1.262l-.834 1.25c.245.445.443.919.587 1.416l1.473.294a1 1 0 01.804.98v1.361a1 1 0 01-.804.98l-1.473.295a6.95 6.95 0 01-.587 1.416l.834 1.25a1 1 0 01-.125 1.262l-.962.962a1 1 0 01-1.262.125l-1.25-.834a6.953 6.953 0 01-1.416.587l-.294 1.473a1 1 0 01-.98.804H9.32a1 1 0 01-.98-.804l-.295-1.473a6.957 6.957 0 01-1.416-.587l-1.25.834a1 1 0 01-1.262-.125l-.962-.962a1 1 0 01-.125-1.262l.834-1.25a6.957 6.957 0 01-.587-1.416l-1.473-.294A1 1 0 011 10.68V9.32a1 1 0 01.804-.98l1.473-.295c.144-.497.342-.971.587-1.416l-.834-1.25a1 1 0 01.125-1.262l.962-.962A1 1 0 015.38 3.03l1.25.834a6.957 6.957 0 011.416-.587l.294-1.473zM13 10a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        <span class="ml-3" sidebar-toggle-item>Personal Information</span>
-                    </a>
-                </li>
-                <li>
                     <a href="profile.php?tab=change_password" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "settings" }} bg-gray-100 dark:bg-gray-700 {{ end }}">
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
                         <span class="ml-3" sidebar-toggle-item>Change Password</span>
                     </a>
                 </li>
@@ -561,50 +553,116 @@
                     ?>
                         <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                             <h3 class="mb-4 text-xl font-semibold dark:text-white">Password information</h3>
-                            <form action="#">
-                                <div class="grid grid-cols-6 gap-6">
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="current-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current password</label>
-                                        <input type="text" name="current-password" id="current-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="••••••••" required>
-                                    </div>
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
-                                        <input data-popover-target="popover-password" data-popover-placement="bottom" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="••••••••" required>
-                                        <div data-popover id="popover-password" role="tooltip" class="absolute z-10 invisible inline-block text-sm font-light text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-                                            <div class="p-3 space-y-2">
-                                                <h3 class="font-semibold text-gray-900 dark:text-white">Must have at least 6 characters</h3>
-                                                <div class="grid grid-cols-4 gap-2">
-                                                    <div class="h-1 bg-orange-300 dark:bg-orange-400"></div>
-                                                    <div class="h-1 bg-orange-300 dark:bg-orange-400"></div>
-                                                    <div class="h-1 bg-gray-200 dark:bg-gray-600"></div>
-                                                    <div class="h-1 bg-gray-200 dark:bg-gray-600"></div>
+                            <?php
+                                if(isset($_POST['submit_change_pass']))
+                                {
+                                    $current_pass = $_POST['current_pass'];
+                                    $new_pass = $_POST['new_pass'];
+                                    $confirm_pass = $_POST['confirm_pass'];
+                                    
+
+                                    $stmt = $conn->prepare("select * from users where email = ?");
+                                    $stmt->execute([$email]);
+                                    $res = $stmt->get_result();
+                                    $row = mysqli_fetch_assoc($res);
+                                    // get password from db 
+                                    $pass_db = $row['pass'];
+
+                                    if($res->num_rows > 0)
+                                    {
+                                        if(password_verify($current_pass, $pass_db))
+                                        {
+                                            if($new_pass == $confirm_pass)
+                                            {
+                                                // hash the new password 
+                                                $pass_hash = password_hash($new_pass, PASSWORD_DEFAULT);
+
+                                                $stmt = $conn->prepare("update users set pass = ? where email = ?");
+                                                $stmt->execute([$pass_hash, $email]);
+
+                                                if($stmt->affected_rows > 0)
+                                                {
+                                                    echo'
+                                                    <div id="alert-2" class="flex p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                                                        <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                        <span class="sr-only">Info</span>
+                                                        <div class="ml-3 text-sm font-medium">
+                                                            Successfully updated password.
+                                                        </div>
+                                                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                                        <span class="sr-only">Close</span>
+                                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                        </button>
+                                                    </div>';
+                                                }
+                                            }
+                                            else{
+                                                echo'
+                                                <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                                    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                    <span class="sr-only">Info</span>
+                                                    <div class="ml-3 text-sm font-medium">
+                                                        New password and Confirm password does not matched.
+                                                    </div>
+                                                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                                    <span class="sr-only">Close</span>
+                                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                    </button>
+                                                </div>';
+                                            }
+                                        }
+                                        else{
+                                            echo'
+                                            <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                                <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                <span class="sr-only">Info</span>
+                                                <div class="ml-3 text-sm font-medium">
+                                                    Current password does not match. 
                                                 </div>
-                                                <p>It’s better to have:</p>
-                                                <ul>
-                                                    <li class="flex items-center mb-1">
-                                                        <svg class="w-4 h-4 mr-2 text-green-400 dark:text-green-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                                        Upper & lower case letters
-                                                    </li>
-                                                    <li class="flex items-center mb-1">
-                                                        <svg class="w-4 h-4 mr-2 text-gray-300 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                                        A symbol (#$&)
-                                                    </li>
-                                                    <li class="flex items-center">
-                                                        <svg class="w-4 h-4 mr-2 text-gray-300 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                                        A longer password (min. 8 chars.)
-                                                    </li>
-                                                </ul>
-                                        </div>
-                                        <div data-popper-arrow></div>
-                                        </div>
+                                                <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                                <span class="sr-only">Close</span>
+                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                </button>
+                                            </div>';
+                                        }
+                                    }
+                                    else{
+                                        echo'
+                                        <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                            <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                            <span class="sr-only">Info</span>
+                                            <div class="ml-3 text-sm font-medium">
+                                                Something went wrong, please try again.
+                                            </div>
+                                            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                            <span class="sr-only">Close</span>
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                            </button>
+                                        </div>';
+                                    }
+                                }
+                            ?>
+                            <form method="post">
+                                <div class="grid grid-cols-6 gap-6">
+                                    <!-- current password  -->
+                                    <div class="col-span-6 sm:col-span-6">
+                                        <label for="current_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current password</label>
+                                        <input type="password" name="current_pass" id="current_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
                                     </div>
+                                    <!-- new password  -->
                                     <div class="col-span-6 sm:col-span-3">
-                                        <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                                        <input type="text" name="confirm-password" id="confirm-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" placeholder="••••••••" required>
+                                        <label for="new_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
+                                        <input type="password" name="new_pass" minlength="8" id="new_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
                                     </div>
+                                    <!-- confirm password  -->
+                                    <div class="col-span-6 sm:col-span-3">
+                                        <label for="confirm_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+                                        <input type="password" name="confirm_pass" minlength="8" id="confirm_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+                                    </div>
+                                    <!-- submit button  -->
                                     <div class="col-span-6 sm:col-full">
-                                        <button class="text-white bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:ring-gray-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-gray-800 dark:focus:ring-blue-800" type="submit">
-                                            Save all
+                                        <button type="submit" name="submit_change_pass" onclick="return confirm('Are you sure you want to Change password ?')" class="bg-transparent text-sm hover:bg-red-700 text-red-700 font-semibold hover:text-white py-2 px-2 border border-red-500 hover:border-transparent">
+                                            Change password
                                         </button>
                                     </div>
                                 </div>
@@ -661,9 +719,10 @@
     </div>
 
     <?php
-    include 'contact.php';
-    include 'include/footer.php';
-    include "include/footer_link.php";
+        include 'contact.php';
+        include 'include/footer.php';
+        include 'include/footer_link.php';
+        include 'include/logout_modal.php';
     ?>
 
   </div>

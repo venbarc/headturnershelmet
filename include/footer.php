@@ -5,7 +5,7 @@
                 <div class="mb-6 md:mb-0">
                     <a href="https://flowbite.com/" class="flex items-center">
                         <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" /> -->
-                        <span class="self-center text-2xl font-extrabold text-gray-300 whitespace-nowrap">HEADTURNER'S</span>
+                        <span class="self-center text-2xl font-extrabold text-gray-300 whitespace-nowrap">HEADTURNERS</span>
                     </a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -35,7 +35,7 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
             <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-300 sm:text-center">© 2023 <a href="index.php" class="hover:underline">HEADTURNER'S™</a>. All Rights Reserved.
+                <span class="text-sm text-gray-300 sm:text-center">© 2023 <a href="index.php" class="hover:underline">HEADTURNERS™</a>. All Rights Reserved.
                 </span>
                 <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                     <a href="https://www.facebook.com/groups/1613555912219305/user/100063590287939/" target="_blank" class="text-gray-200 hover:text-blue-500 ">

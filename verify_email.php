@@ -7,8 +7,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Log In | HEADTURNERS</title>
-  <!-- my own css  -->
-  <link rel="stylesheet" href="assets/css/addons.css">
 
   <?php
   include 'connect.php';

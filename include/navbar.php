@@ -120,16 +120,19 @@
                 </svg>
                 <span class="badge badge-sm indicator-item">
                   <?php
-                  
-                    // $stmt = $conn->prepare("select count(*) from products");
+                    $stmt = $conn->prepare("select count(*) from cart where user_id = ?");
+                    $stmt->execute([$user_id]);
+                    $res = $stmt->get_result();
+                    $count_cart = mysqli_fetch_array($res)[0];
+
+                    echo $count_cart;
                   ?>
-                  9
                 </span>
               </div>
             </label>
             <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
               <div class="card-body">
-                <h3 class="font-bold text-lg">8 Items</h3>
+                <h3 class="font-bold text-lg"><?php echo $count_cart ?> Items</h3>
                 <h3 class="">Subtotal:<span class="text-red-600"> $999</span></h3>
                 <div class="card-actions">
                   <a href="cart.php"

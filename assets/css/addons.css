@@ -12,3 +12,26 @@
     outline: none;
     color: dodgerblue;
 }
+
+/* add to cart css  */
+#shop .notification {
+    animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(-200%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }

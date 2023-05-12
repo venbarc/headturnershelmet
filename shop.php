@@ -11,10 +11,9 @@
     include "connect.php";
     include "include/header_link.php";
 
-    include 'include/navbar.php';
-
     // Check if user is signed in
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['user_id'])) 
+    {
         $user_id = $_SESSION['user_id'];
         // get user statement data 
         $stmt_get_user = $conn->prepare("select * from users where id = ? ");
@@ -36,12 +35,13 @@
         // formatted date 
         $formattedDate = (new DateTime($user['date_reg']))->format('F j, Y');
     }
+
     ?>
 
 </head>
 
 
-<body class="antialiased ">
+<body class="antialiased" id="shop">
 
     <?php
         if(isset($_GET['product']))
@@ -50,9 +50,50 @@
 
             if($product == 'shark')
             {
+                if(isset($_POST['add_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    $image = $_POST['image'];
+                    $brand = $_POST['brand'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+
+                    $stmt = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price) values(?,?,?,?,?,?)");
+                    $stmt->execute([$user_id, $product_id, $image, $brand, $name, $price]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="notification bg-green-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Added to cart.
+                        </div>
+                        ';
+                    }
+                }
+                else
+                if(isset($_POST['remove_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+
+                    $stmt = $conn->prepare("delete from cart where user_id = ? and product_id = ?");
+                    $stmt->execute([$user_id, $product_id]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="notification bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Removed to cart.
+                        </div>';
+                    }
+                }
+
+                include 'include/navbar.php';
                 ?>
+                
                     <!-- section for products  -->
-                    <section class="py-32 bg-gray-300">
+                    <section class="py-32 bg-gray-300"> 
                         <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
                             <!-- title here  -->
                             <nav id="shark" class="top-0 z-30 w-full px-6 py-1">
@@ -65,13 +106,13 @@
 
                             <!-- products  -->
                             <?php
-                                $stmt = $conn->prepare("select * from products where brand = 'shark' ");
-                                $stmt->execute();
-                                $res = $stmt->get_result();
+                                $stmt1 = $conn->prepare("select * from products where brand = 'shark' ");
+                                $stmt1->execute();
+                                $res1 = $stmt1->get_result();
 
-                                if($res->num_rows > 0)
+                                if($res1->num_rows > 0)
                                 {
-                                    while($row = $res->fetch_assoc())
+                                    while($row = $res1->fetch_assoc())
                                     {
                                         $product_id = $row['product_id'];
                                         $image = $row['image'];
@@ -87,12 +128,10 @@
 
                                         $available = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
 
-                                        $in_cart = $row['in_cart'];
-
                                         $price_format = number_format($price, 2, '.', ',');
 
                                         ?>
-                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
+                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4  " data-wow-delay=".2s">
                                                 <!-- image and short description  -->
                                                 <img src="<?php echo $image ?>" class="w-full">
                                                 <!-- product id  -->
@@ -100,52 +139,61 @@
                                                 <div class="flex items-center justify-between pt-3">
                                                     <!-- product name  -->
                                                     <p><?php echo $name ?></p>
-                                                        <!-- add to cart  -->
-                                                        <?php
-                                                        if(isset($_SESSION['user_id']))//if user is logged in
-                                                        {
-                                                            if(empty($in_cart))
-                                                            {
-                                                                echo'
-                                                                <form method="post">
-                                                                    <button type="submit" name="add_cart">
+                                                        <!--////////////////////////////// add to cart  -->
+                                                        <form method="post">
+                                                            <!-- data of product hidden  -->
+                                                            <input type="hidden" name="product_id" value="<?php echo $product_id?>">
+                                                            <input type="hidden" name="image" value="<?php echo $image?>">
+                                                            <input type="hidden" name="brand" value="<?php echo $brand?>">
+                                                            <input type="hidden" name="name" value="<?php echo $name?>">
+                                                            <input type="hidden" name="price" value="<?php echo $price?>">
+
+                                                            <?php
+                                                                if(isset($_SESSION['user_id']))//if user is logged in
+                                                                {
+                                                                    $stmt2 = $conn->prepare("select * from cart where product_id = ? and user_id = ?");
+                                                                    $stmt2->execute([$product_id, $user_id]);
+                                                                    $res2 = $stmt2->get_result();
+
+                                                                    if($res2->num_rows > 0)
+                                                                    {
+                                                                        echo'
+                                                                        <button type="submit" name="remove_cart" class="px-5">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
+                                                                            </svg>
+                                                                        </button>
+                                                                        ';
+                                                                    }
+                                                                    else{
+                                                                        echo'
+                                                                        <button type="submit" name="add_cart" class="px-5">
+                                                                            <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                                <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                        ';
+                                                                    }
+                                                                }
+                                                                else // if user is not logged in
+                                                                {
+                                                                    echo'
+                                                                    <a href="login.php">
                                                                         <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                                                                             <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
                                                                         </svg>
-                                                                    </button>
-                                                                </form>
-                                                                ';
-                                                            }
-                                                            else{
-                                                                echo'
-                                                                <form method="post">
-                                                                    <button type="submit" name="remove_cart">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>
-                                                                ';
-                                                            }
-                                                        }
-                                                        else // if user is not logged in
-                                                        {
-                                                            echo'
-                                                            <a href="login.php">
-                                                                <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                                    <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                                                </svg>
-                                                            </a>
-                                                            ';
-                                                        }
-                                                            
-                                                        ?>
+                                                                    </a>
+                                                                    ';
+                                                                }
+                                                            ?>
+                                                        </form>
+
                                                 </div>
                                                 <!-- product availability  -->
-                                                <p>Available : <?php echo $available ?></p>
+                                                <h6 class="font-semibold text-black-600">Available : <?php echo $available ?></h6>
                                                 <!-- price  -->
                                                 <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
-                                                <!-- Modal toggle -->
                                                 <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
+                                                    <!-- ///////////////////////////// buy now  -->
                                                     <?php
                                                         if(isset($_SESSION['user_id']))// if user is logged in
                                                         {
@@ -159,11 +207,11 @@
                                                             }
                                                             else{
                                                                 echo'
-                                                                <button data-modal-target="'.$product_id.'" data-modal-toggle="'.$product_id.'" class="relative inline-block px-4 py-2 font-medium group">
+                                                                <a href="check_out.php" class="relative inline-block px-4 py-2 font-medium group">
                                                                     <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                                                                     <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                                                                     <span class="relative text-black group-hover:text-white">Buy now</span>
-                                                                </button>
+                                                                </a>
                                                                 ';
                                                             }
                                                         }
@@ -185,88 +233,11 @@
                                                                 ';
                                                             }
                                                         }
-                                                        
                                                     
                                                     ?>
                                                 </div>
                                             </div>
 
-                                            <!-- modals here  -->
-                                            <div id="<?php echo $product_id ?>" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                                <div class="relative w-full max-w-7xl max-h-full">
-                                                    <!-- Modal content -->
-                                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                        <!-- Modal header -->
-                                                        <div class="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
-                                                            <h3 class="text-xl font-medium text-gray-900 dark:text-white">
-                                                                <?php echo $product_id .' | '. $name ?>
-                                                            </h3>
-                                                            <!-- close button  -->
-                                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="<?php echo $product_id?>">
-                                                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                                                                <span class="sr-only">Close modal</span>
-                                                            </button>
-                                                        </div>
-                                                        <!-- Modal body -->
-                                                        <div class="p-6 space-y-6">
-
-                                                            <div class="grid grid-cols-2 p-20">
-                                                                <!-- images  -->
-                                                                <div>
-                                                                    <img src="<?php echo $image ?>" width="200" height="auto">
-                                                                </div>
-                                                                <!-- selection size  -->
-                                                                <div>
-                                                                    <div class="mx-auto">
-                                                                        <h2 class="mb-2 text-sm font-bold leading-tight tracking-tight text-black md:text-lg">
-                                                                            Sizes:
-                                                                        </h2>
-                                                                        <button id="size" class="relative inline-block px-4 py-2 font-medium group mr-2">
-                                                                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                            <span class="relative text-black group-hover:text-white">XS</span>
-                                                                        </button>
-                                                                        <a class="relative inline-block px-4 py-2 font-medium group mr-2">
-                                                                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                            <span class="relative text-black group-hover:text-white">SM</span>
-                                                                        </a>
-                                                                        <a class="relative inline-block px-4 py-2 font-medium group mr-2">
-                                                                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                            <span class="relative text-black group-hover:text-white">MD</span>
-                                                                        </a>
-                                                                        <a class="relative inline-block px-4 py-2 font-medium group mr-2">
-                                                                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                            <span class="relative text-black group-hover:text-white">LG</span>
-                                                                        </a>
-                                                                        <a class="relative inline-block px-4 py-2 font-medium group mr-2">
-                                                                            <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                            <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                            <span class="relative text-black group-hover:text-white">XL</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="mt-5">
-                                                                        Availability : 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                        
-                                                        <!-- Modal footer -->
-                                                        <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                                            <button data-modal-hide="<?php echo $product_id ?>" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                                Buy 
-                                                            </button>
-                                                            <button data-modal-hide="<?php echo $product_id ?>" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                                                Quantity 
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         <?php
                                     }
                                 }
@@ -1684,9 +1655,15 @@
         include 'include/footer.php';
         include "include/footer_link.php";
     ?>
-
-
-
+    <script>
+        // allert function 
+        function dismissNotification() {
+            document.getElementById('success-message').style.display = 'none';
+        }
+        setTimeout(function() {
+            dismissNotification();
+        }, 5000);
+    </script>
 </body>
 
 </html>

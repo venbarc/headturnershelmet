@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2023 at 12:14 PM
+-- Generation Time: May 12, 2023 at 12:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,70 @@ SET time_zone = "+00:00";
 --
 -- Database: `wokolndo_headturner_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`) VALUES
+(146, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000),
+(147, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `xs_avail` int(11) NOT NULL,
+  `sm_avail` int(11) NOT NULL,
+  `md_avail` int(11) NOT NULL,
+  `lg_avail` int(11) NOT NULL,
+  `xlg_avail` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `product_id`, `image`, `brand`, `name`, `price`, `xs_avail`, `sm_avail`, `md_avail`, `lg_avail`, `xlg_avail`) VALUES
+(1, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 3, 1, 3, 4, 0),
+(3, 'shark-002', 'https://i.ibb.co/kc4GMs2/shark-skwal2-iker-lecuona-nero-removebg-preview.png', 'shark', 'Shark SKWAL2 Iker Lecuona Nero', 12670, 4, 0, 0, 1, 0),
+(5, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 5, 4, 0, 2, 1),
+(6, 'shark-004', 'https://i.ibb.co/ZTvfv4Y/shark-evo-es-k-rozen-full-face-helmet.png', 'shark', 'Shark EVO es k Rozen Full Face Helmet', 16850, 3, 0, 11, 0, 0),
+(7, 'shark-005', 'https://i.ibb.co/wKkbqxT/shark-spartan-gt-carbon-full-face-helmet.png', 'shark', 'Shark Spartan GT Carbon Full Face Helmet', 23380, 0, 0, 0, 0, 0),
+(8, 'shark-006', 'https://i.ibb.co/TYyBBT5/shark-spartan-gt-pro-ritmo-rosso-removebg-preview.png', 'shark', 'Shark Spartan GT Pro Carbon Ritmo Helmet', 22390, 2, 5, 4, 0, 0),
+(9, 'shark-007', 'https://i.ibb.co/0KccRZY/shark-spartan-gt-carbon-skin-full-face-helmet.png', 'shark', 'Shark Spartan GT Carbon Skin Full Face Helmet', 10000, 7, 1, 5, 0, 0),
+(10, 'shark-008', 'https://i.ibb.co/dG9HdjM/shark-spartan-rs-byhron-full-face-helmet.png', 'shark', 'Shark Spartan RS Byhron Full Face Helmet', 16350, 6, 5, 0, 0, 7),
+(11, 'shark-009', 'https://i.ibb.co/XVMY8qS/shark-spartan-rs-replica-zarco-austin-full-face-helmet.png', 'shark', 'Shark Spartan RS Replica Zarco Austin Full Face Helmet', 47004, 7, 3, 0, 5, 0),
+(12, 'shark-010', 'https://i.ibb.co/wKkbqxT/shark-spartan-gt-carbon-full-face-helmet.png', 'shark', 'Shark Spartan GT Carbon Full Face Helmet', 23380, 5, 0, 2, 0, 0),
+(13, 'shark-011', 'https://i.ibb.co/TYyBBT5/shark-spartan-gt-pro-ritmo-rosso-removebg-preview.png', 'shark', 'Shark Spartan GT Pro Carbon Ritmo Helmet', 22390, 2, 1, 0, 0, 0),
+(14, 'shark-012', 'https://i.ibb.co/0KccRZY/shark-spartan-gt-carbon-skin-full-face-helmet.png', 'shark', 'Shark Spartan GT Carbon Skin Full Face Helmet', 10000, 0, 5, 0, 7, 3),
+(15, 'shark-013', 'https://i.ibb.co/dG9HdjM/shark-spartan-rs-byhron-full-face-helmet.png', 'shark', 'Shark Spartan RS Byhron Full Face Helmet', 16350, 6, 4, 0, 0, 3),
+(16, 'shark-014', 'https://i.ibb.co/XVMY8qS/shark-spartan-rs-replica-zarco-austin-full-face-helmet.png', 'shark', 'Shark Spartan RS Replica Zarco Austin Full Face Helmet', 47004, 7, 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -46,11 +110,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fname`, `lname`, `contact`, `address`, `image`, `pass`, `pin`, `verification`, `date_reg`) VALUES
-(12, 'bentf24@gmail.com', 'Benedict', 'Barcebal', '9393370187', '1134 Bo. Visaya Guadalupe Nuevo Makati City', '', '$2y$10$.5PH6CR1ffQLyStS8T0j3.sfFnC.KJx13wPfmhboGsxzYcoOWBYoa', 532941, 1, '2023-05-08 07:08:04');
+(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', 'Makati ', 'profile_upload/profile-40575277.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -63,10 +139,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

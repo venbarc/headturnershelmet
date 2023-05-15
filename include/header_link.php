@@ -5,10 +5,10 @@
 <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
 
 <!-- my own css  -->
-<link rel="stylesheet" href="assets/css/addons.css">
+<link rel="stylesheet" href="assets/css/addons.css?Version=<?php echo time() ?>">
 
 <!-- jquery  -->
-<script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 <!-- ==== WOW JS ==== -->
 <script src="assets/js/wow.min.js"></script>

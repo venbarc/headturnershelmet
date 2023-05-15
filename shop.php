@@ -65,10 +65,15 @@
                     if($stmt->affected_rows > 0)
                     {
                         echo'
-                        <div class="notification bg-green-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                        <div class="cart_add_alert bg-green-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
                             Added to cart.
                         </div>
                         ';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                        </script>
+                        <?php
                     }
                 }
                 else
@@ -83,15 +88,21 @@
                     if($stmt->affected_rows > 0)
                     {
                         echo'
-                        <div class="notification bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                        <div class="cart_remove_alert bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
                             Removed to cart.
                         </div>';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                        </script>
+                        <?php
                     }
+                    
                 }
 
                 include 'include/navbar.php';
+
                 ?>
-                
                     <!-- section for products  -->
                     <section class="py-32 bg-gray-300"> 
                         <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
@@ -131,61 +142,61 @@
                                         $price_format = number_format($price, 2, '.', ',');
 
                                         ?>
-                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4  " data-wow-delay=".2s">
+                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 pt-[10%]" id="<?php echo $product_id ?>">
+                                                <!-- product id  -->
+                                                <h6><strong><?php echo $product_id ?></strong></h6>     
                                                 <!-- image and short description  -->
                                                 <img src="<?php echo $image ?>" class="w-full">
-                                                <!-- product id  -->
-                                                <h6><strong><?php echo $product_id ?></strong></h6> 
                                                 <div class="flex items-center justify-between pt-3">
                                                     <!-- product name  -->
                                                     <p><?php echo $name ?></p>
-                                                        <!--////////////////////////////// add to cart  -->
-                                                        <form method="post">
-                                                            <!-- data of product hidden  -->
-                                                            <input type="hidden" name="product_id" value="<?php echo $product_id?>">
-                                                            <input type="hidden" name="image" value="<?php echo $image?>">
-                                                            <input type="hidden" name="brand" value="<?php echo $brand?>">
-                                                            <input type="hidden" name="name" value="<?php echo $name?>">
-                                                            <input type="hidden" name="price" value="<?php echo $price?>">
+                                                    <!--////////////////////////////// add to cart  -->
+                                                    <form method="post">
+                                                        <!-- data of products hidden  -->
+                                                        <input type="hidden" name="product_id" value="<?php echo $product_id?>">
+                                                        <input type="hidden" name="image" value="<?php echo $image?>">
+                                                        <input type="hidden" name="brand" value="<?php echo $brand?>">
+                                                        <input type="hidden" name="name" value="<?php echo $name?>">
+                                                        <input type="hidden" name="price" value="<?php echo $price?>">
 
-                                                            <?php
-                                                                if(isset($_SESSION['user_id']))//if user is logged in
-                                                                {
-                                                                    $stmt2 = $conn->prepare("select * from cart where product_id = ? and user_id = ?");
-                                                                    $stmt2->execute([$product_id, $user_id]);
-                                                                    $res2 = $stmt2->get_result();
+                                                        <?php
+                                                            if(isset($_SESSION['user_id']))//if user is logged in
+                                                            {
+                                                                $stmt2 = $conn->prepare("select * from cart where product_id = ? and user_id = ?");
+                                                                $stmt2->execute([$product_id, $user_id]);
+                                                                $res2 = $stmt2->get_result();
 
-                                                                    if($res2->num_rows > 0)
-                                                                    {
-                                                                        echo'
-                                                                        <button type="submit" name="remove_cart" class="px-5">
-                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
-                                                                            </svg>
-                                                                        </button>
-                                                                        ';
-                                                                    }
-                                                                    else{
-                                                                        echo'
-                                                                        <button type="submit" name="add_cart" class="px-5">
-                                                                            <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                                                <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                                                            </svg>
-                                                                        </button>
-                                                                        ';
-                                                                    }
-                                                                }
-                                                                else // if user is not logged in
+                                                                if($res2->num_rows > 0)
                                                                 {
                                                                     echo'
-                                                                    <a href="login.php">
-                                                                        <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                                            <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                    <button type="submit" name="remove_cart" class="px-5">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
                                                                         </svg>
-                                                                    </a>
+                                                                    </button>
                                                                     ';
                                                                 }
-                                                            ?>
-                                                        </form>
+                                                                else{
+                                                                    echo'
+                                                                    <button type="submit" name="add_cart" class="px-5">
+                                                                        <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                    ';
+                                                                }
+                                                            }
+                                                            else // if user is not logged in
+                                                            {
+                                                                echo'
+                                                                <a href="login.php">
+                                                                    <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                    </svg>
+                                                                </a>
+                                                                ';
+                                                            }
+                                                        ?>
+                                                    </form>
 
                                                 </div>
                                                 <!-- product availability  -->
@@ -1653,16 +1664,11 @@
     <?php
         include 'contact.php';
         include 'include/footer.php';
-        include "include/footer_link.php";
+        include 'include/footer_link.php';
     ?>
     <script>
-        // allert function 
-        function dismissNotification() {
-            document.getElementById('success-message').style.display = 'none';
-        }
-        setTimeout(function() {
-            dismissNotification();
-        }, 5000);
+        // ==========================ajax request starts here 
+
     </script>
 </body>
 

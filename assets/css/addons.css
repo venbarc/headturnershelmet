@@ -1,37 +1,114 @@
+
+/* pin verification  */
 #pin_code input {
-    display: block;
-    margin: 2em auto;
-    border: none;
-    padding: 0;
-    width: 10.5ch;
-    background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.7ch) 0 100%/ 10ch 2px no-repeat;
-    font: 5ch droid sans mono, consolas, monospace;
-    letter-spacing: .7ch;
+  display: block;
+  margin: 2em auto;
+  border: none;
+  padding: 0;
+  width: 10.5ch;
+  background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey 1ch, transparent 0, transparent 1.7ch) 0 100%/ 10ch 2px no-repeat;
+  font: 5ch droid sans mono, consolas, monospace;
+  letter-spacing: .7ch;
 }
+
 #pin_code input:focus {
-    outline: none;
-    color: dodgerblue;
+  outline: none;
+  color: dodgerblue;
 }
 
 /* add to cart css  */
-#shop .notification {
-    animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+#shop .cart_add_alert {
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-200%);
   }
-  
-  @keyframes slideIn {
-    from {
-      transform: translateX(-200%);
-    }
-    to {
-      transform: translateX(0);
-    }
+
+  to {
+    transform: translateX(0);
   }
-  
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
   }
+
+  to {
+    opacity: 0;
+  }
+}
+/* remove to cart css  */
+#shop .cart_remove_alert {
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-200%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+#cart .cart_add_alert {
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-200%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+/* remove to cart css  */
+#cart .cart_remove_alert {
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-200%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

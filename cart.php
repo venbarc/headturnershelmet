@@ -11,122 +11,177 @@
   include "connect.php";
   include "include/header_link.php";
 
-  // navigation bar 
-  include 'include/navbar.php';
+   // Check if user is signed in
+   if (isset($_SESSION['user_id'])) 
+   {
+       $user_id = $_SESSION['user_id'];
+       // get user statement data 
+       $stmt_get_user = $conn->prepare("select * from users where id = ? ");
+       $stmt_get_user->bind_param('i', $user_id);
+       $stmt_get_user->execute();
+       $res_get_user = $stmt_get_user->get_result();
+
+       // fetch users data
+       $user = $res_get_user->fetch_assoc();
+
+       $email = $user['email'];
+       $fname = $user['fname'];
+       $lname = $user['lname'];
+       $contact = $user['contact'];
+       $address = $user['address'];
+       $image = $user['image'];
+       $date_reg = $user['date_reg'];
+
+       // formatted date 
+       $formattedDate = (new DateTime($user['date_reg']))->format('F j, Y');
+   }
+   else
+   {
+    ?>
+      <script>
+        location.href = "login.php";
+      </script>
+    <?php
+   }
+  
   ?>
 
 </head>
 
 
-<body class="antialiased ">
+<body class="antialiased" id="cart">
+    <?php
+      // remove from cart 
+      if(isset($_GET['remove']))
+      {
+        // initialization 
+        $remove = $_GET['remove'];
+
+        $stmt_remove = $conn->prepare("delete from cart where product_id = ? and user_id = ?");
+        $stmt_remove->execute([$remove, $user_id]);
+
+        if($stmt_remove->affected_rows > 0)
+        {
+          echo'
+          <div class="cart_remove_alert bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+              Removed to cart.
+          </div>
+          ';
+        }
+      }
+      // navigation bar 
+      include 'include/navbar.php';
+    ?>
 
   <section class="h-full py-12 bg-gray-300 sm:py-16 lg:py-44">
     <div class="px-4 mx-auto sm:px-6 lg:px-8">
-      <div class="flex items-center justify-center">
-        <h1 class="text-4xl font-bold text-gray-900">Your Cart</h1>
-      </div>
-
       <div class="max-w-2xl mx-auto mt-8 md:mt-12">
         <div class="bg-gray-100 shadow">
+        <div class="flex items-center justify-center">
+            <h1 class="text-4xl font-bold text-gray-900 pt-10">Your Cart</h1>
+          </div>
           <div class="px-4 py-6 sm:px-8 sm:py-10">
             <div class="flow-root">
-              <ul class="-my-8">
-                <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
-                  <div class="shrink-0">
+               <?php
+                  $stmt = $conn->prepare("select c.*,p.* from cart c join products p on c.product_id = p.product_id where user_id = ?");
+                  $stmt->execute([$user_id]);
+                  $res = $stmt->get_result();
 
-                    <input id="link-checkbox" type="checkbox" value=""
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <img class="object-cover w-24 h-24 max-w-full rounded-lg"
-                      src="https://i.ibb.co/KbQcdfR/product2-cheeta.png" alt="" />
-                  </div>
-                  <div class="relative flex flex-col justify-between flex-1">
-                    <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
-                      <div class="pr-8 sm:pr-5">
-                        <p class="text-base font-semibold text-gray-900">Shark RacerPro GP Martinator</p>
-                        <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">Size:
-                          <span class="text-red-600">XS</span>
-                        </p><!-- FOR SIZES -->
+                  if($res->num_rows > 0)
+                  {
+                    while($row = $res->fetch_assoc())
+                    {
+                      $product_id = $row['product_id'];
+                      $image = $row['image'];
+                      $brand = $row['brand'];
+                      $name = $row['name'];
+                      $price = $row['price'];
 
+                      $xs_avail = $row['xs_avail'];
+                      $sm_avail = $row['sm_avail'];
+                      $md_avail = $row['md_avail'];
+                      $lg_avail = $row['lg_avail'];
+                      $xlg_avail = $row['xlg_avail'];
+                      $price_format = number_format($price, 2, '.', ',');
+
+                      // get subtotal 
+                      $subtotal = 0;
+                      $stmt_subtotal = $conn->prepare("select * from cart where user_id = ?");
+                      $stmt_subtotal->execute([$user_id]);
+                      $res_subtotal = $stmt_subtotal->get_result();
+                      while($row_subtotal = $res_subtotal->fetch_assoc())
+                      {
+                        $subtotal += $row_subtotal['price'];
+                        $subtotal_format = number_format($subtotal, 2, '.', ',');
+                      }
+
+                      // shipping fee 
+                      $ship_fee = 38;
+                      // total 
+                      $total = $subtotal + $ship_fee;
+                      $total_format = number_format($total, 2, '.', ',');
+
+                      ?>
+                      <form method="post">
+                        <ul class="-my-8 mb-5">
+                          <input type="checkbox" name="checkout" value="<?php echo $product_id ?>" required>
+                          <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
+                            <!-- image of product  -->
+                            <div class="shrink-0">
+                              <img src="<?php echo $image ?>" class="object-cover w-24 h-24 max-w-full rounded-lg"  />
+                            </div>
+                            <!-- product id and name  -->
+                            <div class="relative flex flex-col justify-between flex-1">
+                              <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
+                                <div class="pr-8 sm:pr-5">
+                                  <p class="text-base font-bold text-gray-900"><?php echo $product_id .' | '. $name?></p>
+                                  <p>Available Sizes :</p>
+                                  <p class="mx-0 mt-1 mb-0 text-md text-gray-500">
+                                     [xs <span class="text-red-600"><?php echo $xs_avail ?></span>]
+                                     [sm <span class="text-red-600"><?php echo $sm_avail ?></span>]
+                                     [md <span class="text-red-600"><?php echo $md_avail ?></span>]
+                                     [lg <span class="text-red-600"><?php echo $lg_avail ?></span>]
+                                     [xlg <span class="text-red-600"><?php echo $xlg_avail ?></span>]
+                                  </p>
+                                </div>
+                                <!-- price  -->
+                                <div class="flex items-end justify-between mt-4 sm:mt-0 sm:items-start sm:justify-end">
+                                  <p class="w-20 text-base font-semibold text-gray-900 shrink-0 sm:order-2 sm:ml-8 sm:text-right">
+                                    ₱<?php echo $price_format?>  
+                                  </p>
+                                  <!-- remove from cart  -->
+                                  <div class="sm:order-1">
+                                    <a href="cart.php?remove=<?php echo $product_id?>" class="font-bold mx-auto text-red-600">
+                                      Remove
+                                    </a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      <?php
+                    }
+                    ?>
+                      <!-- check out btn  -->
+                      <div class="mt-6 text-end">
+                        <a href="check_out.php" class="relative inline-block px-4 py-2 font-medium group">
+                          <span
+                            class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                          <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                          <span class="relative text-black group-hover:text-white">Proceed Check out</span>
+                        </a>
                       </div>
-
-                      <div class="flex items-end justify-between mt-4 sm:mt-0 sm:items-start sm:justify-end">
-                        <p class="w-20 text-base font-semibold text-gray-900 shrink-0 sm:order-2 sm:ml-8 sm:text-right">
-                          ₱45,000</p>
-
-                        <div class="sm:order-1">
-                          <div class="flex items-stretch h-8 mx-auto text-gray-600">
-                            <button
-                              class="flex items-center justify-center px-4 transition bg-gray-200 rounded-l-md hover:bg-black hover:text-white">-</button>
-                            <div
-                              class="flex items-center justify-center w-full px-4 text-xs uppercase transition bg-gray-100">
-                              1</div>
-                            <button
-                              class="flex items-center justify-center px-4 transition bg-gray-200 rounded-r-md hover:bg-black hover:text-white">+</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
-                  <div class="shrink-0">
-                    <input id="link-checkbox" type="checkbox" value=""
-                      class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <img class="object-cover w-24 h-24 max-w-full rounded-lg"
-                      src="https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png" alt="" />
-                  </div>
-
-                  <div class="relative flex flex-col justify-between flex-1">
-                    <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
-                      <div class="pr-8 sm:pr-5">
-                        <p class="text-base font-semibold text-gray-900">SHOEI GLAMSTER CHEETAH</p>
-                        <p class="mx-0 mt-1 mb-0 text-sm text-gray-400">Size: <span class="text-red-600">L</span></p>
-                      </div>
-
-                      <div class="flex items-end justify-between mt-4 sm:mt-0 sm:items-start sm:justify-end">
-                        <p class="w-20 text-base font-semibold text-gray-900 shrink-0 sm:order-2 sm:ml-8 sm:text-right">
-                          ₱45,000</p>
-
-                        <div class="sm:order-1">
-                          <div class="flex items-stretch h-8 mx-auto text-gray-600">
-                            <button
-                              class="flex items-center justify-center px-4 transition bg-gray-200 rounded-l-md hover:bg-black hover:text-white">-</button>
-                            <div
-                              class="flex items-center justify-center w-full px-4 text-xs uppercase transition bg-gray-100">
-                              1</div>
-                            <button
-                              class="flex items-center justify-center px-4 transition bg-gray-200 rounded-r-md hover:bg-black hover:text-white">+</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="py-2 mt-6 border-t border-b">
-              <div class="flex items-center justify-between">
-                <p class="text-sm text-gray-400">Subtotal</p>
-                <p class="text-lg font-semibold text-gray-900">₱399.00</p>
-              </div>
-              <div class="flex items-center justify-between">
-                <p class="text-sm text-gray-400">Shipping</p>
-                <p class="text-lg font-semibold text-gray-900">₱8.00</p>
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-6">
-              <p class="text-sm font-medium text-gray-900">Total</p>
-              <p class="text-2xl font-semibold text-gray-900"><span class="text-xs font-normal text-gray-400">PHP</span>
-                408.00</p>
-            </div>
-
-            <div class="mt-6 text-end">
-              <a href="check_out.php" class="relative inline-block px-4 py-2 font-medium group">
-                <span
-                  class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                <span class="relative text-black group-hover:text-white">Check out</span>
-              </a>
+                    </form>
+                    <?php
+                  }
+                  else{
+                    ?>
+                    <h4 class="text-white p-10 bg-gray-500 text-center font-semibold text-xl">Cart is empty.</h4>
+                    <?php
+                  }
+               ?>
+               
             </div>
           </div>
         </div>

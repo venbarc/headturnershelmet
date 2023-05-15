@@ -58,9 +58,10 @@
                     $brand = $_POST['brand'];
                     $name = $_POST['name'];
                     $price = $_POST['price'];
+                    $size = $_POST['size'];
 
-                    $stmt = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price) values(?,?,?,?,?,?)");
-                    $stmt->execute([$user_id, $product_id, $image, $brand, $name, $price]);
+                    $stmt = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price, size) values(?,?,?,?,?,?,?)");
+                    $stmt->execute([$user_id, $product_id, $image, $brand, $name, $price, $size]);
 
                     if($stmt->affected_rows > 0)
                     {
@@ -141,6 +142,22 @@
 
                                         $price_format = number_format($price, 2, '.', ',');
 
+                                        // // get subtotal 
+                                        // $subtotal = 0;
+                                        // $stmt_subtotal = $conn->prepare("select * from cart where user_id = ?");
+                                        // $stmt_subtotal->execute([$user_id]);
+                                        // $res_subtotal = $stmt_subtotal->get_result();
+                                        // while($row_subtotal = $res_subtotal->fetch_assoc())
+                                        // {
+                                        //   $subtotal += $row_subtotal['price'];
+                                        //   $subtotal_format = number_format($subtotal, 2, '.', ',');
+                                        // }
+                                        // // shipping fee 
+                                        // $ship_fee = 38;
+                                        // // total 
+                                        // $total = $subtotal + $ship_fee;
+                                        // $total_format = number_format($total, 2, '.', ',');
+
                                         ?>
                                             <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 pt-[10%]" id="<?php echo $product_id ?>">
                                                 <!-- product id  -->
@@ -151,13 +168,6 @@
                                                     <!-- product name  -->
                                                     <p><?php echo $name ?></p>
                                                     <!--////////////////////////////// add to cart  -->
-                                                    <form method="post">
-                                                        <!-- data of products hidden  -->
-                                                        <input type="hidden" name="product_id" value="<?php echo $product_id?>">
-                                                        <input type="hidden" name="image" value="<?php echo $image?>">
-                                                        <input type="hidden" name="brand" value="<?php echo $brand?>">
-                                                        <input type="hidden" name="name" value="<?php echo $name?>">
-                                                        <input type="hidden" name="price" value="<?php echo $price?>">
 
                                                         <?php
                                                             if(isset($_SESSION['user_id']))//if user is logged in
@@ -166,23 +176,30 @@
                                                                 $stmt2->execute([$product_id, $user_id]);
                                                                 $res2 = $stmt2->get_result();
 
-                                                                if($res2->num_rows > 0)
+                                                                if($available > 0) //if there is available
                                                                 {
-                                                                    echo'
-                                                                    <button type="submit" name="remove_cart" class="px-5">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
-                                                                        </svg>
-                                                                    </button>
-                                                                    ';
-                                                                }
-                                                                else{
-                                                                    echo'
-                                                                    <button type="submit" name="add_cart" class="px-5">
-                                                                        <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                                                        </svg>
-                                                                    </button>
-                                                                    ';
+                                                                    if($res2->num_rows > 0) // remove to cart
+                                                                    {
+                                                                        echo'
+                                                                        <form method="post">
+                                                                        <input type="hidden" name="product_id" value="'.$product_id.'">
+                                                                            <button type="submit" name="remove_cart" class="px-5">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="ml-5 bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
+                                                                                </svg>
+                                                                            </button>
+                                                                        </form>
+                                                                        ';
+                                                                    }
+                                                                    else // add to cart
+                                                                    { 
+                                                                        echo'
+                                                                        <button data-modal-target="modal_'.$product_id.'" data-modal-toggle="modal_'.$product_id.'" type="button">
+                                                                            <svg class="ml-5 w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                            <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                            </svg>
+                                                                        </button>
+                                                                        ';
+                                                                    }
                                                                 }
                                                             }
                                                             else // if user is not logged in
@@ -196,13 +213,29 @@
                                                                 ';
                                                             }
                                                         ?>
-                                                    </form>
-
                                                 </div>
                                                 <!-- product availability  -->
                                                 <h6 class="font-semibold text-black-600">Available : <?php echo $available ?></h6>
                                                 <!-- price  -->
                                                 <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
+                                                <br>
+                                                <p class="font-semibold">
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xs <span class="text-red-600"><?php echo $xs_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        sm <span class="text-red-600"><?php echo $sm_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        md <span class="text-red-600"><?php echo $md_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        lg <span class="text-red-600"><?php echo $lg_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xlg <span class="text-red-600"><?php echo $xlg_avail ?></span> 
+                                                    </span>
+                                                </p>
                                                 <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
                                                     <!-- ///////////////////////////// buy now  -->
                                                     <?php
@@ -248,8 +281,9 @@
                                                     ?>
                                                 </div>
                                             </div>
-
                                         <?php
+                                        // for modals 
+                                        include "modals/shark_cart.php";
                                     }
                                 }
                             ?>

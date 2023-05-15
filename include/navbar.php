@@ -118,12 +118,20 @@
                 </svg>
                 <span class="badge badge-sm indicator-item">
                   <?php
-                    $stmt = $conn->prepare("select count(*) from cart where user_id = ?");
-                    $stmt->execute([$user_id]);
-                    $res = $stmt->get_result();
-                    $count_cart = mysqli_fetch_array($res)[0];
-
+                    // count all from cart 
+                    $stmt_count = $conn->prepare("select count(*) from cart where user_id = ?");
+                    $stmt_count->execute([$user_id]);
+                    $res_count = $stmt_count->get_result();
+                    $count_cart = mysqli_fetch_array($res_count)[0];
                     echo $count_cart;
+
+                    // sum the amount of cart
+                    $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal FROM cart WHERE user_id = ?");
+                    $stmt_sum->execute([$user_id]);
+                    $res_sum = $stmt_sum->get_result();
+                    $row_sum = $res_sum->fetch_assoc();
+                    $subtotal = $row_sum['subtotal'];
+                    $subtotal_format = number_format($subtotal, 2, '.', ',');
                   ?>
                 </span>
               </div>
@@ -131,7 +139,11 @@
             <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
               <div class="card-body">
                 <h3 class="font-bold text-lg"><?php echo $count_cart ?> Items</h3>
-                <h3 class="">Subtotal:<span class="text-red-600"> $999</span></h3>
+                <h3 class="">Subtotal :
+                  <span class="text-red-600">
+                    ₱ <?php echo $subtotal_format ?>
+                  </span>
+                </h3>
                 <div class="card-actions">
                   <a href="cart.php"
                     class="flex justify-center gap-1 relative inline-block px-10 py-2 text-sm font-medium group">

@@ -96,53 +96,49 @@
                       $brand = $row['brand'];
                       $name = $row['name'];
                       $price = $row['price'];
+                      $size = $row['size'];
 
-                      $xs_avail = $row['xs_avail'];
-                      $sm_avail = $row['sm_avail'];
-                      $md_avail = $row['md_avail'];
-                      $lg_avail = $row['lg_avail'];
-                      $xlg_avail = $row['xlg_avail'];
-                      $price_format = number_format($price, 2, '.', ',');
-
-                      // get subtotal 
-                      $subtotal = 0;
-                      $stmt_subtotal = $conn->prepare("select * from cart where user_id = ?");
-                      $stmt_subtotal->execute([$user_id]);
-                      $res_subtotal = $stmt_subtotal->get_result();
-                      while($row_subtotal = $res_subtotal->fetch_assoc())
+                      switch ($size) 
                       {
-                        $subtotal += $row_subtotal['price'];
-                        $subtotal_format = number_format($subtotal, 2, '.', ',');
+                        case 'xs':
+                            $size = 'Extra small';
+                            break;
+                        case 'sm':
+                            $size = 'Small';
+                            break;
+                        case 'md':
+                            $size = 'Medium';
+                            break;
+                        case 'lg':
+                            $size = 'Large';
+                            break;
+                        case 'xlg':
+                            $size = 'Extra Large';
+                            break;
+                        default:
+                            $size = '';
+                            break;
                       }
-
-                      // shipping fee 
-                      $ship_fee = 38;
-                      // total 
-                      $total = $subtotal + $ship_fee;
-                      $total_format = number_format($total, 2, '.', ',');
+                    
+                      $price_format = number_format($price, 2, '.', ',');
 
                       ?>
                       <form method="post">
                         <ul class="-my-8 mb-5">
-                          <input type="checkbox" name="checkout" value="<?php echo $product_id ?>" required>
+                          <input type="checkbox" name="checkout[]" value="<?php echo $product_id ?>">
                           <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                             <!-- image of product  -->
                             <div class="shrink-0">
-                              <img src="<?php echo $image ?>" class="object-cover w-24 h-24 max-w-full rounded-lg"  />
+                              <img src="<?php echo $image ?>" class="object-cover w-24 h-24 max-w-full rounded-lg">
                             </div>
                             <!-- product id and name  -->
                             <div class="relative flex flex-col justify-between flex-1">
                               <div class="sm:col-gap-5 sm:grid sm:grid-cols-2">
                                 <div class="pr-8 sm:pr-5">
-                                  <p class="text-base font-bold text-gray-900"><?php echo $product_id .' | '. $name?></p>
-                                  <p>Available Sizes :</p>
-                                  <p class="mx-0 mt-1 mb-0 text-md text-gray-500">
-                                     [xs <span class="text-red-600"><?php echo $xs_avail ?></span>]
-                                     [sm <span class="text-red-600"><?php echo $sm_avail ?></span>]
-                                     [md <span class="text-red-600"><?php echo $md_avail ?></span>]
-                                     [lg <span class="text-red-600"><?php echo $lg_avail ?></span>]
-                                     [xlg <span class="text-red-600"><?php echo $xlg_avail ?></span>]
+                                  <p class="text-base font-bold text-gray-900">
+                                    <?php echo $product_id .' | '. $name?>
                                   </p>
+                                  <p>Size : <span class="text-red-600"><?php echo $size ?></span></p>
                                 </div>
                                 <!-- price  -->
                                 <div class="flex items-end justify-between mt-4 sm:mt-0 sm:items-start sm:justify-end">
@@ -165,19 +161,43 @@
                     ?>
                       <!-- check out btn  -->
                       <div class="mt-6 text-end">
-                        <a href="check_out.php" class="relative inline-block px-4 py-2 font-medium group">
-                          <span
-                            class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                          <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                          <span class="relative text-black group-hover:text-white">Proceed Check out</span>
-                        </a>
+                        <?php
+                          if(isset($_POST['proceed_check_out']) && isset($_POST['checkout']))
+                          {
+                            $checkout = $_POST['checkout'];
+                            foreach($checkout as $checkouts)
+                            {
+                              echo $checkouts ;
+                            }
+                          }
+                          else
+                          {
+                            echo 
+                            '
+                              <div class="grid grid-cols-2 gap-10">
+                                <div class="text-left text-red-600">
+                                  Please select at least one to check out.
+                                </div>
+                            ';
+                          }
+                          echo'
+                                <div>
+                                  <button name="proceed_check_out" type="submit" class="relative inline-block px-4 py-2 font-medium group">
+                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                    <span class="relative text-black group-hover:text-white">Proceed Check out</span>
+                                  </button>
+                                </div>
+                              </div>
+                          ';
+                        ?>
                       </div>
                     </form>
                     <?php
                   }
                   else{
                     ?>
-                    <h4 class="text-white p-10 bg-gray-500 text-center font-semibold text-xl">Cart is empty.</h4>
+                      <h4 class="text-white p-10 bg-gray-500 text-center font-semibold text-xl">Cart is empty.</h4>
                     <?php
                   }
                ?>

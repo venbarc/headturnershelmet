@@ -16,11 +16,10 @@
   color: dodgerblue;
 }
 
-/* add to cart css  */
+/* chop remove and add cart  */
 #shop .cart_add_alert {
   animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
 }
-
 @keyframes slideIn {
   from {
     transform: translateX(-200%);
@@ -30,7 +29,6 @@
     transform: translateX(0);
   }
 }
-
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -40,11 +38,9 @@
     opacity: 0;
   }
 }
-/* remove to cart css  */
 #shop .cart_remove_alert {
   animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
 }
-
 @keyframes slideIn {
   from {
     transform: translateX(-200%);
@@ -54,7 +50,6 @@
     transform: translateX(0);
   }
 }
-
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -65,30 +60,7 @@
   }
 }
 
-#cart .cart_add_alert {
-  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(-200%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-/* remove to cart css  */
+/* cart remove only  */
 #cart .cart_remove_alert {
   animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
 }
@@ -103,6 +75,29 @@
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* check_out remove only  */
+#check_out .remove_order_alert {
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 4.5s forwards;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(-200%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
 @keyframes fadeOut {
   from {
     opacity: 1;

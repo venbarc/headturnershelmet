@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 12:06 PM
+-- Generation Time: May 16, 2023 at 11:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,16 +34,64 @@ CREATE TABLE `cart` (
   `image` varchar(255) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL
+  `price` int(11) NOT NULL,
+  `size` varchar(255) NOT NULL,
+  `in_payment` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`) VALUES
-(146, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000),
-(147, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000);
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`, `in_payment`) VALUES
+(172, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 'xlg', 0),
+(173, 13, 'shark-004', 'https://i.ibb.co/ZTvfv4Y/shark-evo-es-k-rozen-full-face-helmet.png', 'shark', 'Shark EVO es k Rozen Full Face Helmet', 16850, 'xs', 0),
+(174, 13, 'shark-002', 'https://i.ibb.co/kc4GMs2/shark-skwal2-iker-lecuona-nero-removebg-preview.png', 'shark', 'Shark SKWAL2 Iker Lecuona Nero', 12670, 'lg', 1),
+(177, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 'lg', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `done_payment`
+--
+
+CREATE TABLE `done_payment` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `size` varchar(255) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `date_pay` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `size` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`) VALUES
+(34, 13, 'shark-001', '', '', '', 0, ''),
+(36, 13, 'shark-002', '', '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -70,9 +118,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_id`, `image`, `brand`, `name`, `price`, `xs_avail`, `sm_avail`, `md_avail`, `lg_avail`, `xlg_avail`) VALUES
-(1, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 3, 1, 3, 4, 0),
+(1, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 23, 11, 13, 14, 10),
 (3, 'shark-002', 'https://i.ibb.co/kc4GMs2/shark-skwal2-iker-lecuona-nero-removebg-preview.png', 'shark', 'Shark SKWAL2 Iker Lecuona Nero', 12670, 4, 0, 0, 1, 0),
-(5, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 5, 4, 0, 2, 1),
+(5, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 5, 5, 0, 2, 1),
 (6, 'shark-004', 'https://i.ibb.co/ZTvfv4Y/shark-evo-es-k-rozen-full-face-helmet.png', 'shark', 'Shark EVO es k Rozen Full Face Helmet', 16850, 3, 0, 11, 0, 0),
 (7, 'shark-005', 'https://i.ibb.co/wKkbqxT/shark-spartan-gt-carbon-full-face-helmet.png', 'shark', 'Shark Spartan GT Carbon Full Face Helmet', 23380, 0, 0, 0, 0, 0),
 (8, 'shark-006', 'https://i.ibb.co/TYyBBT5/shark-spartan-gt-pro-ritmo-rosso-removebg-preview.png', 'shark', 'Shark Spartan GT Pro Carbon Ritmo Helmet', 22390, 2, 5, 4, 0, 0),
@@ -110,7 +158,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fname`, `lname`, `contact`, `address`, `image`, `pass`, `pin`, `verification`, `date_reg`) VALUES
-(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', 'Makati ', 'profile_upload/profile-40575277.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
+(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo mama mo kalbo', 'profile_upload/profile-82898753.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
 
 --
 -- Indexes for dumped tables
@@ -120,6 +168,12 @@ INSERT INTO `users` (`id`, `email`, `fname`, `lname`, `contact`, `address`, `ima
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -142,7 +196,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `products`

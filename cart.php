@@ -69,6 +69,7 @@
           ';
         }
       }
+      
       // navigation bar 
       include 'include/navbar.php';
     ?>
@@ -83,7 +84,7 @@
           <div class="px-4 py-6 sm:px-8 sm:py-10">
             <div class="flow-root">
                <?php
-                  $stmt = $conn->prepare("select c.*,p.* from cart c join products p on c.product_id = p.product_id where user_id = ?");
+                  $stmt = $conn->prepare("select c.*,p.* from cart c join products p on c.product_id = p.product_id where user_id = ? and in_payment = 0");
                   $stmt->execute([$user_id]);
                   $res = $stmt->get_result();
 
@@ -101,22 +102,22 @@
                       switch ($size) 
                       {
                         case 'xs':
-                            $size = 'Extra small';
+                            $size_label = 'Extra small';
                             break;
                         case 'sm':
-                            $size = 'Small';
+                            $size_label = 'Small';
                             break;
                         case 'md':
-                            $size = 'Medium';
+                            $size_label = 'Medium';
                             break;
                         case 'lg':
-                            $size = 'Large';
+                            $size_label = 'Large';
                             break;
                         case 'xlg':
-                            $size = 'Extra Large';
+                            $size_label = 'Extra Large';
                             break;
                         default:
-                            $size = '';
+                            $size_label = '';
                             break;
                       }
                     
@@ -126,6 +127,7 @@
                       <form method="post">
                         <ul class="-my-8 mb-5">
                           <input type="checkbox" name="checkout[]" value="<?php echo $product_id ?>">
+
                           <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                             <!-- image of product  -->
                             <div class="shrink-0">
@@ -138,7 +140,7 @@
                                   <p class="text-base font-bold text-gray-900">
                                     <?php echo $product_id .' | '. $name?>
                                   </p>
-                                  <p>Size : <span class="text-red-600"><?php echo $size ?></span></p>
+                                  <p>Size : <span class="text-red-600"><?php echo $size_label ?></span></p>
                                 </div>
                                 <!-- price  -->
                                 <div class="flex items-end justify-between mt-4 sm:mt-0 sm:items-start sm:justify-end">
@@ -165,9 +167,25 @@
                           if(isset($_POST['proceed_check_out']) && isset($_POST['checkout']))
                           {
                             $checkout = $_POST['checkout'];
+
                             foreach($checkout as $checkouts)
                             {
-                              echo $checkouts ;
+                              // insert into payment 
+                              $stmt1 = $conn->prepare("insert into payment (user_id, product_id) values (?,?) ");
+                              $stmt1->execute([$user_id, $checkouts]);
+
+                              // update cart into in_payment = 1 
+                              $stmt2 = $conn->prepare("update cart set in_payment = 1 where user_id = ? and product_id = ? ");
+                              $stmt2->execute([$user_id, $checkouts]);
+
+                              if($stmt1->affected_rows > 0)
+                              {
+                                echo'
+                                <script>
+                                  location.href = "check_out.php"; 
+                                </script>
+                                ';
+                              }
                             }
                           }
                           else
@@ -180,17 +198,16 @@
                                 </div>
                             ';
                           }
-                          echo'
-                                <div>
-                                  <button name="proceed_check_out" type="submit" class="relative inline-block px-4 py-2 font-medium group">
-                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                    <span class="relative text-black group-hover:text-white">Proceed Check out</span>
-                                  </button>
-                                </div>
-                              </div>
-                          ';
+                          
                         ?>
+                          <div>
+                            <button name="proceed_check_out" type="submit" class="relative inline-block px-4 py-2 font-medium group">
+                              <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                              <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                              <span class="relative text-black group-hover:text-white">Proceed Check out</span>
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </form>
                     <?php

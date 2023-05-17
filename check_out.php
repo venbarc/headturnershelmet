@@ -53,17 +53,22 @@
 
 <body class="antialiased" id="check_out">
     <?php
-      if(isset($_GET['remove_order']))
+      if(isset($_GET['product_id']) && isset($_GET['image']) && isset($_GET['brand']) && isset($_GET['name']) && isset($_GET['price']) && isset($_GET['size']))
       {
-        $remove_order = $_GET['remove_order'];
+        $product_id = $_GET['product_id'];
+        $image = $_GET['image'];
+        $brand = $_GET['brand'];
+        $name = $_GET['name'];
+        $price = $_GET['price'];
+        $size = $_GET['size'];
         
         // delete from payment db 
         $stmt_cancel_order = $conn->prepare("delete from payment where user_id = ? and product_id = ?");
-        $stmt_cancel_order->execute([$user_id, $remove_order]);
+        $stmt_cancel_order->execute([$user_id, $product_id]);
 
-        // update the cart bring back to display 
-        $stmt_update_cart = $conn->prepare("update cart set in_payment = 0 where user_id = ? and product_id = ? ");
-        $stmt_update_cart->execute([$user_id, $remove_order]);
+        // insert to cart to bring back to cart 
+        $stmt_back_cart = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price, size) values(?,?,?,?,?,?,?)");
+        $stmt_back_cart->execute([$user_id, $product_id, $image, $brand, $name, $price, $size]);
 
         if($stmt_cancel_order->affected_rows > 0)
         {
@@ -74,7 +79,7 @@
           ';
         }
         $stmt_cancel_order->close();
-        $stmt_update_cart->close();
+        $stmt_back_cart->close();
       }
       if(isset($_POST['place_order']))
       {
@@ -94,7 +99,7 @@
 
             <div class="px-2 py-4 mt-8 space-y-3 bg-white border rounded-lg sm:px-6">
               <?php
-                $stmt = $conn->prepare("select pay.*,cart.* from payment pay join cart cart on pay.product_id = cart.product_id where pay.user_id = ?");
+                $stmt = $conn->prepare("select * from payment where user_id = ?");
                 $stmt->execute([$user_id]);
                 $res = $stmt->get_result();
 
@@ -113,7 +118,7 @@
                     $price_format = number_format($price, 2, '.', ',');
 
                     // sum the amount of selected product
-                    $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal_payment FROM cart WHERE user_id = ? and in_payment = 1");
+                    $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal_payment FROM payment WHERE user_id = ?");
                     $stmt_sum->execute([$user_id]);
                     $res_sum = $stmt_sum->get_result();
                     $row_sum = $res_sum->fetch_assoc();
@@ -141,8 +146,8 @@
                           </p>
                         </div>
                       </div>
-                      <!-- cancel order  -->
-                      <a href="check_out.php?remove_order=<?php echo $product_id ?>" class="justify-center relative inline-block px-4 py-2 font-medium group">
+                      <!-- remove order  -->
+                      <a href="check_out.php?product_id=<?php echo $product_id?>&image=<?php echo $image?>&brand=<?php echo $brand?>&name=<?php echo $name?>&price=<?php echo $price?>&size=<?php echo $size?>" class="justify-center relative inline-block px-4 py-2 font-medium group">
                         <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-red-700 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span class="absolute inset-0 w-full h-full bg-white border-2 border-red-700 group-hover:bg-red-700"></span>
                         <span class="relative text-red-700 group-hover:text-white">X Remove from Order</span>
@@ -242,7 +247,7 @@
               </div>
               <!-- total bill  -->
               <div class="flex items-center justify-between mt-6 mb-5">
-                <p class="text-sm font-medium text-gray-900">Total bil</p>
+                <p class="text-sm font-medium text-gray-900">Total bill</p>
                 <p class="text-2xl font-semibold text-gray-900">
                   ₱<?php echo $total_bill_format ?>
                 </p>

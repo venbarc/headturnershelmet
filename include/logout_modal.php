@@ -20,16 +20,17 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
-        <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to Log Out?</h3>
-        <form method="post">
-          <button name="logout" type="submit" data-modal-hide="logout-modal"
-            class="text-white bg-black hover:bg-white hover:text-black hover:border font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-            Yes, I'm sure
+        <h3 class="mb-5 text-lg font-normal text-gray-700 dark:text-gray-400">Are you sure you want to Log Out?</h3>
+        <div class="grid grid-cols-2 gap-5">
+          <form method="post">
+            <button name="logout" type="submit" data-modal-hide="logout-modal" class="text-white bg-gray-700 hover:bg-gray-500 border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10">
+              Yes, I'm sure
+            </button>
+          </form>
+          <button data-modal-hide="logout-modal" type="button" class="text-white bg-red-700 hover:bg-red-500 border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10">
+            No, cancel
           </button>
-        </form>
-        <button data-modal-hide="logout-modal" type="button"
-          class="text-gray-500 bg-white hover:bg-gray-100   border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 ">No,
-          cancel</button>
+        </div>
       </div>
     </div>
   </div>

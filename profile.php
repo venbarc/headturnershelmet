@@ -45,15 +45,11 @@
       <?php
   }
 
-
-
   ?>
 
 </head>
 
-
 <body class="antialiased ">
-
 
 <!-- navigation bar  -->
 <nav class="fixed top-0 z-50 py-6 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
@@ -94,13 +90,6 @@
                     <span class="relative text-black group-hover:text-white">Contact</span>
                 </a>
             </li>
-            <li> 
-                <a href="check_out.php" class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
-                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                    <span class="relative text-black group-hover:text-white">Orders</span>
-                </a>
-            </li>
           </ul>
       <!-- dropdown arrow -->
       <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
@@ -128,6 +117,24 @@
       <!-- end of dropdown -->
     </div>
     <div class="flex items-center">
+        <!-- order summary icon  -->
+        <label tabindex="0" class="btn btn-ghost btn-circle">
+            <div class="indicator">
+                <a href="check_out.php">
+                <img src="../assets/images/navbar/order_icon.png" style="height: 25px;">
+                <span class="badge badge-sm indicator-item">
+                    <?php
+                        // count all from payment 
+                        $stmt_count_order = $conn->prepare("select count(*) from payment where user_id = ?");
+                        $stmt_count_order->execute([$user_id]);
+                        $res_count_order = $stmt_count_order->get_result();
+                        $count_order = mysqli_fetch_array($res_count_order)[0];
+                        echo $count_order;
+                    ?>
+                </span>
+                </a>
+            </div>
+        </label>
         <!-- Profile -->
         <div class="flex items-center ml-3">
             <!-- cart drop down  -->
@@ -140,14 +147,14 @@
                   <span class="badge badge-sm indicator-item">
                     <?php
                         // count all from cart 
-                        $stmt_count = $conn->prepare("select count(*) from cart where user_id = ? and in_payment = 0");
+                        $stmt_count = $conn->prepare("select count(*) from cart where user_id = ?");
                         $stmt_count->execute([$user_id]);
                         $res_count = $stmt_count->get_result();
                         $count_cart = mysqli_fetch_array($res_count)[0];
                         echo $count_cart;
 
                         // sum the amount of cart
-                        $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal FROM cart WHERE user_id = ? and in_payment = 0");
+                        $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal FROM cart WHERE user_id = ?");
                         $stmt_sum->execute([$user_id]);
                         $res_sum = $stmt_sum->get_result();
                         $row_sum = $res_sum->fetch_assoc();

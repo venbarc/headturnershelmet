@@ -82,7 +82,7 @@
                 {
                     // initialization 
                     $product_id = $_POST['product_id'];
-
+                    // remove from cart 
                     $stmt = $conn->prepare("delete from cart where user_id = ? and product_id = ?");
                     $stmt->execute([$user_id, $product_id]);
 

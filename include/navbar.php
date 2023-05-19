@@ -112,11 +112,14 @@
           <label tabindex="0" class="btn btn-ghost btn-circle">
             <div class="indicator">
               <a href="check_out.php">
-                <img src="../assets/images/navbar/order_icon.png" style="height: 25px;">
+              <svg width="30" height="30" fill="#4f4fbd" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
+              </svg>
                 <span class="badge badge-sm indicator-item">
                   <?php
                       // count all from cart 
-                      $stmt_count_order = $conn->prepare("select count(*) from payment where user_id = ?");
+                      $stmt_count_order = $conn->prepare("select count(*) from orders where user_id = ?");
                       $stmt_count_order->execute([$user_id]);
                       $res_count_order = $stmt_count_order->get_result();
                       $count_order = mysqli_fetch_array($res_count_order)[0];
@@ -130,20 +133,20 @@
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle">
               <div class="indicator">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 <span class="badge badge-sm indicator-item">
                   <?php
                       // count all from cart 
-                      $stmt_count_cart = $conn->prepare("select count(*) from cart where user_id = ?");
+                      $stmt_count_cart = $conn->prepare("select count(*) from cart where user_id = ? and in_order = 0");
                       $stmt_count_cart->execute([$user_id]);
                       $res_count_cart = $stmt_count_cart->get_result();
                       $count_cart = mysqli_fetch_array($res_count_cart)[0];
                       echo $count_cart;
 
                       // sum the amount of cart
-                      $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal FROM cart WHERE user_id = ?");
+                      $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal FROM cart WHERE user_id = ? and in_order = 0");
                       $stmt_sum->execute([$user_id]);
                       $res_sum = $stmt_sum->get_result();
                       $row_sum = $res_sum->fetch_assoc();

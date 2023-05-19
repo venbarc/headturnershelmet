@@ -62,13 +62,13 @@
         $price = $_GET['price'];
         $size = $_GET['size'];
         
-        // delete from payment db 
-        $stmt_cancel_order = $conn->prepare("delete from payment where user_id = ? and product_id = ?");
+        // delete from order db 
+        $stmt_cancel_order = $conn->prepare("delete from orders where user_id = ? and product_id = ?");
         $stmt_cancel_order->execute([$user_id, $product_id]);
 
-        // insert to cart to bring back to cart 
-        $stmt_back_cart = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price, size) values(?,?,?,?,?,?,?)");
-        $stmt_back_cart->execute([$user_id, $product_id, $image, $brand, $name, $price, $size]);
+        // update to cart to make in_order = 0 again 
+        $stmt_back_cart = $conn->prepare("update cart set in_order = 0 where user_id = ? and product_id = ?");
+        $stmt_back_cart->execute([$user_id, $product_id]);
 
         if($stmt_cancel_order->affected_rows > 0)
         {
@@ -99,7 +99,7 @@
 
             <div class="px-2 py-4 mt-8 space-y-3 bg-white border rounded-lg sm:px-6">
               <?php
-                $stmt = $conn->prepare("select * from payment where user_id = ?");
+                $stmt = $conn->prepare("select o.*,c.* from orders o join cart c on o.product_id = c.product_id where o.user_id = ?");
                 $stmt->execute([$user_id]);
                 $res = $stmt->get_result();
 
@@ -118,7 +118,7 @@
                     $price_format = number_format($price, 2, '.', ',');
 
                     // sum the amount of selected product
-                    $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal_payment FROM payment WHERE user_id = ?");
+                    $stmt_sum = $conn->prepare("SELECT SUM(price) AS subtotal_payment FROM cart WHERE user_id = ? and in_order = 1");
                     $stmt_sum->execute([$user_id]);
                     $res_sum = $stmt_sum->get_result();
                     $row_sum = $res_sum->fetch_assoc();

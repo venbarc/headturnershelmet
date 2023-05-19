@@ -84,7 +84,7 @@
           <div class="px-4 py-6 sm:px-8 sm:py-10">
             <div class="flow-root">
                <?php
-                  $stmt = $conn->prepare("select c.*,p.* from cart c join products p on c.product_id = p.product_id where user_id = ?");
+                  $stmt = $conn->prepare("select * from cart where user_id = ? and in_order = 0");
                   $stmt->execute([$user_id]);
                   $res = $stmt->get_result();
 
@@ -127,11 +127,6 @@
                       <form method="post">
                         <ul class="-my-8 mb-5">
                           <input type="checkbox" name="checkout[]" value="<?php echo $product_id ?>">
-                          <input type="hidden" name="image[]" value="<?php echo $image ?>">
-                          <input type="hidden" name="brand[]" value="<?php echo $brand ?>">
-                          <input type="hidden" name="name[]" value="<?php echo $name ?>">
-                          <input type="hidden" name="price[]" value="<?php echo $price ?>">
-                          <input type="hidden" name="size[]" value="<?php echo $size ?>">
 
                           <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                             <!-- image of product  -->
@@ -171,22 +166,18 @@
                         <?php
                           if(isset($_POST['proceed_check_out']) && isset($_POST['checkout']))
                           {
+                            // initialization 
                             $checkout = $_POST['checkout'];
-                            $image = $_POST['image'];
-                            $brand = $_POST['brand'];
-                            $name = $_POST['name'];
-                            $price = $_POST['price'];
-                            $size = $_POST['size'];
-
+                           
                             foreach($checkout as $i => $checkouts)
                             {
-                              // insert into payment 
+                              // insert into orders 
                               $stmt1 = $conn->prepare
-                              ("insert into payment (user_id, product_id, image, brand, name, price, size) values (?,?,?,?,?,?,?)");
-                              $stmt1->execute([$user_id, $checkouts, $image[$i], $brand[$i], $name[$i], $price[$i], $size[$i]]);
+                              ("insert into orders (user_id, product_id) values (?,?)");
+                              $stmt1->execute([$user_id, $checkouts]);
 
-                              // delete from cart
-                              $stmt2 = $conn->prepare("delete from cart where user_id = ? and product_id = ?");
+                              // update from cart
+                              $stmt2 = $conn->prepare("update cart set in_order = 1 where user_id = ? and product_id = ?");
                               $stmt2->execute([$user_id, $checkouts]);
 
                               if($stmt1->affected_rows > 0)

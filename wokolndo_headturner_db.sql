@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 12:11 PM
+-- Generation Time: May 19, 2023 at 11:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,16 +35,18 @@ CREATE TABLE `cart` (
   `brand` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` int(11) NOT NULL,
-  `size` varchar(255) NOT NULL
+  `size` varchar(255) NOT NULL,
+  `in_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`) VALUES
-(199, 13, 'shark-004', 'https://i.ibb.co/ZTvfv4Y/shark-evo-es-k-rozen-full-face-helmet.png', 'shark', 'Shark EVO es k Rozen Full Face Helmet', 16850, 'md'),
-(206, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 'lg');
+INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`, `in_order`) VALUES
+(222, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 'xs', 0),
+(223, 13, 'shark-002', 'https://i.ibb.co/kc4GMs2/shark-skwal2-iker-lecuona-nero-removebg-preview.png', 'shark', 'Shark SKWAL2 Iker Lecuona Nero', 12670, 'lg', 1),
+(224, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 'xs', 0);
 
 -- --------------------------------------------------------
 
@@ -68,27 +70,21 @@ CREATE TABLE `done_payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `payment` (
+CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `product_id` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `brand` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL,
-  `size` varchar(255) NOT NULL
+  `product_id` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `payment`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `payment` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`) VALUES
-(53, 13, 'shark-002', 'https://i.ibb.co/kc4GMs2/shark-skwal2-iker-lecuona-nero-removebg-preview.png', 'shark', 'Shark SKWAL2 Iker Lecuona Nero', 12670, 'xs'),
-(55, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 'lg');
+INSERT INTO `orders` (`id`, `user_id`, `product_id`) VALUES
+(150, 13, 'shark-002');
 
 -- --------------------------------------------------------
 
@@ -168,9 +164,9 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payment`
+-- Indexes for table `orders`
 --
-ALTER TABLE `payment`
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -193,13 +189,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT for table `orders`
 --
-ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `products`

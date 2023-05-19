@@ -161,34 +161,51 @@
                                                         <?php
                                                             if(isset($_SESSION['user_id']))//if user is logged in
                                                             {
-                                                                $stmt2 = $conn->prepare("select * from cart where product_id = ? and user_id = ?");
-                                                                $stmt2->execute([$product_id, $user_id]);
+                                                                $stmt2 = $conn->prepare("select * from cart where user_id = ? and product_id = ?");
+                                                                $stmt2->execute([$user_id, $product_id]);
                                                                 $res2 = $stmt2->get_result();
 
-                                                                if($available > 0) //if there is available
+                                                                if($res2->num_rows > 0) 
                                                                 {
-                                                                    if($res2->num_rows > 0) // remove to cart
+                                                                    while($row2 = $res2->fetch_assoc())
                                                                     {
-                                                                        echo'
-                                                                        <form method="post">
-                                                                        <input type="hidden" name="product_id" value="'.$product_id.'">
-                                                                            <button type="submit" name="remove_cart" class="px-5">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="ml-5 bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
-                                                                                </svg>
-                                                                            </button>
-                                                                        </form>
-                                                                        ';
+                                                                        $in_order = $row2['in_order'];
+
+                                                                        if($in_order == 0) // in cart already
+                                                                        {
+                                                                            echo'
+                                                                            <form method="post">
+                                                                            <input type="hidden" name="product_id" value="'.$product_id.'">
+                                                                                <button type="submit" name="remove_cart" class="px-5">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="ml-5 bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </form>
+                                                                            ';
+                                                                        }
+                                                                        else 
+                                                                        if($in_order == 1) // in order already
+                                                                        {
+                                                                            echo'
+                                                                                <a href="check_out.php" class="px-5">
+                                                                                    <svg width="40" height="40" fill="#4f4fbd" viewBox="0 0 20 20">
+                                                                                        <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                                                                                        <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            ';
+                                                                        }
                                                                     }
-                                                                    else // add to cart
-                                                                    { 
-                                                                        echo'
-                                                                        <button type="button" data-modal-target="modal_'.$product_id.'" data-modal-toggle="modal_'.$product_id.'">
-                                                                            <svg class="ml-5 w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                                            <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                                                            </svg>
-                                                                        </button>
-                                                                        ';
-                                                                    }
+                                                                }
+                                                                else // add to cart
+                                                                {
+                                                                    echo'
+                                                                    <button type="button" data-modal-target="modal_'.$product_id.'" data-modal-toggle="modal_'.$product_id.'">
+                                                                        <svg class="ml-5 w-8 h-8 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                    ';
                                                                 }
                                                             }
                                                             else // if user is not logged in
@@ -303,7 +320,7 @@
 
                                 In addition to their focus on safety and performance, Shark Helmets also places a strong emphasis on
                                 design, with many of their helmets featuring bold graphics and unique styling. The company is a favorite
-                                among motorcyclists around the world, and their helmets are often used by professional racers in MotoGP
+                                among motorcyclists around the world, and their helmets are often used by professional racers in 0MotoGP
                                 and other racing circuits.</p>
 
                         </div>

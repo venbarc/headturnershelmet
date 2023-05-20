@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2023 at 11:49 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 20, 2023 at 11:37 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,9 +44,9 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`, `in_order`) VALUES
-(222, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 'xs', 0),
-(223, 13, 'shark-002', 'https://i.ibb.co/kc4GMs2/shark-skwal2-iker-lecuona-nero-removebg-preview.png', 'shark', 'Shark SKWAL2 Iker Lecuona Nero', 12670, 'lg', 1),
-(224, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 'xs', 0);
+(224, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 'xs', 1),
+(225, 13, 'shark-004', 'https://i.ibb.co/ZTvfv4Y/shark-evo-es-k-rozen-full-face-helmet.png', 'shark', 'Shark EVO es k Rozen Full Face Helmet', 16850, 'md', 0),
+(226, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 'xs', 1);
 
 -- --------------------------------------------------------
 
@@ -76,15 +76,33 @@ CREATE TABLE `done_payment` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `product_id` varchar(255) NOT NULL
+  `product_id` varchar(255) NOT NULL,
+  `qnty` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `product_id`) VALUES
-(150, 13, 'shark-002');
+INSERT INTO `orders` (`id`, `user_id`, `product_id`, `qnty`) VALUES
+(156, 13, 'shark-003', 1),
+(158, 13, 'shark-001', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `place_order`
+--
+
+CREATE TABLE `place_order` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `total_bill` int(11) NOT NULL,
+  `pay_method` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -151,7 +169,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fname`, `lname`, `contact`, `address`, `image`, `pass`, `pin`, `verification`, `date_reg`) VALUES
-(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo Makit City', 'profile_upload/profile-69148102.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
+(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo Makit City', 'profile_upload/profile-34210868.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
 
 --
 -- Indexes for dumped tables
@@ -167,6 +185,12 @@ ALTER TABLE `cart`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `place_order`
+--
+ALTER TABLE `place_order`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -189,13 +213,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+
+--
+-- AUTO_INCREMENT for table `place_order`
+--
+ALTER TABLE `place_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`

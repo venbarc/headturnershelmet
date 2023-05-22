@@ -171,7 +171,7 @@
                 <div class="card-body">
                   <h3 class="font-bold text-lg"><?php echo $count_cart ?> Items</h3>
                   <h3 class="">
-                    Subtotal : <span class="text-red-600"><?php echo $subtotal_format ?></span></h3>
+                    Subtotal : <span class="text-red-600"> ₱<?php echo $subtotal_format ?></span></h3>
                   <div class="card-actions">
                     <a href="cart.php"
                       class="flex justify-center gap-1 relative inline-block px-10 py-2 text-sm font-medium group">
@@ -241,43 +241,72 @@
             <ul class="pb-2 space-y-2">
                 <li>
                     <a href="profile.php?tab=personal_profile" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 16s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H5zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                         </svg>
                         <span class="ml-3" sidebar-toggle-item>Personal Information</span>
                     </a>
                 </li>
                 <li>
-                    <a href="" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
-                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                    <a href="cart.php" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
                         <span class="ml-3" sidebar-toggle-item>My Cart</span>
                     </a>
                 </li>
                 <li>
                     <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
-                        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path clip-rule="evenodd" fill-rule="evenodd" d="M.99 5.24A2.25 2.25 0 013.25 3h13.5A2.25 2.25 0 0119 5.25l.01 9.5A2.25 2.25 0 0116.76 17H3.26A2.267 2.267 0 011 14.74l-.01-9.5zm8.26 9.52v-.625a.75.75 0 00-.75-.75H3.25a.75.75 0 00-.75.75v.615c0 .414.336.75.75.75h5.373a.75.75 0 00.627-.74zm1.5 0a.75.75 0 00.627.74h5.373a.75.75 0 00.75-.75v-.615a.75.75 0 00-.75-.75H11.5a.75.75 0 00-.75.75v.625zm6.75-3.63v-.625a.75.75 0 00-.75-.75H11.5a.75.75 0 00-.75.75v.625c0 .414.336.75.75.75h5.25a.75.75 0 00.75-.75zm-8.25 0v-.625a.75.75 0 00-.75-.75H3.25a.75.75 0 00-.75.75v.625c0 .414.336.75.75.75H8.5a.75.75 0 00.75-.75zM17.5 7.5v-.625a.75.75 0 00-.75-.75H11.5a.75.75 0 00-.75.75V7.5c0 .414.336.75.75.75h5.25a.75.75 0 00.75-.75zm-8.25 0v-.625a.75.75 0 00-.75-.75H3.25a.75.75 0 00-.75.75V7.5c0 .414.336.75.75.75H8.5a.75.75 0 00.75-.75z"></path>
+                        <svg width="20" height="20" fill="black" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                            <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
                         </svg>
                         <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>My orders</span>
                         <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     </button>
-                    <ul id="dropdown-crud" class="space-y-2 py-2 {{ if not (eq .Params.group "crud") }}hidden {{ end }}">
-                    <li>
-                        <a href="{{ "crud/products/" | relURL }}" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "products" }} bg-gray-100 dark:bg-gray-700 {{ end }}">Unpaid</a>
-                    </li>
-                    <li>
-                        <a href="{{ "crud/users/" | relURL }}" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "users" }} bg-gray-100 dark:bg-gray-700 {{ end }}">To ship</a>
-                    </li>
-                    <li>
-                        <a href="{{ "crud/users/" | relURL }}" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "users" }} bg-gray-100 dark:bg-gray-700 {{ end }}">Shipped</a>
-                    </li>
+                    <ul id="dropdown-crud" class="space-y-2 py-2">
+                        <li>
+                            <a href="profile.php?tab=to_ship" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 ">
+                                <img src="assets/images/shipping_icon/to_ship.png"> &nbsp;&nbsp; 
+                                <?php 
+                                    // count place order 
+                                    $stmt_count_place_order = $conn->prepare("select * from place_order where user_id = ? and shipped = 0 group by order_id");
+                                    $stmt_count_place_order->execute([$user_id]);
+                                    $res_count_place_order = $stmt_count_place_order->get_result();
+                                    $count_place_order = $res_count_place_order->num_rows > 0 ? $res_count_place_order->num_rows : 0;
+                                ?>
+                                To ship &nbsp; <span class="text-red-500"> <?php echo $count_place_order ?> </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 ">
+                                <img src="assets/images/shipping_icon/shipped.png"> &nbsp;&nbsp;
+                                <?php 
+                                    // count shipped 
+                                    $stmt_count_shipped = $conn->prepare("select * from place_order where user_id = ? and shipped = 1 group by order_id");
+                                    $stmt_count_shipped->execute([$user_id]);
+                                    $res_count_shipped = $stmt_count_shipped->get_result();
+                                    $count_shipped = $res_count_shipped->num_rows > 0 ? $res_count_shipped->num_rows : 0;
+                                ?> 
+                                Shipped &nbsp; <span class="text-red-500"> <?php echo $count_shipped ?> </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li>
+                    <a href="profile.php?tab=order_history" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "settings" }} bg-gray-100 dark:bg-gray-700 {{ end }}">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM5.5 9.5h4v-5a.5.5 0 011 0V10a.5.5 0 01-.5.5H5.5a.5.5 0 010-1z" clip-rule="evenodd"/>
+                        </svg>    
+                        <span class="ml-3" sidebar-toggle-item>Order History</span>
+                    </a>
+                </li>
+                <li>
                     <a href="profile.php?tab=change_password" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "settings" }} bg-gray-100 dark:bg-gray-700 {{ end }}">
-                        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                            <rect width="11" height="9" x="4.5" y="8" rx="2"/>
+                            <path fill-rule="evenodd" d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"/>
+                        </svg>    
                         <span class="ml-3" sidebar-toggle-item>Change Password</span>
                     </a>
                 </li>
@@ -288,7 +317,7 @@
 </aside>
 
 <div class="p-4 sm:ml-64">
-    <div class="grid grid-cols-1 px-4 pt-28 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
+    <div class="grid grid-cols-1 px-4 pt-28 xl:grid-cols-1 xl:gap-4 dark:bg-gray-900">
         <!-- Right Content -->
         <?php
             if(isset($_GET['tab']))
@@ -394,6 +423,7 @@
                                     </form>
                                 </div>
                             </div>
+                            <!-- order history  -->
                             <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                                 <h3 class="mb-4 text-xl font-semibold dark:text-white">Order History</h3>
                                 <div class="mb-6">
@@ -539,11 +569,13 @@
                                                         Facebook account
                                                     </span>
                                                     <a href="#" class="block text-sm font-normal truncate text-gray-700 hover:underline dark:text-gray-500">
-                                                        www.facebook.com/themesberg
+                                                        www.facebook.com
                                                     </a>
                                                 </div>
                                                 <div class="inline-flex items-center">
-                                                    <a href="#" class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                                                    <a href="#" class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                                        Add
+                                                    </a>
                                                 </div>
                                             </div>
                                         </li>
@@ -557,15 +589,191 @@
                                                         Twitter account
                                                     </span>
                                                     <a href="#" class="block text-sm font-normal truncate text-gray-700 hover:underline dark:text-gray-500">
-                                                        www.twitter.com/themesberg
+                                                        www.twitter.com
                                                     </a>
                                                 </div>
                                                 <div class="inline-flex items-center">
-                                                    <a href="#" class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Disconnect</a>
+                                                    <a href="#" class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                                        Add
+                                                    </a>
                                                 </div>
                                             </div>
                                         </li>
                                     </ul>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                }
+                if($tab == 'to_ship')
+                {
+                    ?>
+                        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                            <div class="mb-6">
+                                <div class="relative overflow-x-auto">
+                                    <!-- grid  -->
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <!-- left  -->
+                                        <div>
+                                            <?php
+                                                $stmt_sel_place_order = $conn->prepare("select * from place_order where user_id = ? and shipped = 0 group by order_id");
+                                                $stmt_sel_place_order->execute([$user_id]);
+                                                $res_sel_place_order = $stmt_sel_place_order->get_result();
+
+                                                if($res_sel_place_order->num_rows > 0)
+                                                {
+                                                    echo '
+                                                    <h3 class="mb-4 text-xl font-semibold dark:text-white">Order History</h3>
+                                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
+                                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                            <tr>
+                                                                <th scope="col" class="px-1 py-3">
+                                                                    ORDER ID 
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    TOTAL BILL
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    PAYMENT METHOD
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    ORDER DATE 
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    STATUS 
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    DETAILS 
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                    ';
+                                                    while($row = $res_count_place_order->fetch_assoc())
+                                                    {
+                                                        $order_id = $row['order_id'];
+                                                        $qnty = $row['qnty'];
+                                                        $total_bill = $row['total_bill'];
+                                                        $pay_method = $row['pay_method'];
+                                                        $order_date = $row['order_date'];
+
+                                                        // format bill 
+                                                        $total_bill_format = number_format($total_bill, 2, '.', ',');
+                                                        // pay method 
+                                                        if($pay_method == 'gcash')
+                                                        {
+                                                            $pay_method = '<img src="assets/images/pay_method/gcash_logo.png" class="w-20 mx-auto">';
+                                                        }
+                                                        else if($pay_method == 'maya')
+                                                        {
+                                                            $pay_method = '<img src="assets/images/pay_method/maya_logo.png" class="w-20 mx-auto">';
+                                                        }
+                                                        echo '
+                                                        <tbody>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                                <th class="py-4">
+                                                                    '.$order_id.'
+                                                                </th>
+                                                                <td class="py-4">
+                                                                    ₱ '.$total_bill_format.'
+                                                                </td>
+                                                                <td class="py-4">
+                                                                    '.$pay_method.'
+                                                                </td>
+                                                                <td class="py-4">
+                                                                    '.$order_date.'
+                                                                </td>
+                                                                <td class=" py-4">
+                                                                    <span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                                        To ship
+                                                                    </span>
+                                                                </td>
+                                                                <td class="py-1">
+                                                                    <a href="profile.php?tab=to_ship&order_id='.$order_id.'" >
+                                                                        <p class="bg-red-400 text-white p-1">
+                                                                            View Details
+                                                                        </p>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        ';
+                                                    }
+                                                    echo'
+                                                    </table>
+                                                    ';
+                                                }
+                                            ?>
+                                        </div>
+                                        <!-- right  -->
+                                        <div>
+                                            <?php
+                                                if(isset($_GET['order_id']))
+                                                {
+                                                    $order_id = $_GET['order_id'];
+
+                                                    $stmt_get_order_details = $conn->prepare("select * from place_order where user_id = ? and order_id = ?");
+                                                    $stmt_get_order_details->execute([$user_id, $order_id]);
+                                                    $res_get_order_details = $stmt_get_order_details->get_result();
+                                               
+                                                    if($res_get_order_details->num_rows > 0)
+                                                    {
+                                                        echo '
+                                                        <h3 class="mb-4 text-xl font-semibold dark:text-white">Order History</h3>
+                                                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
+                                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                                <tr>
+                                                                    <th scope="col" class="px-1 py-3">
+                                                                        IMAGE 
+                                                                    </th>
+                                                                    <th scope="col" class="px-1 py-3">
+                                                                        PRODUCT ID 
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        QUANTITY
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        PRICE
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                        ';
+                                                        while($row2 = $res_get_order_details->fetch_assoc())
+                                                        {
+                                                            $product_id = $row2['product_id'];
+                                                            $qnty = $row2['qnty'];
+                                                            // $price = $row2['price'];
+
+                                                            echo '
+                                                            <tbody>
+                                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                                    <th class="py-4">
+                                                                        image
+                                                                    </th>
+                                                                    <td class="py-4">
+                                                                        '.$product_id.'
+                                                                    </td>
+                                                                    <td class="py-4">
+                                                                        '.$qnty.'
+                                                                    </td>
+                                                                    <td class="py-4">
+                                                                        price here 
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                            ';
+                                                        }
+                                                        echo'
+                                                        </table>
+                                                        ';
+                                                    }
+                                                }
+                                        
+                                            ?>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
                                 </div>
                             </div>
                         </div>

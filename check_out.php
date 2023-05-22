@@ -53,12 +53,9 @@
 
 <body class="antialiased" id="check_out">
     <?php
-      if(isset($_GET['product_id']) && isset($_GET['image']) && isset($_GET['brand']) && isset($_GET['name']) && isset($_GET['price']) && isset($_GET['size']))
+      if(isset($_GET['product_id']) && isset($_GET['price']) && isset($_GET['size']))
       {
         $product_id = $_GET['product_id'];
-        $image = $_GET['image'];
-        $brand = $_GET['brand'];
-        $name = $_GET['name'];
         $price = $_GET['price'];
         $size = $_GET['size'];
         
@@ -66,9 +63,9 @@
         $stmt_cancel_order = $conn->prepare("delete from orders where user_id = ? and product_id = ?");
         $stmt_cancel_order->execute([$user_id, $product_id]);
 
-        // update to cart to make in_order = 0 again 
-        $stmt_back_cart = $conn->prepare("update cart set in_order = 0 where user_id = ? and product_id = ?");
-        $stmt_back_cart->execute([$user_id, $product_id]);
+        // update to cart to make in_order = 0 again and price reset to original price
+        $stmt_back_cart = $conn->prepare("update cart set in_order = 0, price = ? where user_id = ? and product_id = ?");
+        $stmt_back_cart->execute([$price, $user_id, $product_id]);
 
         if($stmt_cancel_order->affected_rows > 0)
         {
@@ -86,14 +83,19 @@
       {
         $qnty = $_GET['qnty'];
         $product_id = $_GET['product_id'];
+        $price = $_GET['price'];
 
         if($qnty == 'decrement')
         {
-          $stmt = $conn->prepare("update orders set qnty = qnty - 1 where product_id = ? and user_id = ?");
-          $stmt->execute([$product_id, $user_id]);
+          // decrement qnty 
+          $stmt_dec = $conn->prepare("update orders set qnty = qnty - 1 where product_id = ? and user_id = ?");
+          $stmt_dec->execute([$product_id, $user_id]);
           
-          if($stmt->affected_rows > 0)
+          if($stmt_dec->affected_rows > 0)
           {
+            // update the price 
+            $stmt_dec = $conn->prepare("update cart set price = (price - $price) where product_id = ? and user_id = ?");
+            $stmt_dec->execute([$product_id, $user_id]);
             ?>
               <script>
                 location.href = "check_out.php";
@@ -104,11 +106,15 @@
         else
         if($qnty == 'increment')
         {
-          $stmt = $conn->prepare("update orders set qnty = qnty + 1 where product_id = ? and user_id = ?");
-          $stmt->execute([$product_id, $user_id]);
+          // increment qnty 
+          $stmt_inc = $conn->prepare("update orders set qnty = qnty + 1 where product_id = ? and user_id = ?");
+          $stmt_inc->execute([$product_id, $user_id]);
           
-          if($stmt->affected_rows > 0)
+          if($stmt_inc->affected_rows > 0)
           {
+            // update the price 
+            $stmt_dec = $conn->prepare("update cart set price = (price + $price) where product_id = ? and user_id = ?");
+            $stmt_dec->execute([$product_id, $user_id]);
             ?>
               <script>
                 location.href = "check_out.php";
@@ -120,7 +126,43 @@
 
       if(isset($_POST['place_order'])) //place order
       {
-        
+        // initialization 
+        $email = $_POST['email'];
+        $contact = $_POST['contact'];
+        $address = $_POST['address'];
+        $order_id = rand(10000000000,99999999999);
+
+        $pay_method = $_POST['pay_method'];
+
+        $total_bill = $_POST['total_bill'];
+        $product_id = $_POST['product_id'];
+        $qnty = $_POST['qnty'];
+
+        foreach ($product_id as $i => $product_ids) 
+        {
+          // place order query 
+          $stmt_place_order = $conn->prepare("insert into place_order set user_id = ?, product_id = ?, order_id = ?, qnty = ?, total_bill = ?, pay_method = ?");
+          $stmt_place_order->execute([$user_id, $product_ids, $order_id, $qnty[$i], $total_bill, $pay_method]);
+
+          // delete from order query 
+          $stmt_place_order = $conn->prepare("delete from orders where user_id = ? and product_id = ? ");
+          $stmt_place_order->execute([$user_id, $product_ids]);
+
+          // delete from cart query 
+          $stmt_place_order = $conn->prepare("delete from cart where user_id = ? and product_id = ? and in_order = 1");
+          $stmt_place_order->execute([$user_id, $product_ids]);
+
+          if($stmt_place_order->affected_rows > 0)
+          {
+            ?>
+              <!-- <script>
+                location.href = "in_ship.php";
+              </script> -->
+            <?php
+            echo 'goods';
+          }
+        }
+    
       }
 
       // navigation bar 
@@ -157,7 +199,7 @@
                     $size = $row['size'];
                     $qnty = $row['qnty'];
 
-                    // price format 
+                    // format the price 
                     $price_x_qnty = $price * $qnty;
                     $price_format = number_format($price_x_qnty, 2, '.', ',');
 
@@ -183,6 +225,10 @@
                     $total_bill_format = number_format($total_bill, 2, '.', ',');
 
                     ?>
+                      <!-- hidden input in while loop  -->
+                      <input type="hidden" name="product_id[]" value="<?php echo $product_id ?>" >
+                      <input type="hidden" name="qnty[]" value="<?php echo $qnty ?>" >
+
                       <div class="flex flex-col bg-white rounded-lg sm:flex-row">
                         <img src="<?php echo $image ?>" class="object-cover object-center h-24 m-2 border rounded-md w-28">
                         <div class="flex flex-col w-full px-4 py-4">
@@ -200,7 +246,7 @@
                       <div class="grid grid-cols-2 gap-2">
                         <!-- remove order  -->
                         <div>
-                          <a href="check_out.php?product_id=<?php echo $product_id?>&image=<?php echo $image?>&brand=<?php echo $brand?>&name=<?php echo $name?>&price=<?php echo $price?>&size=<?php echo $size?>" class="justify-center relative inline-block px-4 py-2 font-medium group">
+                          <a href="check_out.php?product_id=<?php echo $product_id?>&price=<?php echo $price?>&size=<?php echo $size?>" class="justify-center relative inline-block px-4 py-2 font-medium group">
                             <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-red-700 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                             <span class="absolute inset-0 w-full h-full bg-white border-2 border-red-700 group-hover:bg-red-700"></span>
                             <span class="relative text-red-700 group-hover:text-white">X Remove from Order</span>
@@ -209,6 +255,7 @@
                         <!-- quantity  -->
                         <div>
                           <?php
+                              // extra small qnty 
                               echo ($size == 'xs') ? '
                               <div class="grid lg:grid-cols-4 text-center">
                                   <div class="font-semibold">
@@ -216,18 +263,18 @@
                                   </div>
                                   <div>
                                       '. ($qnty > 1 ? '
-                                      <a href="check_out.php?qnty=decrement&product_id='.$product_id.'" class="btn bg-red-600 text-white">
+                                      <a href="check_out.php?qnty=decrement&product_id='.$product_id.'&price='.$price.'" class="btn bg-red-600 text-white">
                                         -
                                       </a>
                                       ' : '
                                       <div class="btn bg-gray-500 text-white"> - </div>') .'
                                   </div>
                                   <div class="mt-2">
-                                      Quantity ['.$qnty.']
+                                      Quantity <br> <span class="text-md font-semibold">['.$qnty.']</span>
                                   </div>
                                   <div>
                                       '. ($qnty < $xs_avail ? '
-                                      <a href="check_out.php?qnty=increment&product_id='.$product_id.'" class="btn bg-green-600 text-white">
+                                      <a href="check_out.php?qnty=increment&product_id='.$product_id.'&price='.$price.'" class="btn bg-green-600 text-white">
                                         +
                                       </a>
                                       ' : '
@@ -235,9 +282,7 @@
                                   </div>
                               </div>
                               ' : '';
-                       
                           ?>
-                          
                         </div>
                       </div>
                       
@@ -366,6 +411,10 @@
                   ₱<?php echo $total_bill_format ?>
                 </p>
               </div>
+
+              <!--  hidden input  -->
+              <input type="hidden" name="total_bill" value="<?php echo $total_bill ?>">
+
               <div class="grid grid-cols-1 gap-5">
                 <?php
                   if($total_bill_format > 0)

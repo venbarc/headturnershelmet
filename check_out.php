@@ -314,7 +314,7 @@
                               echo ($size == 'md') ? '
                               <div class="grid lg:grid-cols-4 text-center">
                                   <div class="font-semibold">
-                                      Available <span class="text-red-500">sm  ['. $md_avail .']</span> 
+                                      Available <span class="text-red-500">md  ['. $md_avail .']</span> 
                                   </div>
                                   <div>
                                       '. ($qnty > 1 ? '
@@ -341,7 +341,7 @@
                               echo ($size == 'lg') ? '
                               <div class="grid lg:grid-cols-4 text-center">
                                   <div class="font-semibold">
-                                      Available <span class="text-red-500">sm  ['. $lg_avail .']</span> 
+                                      Available <span class="text-red-500">lg  ['. $lg_avail .']</span> 
                                   </div>
                                   <div>
                                       '. ($qnty > 1 ? '
@@ -368,7 +368,7 @@
                               echo ($size == 'xlg') ? '
                               <div class="grid lg:grid-cols-4 text-center">
                                   <div class="font-semibold">
-                                      Available <span class="text-red-500">sm  ['. $xlg_avail .']</span> 
+                                      Available <span class="text-red-500">xlg  ['. $xlg_avail .']</span> 
                                   </div>
                                   <div>
                                       '. ($qnty > 1 ? '

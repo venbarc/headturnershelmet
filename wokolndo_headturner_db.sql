@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2023 at 11:37 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: May 23, 2023 at 10:43 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,15 +39,6 @@ CREATE TABLE `cart` (
   `in_order` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `product_id`, `image`, `brand`, `name`, `price`, `size`, `in_order`) VALUES
-(224, 13, 'shark-003', 'https://i.ibb.co/0JX2w0V/shark-d-skwal-2-shigan-full-face-helmet.png', 'shark', 'Shark D SKWAL2 Shigan Full Face Helmet', 10000, 'xs', 1),
-(225, 13, 'shark-004', 'https://i.ibb.co/ZTvfv4Y/shark-evo-es-k-rozen-full-face-helmet.png', 'shark', 'Shark EVO es k Rozen Full Face Helmet', 16850, 'md', 0),
-(226, 13, 'shark-001', 'https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png', 'shark', 'Shark RacerPro GP Martinator', 47000, 'xs', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -80,14 +71,6 @@ CREATE TABLE `orders` (
   `qnty` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `product_id`, `qnty`) VALUES
-(156, 13, 'shark-003', 1),
-(158, 13, 'shark-001', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -98,11 +81,24 @@ CREATE TABLE `place_order` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_id` varchar(255) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `order_id` bigint(11) NOT NULL,
+  `qnty` int(11) NOT NULL,
+  `size` varchar(255) NOT NULL,
   `total_bill` int(11) NOT NULL,
-  `pay_method` varchar(255) NOT NULL
+  `pay_method` varchar(255) NOT NULL,
+  `order_date` date NOT NULL DEFAULT current_timestamp(),
+  `shipped` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `place_order`
+--
+
+INSERT INTO `place_order` (`id`, `user_id`, `product_id`, `order_id`, `qnty`, `size`, `total_bill`, `pay_method`, `order_date`, `shipped`) VALUES
+(24, 13, 'shark-001', 94306762944, 1, 'xs', 97588, 'gcash', '2023-05-23', 0),
+(25, 13, 'shark-004', 94306762944, 3, 'xs', 97588, 'gcash', '2023-05-23', 0),
+(26, 13, 'shark-002', 85311713768, 1, 'xs', 12708, 'maya', '2023-05-23', 0),
+(27, 13, 'shark-001', 48101687267, 2, 'xs', 94038, 'maya', '2023-05-23', 0);
 
 -- --------------------------------------------------------
 
@@ -169,7 +165,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fname`, `lname`, `contact`, `address`, `image`, `pass`, `pin`, `verification`, `date_reg`) VALUES
-(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo Makit City', 'profile_upload/profile-34210868.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
+(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo Makit City', 'profile_upload/profile-34210868.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20'),
+(23, 'buenviajekashmir6@gmail.com', 'benedict', 'barcebal', '3243244342', 'asdasd', '', '$2y$10$qiYuvJkBOhNdUPQ2ZBkuE.OSUsIEbwiGsG54LBy.3AMEwjbG440kO', 404378, 1, '2023-05-23 05:01:43');
 
 --
 -- Indexes for dumped tables
@@ -213,19 +210,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT for table `place_order`
 --
 ALTER TABLE `place_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -237,7 +234,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 10:43 AM
+-- Generation Time: May 23, 2023 at 10:44 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -165,8 +165,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fname`, `lname`, `contact`, `address`, `image`, `pass`, `pin`, `verification`, `date_reg`) VALUES
-(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo Makit City', 'profile_upload/profile-34210868.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20'),
-(23, 'buenviajekashmir6@gmail.com', 'benedict', 'barcebal', '3243244342', 'asdasd', '', '$2y$10$qiYuvJkBOhNdUPQ2ZBkuE.OSUsIEbwiGsG54LBy.3AMEwjbG440kO', 404378, 1, '2023-05-23 05:01:43');
+(13, 'bentf24@gmail.com', 'Benedict ', 'Barcebal ', '9324823424', '3232 Guadalupe Nuevo Makit City', 'profile_upload/profile-34210868.jpeg', '$2y$10$7f/UCu6rFuv/toYe.aCGJui8qgHPhEnqiXmNEfTfw2wNmFl7eZCLe', 855027, 1, '2023-05-09 03:25:20');
 
 --
 -- Indexes for dumped tables

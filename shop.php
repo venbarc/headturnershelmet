@@ -100,12 +100,6 @@
                     }
                     
                 }
-                else
-                if(isset($_POST['add_order']))
-                {
-                    // $stmt_add_order = $conn->prepare("insert into payment where ");
-                    echo 'working';
-                }
 
                 include 'include/navbar.php';
 
@@ -257,13 +251,9 @@
                                                             }
                                                             else{
                                                                 echo'
-                                                                <button type="button" data-modal-target="modal2_'.$product_id.'" data-modal-toggle="modal2_'.$product_id.'" class="relative inline-block px-4 py-2 font-medium group">
-                                                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                    <span class="relative text-black group-hover:text-white">
-                                                                        Buy now
-                                                                    </span>
-                                                                </button>
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
                                                                 ';
                                                             }
                                                         }
@@ -292,7 +282,6 @@
                                         <?php
                                         // for modals 
                                         include "modals/shark_cart.php";
-                                        include "modals/shark_buy.php";
                                     }
                                 }
                             ?>

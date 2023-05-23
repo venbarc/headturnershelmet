@@ -137,12 +137,13 @@
         $total_bill = $_POST['total_bill'];
         $product_id = $_POST['product_id'];
         $qnty = $_POST['qnty'];
+        $size = $_POST['size'];
 
         foreach ($product_id as $i => $product_ids) 
         {
           // place order query 
-          $stmt_place_order = $conn->prepare("insert into place_order set user_id = ?, product_id = ?, order_id = ?, qnty = ?, total_bill = ?, pay_method = ?");
-          $stmt_place_order->execute([$user_id, $product_ids, $order_id, $qnty[$i], $total_bill, $pay_method]);
+          $stmt_place_order = $conn->prepare("insert into place_order set user_id = ?, product_id = ?, order_id = ?, qnty = ?, size = ?, total_bill = ?, pay_method = ?");
+          $stmt_place_order->execute([$user_id, $product_ids, $order_id, $qnty[$i], $size[$i], $total_bill, $pay_method]);
 
           // delete from order query 
           $stmt_place_order = $conn->prepare("delete from orders where user_id = ? and product_id = ? ");
@@ -155,11 +156,10 @@
           if($stmt_place_order->affected_rows > 0)
           {
             ?>
-              <!-- <script>
-                location.href = "in_ship.php";
-              </script> -->
+              <script>
+                location.href = "profile.php?tab=to_ship";
+              </script>
             <?php
-            echo 'goods';
           }
         }
     
@@ -228,6 +228,7 @@
                       <!-- hidden input in while loop  -->
                       <input type="hidden" name="product_id[]" value="<?php echo $product_id ?>" >
                       <input type="hidden" name="qnty[]" value="<?php echo $qnty ?>" >
+                      <input type="hidden" name="size[]" value="<?php echo $size ?>" >
 
                       <div class="flex flex-col bg-white rounded-lg sm:flex-row">
                         <img src="<?php echo $image ?>" class="object-cover object-center h-24 m-2 border rounded-md w-28">
@@ -274,6 +275,114 @@
                                   </div>
                                   <div>
                                       '. ($qnty < $xs_avail ? '
+                                      <a href="check_out.php?qnty=increment&product_id='.$product_id.'&price='.$price.'" class="btn bg-green-600 text-white">
+                                        +
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> + </div>') .'
+                                  </div>
+                              </div>
+                              ' : '';
+                              // small qnty 
+                              echo ($size == 'sm') ? '
+                              <div class="grid lg:grid-cols-4 text-center">
+                                  <div class="font-semibold">
+                                      Available <span class="text-red-500">sm  ['. $sm_avail .']</span> 
+                                  </div>
+                                  <div>
+                                      '. ($qnty > 1 ? '
+                                      <a href="check_out.php?qnty=decrement&product_id='.$product_id.'&price='.$price.'" class="btn bg-red-600 text-white">
+                                        -
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> - </div>') .'
+                                  </div>
+                                  <div class="mt-2">
+                                      Quantity <br> <span class="text-md font-semibold">['.$qnty.']</span>
+                                  </div>
+                                  <div>
+                                      '. ($qnty < $sm_avail ? '
+                                      <a href="check_out.php?qnty=increment&product_id='.$product_id.'&price='.$price.'" class="btn bg-green-600 text-white">
+                                        +
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> + </div>') .'
+                                  </div>
+                              </div>
+                              ' : '';
+                              // medium qnty 
+                              echo ($size == 'md') ? '
+                              <div class="grid lg:grid-cols-4 text-center">
+                                  <div class="font-semibold">
+                                      Available <span class="text-red-500">sm  ['. $md_avail .']</span> 
+                                  </div>
+                                  <div>
+                                      '. ($qnty > 1 ? '
+                                      <a href="check_out.php?qnty=decrement&product_id='.$product_id.'&price='.$price.'" class="btn bg-red-600 text-white">
+                                        -
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> - </div>') .'
+                                  </div>
+                                  <div class="mt-2">
+                                      Quantity <br> <span class="text-md font-semibold">['.$qnty.']</span>
+                                  </div>
+                                  <div>
+                                      '. ($qnty < $md_avail ? '
+                                      <a href="check_out.php?qnty=increment&product_id='.$product_id.'&price='.$price.'" class="btn bg-green-600 text-white">
+                                        +
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> + </div>') .'
+                                  </div>
+                              </div>
+                              ' : '';
+                              // large qnty 
+                              echo ($size == 'lg') ? '
+                              <div class="grid lg:grid-cols-4 text-center">
+                                  <div class="font-semibold">
+                                      Available <span class="text-red-500">sm  ['. $lg_avail .']</span> 
+                                  </div>
+                                  <div>
+                                      '. ($qnty > 1 ? '
+                                      <a href="check_out.php?qnty=decrement&product_id='.$product_id.'&price='.$price.'" class="btn bg-red-600 text-white">
+                                        -
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> - </div>') .'
+                                  </div>
+                                  <div class="mt-2">
+                                      Quantity <br> <span class="text-md font-semibold">['.$qnty.']</span>
+                                  </div>
+                                  <div>
+                                      '. ($qnty < $lg_avail ? '
+                                      <a href="check_out.php?qnty=increment&product_id='.$product_id.'&price='.$price.'" class="btn bg-green-600 text-white">
+                                        +
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> + </div>') .'
+                                  </div>
+                              </div>
+                              ' : '';
+                              // extra large qnty 
+                              echo ($size == 'xlg') ? '
+                              <div class="grid lg:grid-cols-4 text-center">
+                                  <div class="font-semibold">
+                                      Available <span class="text-red-500">sm  ['. $xlg_avail .']</span> 
+                                  </div>
+                                  <div>
+                                      '. ($qnty > 1 ? '
+                                      <a href="check_out.php?qnty=decrement&product_id='.$product_id.'&price='.$price.'" class="btn bg-red-600 text-white">
+                                        -
+                                      </a>
+                                      ' : '
+                                      <div class="btn bg-gray-500 text-white"> - </div>') .'
+                                  </div>
+                                  <div class="mt-2">
+                                      Quantity <br> <span class="text-md font-semibold">['.$qnty.']</span>
+                                  </div>
+                                  <div>
+                                      '. ($qnty < $xlg_avail ? '
                                       <a href="check_out.php?qnty=increment&product_id='.$product_id.'&price='.$price.'" class="btn bg-green-600 text-white">
                                         +
                                       </a>

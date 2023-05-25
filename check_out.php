@@ -153,6 +153,10 @@
           $stmt_place_order = $conn->prepare("delete from cart where user_id = ? and product_id = ? and in_order = 1");
           $stmt_place_order->execute([$user_id, $product_ids]);
 
+          // update product quantity 
+          $stmt_product_qnty = $conn->prepare("update products set ".$size[$i]."_avail = (".$size[$i]."_avail - $qnty[$i]) where product_id = ?");
+          $stmt_product_qnty->execute([$product_ids]);
+
           if($stmt_place_order->affected_rows > 0)
           {
             ?>

@@ -281,8 +281,13 @@
                                             </div>
                                         <?php
                                         // for modals 
-                                        include "modals/shark_cart.php";
+                                        include "modals/modal_cart.php";
                                     }
+                                }
+                                else{
+                                    ?>
+                                    <h1 class="text-white bg-gray-600 text-4xl">No Available Products</h1>
+                                    <?php
                                 }
                             ?>
 
@@ -522,234 +527,250 @@
             else
             if($product == 'shoei')
             {
+                if(isset($_POST['add_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    $image = $_POST['image'];
+                    $brand = $_POST['brand'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+                    $size = $_POST['size'];
+
+                    $stmt = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price, size) values(?,?,?,?,?,?,?)");
+                    $stmt->execute([$user_id, $product_id, $image, $brand, $name, $price, $size]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="cart_add_alert bg-green-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Added to cart.
+                        </div>
+                        ';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                        </script>
+                        <?php
+                    }
+                }
+                else
+                if(isset($_POST['remove_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    // remove from cart 
+                    $stmt = $conn->prepare("delete from cart where user_id = ? and product_id = ?");
+                    $stmt->execute([$user_id, $product_id]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="cart_remove_alert bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Removed to cart.
+                        </div>';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                        </script>
+                        <?php
+                    }
+                    
+                }
+
+                include 'include/navbar.php';
+
                 ?>
                     <!-- section for products  -->
                     <section class="py-32 bg-gray-300">
                         <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
-
-                            <!-- HEADING -->
-                            <nav id="sgoei" class="top-0 z-30 w-full px-6 py-1">
+                            <!-- title here  -->
+                            <nav id="shark" class="top-0 z-30 w-full px-6 py-1">
                                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
-
-                                    <a class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline "
-                                        href="#">
-                                        SHOEI PREMIUM HELMETS
-                                    </a>
+                                    <div class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline ">
+                                        SHOEI HELMETS
+                                    </div>
                                 </div>
                             </nav>
 
-                            <div class="flex flex-col w-full p-6 mb-10 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#" id="readProductButton" data-modal-toggle="readProductModal">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/SNPJHS8/product1-exzero.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">SHOEI Ex zero</p>
-                                </a>
-                                <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path
-                                        d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                </svg>
-                            </div>
-                            <p class="pt-1 text-red-800">₱26,741</p>
-                        </div>
+                            <!-- products  -->
+                            <?php
+                                $stmt1 = $conn->prepare("select * from products where brand = 'shoei' ");
+                                $stmt1->execute();
+                                $res1 = $stmt1->get_result();
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/KbQcdfR/product2-cheeta.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI GLAMSTER CHEETAH
-                            </a> CUSTOM CYCLE</p>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱32,807</p>
-                        </div>
+                                if($res1->num_rows > 0)
+                                {
+                                    while($row = $res1->fetch_assoc())
+                                    {
+                                        $product_id = $row['product_id'];
+                                        $image = $row['image'];
+                                        $brand = $row['brand'];
+                                        $name = $row['name'];
+                                        $price = $row['price'];
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/12CPbjG/product3-offwhite.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI GLAMSTER OFFWHITE 1</p>
-                            </a>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱26,741</p>
-                        </div>
+                                        $xs_avail = $row['xs_avail'];
+                                        $sm_avail = $row['sm_avail'];
+                                        $md_avail = $row['md_avail'];
+                                        $lg_avail = $row['lg_avail'];
+                                        $xlg_avail = $row['xlg_avail'];
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/ZxBzY3c/product4-ressur.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI GLAMSTER RESURRE
-                            </a>CTION TC10 1</p>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱23,000</p>
-                        </div>
+                                        $available = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/xXZwK5v/Glamster-Ressurection-TC.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI Glamster-Ressurection</p>
-                            </a>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱23,000</p>
-                        </div>
+                                        $price_format = number_format($price, 2, '.', ',');
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/ZdZYj8w/product6-neotec.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI NEOTEC 2 1</p>
-                            </a>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱39,000</p>
-                        </div>
+                                        ?>
+                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 pt-[10%]" id="<?php echo $product_id ?>">
+                                                <!-- product id  -->
+                                                <h6><strong><?php echo $product_id ?></strong></h6>     
+                                                <!-- image and short description  -->
+                                                <img src="<?php echo $image ?>" class="w-full">
+                                                <div class="flex items-center justify-between pt-3">
+                                                    <!-- product name  -->
+                                                    <p><?php echo $name ?></p>
+                                                    <!--////////////////////////////// add to cart  -->
+                                                        <?php
+                                                            if(isset($_SESSION['user_id']))//if user is logged in
+                                                            {
+                                                                $stmt2 = $conn->prepare("select * from cart where user_id = ? and product_id = ?");
+                                                                $stmt2->execute([$user_id, $product_id]);
+                                                                $res2 = $stmt2->get_result();
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/sy7Q1wG/product7-fifteen.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI X FIFTEEN 1</p>
-                            </a>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱48,973</p>
-                        </div>
+                                                                if($res2->num_rows > 0) 
+                                                                {
+                                                                    while($row2 = $res2->fetch_assoc())
+                                                                    {
+                                                                        $in_order = $row2['in_order'];
 
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/t3cBM64/product8-fourteen.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI X FOURTEEN MM93< </a>/p>
-                                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                                <path
-                                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                            </svg>
-                                </div>
-                                <p class="pt-1 text-red-800">₱47,972</p>
-                        </div>
-
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/6P51mgJ/product9-aerody.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI X-SPIRIT III AER
-                            </a>ODYNE TC-4</p>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱9.99</p>
-                        </div>
-
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/wwzHc29/product10-Z-8-ACCOLADE-NXR2-ACCOLADE.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI X14 ACCOLADE NXR
-                            </a>2 ACCOLADE</p>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱9.99</p>
-                        </div>
-
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/0JTByQz/product11-Z-8-ORIGAMI-NXR2-ORIGAMI.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI z8 ORIGAMI NXR2
-                            </a>ORIGAMI</p>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱9.99</p>
-                        </div>
-
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-                                <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                    src="https://i.ibb.co/dcfMmcK/product12-Z-8-FAUST-NXR2-FAUST.png">
-                                <div class="flex items-center justify-between pt-3">
-                                    <p class="">SHOEI z8 FAUST NXR2 FA
-                            </a>UST</p>
-                            <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 576 512">
-                                <path
-                                    d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                            </svg>
-                        </div>
-                        <p class="pt-1 text-red-800">₱9.99</p>
-                        </div>
-
-                        <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                            <a href="#">
-
-                            </a> <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                src="https://i.ibb.co/5Rpsszm/product13-Z-8-MM93-RETRO-NXR2-MM93-RETRO.png">
-                            <div class="flex items-center justify-between pt-3">
-                                <p class="">SHOEI z8 MM93 RETRO NXR2 MM93 RETRO</p>
-
-                                <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 576 512">
-                                    <path
-                                        d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                </svg>
-                            </div>
-                            <p class="pt-1 text-red-800">₱41,500</p>
+                                                                        if($in_order == 0) // in cart already
+                                                                        {
+                                                                            echo'
+                                                                            <form method="post">
+                                                                            <input type="hidden" name="product_id" value="'.$product_id.'">
+                                                                                <button type="submit" name="remove_cart" class="px-5">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="ml-5 bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </form>
+                                                                            ';
+                                                                        }
+                                                                        else 
+                                                                        if($in_order == 1) // in order already
+                                                                        {
+                                                                            echo'
+                                                                                <a href="check_out.php" class="px-5">
+                                                                                    <svg width="40" height="40" fill="#4f4fbd" viewBox="0 0 20 20">
+                                                                                        <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                                                                                        <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            ';
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else // add to cart
+                                                                {
+                                                                    echo'
+                                                                    <button type="button" data-modal-target="modal_'.$product_id.'" data-modal-toggle="modal_'.$product_id.'">
+                                                                        <svg class="ml-5 w-8 h-8 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                    ';
+                                                                }
+                                                            }
+                                                            else // if user is not logged in
+                                                            {
+                                                                echo'
+                                                                <a href="login.php">
+                                                                    <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                    </svg>
+                                                                </a>
+                                                                ';
+                                                            }
+                                                        ?>
+                                                </div>
+                                                <!-- product availability  -->
+                                                <h6 class="font-semibold text-black-600">Available : <?php echo $available ?></h6>
+                                                <!-- price  -->
+                                                <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
+                                                <br>
+                                                <p class="font-semibold">
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xs <span class="text-red-600"><?php echo $xs_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        sm <span class="text-red-600"><?php echo $sm_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        md <span class="text-red-600"><?php echo $md_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        lg <span class="text-red-600"><?php echo $lg_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xlg <span class="text-red-600"><?php echo $xlg_avail ?></span> 
+                                                    </span>
+                                                </p>
+                                                <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
+                                                    <!-- ///////////////////////////// buy now  -->
+                                                    <?php
+                                                        if(isset($_SESSION['user_id']))// if user is logged in
+                                                        {
+                                                            if($available <= 0)
+                                                            {
+                                                                echo'
+                                                                    <h6 class="text-red-600 border border-red-600 p-1"> 
+                                                                        Not Available 
+                                                                    </h6>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo'
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
+                                                                ';
+                                                            }
+                                                        }
+                                                        else // if user is not logged in
+                                                        {
+                                                            if($available <= 0)
+                                                            {
+                                                                echo'
+                                                                    <h6 class="text-red-600 font-bold border border-red-600 p-1"> Not Available </h6>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo'
+                                                                <a href="login.php" class="relative inline-block px-4 py-2 font-medium group">
+                                                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                                                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                                                                    <span class="relative text-black group-hover:text-white">Buy now</span>
+                                                                </a>
+                                                                ';
+                                                            }
+                                                        }
+                                                    
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        // for modals 
+                                        include "modals/modal_cart.php";
+                                    }
+                                }
+                                else{
+                                    ?>
+                                    <h1 class="text-white bg-gray-600 text-4xl p-4">No Available Products</h1>
+                                    <?php
+                                }
+                            ?>
 
                         </div>
-
-                        </div>
-
                     </section>
+
                     <!-- ABOUT SHOEI HELMET  -->
                     <section class="py-8">
 

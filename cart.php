@@ -99,34 +99,14 @@
                       $price = $row['price'];
                       $size = $row['size'];
 
-                      switch ($size) 
-                      {
-                        case 'xs':
-                            $size_label = 'Extra small';
-                            break;
-                        case 'sm':
-                            $size_label = 'Small';
-                            break;
-                        case 'md':
-                            $size_label = 'Medium';
-                            break;
-                        case 'lg':
-                            $size_label = 'Large';
-                            break;
-                        case 'xlg':
-                            $size_label = 'Extra Large';
-                            break;
-                        default:
-                            $size_label = '';
-                            break;
-                      }
-                    
                       $price_format = number_format($price, 2, '.', ',');
 
                       ?>
                       <form method="post">
                         <ul class="-my-8 mb-5">
+
                           <input type="checkbox" name="checkout[]" value="<?php echo $product_id ?>">
+                          <input type="hidden" name="size[]" value="<?php echo $size ?>">
 
                           <li class="flex flex-col py-6 space-y-3 text-left sm:flex-row sm:space-x-5 sm:space-y-0">
                             <!-- image of product  -->
@@ -140,7 +120,7 @@
                                   <p class="text-base font-bold text-gray-900">
                                     <?php echo $product_id .' | '. $name?>
                                   </p>
-                                  <p>Size : <span class="text-red-600"><?php echo $size_label ?></span></p>
+                                  <p>Size : <span class="text-red-600"><?php echo $size ?></span></p>
                                 </div>
                                 <!-- price  -->
                                 <div class="flex items-end justify-between mt-4 sm:mt-0 sm:items-start sm:justify-end">
@@ -168,13 +148,14 @@
                           {
                             // initialization 
                             $checkout = $_POST['checkout'];
+                            $size = $_POST['size'];
                            
                             foreach($checkout as $i => $checkouts)
                             {
                               // insert into orders 
                               $stmt1 = $conn->prepare
-                              ("insert into orders (user_id, product_id) values (?,?)");
-                              $stmt1->execute([$user_id, $checkouts]);
+                              ("insert into orders (user_id, product_id, size) values (?,?,?)");
+                              $stmt1->execute([$user_id, $checkouts, $size[$i]]);
 
                               // update from cart
                               $stmt2 = $conn->prepare("update cart set in_order = 1 where user_id = ? and product_id = ?");

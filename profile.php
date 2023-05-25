@@ -690,9 +690,9 @@
                                                         echo '
                                                         <tbody>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                                                <th class="py-4">
-                                                                    '.$order_id.'
-                                                                </th>
+                                                                <td class="py-4 font-semibold">
+                                                                    #<span class="text-blue-700"> '.$order_id.' </span>
+                                                                </td>
                                                                 <td class="py-4">
                                                                     ₱ '.$total_bill_format.'
                                                                 </td>
@@ -709,7 +709,7 @@
                                                                 </td>
                                                                 <td class="py-1">
                                                                     <a href="profile.php?tab=to_ship&order_id='.$order_id.'" >
-                                                                        <p class="bg-red-400 text-white p-1">
+                                                                        <p class="bg-blue-500 text-white p-1">
                                                                             View Details
                                                                         </p>
                                                                     </a>
@@ -751,6 +751,7 @@
                                                         </h3>
                                                         <h4 class="">
                                                             Shipping fee: <span class="text-red-600">+₱38.00</span><br>
+                                                            Order: <span class="text-blue-700"> #'.$order_id.' </span>
                                                         </h4>
                                                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
                                                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

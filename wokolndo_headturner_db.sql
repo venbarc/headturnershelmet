@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 10:44 AM
+-- Generation Time: May 24, 2023 at 11:08 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -26,6 +26,11 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `cart`
 --
+
+DROP DATABASE IF EXISTS `wokolndo_headturner_db`; 
+CREATE DATABASE IF NOT EXISTS `wokolndo_headturner_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `wokolndo_headturner_db`;
+
 
 CREATE TABLE `cart` (
   `id` int(11) NOT NULL,
@@ -55,7 +60,7 @@ CREATE TABLE `done_payment` (
   `price` int(11) NOT NULL,
   `size` varchar(255) NOT NULL,
   `payment_method` varchar(255) NOT NULL,
-  `date_pay` date NOT NULL DEFAULT current_timestamp()
+  `date_pay` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,7 +91,7 @@ CREATE TABLE `place_order` (
   `size` varchar(255) NOT NULL,
   `total_bill` int(11) NOT NULL,
   `pay_method` varchar(255) NOT NULL,
-  `order_date` date NOT NULL DEFAULT current_timestamp(),
+  `order_date` datetime NOT NULL DEFAULT current_timestamp(),
   `shipped` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

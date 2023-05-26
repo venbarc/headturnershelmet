@@ -219,7 +219,7 @@
                                                 <!-- price  -->
                                                 <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
                                                 <br>
-                                                <p class="font-semibold">
+                                                <p class="font-semibold flex">
                                                     <span class="border border-black p-1 mr-2">
                                                         xs <span class="text-red-600"><?php echo $xs_avail ?></span> 
                                                     </span>
@@ -267,11 +267,9 @@
                                                             }
                                                             else{
                                                                 echo'
-                                                                <a href="login.php" class="relative inline-block px-4 py-2 font-medium group">
-                                                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                    <span class="relative text-black group-hover:text-white">Buy now</span>
-                                                                </a>
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
                                                                 ';
                                                             }
                                                         }
@@ -549,7 +547,7 @@
                         ';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=shoei#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -696,7 +694,7 @@
                                                 <!-- price  -->
                                                 <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
                                                 <br>
-                                                <p class="font-semibold">
+                                                <p class="font-semibold flex">
                                                     <span class="border border-black p-1 mr-2">
                                                         xs <span class="text-red-600"><?php echo $xs_avail ?></span> 
                                                     </span>
@@ -744,11 +742,9 @@
                                                             }
                                                             else{
                                                                 echo'
-                                                                <a href="login.php" class="relative inline-block px-4 py-2 font-medium group">
-                                                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                                                    <span class="relative text-black group-hover:text-white">Buy now</span>
-                                                                </a>
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
                                                                 ';
                                                             }
                                                         }
@@ -983,173 +979,248 @@
             else
             if($product == 'avg')
             {
+                if(isset($_POST['add_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    $image = $_POST['image'];
+                    $brand = $_POST['brand'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+                    $size = $_POST['size'];
+
+                    $stmt = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price, size) values(?,?,?,?,?,?,?)");
+                    $stmt->execute([$user_id, $product_id, $image, $brand, $name, $price, $size]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="cart_add_alert bg-green-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Added to cart.
+                        </div>
+                        ';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=avg#<?php echo $product_id ?>";
+                        </script>
+                        <?php
+                    }
+                }
+                else
+                if(isset($_POST['remove_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    // remove from cart 
+                    $stmt = $conn->prepare("delete from cart where user_id = ? and product_id = ?");
+                    $stmt->execute([$user_id, $product_id]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="cart_remove_alert bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Removed to cart.
+                        </div>';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                        </script>
+                        <?php
+                    }
+                    
+                }
+
+                include 'include/navbar.php';
+
                 ?>
                     <!-- section for products  -->
                     <section class="py-32 bg-gray-300">
-                        <div class="container flex flex-wrap items-center pt-4 pb-20 mx-auto">
-                            <nav id="agv" class="top-0 z-30 w-full px-6 py-1">
+                        <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
+                            <!-- title here  -->
+                            <nav id="avg" class="top-0 z-30 w-full px-6 py-1">
                                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
-                                    <a class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline "
-                                        href="#">
-                                        AGV HELMET'S
-                                    </a>
+                                    <div class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline ">
+                                        AVG HELMETS
+                                    </div>
                                 </div>
                             </nav>
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/cgzcdXy/AGV-K-1-S-Salom-Helmet-multicolored.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv K-1 S Salom Helmet multicolored</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱12,737.00</p>
-                                </a>
-                            </div>
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/HzRXy20/agv-pistagprr-helmet-2206-italia.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv pistagprr helmet 2206 italia</p>
 
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱61,418.00</p>
-                                </a>
-                            </div>
+                            <!-- products  -->
+                            <?php
+                                $stmt1 = $conn->prepare("select * from products where brand = 'avg' ");
+                                $stmt1->execute();
+                                $res1 = $stmt1->get_result();
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/9VQpWTk/agv-compact-st-solid-plk-modular-helmet.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv compact st solid plk modular helmet</p>
+                                if($res1->num_rows > 0)
+                                {
+                                    while($row = $res1->fetch_assoc())
+                                    {
+                                        $product_id = $row['product_id'];
+                                        $image = $row['image'];
+                                        $brand = $row['brand'];
+                                        $name = $row['name'];
+                                        $price = $row['price'];
 
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱49,000.00</p>
-                                </a>
-                            </div>
+                                        $xs_avail = $row['xs_avail'];
+                                        $sm_avail = $row['sm_avail'];
+                                        $md_avail = $row['md_avail'];
+                                        $lg_avail = $row['lg_avail'];
+                                        $xlg_avail = $row['xlg_avail'];
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/r62Lbr4/agv-k3-sv-top-mplk-full-face-helmet.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv k3 sv top mplk full face helmet</p>
+                                        $available = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
 
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱16,950.00</p>
-                                </a>
-                            </div>
+                                        $price_format = number_format($price, 2, '.', ',');
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/2tVmF7Z/agv-k5-s-multi-mplk-full-face-helmet.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv k5 s multi mplk full face helmet</p>
+                                        ?>
+                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 pt-[10%]" id="<?php echo $product_id ?>">
+                                                <!-- product id  -->
+                                                <h6><strong><?php echo $product_id ?></strong></h6>     
+                                                <!-- image and short description  -->
+                                                <img src="<?php echo $image ?>" class="w-full">
+                                                <div class="flex items-center justify-between pt-3">
+                                                    <!-- product name  -->
+                                                    <p><?php echo $name ?></p>
+                                                    <!--////////////////////////////// add to cart  -->
+                                                        <?php
+                                                            if(isset($_SESSION['user_id']))//if user is logged in
+                                                            {
+                                                                $stmt2 = $conn->prepare("select * from cart where user_id = ? and product_id = ?");
+                                                                $stmt2->execute([$user_id, $product_id]);
+                                                                $res2 = $stmt2->get_result();
 
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱17,911.00</p>
-                                </a>
-                            </div>
+                                                                if($res2->num_rows > 0) 
+                                                                {
+                                                                    while($row2 = $res2->fetch_assoc())
+                                                                    {
+                                                                        $in_order = $row2['in_order'];
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/8B8spny/agv-k5-s-multi-mplk-full-face-helmet-1.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv k5 s multi mplk full face helmet</p>
-
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱17,911.00</p>
-                                </a>
-                            </div>
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/rfHxD7N/agv-k6-s-e2206-mplk-full-face-helmet.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv k6 s e2206 mplk full face helmet</p>
-
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱15,992.00</p>
-                                </a>
-                            </div>
-
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/jVh2w0k/agv-pista-gp-rr-e2206-dot-mplk-full-face-helmet.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv pista gp rr e2206 dot mplk full face helmet</p>
-
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱49,000.00</p>
-                                </a>
-                            </div>
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/cb0Lhb0/agv-tourmodular-solid-mplk-modular-helmet.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">agv tourmodular solid mplk modular helmet</p>
-
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱35,633.00</p>
-                                </a>
-                            </div>
-
+                                                                        if($in_order == 0) // in cart already
+                                                                        {
+                                                                            echo'
+                                                                            <form method="post">
+                                                                            <input type="hidden" name="product_id" value="'.$product_id.'">
+                                                                                <button type="submit" name="remove_cart" class="px-5">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="ml-5 bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </form>
+                                                                            ';
+                                                                        }
+                                                                        else 
+                                                                        if($in_order == 1) // in order already
+                                                                        {
+                                                                            echo'
+                                                                                <a href="check_out.php" class="px-5">
+                                                                                    <svg width="40" height="40" fill="#4f4fbd" viewBox="0 0 20 20">
+                                                                                        <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                                                                                        <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            ';
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else // add to cart
+                                                                {
+                                                                    echo'
+                                                                    <button type="button" data-modal-target="modal_'.$product_id.'" data-modal-toggle="modal_'.$product_id.'">
+                                                                        <svg class="ml-5 w-8 h-8 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                    ';
+                                                                }
+                                                            }
+                                                            else // if user is not logged in
+                                                            {
+                                                                echo'
+                                                                <a href="login.php">
+                                                                    <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                    </svg>
+                                                                </a>
+                                                                ';
+                                                            }
+                                                        ?>
+                                                </div>
+                                                <!-- product availability  -->
+                                                <h6 class="font-semibold text-black-600">Available : <?php echo $available ?></h6>
+                                                <!-- price  -->
+                                                <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
+                                                <br>
+                                                <p class="font-semibold flex">
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xs <span class="text-red-600"><?php echo $xs_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        sm <span class="text-red-600"><?php echo $sm_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        md <span class="text-red-600"><?php echo $md_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        lg <span class="text-red-600"><?php echo $lg_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xlg <span class="text-red-600"><?php echo $xlg_avail ?></span> 
+                                                    </span>
+                                                </p>
+                                                <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
+                                                    <!-- ///////////////////////////// buy now  -->
+                                                    <?php
+                                                        if(isset($_SESSION['user_id']))// if user is logged in
+                                                        {
+                                                            if($available <= 0)
+                                                            {
+                                                                echo'
+                                                                    <h6 class="text-red-600 border border-red-600 p-1"> 
+                                                                        Not Available 
+                                                                    </h6>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo'
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
+                                                                ';
+                                                            }
+                                                        }
+                                                        else // if user is not logged in
+                                                        {
+                                                            if($available <= 0)
+                                                            {
+                                                                echo'
+                                                                    <h6 class="text-red-600 font-bold border border-red-600 p-1"> Not Available </h6>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo'
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
+                                                                ';
+                                                            }
+                                                        }
+                                                    
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        // for modals 
+                                        include "modals/modal_cart.php";
+                                    }
+                                }
+                                else{
+                                    ?>
+                                    <h1 class="text-white bg-gray-600 text-4xl p-4">No Available Products</h1>
+                                    <?php
+                                }
+                            ?>
 
                         </div>
                     </section>
+
                     <!-- ABOUT AVG HELMET  -->
                     <section class="py-8">
                         <div class="container px-6 py-8 mx-auto">
@@ -1281,221 +1352,253 @@
 
                     </section>
                 <?php
+
             }
             else
             if($product == 'arai')
             {
+                if(isset($_POST['add_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    $image = $_POST['image'];
+                    $brand = $_POST['brand'];
+                    $name = $_POST['name'];
+                    $price = $_POST['price'];
+                    $size = $_POST['size'];
+
+                    $stmt = $conn->prepare("insert into cart (user_id, product_id, image, brand, name, price, size) values(?,?,?,?,?,?,?)");
+                    $stmt->execute([$user_id, $product_id, $image, $brand, $name, $price, $size]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="cart_add_alert bg-green-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Added to cart.
+                        </div>
+                        ';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=arai#<?php echo $product_id ?>";
+                        </script>
+                        <?php
+                    }
+                }
+                else
+                if(isset($_POST['remove_cart']))
+                {
+                    // initialization 
+                    $product_id = $_POST['product_id'];
+                    // remove from cart 
+                    $stmt = $conn->prepare("delete from cart where user_id = ? and product_id = ?");
+                    $stmt->execute([$user_id, $product_id]);
+
+                    if($stmt->affected_rows > 0)
+                    {
+                        echo'
+                        <div class="cart_remove_alert bg-red-500 text-white font-bold py-2 px-4 rounded fixed bottom-0 left-0 mb-4 ml-4 z-50">
+                            Removed to cart.
+                        </div>';
+                        ?>
+                        <script>
+                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                        </script>
+                        <?php
+                    }
+                    
+                }
+
+                include 'include/navbar.php';
+
                 ?>
                     <!-- section for products  -->
                     <section class="py-32 bg-gray-300">
                         <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
-
-                            <nav id="arai" class="top-0 z-30 w-full px-6 py-1">
+                            <!-- title here  -->
+                            <nav id="avg" class="top-0 z-30 w-full px-6 py-1">
                                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
-
-                                    <a class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline "
-                                        href="#">
+                                    <div class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline ">
                                         ARAI HELMETS
-                                    </a>
+                                    </div>
                                 </div>
                             </nav>
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/YcBrym7/product1-astro.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI ASTRO GX</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱36,000.00</p>
-                                </a>
-                            </div>
+                            <!-- products  -->
+                            <?php
+                                $stmt1 = $conn->prepare("select * from products where brand = 'arai' ");
+                                $stmt1->execute();
+                                $res1 = $stmt1->get_result();
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/3cfpzSG/product2-classic.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI CLASSIC AIR</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱27,000.00</p>
-                                </a>
-                            </div>
+                                if($res1->num_rows > 0)
+                                {
+                                    while($row = $res1->fetch_assoc())
+                                    {
+                                        $product_id = $row['product_id'];
+                                        $image = $row['image'];
+                                        $brand = $row['brand'];
+                                        $name = $row['name'];
+                                        $price = $row['price'];
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/BTwgr47/product3-naps.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI NAPS</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱26,000.00</p>
-                                </a>
-                            </div>
+                                        $xs_avail = $row['xs_avail'];
+                                        $sm_avail = $row['sm_avail'];
+                                        $md_avail = $row['md_avail'];
+                                        $lg_avail = $row['lg_avail'];
+                                        $xlg_avail = $row['xlg_avail'];
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/3cnvhG2/product4-neo-black.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RAPIDE NEO BLACK</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱23,000.00</p>
-                                </a>
-                            </div>
+                                        $available = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/Dk9C8hv/product5-neo-orange.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RAPIDE NEO ORANGE</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱23,000.00</p>
-                                </a>
-                            </div>
+                                        $price_format = number_format($price, 2, '.', ',');
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/SP1mYkQ/product6-rx7x.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">Arai Helmet Rx-7v Evo</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱ 53,000</p>
-                                </a>
-                            </div>
+                                        ?>
+                                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 pt-[10%]" id="<?php echo $product_id ?>">
+                                                <!-- product id  -->
+                                                <h6><strong><?php echo $product_id ?></strong></h6>     
+                                                <!-- image and short description  -->
+                                                <img src="<?php echo $image ?>" class="w-full">
+                                                <div class="flex items-center justify-between pt-3">
+                                                    <!-- product name  -->
+                                                    <p><?php echo $name ?></p>
+                                                    <!--////////////////////////////// add to cart  -->
+                                                        <?php
+                                                            if(isset($_SESSION['user_id']))//if user is logged in
+                                                            {
+                                                                $stmt2 = $conn->prepare("select * from cart where user_id = ? and product_id = ?");
+                                                                $stmt2->execute([$user_id, $product_id]);
+                                                                $res2 = $stmt2->get_result();
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/7CqhCT5/product7-firm-racing.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RX7X FIRM RACING</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱53,000.00</p>
-                                </a>
-                            </div>
+                                                                if($res2->num_rows > 0) 
+                                                                {
+                                                                    while($row2 = $res2->fetch_assoc())
+                                                                    {
+                                                                        $in_order = $row2['in_order'];
 
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/89hWC96/product8-repsol.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RX7X REPSOL GRAPHICS</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱70,732.00</p>
-                                </a>
-                            </div>
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/HH1MVH8/product9-src.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RX7X SRC</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱55,000.00</p>
-                                </a>
-                            </div>
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/D7HqM3Z/product10-tatsuki.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RX7X TATSUKI SUZUKI</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱38,500.00</p>
-                                </a>
-                            </div>
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/k13L355/product11-tour.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RX7X TOUR</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱37,000.00</p>
-                                </a>
-                            </div>
-
-                            <div class="flex flex-col w-full p-6 md:w-1/3 xl:w-1/4 wow fadeInUp group " data-wow-delay=".2s">
-                                <a href="#">
-                                    <img class="w-full transition group-hover:rotate-6 group-hover:scale-125"
-                                        src="https://i.ibb.co/9rKH51r/product12-IOM.png">
-                                    <div class="flex items-center justify-between pt-3">
-                                        <p class="">ARAI RX7X IOM TT 2022</p>
-                                        <svg class="w-6 h-6 text-gray-500 fill-current hover:text-black"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                                            <path
-                                                d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
-                                        </svg>
-                                    </div>
-                                    <p class="pt-1 text-red-800">₱39,500.00</p>
-                                </a>
-                            </div>
-
+                                                                        if($in_order == 0) // in cart already
+                                                                        {
+                                                                            echo'
+                                                                            <form method="post">
+                                                                            <input type="hidden" name="product_id" value="'.$product_id.'">
+                                                                                <button type="submit" name="remove_cart" class="px-5">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="ml-5 bi bi-heart-fill" viewBox="0 0 16 16" id="IconChangeColor"><path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" id="mainIconPathAttribute" fill="#ec3636" stroke-width="0" stroke="#813131"></path> 
+                                                                                    </svg>
+                                                                                </button>
+                                                                            </form>
+                                                                            ';
+                                                                        }
+                                                                        else 
+                                                                        if($in_order == 1) // in order already
+                                                                        {
+                                                                            echo'
+                                                                                <a href="check_out.php" class="px-5">
+                                                                                    <svg width="40" height="40" fill="#4f4fbd" viewBox="0 0 20 20">
+                                                                                        <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                                                                                        <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
+                                                                                    </svg>
+                                                                                </a>
+                                                                            ';
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else // add to cart
+                                                                {
+                                                                    echo'
+                                                                    <button type="button" data-modal-target="modal_'.$product_id.'" data-modal-toggle="modal_'.$product_id.'">
+                                                                        <svg class="ml-5 w-8 h-8 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                        </svg>
+                                                                    </button>
+                                                                    ';
+                                                                }
+                                                            }
+                                                            else // if user is not logged in
+                                                            {
+                                                                echo'
+                                                                <a href="login.php">
+                                                                    <svg class="w-6 h-6 text-black-500 fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                                                        <path d="M504.717 320H211.572l6.545 32h268.418c15.401 0 26.816 14.301 23.403 29.319l-5.517 24.276C523.112 414.668 536 433.828 536 456c0 31.202-25.519 56.444-56.824 55.994-29.823-.429-54.35-24.631-55.155-54.447-.44-16.287 6.085-31.049 16.803-41.548H231.176C241.553 426.165 248 440.326 248 456c0 31.813-26.528 57.431-58.67 55.938-28.54-1.325-51.751-24.385-53.251-52.917-1.158-22.034 10.436-41.455 28.051-51.586L93.883 64H24C10.745 64 0 53.255 0 40V24C0 10.745 10.745 0 24 0h102.529c11.401 0 21.228 8.021 23.513 19.19L159.208 64H551.99c15.401 0 26.816 14.301 23.403 29.319l-47.273 208C525.637 312.246 515.923 320 504.717 320zM408 168h-48v-40c0-8.837-7.163-16-16-16h-16c-8.837 0-16 7.163-16 16v40h-48c-8.837 0-16 7.163-16 16v16c0 8.837 7.163 16 16 16h48v40c0 8.837 7.163 16 16 16h16c8.837 0 16-7.163 16-16v-40h48c8.837 0 16-7.163 16-16v-16c0-8.837-7.163-16-16-16z" />
+                                                                    </svg>
+                                                                </a>
+                                                                ';
+                                                            }
+                                                        ?>
+                                                </div>
+                                                <!-- product availability  -->
+                                                <h6 class="font-semibold text-black-600">Available : <?php echo $available ?></h6>
+                                                <!-- price  -->
+                                                <p class="pt-1 text-red-800 font-bold">₱ <?php echo $price_format ?></p>
+                                                <br>
+                                                <p class="font-semibold flex">
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xs <span class="text-red-600"><?php echo $xs_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        sm <span class="text-red-600"><?php echo $sm_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        md <span class="text-red-600"><?php echo $md_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        lg <span class="text-red-600"><?php echo $lg_avail ?></span> 
+                                                    </span>
+                                                    <span class="border border-black p-1 mr-2">
+                                                        xlg <span class="text-red-600"><?php echo $xlg_avail ?></span> 
+                                                    </span>
+                                                </p>
+                                                <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start">
+                                                    <!-- ///////////////////////////// buy now  -->
+                                                    <?php
+                                                        if(isset($_SESSION['user_id']))// if user is logged in
+                                                        {
+                                                            if($available <= 0)
+                                                            {
+                                                                echo'
+                                                                    <h6 class="text-red-600 border border-red-600 p-1"> 
+                                                                        Not Available 
+                                                                    </h6>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo'
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
+                                                                ';
+                                                            }
+                                                        }
+                                                        else // if user is not logged in
+                                                        {
+                                                            if($available <= 0)
+                                                            {
+                                                                echo'
+                                                                    <h6 class="text-red-600 font-bold border border-red-600 p-1"> Not Available </h6>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo'
+                                                                <h6 class="text-green-600 border border-green-600 p-1"> 
+                                                                    Available 
+                                                                </h6>
+                                                                ';
+                                                            }
+                                                        }
+                                                    
+                                                    ?>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        // for modals 
+                                        include "modals/modal_cart.php";
+                                    }
+                                }
+                                else{
+                                    ?>
+                                    <h1 class="text-white bg-gray-600 text-4xl p-4">No Available Products</h1>
+                                    <?php
+                                }
+                            ?>
 
                         </div>
-
                     </section>
+
                     <!-- ABOUT ARAI HELMET  -->
                     <section class="py-8">
                         <div class="container px-6 py-8 mx-auto">
@@ -1709,6 +1812,19 @@
                         </div>
 
                     </section>
+                <?php
+
+                ?>
+              
+                    
+                <?php
+            }
+            else
+            {
+                ?>
+                <script>
+                    location.href = "404.php";
+                </script>
                 <?php
             }
         }

@@ -442,7 +442,7 @@
                                                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                                         <tr>
                                                             <th scope="col" class="px-1 py-3">
-                                                                ORDER ID 
+                                                                ORDER # ID 
                                                             </th>
                                                             <th scope="col" class="px-6 py-3">
                                                                 TOTAL BILL
@@ -464,6 +464,9 @@
                                                     $pay_method = $row['pay_method'];
                                                     $order_date = $row['order_date'];
 
+                                                    $date = new DateTime($order_date);
+                                                    $formattedDate = $date->format('F j, Y');
+
                                                     // format bill 
                                                     $total_bill_format = number_format($total_bill, 2, '.', ',');
                                                     // pay method 
@@ -479,13 +482,13 @@
                                                     <tbody>
                                                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                                             <th class="py-4">
-                                                                '.$order_id.'
+                                                                # '.$order_id.'
                                                             </th>
                                                             <td class="py-4">
                                                                 ₱ '.$total_bill_format.'
                                                             </td>
                                                             <td class="py-4">
-                                                                '.$order_date.'
+                                                                '.$formattedDate.'
                                                             </td>
                                                             <td class=" py-4">
                                                                 <span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
@@ -537,7 +540,9 @@
                                             <?php
                                         }
                                         else{
-                                            echo '<div class="msg_001">Something went wrong please try again </div>';
+                                            echo '<div class="msg_001">
+                                                Something went wrong please try again 
+                                            </div>';
                                         }
                                     }
                                         
@@ -576,49 +581,136 @@
                             <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                                 <div class="flow-root">
                                     <h3 class="text-xl font-semibold dark:text-white">Social accounts</h3>
+                                    <!-- Modal button -->
+                                    <button data-modal-target="modal_social" data-modal-toggle="modal_social" type="button" 
+                                        class="bg-transparent mt-5 text-sm hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-2 border border-gray-500 hover:border-transparent">
+                                        Add Socials
+                                    </button>
+                                    <br>
+                                    <?php
+                                        if(isset($_POST['add_social']))
+                                        {
+                                            $social_select = $_POST['social_select'];
+                                            $social_link = $_POST['social_link'];
+
+                                            if (filter_var($social_link, FILTER_VALIDATE_URL)) 
+                                            {
+                                                
+                                                $stmt_add_social = $conn->prepare("insert into users_socials (user_id, social_name, social_link) values(?,?,?) ");
+                                                $stmt_add_social->execute([$user_id, $social_select, $social_link]);
+
+                                                if($stmt_add_social->affected_rows > 0)
+                                                {
+                                                    echo '
+                                                    <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+                                                        <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                        <div class="ml-3 text-sm font-medium">
+                                                            Successfully added social account.
+                                                        </div>
+                                                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                                                            <span class="sr-only">Dismiss</span>
+                                                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                        </button>
+                                                    </div>';
+                                                }
+                                            } 
+                                            else 
+                                            {
+                                                echo '
+                                                <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+                                                    <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                                                    <div class="ml-3 text-sm font-medium">
+                                                        Invalid Link.
+                                                    </div>
+                                                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                                                        <span class="sr-only">Dismiss</span>
+                                                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                    </button>
+                                                </div>';
+                                            }
+
+                                            
+                                        }
+                                    ?>
                                     <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-                                        <li class="py-4">
-                                            <div class="flex items-center space-x-4">
-                                                <div class="flex-shrink-0">
-                                                    <svg class="w-5 h-5 dark:text-white" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>
-                                                </div>
-                                                <div class="flex-1 min-w-0">
-                                                    <span class="block text-base font-semibold text-gray-900 truncate dark:text-white">
-                                                        Facebook account
-                                                    </span>
-                                                    <a href="#" class="block text-sm font-normal truncate text-gray-700 hover:underline dark:text-gray-500">
-                                                        www.facebook.com
-                                                    </a>
-                                                </div>
-                                                <div class="inline-flex items-center">
-                                                    <a href="#" class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                                        Add
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="py-4">
-                                            <div class="flex items-center space-x-4">
-                                                <div class="flex-shrink-0">
-                                                    <svg class="w-5 h-5 dark:text-white" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
-                                                </div>
-                                                <div class="flex-1 min-w-0">
-                                                    <span class="block text-base font-semibold text-gray-900 truncate dark:text-white">
-                                                        Twitter account
-                                                    </span>
-                                                    <a href="#" class="block text-sm font-normal truncate text-gray-700 hover:underline dark:text-gray-500">
-                                                        www.twitter.com
-                                                    </a>
-                                                </div>
-                                                <div class="inline-flex items-center">
-                                                    <a href="#" class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                                        Add
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </li>
+                                        <!-- add socials  -->
+                                        <?php
+                                            $stmt_select_socials = $conn->prepare("select us.*,s.* from users_socials us join socials s on us.social_name = s.social_name where us.user_id = ?");
+                                            $stmt_select_socials->execute([$user_id]);
+                                            $res_select_socials = $stmt_select_socials->get_result();
+
+                                            if($res_select_socials->num_rows > 0)
+                                            {
+                                                while($row_select_socials = $res_select_socials->fetch_assoc())
+                                                {
+                                                    $social_name = $row_select_socials['social_name'];
+                                                    $social_link = $row_select_socials['social_link'];
+                                                    $social_icon = $row_select_socials['social_icon'];
+
+                                                    echo '
+                                                    <li class="py-4">
+                                                        <div class="flex items-center space-x-4">
+                                                            <div class="flex-shrink-0">
+                                                                <img src="'.$social_icon.'" alt="" class="">
+                                                            </div>
+                                                            <div class="flex-1 min-w-0">
+                                                                <span class="block text-base font-semibold text-gray-900 truncate dark:text-white">
+                                                                    '.$social_name.'
+                                                                </span>
+                                                                <a href="'.$social_link.'" target="blank" class="block text-sm font-normal truncate text-gray-700 hover:underline dark:text-gray-500">
+                                                                    '.$social_link.'
+                                                                </a>
+                                                            </div>
+                                                            <div class="inline-flex items-center">
+                                                                <a href="profile.php?tab=personal_profile&remove_social=true&user_id='.$user_id.'&social_name='.$social_name.'&social_link='.$social_link.'" 
+                                                                class="px-3 py-2 mb-3 mr-3 text-sm font-medium text-center text-red-600 border rounded bg-round border-red-600 hover:bg-red-600 hover:text-white">
+                                                                    remove
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    ';
+                                                }
+                                            }
+                                            else{
+                                                echo '
+                                                <h1 class="text-white p-5 mt-3 text-2xl font-bold bg-gray-600 text-center">
+                                                    No socials added yet.
+                                                </h1>
+                                                ';
+                                            }
+
+                                            // remove socials 
+                                            if(isset($_GET['remove_social']) && isset($_GET['user_id']) && isset($_GET['social_name']) && isset($_GET['social_link']))
+                                            {
+                                                // initialization 
+                                                $remove_social = $_GET['remove_social'];
+                                                $user_id = $_GET['user_id'];
+                                                $social_name = $_GET['social_name'];
+                                                $social_link = $_GET['social_link'];
+
+                                                if($remove_social == 'true')
+                                                {
+                                                    $stmt_remove_socials = $conn->prepare("delete from users_socials where user_id = ? and social_name = ? and social_link = ?");
+                                                    $stmt_remove_socials->execute([$user_id, $social_name, $social_link]);
+                                                    
+                                                    if($stmt_remove_socials->affected_rows > 0)
+                                                    {
+                                                        ?>
+                                                        <script>
+                                                            location.href = "profile.php?tab=personal_profile";
+                                                        </script>
+                                                        <?php
+                                                    }
+                                                }
+                                            }
+                                        ?>
+                                        
                                     </ul>
                                 </div>
+                                <?php
+                                    include 'modals/modal_socials.php';
+                                ?>
                             </div>
                         </div>
                     <?php
@@ -676,6 +768,9 @@
                                                         $pay_method = $row['pay_method'];
                                                         $order_date = $row['order_date'];
 
+                                                        $date = new DateTime($order_date);
+                                                        $formattedDate = $date->format('F j, Y');
+
                                                         // format bill 
                                                         $total_bill_format = number_format($total_bill, 2, '.', ',');
                                                         // pay method 
@@ -700,7 +795,7 @@
                                                                     '.$pay_method.'
                                                                 </td>
                                                                 <td class="py-4">
-                                                                    '.$order_date.'
+                                                                    '.$formattedDate.'
                                                                 </td>
                                                                 <td class=" py-4">
                                                                     <span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
@@ -843,6 +938,15 @@
                             </div>
                         </div>
                     <?php
+                }
+                else
+                if($tab == 'order_history')
+                {
+                    echo '
+                        <h1 class="text-white p-5 bg-gray-500 text-lg mb-[70%] tetx-center">
+                            No order history yet!
+                        </h1>
+                    ';
                 }
                 else
                 if($tab == 'change_password')

@@ -37,7 +37,7 @@ CREATE TABLE `cart` (
   KEY `fk_products_to_cart_idx` (`product_id`),
   CONSTRAINT `fk_products_to_cart` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
   CONSTRAINT `fk_user_to_cart` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=289 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=295 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,6 +176,31 @@ INSERT INTO `products` VALUES (1,'shark-001','https://i.ibb.co/Zf240Jj/shark-rac
 UNLOCK TABLES;
 
 --
+-- Table structure for table `socials`
+--
+
+DROP TABLE IF EXISTS `socials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `socials` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `social_name` varchar(225) DEFAULT NULL,
+  `social_icon` varchar(225) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `socials`
+--
+
+LOCK TABLES `socials` WRITE;
+/*!40000 ALTER TABLE `socials` DISABLE KEYS */;
+INSERT INTO `socials` VALUES (1,'facebook','assets/images/socials/facebook.png'),(2,'twitter','assets/images/socials/twitter.png'),(3,'instagram','assets/images/socials/instagram.png'),(4,'telegram','assets/images/socials/telegram.png'),(5,'tiktok','assets/images/socials/tiktok.png'),(6,'snapchat','assets/images/socials/snapchat.png'),(7,'linkedIn ','assets/images/socials/linkedin.png'),(8,'discord','assets/images/socials/discord.png'),(9,'gmail','assets/images/socials/gmail.png'),(10,'viber','assets/images//socials/viber.png');
+/*!40000 ALTER TABLE `socials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -204,8 +229,34 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (13,'bentf24@gmail.com','Benedict ','Barcebal ','9324823424','3232 Guadalupe Nuevo Makit City','profile_upload/profile-34210868.jpeg','$2y$10$.mEzD/xaPo.Hr2b7B55XQ.U3uVJNJ9jVmw0CAllhDAaokJFH9lD/q',855027,1,'2023-05-09 03:25:20');
+INSERT INTO `users` VALUES (13,'bentf24@gmail.com','Benedict ','Barcebal ','9324823424','3232 Guadalupe Nuevo Makit City','profile_upload/profile-34210868.jpeg','$2y$10$JkiI9YkWLts0gJkhJu69ZuZE80XarrvxMgSPwinJJRv2Q7Kq6F0IW',855027,1,'2023-05-09 03:25:20');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_socials`
+--
+
+DROP TABLE IF EXISTS `users_socials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users_socials` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(225) DEFAULT NULL,
+  `social_name` varchar(225) DEFAULT NULL,
+  `social_link` varchar(225) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users_socials`
+--
+
+LOCK TABLES `users_socials` WRITE;
+/*!40000 ALTER TABLE `users_socials` DISABLE KEYS */;
+INSERT INTO `users_socials` VALUES (8,'13','facebook','https://www.facebook.com/HeadTurnerMCgears');
+/*!40000 ALTER TABLE `users_socials` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -217,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-26 17:34:20
+-- Dump completed on 2023-06-03 17:18:34

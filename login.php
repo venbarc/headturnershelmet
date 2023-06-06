@@ -52,11 +52,7 @@
             <div class="container mx-auto">
                 <div class="flex justify-center px-6 my-12">
                     <!-- Row -->
-                    <div class="w-full xl:w-3/4 lg:w-11/12 flex">
-                        <!-- Col -->
-                        <div class="w-full h-auto bg-gray-100 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
-                            style="background-image: url('assets/images/logo/Logo.png')"></div>
-                        <!-- Col -->
+                    <div class="w-full xl:w-3/4 lg:w-11/12 flex justify-center">
                         <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
                             <h3 class="pt-4 text-2xl font-bold text-center">Log In Here!</h3>
                             <!-- if login is submitted  -->

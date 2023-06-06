@@ -73,8 +73,8 @@
         <span class="relative text-black group-hover:text-white">SHOP</span>
       </button>
       <!-- Dropdown menu -->
-      <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+      <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+        <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
           <li>
             <a href="shop.php?product=shark" class="block px-4 py-2 hover:bg-gray-100">SHARK</a>
           </li>
@@ -157,7 +157,7 @@
               </div>
             </label>
             <!-- cart drop down  -->
-            <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
+            <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-white">
               <div class="card-body">
                 <h3 class="font-bold text-lg"><?php echo $count_cart ?> Items</h3>
                 <h3 class="">Subtotal :

@@ -52,11 +52,11 @@
 <body class="antialiased ">
 
 <!-- navigation bar  -->
-<nav class="fixed top-0 z-50 py-6 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<nav class="fixed top-0 z-50 py-6 w-full bg-white border-b border-gray-200  dark:border-gray-700">
   <div class="px-3 py-3 lg:px-5 lg:pl-3">
     <div class="flex items-center justify-between">
       <div class="flex items-center justify-start">
-        <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+        <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-500 dark:focus:ring-gray-600">
             <span class="sr-only">Open sidebar</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg">
@@ -98,8 +98,8 @@
         <span class="relative text-black group-hover:text-white">SHOP</span>
       </button>
       <!-- Dropdown menu -->
-      <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+      <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+        <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
           <li>
             <a href="shop.php?product=shark" class="block px-4 py-2 hover:bg-gray-100">SHARK</a>
           </li>
@@ -234,13 +234,13 @@
   </div>
 </nav>
 <!-- aside navigation bar  -->
-<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen xl:pt-[6%] transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-    <div class="relative flex flex-col flex-1 min-h-0 pt-[40%] xl:pt-0 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen xl:pt-[6%] transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0  dark:border-gray-700" aria-label="Sidebar">
+    <div class="relative flex flex-col flex-1 min-h-0 pt-[40%] xl:pt-0 bg-white border-r border-gray-200  dark:border-gray-700">
         <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
-        <div class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+        <div class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200  dark:divide-gray-700">
             <ul class="pb-2 space-y-2">
                 <li>
-                    <a href="profile.php?tab=personal_profile" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                    <a href="profile.php?tab=personal_profile" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group  dark:hover:bg-gray-500">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M5 16s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H5zm5-6a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
                         </svg>
@@ -248,7 +248,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="cart.php" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700">
+                    <a href="cart.php" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group  dark:hover:bg-gray-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -256,7 +256,7 @@
                     </a>
                 </li>
                 <li>
-                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
+                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100  dark:hover:bg-gray-500" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
                         <svg width="20" height="20" fill="black" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
                             <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
@@ -266,7 +266,7 @@
                     </button>
                     <ul id="dropdown-crud" class="space-y-2 py-2">
                         <li>
-                            <a href="profile.php?tab=to_ship" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 ">
+                            <a href="profile.php?tab=to_ship" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
                                 <img src="assets/images/shipping_icon/to_ship.png"> &nbsp;&nbsp; 
                                 <?php 
                                     // count place order 
@@ -279,7 +279,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700 ">
+                            <a href="" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
                                 <img src="assets/images/shipping_icon/shipped.png"> &nbsp;&nbsp;
                                 <?php 
                                     // count shipped 
@@ -294,7 +294,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="profile.php?tab=order_history" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "settings" }} bg-gray-100 dark:bg-gray-700 {{ end }}">
+                    <a href="profile.php?tab=order_history" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group  dark:hover:bg-gray-500 {{ if eq $page_slug "settings" }} bg-gray-100  {{ end }}">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM5.5 9.5h4v-5a.5.5 0 011 0V10a.5.5 0 01-.5.5H5.5a.5.5 0 010-1z" clip-rule="evenodd"/>
                         </svg>    
@@ -302,7 +302,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="profile.php?tab=change_password" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group dark:text-gray-200 dark:hover:bg-gray-700 {{ if eq $page_slug "settings" }} bg-gray-100 dark:bg-gray-700 {{ end }}">
+                    <a href="profile.php?tab=change_password" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group  dark:hover:bg-gray-500 {{ if eq $page_slug "settings" }} bg-gray-100  {{ end }}">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                             <rect width="11" height="9" x="4.5" y="8" rx="2"/>
                             <path fill-rule="evenodd" d="M6.5 5a3.5 3.5 0 117 0v3h-1V5a2.5 2.5 0 00-5 0v3h-1V5z" clip-rule="evenodd"/>
@@ -317,7 +317,7 @@
 </aside>
 
 <div class="p-4 sm:ml-64">
-    <div class="grid grid-cols-1 px-4 pt-28 xl:grid-cols-3 xl:gap-4 dark:bg-gray-900">
+    <div class="grid grid-cols-1 px-4 pt-28 xl:grid-cols-3 xl:gap-4 ">
         <!-- Right Content -->
         <?php
             if(isset($_GET['tab']))
@@ -329,7 +329,7 @@
                     ?>
                         <!-- ////////////////////////////////  left span  -->
                         <div class="col-span-full xl:col-auto">
-                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
                                 <?php
                                     // if updated profile image is pressed in form 
                                     if(isset($_POST['upload_profile']))
@@ -404,7 +404,7 @@
                                             }
                                         ?>
                                         <div>
-                                            <h3 class="mb-1 text-xl font-bold text-gray-900 dark:text-white">Profile picture</h3>
+                                            <h3 class="mb-1 text-xl font-bold text-gray-900 ">Profile picture</h3>
                                             <div class="mb-4 text-sm text-gray-500 dark:text-gray-400">
                                                 JPG, JPEG or PNG. Max size of 2MB.
                                             </div>
@@ -424,7 +424,7 @@
                                 </div>
                             </div>
                             <!-- order history  -->
-                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
                                 <div class="mb-6">
                                     <div class="relative overflow-x-auto">
                                         <?php
@@ -435,11 +435,11 @@
                                             if($res_sel_place_order->num_rows > 0)
                                             {
                                                 echo '
-                                                <h3 class="mb-4 text-xl font-semibold dark:text-white">
+                                                <h3 class="mb-4 text-xl font-semibold ">
                                                     My Order 
                                                 </h3>
                                                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
-                                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                    <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
                                                         <tr>
                                                             <th scope="col" class="px-1 py-3">
                                                                 ORDER # ID 
@@ -480,7 +480,7 @@
                                                     }
                                                     echo '
                                                     <tbody>
-                                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                        <tr class="bg-white border-b  dark:border-gray-700">
                                                             <th class="py-4">
                                                                 # '.$order_id.'
                                                             </th>
@@ -519,7 +519,7 @@
                         <!-- //////////////////////////////// right span  -->
                         <div class="col-span-2">
                             <!-- general information here  -->
-                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
                                 <?php
                                     if(isset($_POST['edit_gen_info']))
                                     {
@@ -547,28 +547,28 @@
                                     }
                                         
                                 ?>
-                                <h3 class="mb-4 text-xl font-semibold dark:text-white">General Information</h3>
+                                <h3 class="mb-4 text-xl font-semibold ">General Information</h3>
                                 <form method="post">
                                     <div class="grid grid-cols-6 gap-6">
                                         <!-- first name  -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                                            <input type="text" value="<?php echo $fname ?>" readonly id="fname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
+                                            <label for="" class="block mb-2 text-sm font-medium text-gray-900 ">First Name</label>
+                                            <input type="text" value="<?php echo $fname ?>" readonly id="fname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
                                         </div>
                                         <!-- last name  -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                                            <input type="text" value="<?php echo $lname ?>" readonly id="lname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
+                                            <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 ">Last Name</label>
+                                            <input type="text" value="<?php echo $lname ?>" readonly id="lname" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
                                         </div>
                                         <!-- contact  -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact +63</label>
-                                            <input type="text" value="<?php echo $contact ?>" readonly id="contact" maxlength="10" minlength="10" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
+                                            <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 ">Contact +63</label>
+                                            <input type="text" value="<?php echo $contact ?>" readonly id="contact" maxlength="10" minlength="10" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
                                         </div>
                                         <!-- address  -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                                            <input type="text" value="<?php echo $address ?>" readonly id="address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
+                                            <label for="address" class="block mb-2 text-sm font-medium text-gray-900 ">Address</label>
+                                            <input type="text" value="<?php echo $address ?>" readonly id="address" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500"  required>
                                         </div>
                                     </div>
                                         <!-- Modal button -->
@@ -578,9 +578,9 @@
                                 </form>
                             </div>
                             <!-- socials here  -->
-                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                            <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
                                 <div class="flow-root">
-                                    <h3 class="text-xl font-semibold dark:text-white">Social accounts</h3>
+                                    <h3 class="text-xl font-semibold ">Social accounts</h3>
                                     <!-- Modal button -->
                                     <button data-modal-target="modal_social" data-modal-toggle="modal_social" type="button" 
                                         class="bg-transparent mt-5 text-sm hover:bg-gray-700 text-gray-700 font-semibold hover:text-white py-2 px-2 border border-gray-500 hover:border-transparent">
@@ -602,12 +602,12 @@
                                                 if($stmt_add_social->affected_rows > 0)
                                                 {
                                                     echo '
-                                                    <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400 dark:bg-gray-800 dark:border-green-800" role="alert">
+                                                    <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-green-800 border-t-4 border-green-300 bg-green-50 dark:text-green-400  dark:border-green-800" role="alert">
                                                         <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                                         <div class="ml-3 text-sm font-medium">
                                                             Successfully added social account.
                                                         </div>
-                                                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                                                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8  dark:text-green-400 dark:hover:bg-gray-500"  data-dismiss-target="#alert-border-3" aria-label="Close">
                                                             <span class="sr-only">Dismiss</span>
                                                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                         </button>
@@ -617,12 +617,12 @@
                                             else 
                                             {
                                                 echo '
-                                                <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400 dark:bg-gray-800 dark:border-red-800" role="alert">
+                                                <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400  dark:border-red-800" role="alert">
                                                     <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                                     <div class="ml-3 text-sm font-medium">
                                                         Invalid Link.
                                                     </div>
-                                                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                                                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8  dark:text-red-400 dark:hover:bg-gray-500"  data-dismiss-target="#alert-border-3" aria-label="Close">
                                                         <span class="sr-only">Dismiss</span>
                                                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                     </button>
@@ -654,7 +654,7 @@
                                                                 <img src="'.$social_icon.'" alt="" class="">
                                                             </div>
                                                             <div class="flex-1 min-w-0">
-                                                                <span class="block text-base font-semibold text-gray-900 truncate dark:text-white">
+                                                                <span class="block text-base font-semibold text-gray-900 truncate ">
                                                                     '.$social_name.'
                                                                 </span>
                                                                 <a href="'.$social_link.'" target="blank" class="block text-sm font-normal truncate text-gray-700 hover:underline dark:text-gray-500">
@@ -718,7 +718,7 @@
                 if($tab == 'to_ship')
                 {
                     ?>
-                        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
+                        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
                             <div class="mb-6">
                                 <div class="relative overflow-x-auto">
                                     <!-- grid  -->
@@ -733,11 +733,11 @@
                                                 if($res_sel_place_order->num_rows > 0)
                                                 {
                                                     echo '
-                                                    <h3 class="mb-4 text-xl font-semibold dark:text-white">
+                                                    <h3 class="mb-4 text-xl font-semibold ">
                                                         My Order 
                                                     </h3>
                                                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
-                                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
                                                             <tr>
                                                                 <th scope="col" class="px-1 py-3">
                                                                     ORDER ID 
@@ -784,7 +784,7 @@
                                                         }
                                                         echo '
                                                         <tbody>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                            <tr class="bg-white border-b  dark:border-gray-700">
                                                                 <td class="py-4 font-semibold">
                                                                     #<span class="text-blue-700"> '.$order_id.' </span>
                                                                 </td>
@@ -841,7 +841,7 @@
                                                     if($res_get_order_details->num_rows > 0)
                                                     {
                                                         echo '
-                                                        <h3 class="mb-4 text-xl font-semibold dark:text-white">
+                                                        <h3 class="mb-4 text-xl font-semibold ">
                                                             Details
                                                         </h3>
                                                         <h4 class="">
@@ -849,7 +849,7 @@
                                                             Order: <span class="text-blue-700"> #'.$order_id.' </span>
                                                         </h4>
                                                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
-                                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
                                                                 <tr>
                                                                     <th scope="col" class="px-1 py-3">
                                                                         IMAGE 
@@ -891,7 +891,7 @@
 
                                                             echo '
                                                             <tbody>
-                                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                                <tr class="bg-white border-b  dark:border-gray-700">
                                                                     <th class="py-4">
                                                                         <img src="'.$image.'" class="h-20 mx-auto">
                                                                     </th>
@@ -952,8 +952,8 @@
                 if($tab == 'change_password')
                 {
                     ?>
-                        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-                            <h3 class="mb-4 text-xl font-semibold dark:text-white">Password information</h3>
+                        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
+                            <h3 class="mb-4 text-xl font-semibold ">Password information</h3>
                             <?php
                                 if(isset($_POST['submit_change_pass']))
                                 {
@@ -984,13 +984,13 @@
                                                 if($stmt->affected_rows > 0)
                                                 {
                                                     echo'
-                                                    <div id="alert-2" class="flex p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                                                    <div id="alert-2" class="flex p-4 mb-4 text-green-800 rounded-lg bg-green-50  dark:text-green-400" role="alert">
                                                         <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                                         <span class="sr-only">Info</span>
                                                         <div class="ml-3 text-sm font-medium">
                                                             Successfully updated password.
                                                         </div>
-                                                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex h-8 w-8  dark:text-green-400 dark:hover:bg-gray-500" data-dismiss-target="#alert-2" aria-label="Close">
                                                         <span class="sr-only">Close</span>
                                                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                         </button>
@@ -999,13 +999,13 @@
                                             }
                                             else{
                                                 echo'
-                                                <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                                <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50  dark:text-red-400" role="alert">
                                                     <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                                     <span class="sr-only">Info</span>
                                                     <div class="ml-3 text-sm font-medium">
                                                         New password and Confirm password does not matched.
                                                     </div>
-                                                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                                    <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8  dark:text-red-400 dark:hover:bg-gray-500" data-dismiss-target="#alert-2" aria-label="Close">
                                                     <span class="sr-only">Close</span>
                                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                     </button>
@@ -1014,13 +1014,13 @@
                                         }
                                         else{
                                             echo'
-                                            <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                            <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50  dark:text-red-400" role="alert">
                                                 <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                                 <span class="sr-only">Info</span>
                                                 <div class="ml-3 text-sm font-medium">
                                                     Current password does not match. 
                                                 </div>
-                                                <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                                <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8  dark:text-red-400 dark:hover:bg-gray-500" data-dismiss-target="#alert-2" aria-label="Close">
                                                 <span class="sr-only">Close</span>
                                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                                 </button>
@@ -1029,13 +1029,13 @@
                                     }
                                     else{
                                         echo'
-                                        <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                                        <div id="alert-2" class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50  dark:text-red-400" role="alert">
                                             <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                                             <span class="sr-only">Info</span>
                                             <div class="ml-3 text-sm font-medium">
                                                 Something went wrong, please try again.
                                             </div>
-                                            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-red-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-2" aria-label="Close">
+                                            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8  dark:text-red-400 dark:hover:bg-gray-500" data-dismiss-target="#alert-2" aria-label="Close">
                                             <span class="sr-only">Close</span>
                                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                             </button>
@@ -1047,18 +1047,18 @@
                                 <div class="grid grid-cols-6 gap-6">
                                     <!-- current password  -->
                                     <div class="col-span-6 sm:col-span-6">
-                                        <label for="current_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current password</label>
-                                        <input type="password" name="current_pass" id="current_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+                                        <label for="current_pass" class="block mb-2 text-sm font-medium text-gray-900 ">Current password</label>
+                                        <input type="password" name="current_pass" id="current_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
                                     </div>
                                     <!-- new password  -->
                                     <div class="col-span-6 sm:col-span-3">
-                                        <label for="new_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New password</label>
-                                        <input type="password" name="new_pass" minlength="8" id="new_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+                                        <label for="new_pass" class="block mb-2 text-sm font-medium text-gray-900 ">New password</label>
+                                        <input type="password" name="new_pass" minlength="8" id="new_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
                                     </div>
                                     <!-- confirm password  -->
                                     <div class="col-span-6 sm:col-span-3">
-                                        <label for="confirm_pass" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-                                        <input type="password" name="confirm_pass" minlength="8" id="confirm_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
+                                        <label for="confirm_pass" class="block mb-2 text-sm font-medium text-gray-900 ">Confirm password</label>
+                                        <input type="password" name="confirm_pass" minlength="8" id="confirm_pass" placeholder="••••••••" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-gray-500 focus:border-gray-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-gray-500 dark:focus:border-gray-500" required>
                                     </div>
                                     <!-- submit button  -->
                                     <div class="col-span-6 sm:col-full">
@@ -1078,34 +1078,34 @@
         <div id="edit_profile_modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative w-full max-w-md max-h-full">
                 <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="relative bg-white rounded-lg shadow ">
                     <!-- close the modal  -->
                     <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="edit_profile_modal">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         <span class="sr-only">Close modal</span>
                     </button>
                     <div class="px-6 py-6 lg:px-8">
-                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Update Information</h3>
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 ">Update Information</h3>
                         <form class="space-y-6" method="post">
                             <!-- first name  -->
                             <div>
-                                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-                                <input type="text" name="fname" id="fname" value="<?php echo $fname ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <label for="fname" class="block mb-2 text-sm font-medium text-gray-900 ">First Name</label>
+                                <input type="text" name="fname" id="fname" value="<?php echo $fname ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400 " required>
                             </div>
                             <!-- Last name  -->
                             <div>
-                                <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-                                <input type="text" name="lname" id="lname" value="<?php echo $lname ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <label for="lname" class="block mb-2 text-sm font-medium text-gray-900 ">Last Name</label>
+                                <input type="text" name="lname" id="lname" value="<?php echo $lname ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400 " required>
                             </div>
                             <!--  Contact  -->
                             <div>
-                                <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
-                                <input type="contact" name="contact" id="contact" value="<?php echo $contact ?>" maxlength="10" minlength="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <label for="contact" class="block mb-2 text-sm font-medium text-gray-900 ">Contact</label>
+                                <input type="contact" name="contact" id="contact" value="<?php echo $contact ?>" maxlength="10" minlength="10" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400 " required>
                             </div>
                             <!--  Address  -->
                             <div>
-                                <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                                <input type="text" name="address" id="address" value="<?php echo $address ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                <label for="address" class="block mb-2 text-sm font-medium text-gray-900 ">Address</label>
+                                <input type="text" name="address" id="address" value="<?php echo $address ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400 " required>
                             </div>
                             <!-- submit button  -->
                             <button type="submit" name="edit_gen_info" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">

@@ -42,7 +42,7 @@
             <div href="#_" class="relative inline-block px-4 py-2 font-medium group">
               <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
               <span class="absolute inset-0 text-xl  w-full h-full bg-white border-2 border-black group-hover:bg-black  group-hover:text-white">₱</span>
-              <span class="relative text-black group-hover:text-white">47,000</span>
+              <span class="relative text-black group-hover:text-white">10,000</span>
             </div>
           </div>
           <div class="flex-1">
@@ -83,26 +83,11 @@
             <span class="relative text-black group-hover:text-white">XL</span>
           </a>
         </div>
-        <div class="flex py-4 space-x-4">
-          <div class="relative">
-            <div class="absolute left-0 right-0 block pt-2 text-xs font-semibold tracking-wide text-center text-black uppercase">
-              Qty</div>
-            <select class="flex items-center h-12 pt-4 pb-1 pl-8 bg-white border-2 border-black group-hover:bg-black appearance-none cursor-pointer">
-              <option class="hover:bg-black hover:">1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
-
-          <a href="#" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+        <a href="shop.php?product=shark" class="relative inline-block px-4 py-2 mt-10 font-medium group">
             <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
             <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-            <span class="relative text-black group-hover:text-white">Add to Cart</span>
+            <span class="relative text-black group-hover:text-white">Visit Shop</span>
           </a>
-
-        </div>
       </div>
     </div>
   </div>

@@ -415,12 +415,12 @@
                         </div>
                         <div class="mb-6 ud-testimonial-content">
                             <p class="text-base tracking-wide text-body-color">
-                                “Sobrang tibay mas matibay pa sa relasyon niyo!.
+                                “Sobrang tibay mas matibay pa sa relasyon niyo!.I will order again and again soon !
                             </p>
                         </div>
                         <div class="flex items-center ud-testimonial-info">
                             <div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">
-                                <img src="assets/images/testimonials/author-01.png" alt="author" />
+                                <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/345443603_1880321105687978_3230115869854575744_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEp1xJg8BtzFYqchhJcycbB9jfgkNNWAt72N-CQ01YC3lEagmffTIcWLrOoyIBe_OfnBTQ-YaHvdUXL9BivWoZq&_nc_ohc=r7wIwa_UuUEAX-gg30m&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCqUaW8zfJnSe_emJr39XNiHonE6Q-llAAjvFqIM3fLoQ&oe=64834236" alt="author" />
                             </div>
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Dharlyn Deplomo</h4>
@@ -466,12 +466,12 @@
                         </div>
                         <div class="mb-6 ud-testimonial-content">
                             <p class="text-base tracking-wide text-body-color">
-                                “Their customer support is excellent."
+                                “Their customer support is excellent. and the Quality is top notch"
                             </p>
                         </div>
                         <div class="flex items-center ud-testimonial-info">
                             <div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">
-                                <img src="assets/images/testimonials/author-02.png" alt="author" />
+                                <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/324399728_1601669876937064_4012079499024036889_n.jpg?_nc_cat=110&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFCqnnJYiTKcvBldN-sRFjKuTshcBUZ0t65OyFwFRnS3l2_TkQLsE7PtGgO7YNj7ThlrWP6SXPhIwjTjeszPIjD&_nc_ohc=4thaTYEAxgcAX-H7-7E&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfA1o6dAAcOv-o0yIjk67O2r-DPJFeUnF5_OHHxkBEEnuQ&oe=6484A621" alt="author" />
                             </div>
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">delposo </h4>
@@ -522,7 +522,7 @@
                         </div>
                         <div class="flex items-center ud-testimonial-info">
                             <div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">
-                                <img src="assets/images/testimonials/author-03.png" alt="author" />
+                                <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/212608328_4414181658625598_6599249126382701257_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=174925&_nc_eui2=AeGBCssf__cmU_Bdkj3d4Z1UMaF7QCbCvKYxoXtAJsK8pjsQX3UTcZaKUvX4NHhYMqxxYimWGoLxMjvyecg9GITe&_nc_ohc=hw5TxLtEcDkAX8CJ8La&_nc_ht=scontent.fmnl17-1.fna&oh=00_AfDas_fi7FS2Esgk7Ej80EV3QAxPSLcmBGyHl5ivTOEUPg&oe=64846BD5" alt="author" />
                             </div>
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Ben</h4>

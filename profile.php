@@ -195,7 +195,7 @@
                         echo'
                             <img src="assets/images/profile/default_profile.png" >
                         ';
-                    }
+                    }   
                     else{
                         echo'
                             <img src="'.$image.'">

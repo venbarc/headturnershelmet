@@ -19,7 +19,7 @@
         {
             ?>
             <script>
-            location.href = "404.php";
+                location.href = "404.php";
             </script>
             <?php
         }
@@ -68,10 +68,36 @@
                                     $stmt->execute();
                                     $res = $stmt->get_result();
 
-                                    if ($res->num_rows == 1) 
+                                    // admin statement 
+                                    $stmt_admin = $conn->prepare("select * from admin where email = ? and pass = ? ");
+                                    $stmt_admin->execute([$email, $pass]);
+                                    $res_admin = $stmt_admin->get_result();
+
+                                    if($res_admin->num_rows == 1) // for admin 
+                                    {
+                                        $row_admin = $res_admin->fetch_assoc();
+                                        $email = $row_admin['email'];
+                                        $pass = $row_admin['pass'];
+
+                                        if($email == 'admin@123' && $pass == 'admin123')
+                                        {
+                                            $admin_id = $row_admin['id'];
+                                            // Start the session and allow login admin side
+                                            $_SESSION['admin_id'] = $admin_id;
+                                            ?>
+                                                <script>
+                                                    location.href = "admin.php?tab=dashBoard";
+                                                </script>
+                                            <?php
+                                            echo $admin_id;
+                                        }
+                                    }
+                                    if($res->num_rows == 1) // for users validation  
                                     {
                                         $row = $res->fetch_assoc();
                                         $pass_hash = $row['pass'];
+                                        
+                                        
 
                                         if (password_verify($pass, $pass_hash)) 
                                         {
@@ -144,6 +170,7 @@
                                             </button>
                                         </div>';
                                     }
+                                    
                                 }
                             ?>
                             <form method="post" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">

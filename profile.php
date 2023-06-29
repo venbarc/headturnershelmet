@@ -760,7 +760,7 @@
                                                             </tr>
                                                         </thead>
                                                     ';
-                                                    while($row = $res_count_place_order->fetch_assoc())
+                                                    while($row = $res_sel_place_order->fetch_assoc())
                                                     {
                                                         $order_id = $row['order_id'];
                                                         $qnty = $row['qnty'];
@@ -927,7 +927,6 @@
                                                         ';
                                                     }
                                                 }
-                                        
                                             ?>
                                         </div>
                                     </div>

@@ -3,7 +3,7 @@
     session_destroy();
     ?>
     <script>
-        location.href = "login.php";
+        location.href = "../login.php";
     </script>
     <?php
 ?>

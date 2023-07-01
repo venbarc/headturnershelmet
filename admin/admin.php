@@ -1044,11 +1044,11 @@ if(isset($_GET['tab']))
 
                           if(empty($image))
                           {
-                            $image_show = '<img src="assets/images/profile/default_profile.png" class="w-10 h-10 rounded-full">';
+                            $image_show = '<img src="../assets/images/profile/default_profile.png" class="w-10 h-10 rounded-full">';
 
                           }
                           else{
-                            $image_show = '<img src="'.$image.'" class="w-10 h-10 rounded-full">';
+                            $image_show = '<img src="../'.$image.'" class="w-10 h-10 rounded-full">';
                           }
 
                           if($verification == 0)
@@ -1103,7 +1103,6 @@ if(isset($_GET['tab']))
                               </tr>                        
                           </tbody>
                           ';
-
                           ?>
                             <!-- Edit User Modal -->
                             <div id="edit-user-modal-<?php echo $email ?>" class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full">
@@ -1351,7 +1350,7 @@ if(isset($_GET['tab']))
                     ';
                 }
                 echo'
-                        <tr class="">
+                        <tr class="bg-white border-b">
                             <td class="py-4 font-bold">
                                 Total Bill :
                                 <span class="text-red-600">
@@ -1375,7 +1374,7 @@ if(isset($_GET['tab']))
         if($res_sel_place_order->num_rows > 0)
         {
           echo '
-          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 text-center">
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 text-center mt-5">
             <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">

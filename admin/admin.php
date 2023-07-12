@@ -652,6 +652,7 @@ if(isset($_GET['tab']))
                             <th scope="col" class="p-4">Medium</th>
                             <th scope="col" class="p-4">Large </th>
                             <th scope="col" class="p-4">Extra Large </th>
+                            <th scope="col" class="p-4">Total </th>
                         </tr>
                       </thead>
                     <?php
@@ -662,11 +663,14 @@ if(isset($_GET['tab']))
                       $brand = $row_product['brand'];
                       $name = $row_product['name'];
                       $price = $row_product['price'];
+
                       $xs_avail = $row_product['xs_avail'];
                       $sm_avail = $row_product['sm_avail'];
                       $md_avail = $row_product['md_avail'];
                       $lg_avail = $row_product['lg_avail'];
                       $xlg_avail = $row_product['xlg_avail'];
+
+                      $total_product = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
 
                       $id = $row_product['id'];
 
@@ -750,6 +754,11 @@ if(isset($_GET['tab']))
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
                                 qnty <span class="text-red-600 text-lg"> ('.$xlg_avail.')</span> 
+                              </div>
+                            </td>
+                            <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
+                              <div class="flex items-center">
+                                 <span class="text-violet-700 text-lg underline"> ' .$total_product.' </span> 
                               </div>
                             </td>
                         </tr>

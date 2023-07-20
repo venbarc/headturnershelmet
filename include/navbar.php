@@ -33,8 +33,6 @@
           </li>
           <li><a href="../index.php#about" class="block px-4 py-2 hover:bg-black hover:text-white">About</a></li>
           <li><a href="#contact" class="block px-4 py-2 hover:bg-black hover:text-white">Contact</a></li>
-          <li><a href="login.php" class="block px-4 py-2 hover:bg-black hover:text-white">Log In</a></li>
-          <li><a href="register.php" class="block px-4 py-2 hover:bg-black hover:text-white">Register</a></li>
         </ul>
       </div>
       <a href="index.php">

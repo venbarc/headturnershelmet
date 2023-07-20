@@ -270,7 +270,7 @@
                                 <img src="assets/images/shipping_icon/to_ship.png"> &nbsp;&nbsp; 
                                 <?php 
                                     // count place order 
-                                    $stmt_count_place_order = $conn->prepare("select * from place_order where user_id = ? and shipped = 0 group by order_id");
+                                    $stmt_count_place_order = $conn->prepare("select count(order_id) from place_order where user_id = ? and shipped = 0 group by order_id");
                                     $stmt_count_place_order->execute([$user_id]);
                                     $res_count_place_order = $stmt_count_place_order->get_result();
                                     $count_place_order = $res_count_place_order->num_rows > 0 ? $res_count_place_order->num_rows : 0;
@@ -279,11 +279,11 @@
                             </a>
                         </li>
                         <li>
-                            <a href="" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
+                            <a href="profile.php?tab=shipped" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
                                 <img src="assets/images/shipping_icon/shipped.png"> &nbsp;&nbsp;
                                 <?php 
                                     // count shipped 
-                                    $stmt_count_shipped = $conn->prepare("select * from place_order where user_id = ? and shipped = 1 group by order_id");
+                                    $stmt_count_shipped = $conn->prepare("select count(order_id) from place_order where user_id = ? and shipped = 1 group by order_id");
                                     $stmt_count_shipped->execute([$user_id]);
                                     $res_count_shipped = $stmt_count_shipped->get_result();
                                     $count_shipped = $res_count_shipped->num_rows > 0 ? $res_count_shipped->num_rows : 0;
@@ -428,7 +428,15 @@
                                 <div class="mb-6">
                                     <div class="relative overflow-x-auto">
                                         <?php
-                                            $stmt_sel_place_order = $conn->prepare("select * from place_order where user_id = ? and shipped = 0 group by order_id");
+                                            $stmt_sel_place_order = $conn->prepare("SELECT COUNT(order_id),
+                                                                                        ANY_VALUE(order_id) AS order_id,
+                                                                                        ANY_VALUE(qnty) AS qnty, 
+                                                                                        ANY_VALUE(total_bill) AS total_bill, 
+                                                                                        ANY_VALUE(pay_method) AS pay_method, 
+                                                                                        ANY_VALUE(order_date) AS order_date, 
+                                                                                        ANY_VALUE(shipped) AS shipped 
+                                                                                            from place_order where user_id = ?
+                                                                                            group by order_id");
                                             $stmt_sel_place_order->execute([$user_id]);
                                             $res_sel_place_order = $stmt_sel_place_order->get_result();
 
@@ -456,13 +464,14 @@
                                                         </tr>
                                                     </thead>
                                                 ';
-                                                while($row = $res_count_place_order->fetch_assoc())
+                                                while($row = $res_sel_place_order->fetch_assoc())
                                                 {
                                                     $order_id = $row['order_id'];
                                                     $qnty = $row['qnty'];
                                                     $total_bill = $row['total_bill'];
                                                     $pay_method = $row['pay_method'];
                                                     $order_date = $row['order_date'];
+                                                    $shipped = $row['shipped'];
 
                                                     $date = new DateTime($order_date);
                                                     $formattedDate = $date->format('F j, Y');
@@ -478,22 +487,34 @@
                                                     {
                                                         $pay_method = '<img src="assets/images/pay_method/maya_logo.png" class="w-20 mx-auto">';
                                                     }
+
+                                                    // shipped 
+                                                    if($shipped == 0)
+                                                    {
+                                                        $shipped = '<span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                                    To ship
+                                                                    </span>';
+                                                    }
+                                                    else{
+                                                        $shipped = '<span class="bg-green-200 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                                    Delivered
+                                                                    </span>';
+                                                    }
+
                                                     echo '
                                                     <tbody>
                                                         <tr class="bg-white border-b  dark:border-gray-700">
                                                             <th class="py-4">
                                                                 # '.$order_id.'
                                                             </th>
-                                                            <td class="py-4">
+                                                            <td class="py-4 text-red-500 font-bold">
                                                                 ₱ '.$total_bill_format.'
                                                             </td>
                                                             <td class="py-4">
                                                                 '.$formattedDate.'
                                                             </td>
                                                             <td class=" py-4">
-                                                                <span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                                    To ship
-                                                                </span>
+                                                                '.$shipped.'
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -726,16 +747,25 @@
                                         <!-- left  -->
                                         <div>
                                             <?php
-                                                $stmt_sel_place_order = $conn->prepare("select * from place_order where user_id = ? and shipped = 0 group by order_id");
+                                                $stmt_sel_place_order = $conn->prepare("SELECT COUNT(order_id), 
+                                                                                               ANY_VALUE(order_id) AS order_id, 
+                                                                                               ANY_VALUE(qnty) AS qnty, 
+                                                                                               ANY_VALUE(total_bill) AS total_bill, 
+                                                                                               ANY_VALUE(pay_method) AS pay_method, 
+                                                                                               ANY_VALUE(order_date) AS order_date 
+                                                                                                    from place_order 
+                                                                                                    where user_id = ? and shipped = 0 
+                                                                                                        GROUP BY order_id 
+                                                                                                        ORDER BY order_date DESC");
                                                 $stmt_sel_place_order->execute([$user_id]);
                                                 $res_sel_place_order = $stmt_sel_place_order->get_result();
 
                                                 if($res_sel_place_order->num_rows > 0)
                                                 {
                                                     echo '
-                                                    <h3 class="mb-4 text-xl font-semibold ">
-                                                        My Order 
-                                                    </h3>
+                                                    <div class="bg-orange-200 text-center text-orange-800 text-lg font-medium m-2 p-3 rounded-full dark:bg-orange-900 dark:text-green-300">
+                                                       Order to ship
+                                                    </div>
                                                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
                                                         <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
                                                             <tr>
@@ -750,9 +780,6 @@
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     ORDER DATE 
-                                                                </th>
-                                                                <th scope="col" class="px-6 py-3">
-                                                                    STATUS 
                                                                 </th>
                                                                 <th scope="col" class="px-6 py-3">
                                                                     DETAILS 
@@ -797,18 +824,15 @@
                                                                 <td class="py-4">
                                                                     '.$formattedDate.'
                                                                 </td>
-                                                                <td class=" py-4">
-                                                                    <span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                                        To ship
-                                                                    </span>
-                                                                </td>
+                                                              
                                                                 <td class="py-1">
-                                                                    <a href="profile.php?tab=to_ship&order_id='.$order_id.'" >
+                                                                    <a href="profile.php?tab='.$tab.'&order_id='.$order_id.'" >
                                                                         <p class="bg-blue-500 text-white p-1">
                                                                             View Details
                                                                         </p>
                                                                     </a>
                                                                 </td>
+                                                               
                                                             </tr>
                                                         </tbody>
                                                         ';
@@ -920,6 +944,247 @@
                                                                         <span class="text-red-600">
                                                                             ₱ '.$total_bill_format.' 
                                                                         </span> 
+                                                                    </td>
+                                                                    <td class="py-4 font-bold bg-red-600 text-white">
+                                                                    <a href="profile.php?tab='.$tab.'">
+                                                                        Close X
+                                                                    </a>
+                                                                </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        ';
+                                                    }
+                                                }
+                                            ?>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                }
+                if($tab == 'shipped')
+                {
+                    ?>
+                        <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6 ">
+                            <div class="mb-6">
+                                <div class="relative overflow-x-auto">
+                                    <!-- grid  -->
+                                    <div class="grid grid-cols-1 gap-3">
+                                        <!-- left  -->
+                                        <div>
+                                            <?php
+                                                $stmt_sel_place_order = $conn->prepare("SELECT COUNT(order_id), 
+                                                                                               ANY_VALUE(order_id) AS order_id, 
+                                                                                               ANY_VALUE(qnty) AS qnty, 
+                                                                                               ANY_VALUE(total_bill) AS total_bill, 
+                                                                                               ANY_VALUE(pay_method) AS pay_method, 
+                                                                                               ANY_VALUE(order_date) AS order_date 
+                                                                                                    from place_order 
+                                                                                                    where user_id = ? and shipped = 1 
+                                                                                                        GROUP BY order_id 
+                                                                                                        ORDER BY order_date DESC");
+                                                $stmt_sel_place_order->execute([$user_id]);
+                                                $res_sel_place_order = $stmt_sel_place_order->get_result();
+
+                                                if($res_sel_place_order->num_rows > 0)
+                                                {
+                                                    echo '
+                                                    <div class="bg-green-200 text-center text-green-800 text-lg font-medium m-2 p-3 rounded-full dark:bg-green-900 dark:text-green-300">
+                                                       Completed Orders
+                                                    </div>
+                                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
+                                                        <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
+                                                            <tr>
+                                                                <th scope="col" class="px-1 py-3">
+                                                                    ORDER ID 
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    TOTAL BILL
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    PAYMENT METHOD
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    ORDER DATE 
+                                                                </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    DETAILS 
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                    ';
+                                                    while($row = $res_sel_place_order->fetch_assoc())
+                                                    {
+                                                        $order_id = $row['order_id'];
+                                                        $qnty = $row['qnty'];
+                                                        $total_bill = $row['total_bill'];
+                                                        $pay_method = $row['pay_method'];
+                                                        $order_date = $row['order_date'];
+
+                                                        $date = new DateTime($order_date);
+                                                        $formattedDate = $date->format('F j, Y');
+
+                                                        // format bill 
+                                                        $total_bill_format = number_format($total_bill, 2, '.', ',');
+                                                        // pay method 
+                                                        if($pay_method == 'gcash')
+                                                        {
+                                                            $pay_method = '<h3 class="font-semibold text-blue-600"> Gcash </h3>';
+                                                        }
+                                                        else if($pay_method == 'maya')
+                                                        {
+                                                            $pay_method = '<h3 class="font-semibold text-green-600"> Pay Maya </h3>';
+                                                        }
+                                                        echo '
+                                                        <tbody>
+                                                            <tr class="bg-white border-b  dark:border-gray-700">
+                                                                <td class="py-4 font-semibold">
+                                                                    #<span class="text-blue-700"> '.$order_id.' </span>
+                                                                </td>
+                                                                <td class="py-4">
+                                                                    ₱ '.$total_bill_format.'
+                                                                </td>
+                                                                <td class="py-4">
+                                                                    '.$pay_method.'
+                                                                </td>
+                                                                <td class="py-4">
+                                                                    '.$formattedDate.'
+                                                                </td>
+                                                              
+                                                                <td class="py-1">
+                                                                    <a href="profile.php?tab='.$tab.'&order_id='.$order_id.'" >
+                                                                        <p class="bg-blue-500 text-white p-1">
+                                                                            View Details
+                                                                        </p>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        ';
+                                                    }
+                                                    echo'
+                                                    </table>
+                                                    ';
+                                                }
+                                                else{
+                                                    ?>
+                                                    <h4 class="text-white p-10 bg-gray-500 text-center font-semibold text-xl">
+                                                        There are no pending deliveries.
+                                                    </h4>
+                                                    <?php
+                                                }
+                                            ?>
+                                        </div>
+                                        <!-- view details  -->
+                                        <div>
+                                            <?php
+                                                if(isset($_GET['order_id']))
+                                                {
+                                                    $order_id = $_GET['order_id'];
+
+                                                    $stmt_get_order_details = $conn->prepare("SELECT po.*,p.* 
+                                                                                                from place_order po join products p on po.product_id = p.product_id
+                                                                                                where po.user_id = ? and po.order_id = ?");
+                                                    $stmt_get_order_details->execute([$user_id, $order_id]);
+                                                    $res_get_order_details = $stmt_get_order_details->get_result();
+
+                                                    if($res_get_order_details->num_rows > 0)
+                                                    {
+                                                        echo '
+                                                        <h3 class="mb-4 text-xl font-semibold ">
+                                                            Details
+                                                        </h3>
+                                                        <h4 class="">
+                                                            Shipping fee: <span class="text-red-600">+₱38.00</span><br>
+                                                            Order: <span class="text-blue-700"> #'.$order_id.' </span>
+                                                        </h4>
+                                                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
+                                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
+                                                                <tr>
+                                                                    <th scope="col" class="px-1 py-3">
+                                                                        IMAGE 
+                                                                    </th>
+                                                                    <th scope="col" class="px-1 py-3">
+                                                                        PRODUCT ID 
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        QUANTITY
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        SIZE
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        PRICE
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        TOTAL PRICE
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                        ';
+                                                        while($row2 = $res_get_order_details->fetch_assoc())
+                                                        {
+                                                            $image = $row2['image'];
+                                                            $product_id = $row2['product_id'];
+                                                            $qnty = $row2['qnty'];
+                                                            $size = $row2['size'];
+                                                            $price = $row2['price'];
+                                                            $pay_method = $row2['pay_method'];
+                                                            $total_bill = $row2['total_bill'];
+
+                                                            // total price 
+                                                            $ttl_price = ($price * $qnty);
+                                                            // formats 
+                                                            $price_format = number_format($price, 2, '.', ',');
+                                                            $ttl_price_format = number_format($ttl_price, 2, '.', ',');
+                                                            $total_bill_format = number_format($total_bill, 2, '.', ',');
+
+                                                            echo '
+                                                            <tbody>
+                                                                <tr class="bg-white border-b  dark:border-gray-700">
+                                                                    <th class="py-4">
+                                                                        <img src="'.$image.'" class="h-20 mx-auto">
+                                                                    </th>
+                                                                    <td class="py-4 font-semibold">
+                                                                        '.$product_id.'
+                                                                    </td>
+                                                                    <td class="py-4 font-semibold">
+                                                                        '.$qnty.' item/s
+                                                                    </td>
+                                                                    <td class="py-4 font-semibold">
+                                                                        '.$size.'
+                                                                    </td>
+                                                                    <td class="py-4 font-semibold">
+                                                                        ₱ '.$price_format.' 
+                                                                    </td>
+                                                                    <td class="py-4 font-bold text-red-600">
+                                                                        ₱ '.$ttl_price_format.' 
+                                                                    </td>
+                                                                </tr>
+                                                            ';
+                                                        }
+                                                        echo'
+                                                                <tr class="">
+                                                                    <td class="py-4 font-bold">
+                                                                        Total Bill :
+                                                                        <span class="text-red-600">
+                                                                            ₱ '.$total_bill_format.' 
+                                                                        </span> 
+                                                                    </td>
+                                                                    <td class="py-4 font-bold bg-green-600 text-white">
+                                                                        <a href="review.php?order_id='.$order_id.'&user_id='.$user_id.'" class="">
+                                                                            Write a Review
+                                                                        </a>
+                                                                    </td>
+                                                                    <td class="py-4 font-bold bg-red-600 text-white">
+                                                                        <a href="profile.php?tab='.$tab.'">
+                                                                            Close X
+                                                                        </a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
@@ -1123,6 +1388,7 @@
         include 'include/footer.php';
         include 'include/footer_link.php';
         include 'include/logout_modal.php';
+        include "include/messenger.php";
     ?>
 
   </div>

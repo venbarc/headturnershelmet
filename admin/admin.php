@@ -107,11 +107,11 @@ else
             </a>
          </li>
          <li>
-            <a href="admin.php?tab=transactions" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-500">
+            <a href="admin.php?tab=orders" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-500">
               <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M3.5 5a.5.5 0 00-.5.5v2h5a.5.5 0 01.5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 01.5-.5h5v-2a.5.5 0 00-.5-.5h-13zM17 8.5h-4.551a2.678 2.678 0 01-.443 1.042c-.393.546-1.043.958-2.006.958-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 017.551 8.5H3v6a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-6zm-15-3A1.5 1.5 0 013.5 4h13A1.5 1.5 0 0118 5.5v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 012 14.5v-9z" clip-rule="evenodd"/>
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Transactions</span>
+              <span class="flex-1 ml-3 whitespace-nowrap">Orders</span>
             </a>
          </li>
       </ul>
@@ -198,11 +198,16 @@ if(isset($_GET['tab']))
                   <div class="flex items-center min-w-0 w-full">
                     <?php
                       $stmt_top_product = $conn->prepare(
-                        "SELECT p.*, SUM(po.qnty) as total_qnty, SUM(po.total_bill) as total_bill 
-                        FROM place_order po
-                        JOIN products p ON p.product_id = po.product_id
-                        GROUP BY p.product_id
-                        ORDER BY total_qnty DESC"
+                        "SELECT COUNT(p.product_id), 
+                            ANY_VALUE(p.product_id) AS product_id, 
+                            ANY_VALUE(p.image) AS image, 
+                            ANY_VALUE(p.name) AS name, 
+                            ANY_VALUE(po.qnty) AS qnty, 
+                                SUM(po.qnty) AS total_qnty, SUM(po.total_bill) AS total_bill 
+                                    FROM place_order po
+                                    JOIN products p ON p.product_id = po.product_id
+                                      GROUP BY p.product_id
+                                      ORDER BY total_bill DESC"
                       );
                     
                       $stmt_top_product->execute();
@@ -274,8 +279,12 @@ if(isset($_GET['tab']))
                   <div class="flex items-center min-w-0 w-full">
                     <?php
                       $stmt_top_customer = $conn->prepare(
-                        "SELECT u.*,po.*, SUM(po.qnty) as total_qnty, SUM(po.total_bill) as total_bill
-                         from users u join place_order po on u.id = po.user_id GROUP BY po.user_id ORDER BY total_bill DESC"
+                        "SELECT u.*,COUNT(po.user_id),
+                            ANY_VALUE (po.user_id) as user_id,
+                            SUM(po.qnty) as qnty, SUM(po.total_bill) as total_bill
+                                from users u join place_order po on u.id = po.user_id 
+                                    GROUP BY po.user_id 
+                                    ORDER BY total_bill DESC"
                       );
                     
                       $stmt_top_customer->execute();
@@ -307,7 +316,7 @@ if(isset($_GET['tab']))
                           $fname = $row_top_customer['fname'];
                           $lname = $row_top_customer['lname'];
                           $contact = $row_top_customer['contact'];
-                          $total_qnty = $row_top_customer['total_qnty'];
+                          $total_qnty = $row_top_customer['qnty'];
                           $total_bill = $row_top_customer['total_bill'];
                           $total_bill_format = number_format($total_bill, 2, '.', ',');
 
@@ -372,7 +381,15 @@ if(isset($_GET['tab']))
               <div class="inline-block min-w-full align-middle">
                 <div class="overflow-hidden shadow sm:rounded-lg">
                   <?php
-                    $stmt_sel_place_order = $conn->prepare("select u.*,po.* from users u join place_order po on po.user_id = u.id group by order_id");
+                    $stmt_sel_place_order = $conn->prepare("SELECT ANY_VALUE (u.email) AS email, COUNT(po.order_id),
+                                                                ANY_VALUE (po.order_id) AS order_id,
+                                                                ANY_VALUE (po.user_id) AS user_id,
+                                                                ANY_VALUE (po.qnty) AS qnty,
+                                                                ANY_VALUE (po.total_bill) AS total_bill,
+                                                                ANY_VALUE (po.pay_method) AS pay_method,
+                                                                ANY_VALUE (po.order_date) AS order_date
+                                                                    from users u join place_order po on po.user_id = u.id 
+                                                                        group by po.order_id");
                     $stmt_sel_place_order->execute();
                     $res_sel_place_order = $stmt_sel_place_order->get_result();
 
@@ -465,8 +482,8 @@ if(isset($_GET['tab']))
           <!-- Card Footer -->
           <div class="flex items-center justify-between pt-3 sm:pt-6">
             <div class="flex-shrink-0">
-              <a href="admin.php?tab=transactions" class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-200 dark:text-primary-500 dark:hover:bg-gray-500">
-              Transactions Report
+              <a href="admin.php?tab=orders" class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-200 dark:text-primary-500 dark:hover:bg-gray-500">
+                Orders Report
                 <svg class="w-4 h-4 ml-1 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
               </a>
             </div>
@@ -868,7 +885,7 @@ if(isset($_GET['tab']))
                     <form class="lg:pr-3" method="POST">
                       <label for="users-search" class="sr-only">Search</label>
                       <div class="relative mt-1 lg:w-64 xl:w-96">
-                        <input type="text" name="search" id="users-search" placeholder="Search for users" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" >
+                        <input type="text" name="search_user" id="users-search" placeholder="Search for users" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" >
                       </div>
                     </form>
                     <a href="admin.php?tab=<?php echo $tab ?>" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 text-white text-md font-semibold hover rounded transition">
@@ -890,10 +907,10 @@ if(isset($_GET['tab']))
               <div class="inline-block min-w-full align-middle">
                   <div class="overflow-hidden shadow">
                     <?php 
-                      if(isset($_POST['search']))
+                      if(isset($_POST['search_user']))
                       {
-                        $search = $_POST['search'];
-                        $stmt_user = $conn->prepare("select * from users where email like '%$search%' or fname like '%$search%' or lname like '%$search%' ");
+                        $search_user = $_POST['search_user'];
+                        $stmt_user = $conn->prepare("select * from users where email like '%$search_user%' or fname like '%$search_user%' or lname like '%$search_user%' ");
                         $stmt_user->execute();
                         $res_user = $stmt_user->get_result();
                       }
@@ -1258,7 +1275,7 @@ if(isset($_GET['tab']))
     <?php
   } 
   else
-  if ($tab == 'transactions') 
+  if ($tab == 'orders') 
   {
     ?>
     <!-- Code for the 'payment' tab -->
@@ -1266,19 +1283,37 @@ if(isset($_GET['tab']))
       <!-- Card header -->
       <div class="items-center justify-between lg:flex">
         <div class="mb-4 lg:mb-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 ">Transactions</h3>
+          <h3 class="mb-2 text-xl font-bold text-gray-900 ">Orders</h3>
+        </div>
+        <div class="sm:flex">
+          <div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+            <!-- search functions  -->
+            <form class="lg:pr-3" method="POST">
+              <label for="search_order" class="sr-only">Search</label>
+              <div class="relative mt-1 lg:w-64 xl:w-96">
+                <input type="text" name="search_order" id="search_order" placeholder="Search Order" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" >
+              </div>
+            </form>
+            <a href="admin.php?tab=<?php echo $tab ?>" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 text-white text-md font-semibold hover rounded transition">
+              Back
+            </a>
+          </div>
         </div>
       </div>
 
-      <?php // view order details
+      <?php 
+        // view order details
         if(isset($_GET['order_id']) && isset($_GET['user_id']) && isset($_GET['email']))
         {
             $order_id = $_GET['order_id'];
             $user_id = $_GET['user_id'];
             $email = $_GET['email'];
+            $address = $_GET['address'];
 
-            $stmt_get_order_details = $conn->prepare("select po.*,p.* from place_order po join products p on po.product_id = p.product_id
-                                                    where po.user_id = ? and po.order_id = ?");
+            $stmt_get_order_details = $conn->prepare("SELECT po.*,p.* 
+                                                    from place_order po join products p on po.product_id = p.product_id
+                                                    where po.user_id = ? and po.order_id = ?
+                                                    ");
             $stmt_get_order_details->execute([$user_id, $order_id]);
             $res_get_order_details = $stmt_get_order_details->get_result();
 
@@ -1291,7 +1326,8 @@ if(isset($_GET['tab']))
                 <h4 class="">
                     Shipping fee: <span class="text-red-600">+₱38.00</span><br>
                     Order: <span class="text-blue-700"> #'.$order_id.' </span><br>
-                    Email: <span class="text-blue-700"> '.$email.' </span>
+                    Email: <span class="text-blue-700"> '.$email.' </span> <br>
+                    Address: <span class="text-blue-700"> '.$address.' </span>
                 </h4>
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
@@ -1326,6 +1362,7 @@ if(isset($_GET['tab']))
                     $price = $row2['price'];
                     $pay_method = $row2['pay_method'];
                     $total_bill = $row2['total_bill'];
+                    $shipped = $row2['shipped'];
 
                     // total price 
                     $ttl_price = ($price * $qnty);
@@ -1333,6 +1370,19 @@ if(isset($_GET['tab']))
                     $price_format = number_format($price, 2, '.', ',');
                     $ttl_price_format = number_format($ttl_price, 2, '.', ',');
                     $total_bill_format = number_format($total_bill, 2, '.', ',');
+
+                    // shipped 
+                    if($shipped == 0)
+                    {
+                      $shipped_stat = '<span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                    To ship
+                                  </span>';
+                    }
+                    else{
+                      $shipped_stat = '<span class="bg-green-200 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                    Delivered
+                                  </span>';
+                    }
 
                     echo '
                     <tbody>
@@ -1360,11 +1410,31 @@ if(isset($_GET['tab']))
                 }
                 echo'
                         <tr class="bg-white border-b">
-                            <td class="py-4 font-bold">
+                            <td class="py-4 font-bold bg-gray-50">
+                                STATUS : '.$shipped_stat.'
+                            </td>
+                            <td class="py-4 font-bold bg-gray-100">
                                 Total Bill :
                                 <span class="text-red-600">
                                     ₱ '.$total_bill_format.' 
                                 </span> 
+                            </td>
+                            ';
+                            if($shipped == 0)
+                            {
+                              echo 
+                              '<td class="py-4 font-bold bg-green-600">
+                                <a href="admin.php?tab=orders&order_id='.$order_id.'&shipped=1" class="text-white" 
+                                  onclick="return confirm(\'Are You sure you want to mark as delivered ?\')">
+                                  Mark as Delivered 
+                                </a>
+                              </td>';
+                            }
+                            echo'
+                            <td class="py-4 font-bold bg-red-600">
+                              <a href="admin.php?tab=orders" class="text-white">
+                                Close X 
+                              </a>
                             </td>
                         </tr>
                     </tbody>
@@ -1372,13 +1442,88 @@ if(isset($_GET['tab']))
                 ';
             }
         }
+
+        //delivered functions
+        if(isset($_GET['order_id']) && isset($_GET['shipped']))
+        {
+          $order_id = $_GET['order_id'];
+          $shipped = $_GET['shipped'];
+
+          if($shipped == 1)
+          {
+            $stmt_shipped = $conn->prepare("UPDATE place_order set shipped = ? where order_id = ?");
+            $stmt_shipped->execute([$shipped, $order_id]);
+            
+            if($stmt_shipped->affected_rows > 0)
+            {
+              echo '';
+            }else{
+              ?>
+              <script>
+                location.href = "../404.php";
+              </script>
+              <?php
+            }
+          }else{
+            ?>
+              <script>
+                location.href = "../404.php";
+              </script>
+            <?php
+          }
+
+        }
       ?>
       
       <!-- Table -->
       <?php
-        $stmt_sel_place_order = $conn->prepare("select u.*,po.* from users u join place_order po on po.user_id = u.id group by order_id");
+      if(isset($_POST['search_order'])){
+        $search_order = $_POST['search_order'];
+        $stmt_sel_place_order = $conn->prepare("SELECT u.email, u.address, u.fname, u.lname, COUNT(po.order_id),
+                                                ANY_VALUE(u.email) as email,
+                                                ANY_VALUE(u.address) as address,
+                                                ANY_VALUE(u.fname) as fname,
+                                                ANY_VALUE(u.lname) as lname,
+                                                ANY_VALUE(po.user_id) as user_id, 
+                                                ANY_VALUE(po.order_id) as order_id, 
+                                                ANY_VALUE(po.qnty) as qnty, 
+                                                ANY_VALUE(po.total_bill) as total_bill,
+                                                ANY_VALUE(po.pay_method) as pay_method, 
+                                                ANY_VALUE(po.order_date) as order_date,
+                                                ANY_VALUE(po.shipped) as shipped
+                                                  from users u join place_order po on po.user_id = u.id 
+                                                  where 
+                                                    email like '%$search_order%' or
+                                                    fname like '%$search_order%' or
+                                                    lname like '%$search_order%' or
+                                                    address like '%$search_order%' or
+                                                    order_id like '%$search_order%'
+                                                group by order_id, u.id
+                                                order by order_date desc 
+                                                ");
         $stmt_sel_place_order->execute();
         $res_sel_place_order = $stmt_sel_place_order->get_result();
+      }
+      else{
+        $stmt_sel_place_order = $conn->prepare("SELECT u.email, u.address, u.fname, u.lname, COUNT(po.order_id),
+                                                ANY_VALUE(u.email) as email,
+                                                ANY_VALUE(u.address) as address,
+                                                ANY_VALUE(u.fname) as fname,
+                                                ANY_VALUE(u.lname) as lname,
+                                                ANY_VALUE(po.user_id) as user_id, 
+                                                ANY_VALUE(po.order_id) as order_id, 
+                                                ANY_VALUE(po.qnty) as qnty, 
+                                                ANY_VALUE(po.total_bill) as total_bill,
+                                                ANY_VALUE(po.pay_method) as pay_method, 
+                                                ANY_VALUE(po.order_date) as order_date, 
+                                                ANY_VALUE(po.shipped) as shipped
+                                                  from users u join place_order po on po.user_id = u.id 
+                                                group by order_id, u.id
+                                                order by shipped asc, order_date asc 
+                                                ");
+        $stmt_sel_place_order->execute();
+        $res_sel_place_order = $stmt_sel_place_order->get_result();
+      }
 
         if($res_sel_place_order->num_rows > 0)
         {
@@ -1387,7 +1532,10 @@ if(isset($_GET['tab']))
             <thead class="bg-gray-50">
               <tr>
                 <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
-                  EMAIL
+                  EMAIL/ NAME
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  ADDRESS
                 </th>
                 <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
                   ORDER ID 
@@ -1413,12 +1561,16 @@ if(isset($_GET['tab']))
           while($row = $res_sel_place_order->fetch_assoc())
           {
               $email = $row['email'];
+              $address = $row['address'];
+              $fname = $row['fname'];
+              $lname = $row['lname'];
               $user_id = $row['user_id'];
               $order_id = $row['order_id'];
               $qnty = $row['qnty'];
               $total_bill = $row['total_bill'];
               $pay_method = $row['pay_method'];
               $order_date = $row['order_date'];
+              $shipped = $row['shipped'];
 
               $date = new DateTime($order_date);
               $formattedDate = $date->format('F j, Y');
@@ -1434,11 +1586,27 @@ if(isset($_GET['tab']))
               {
                   $pay_method = '<h3 class="font-semibold text-green-600"> Pay Maya </h3>';
               }
+              // shipped 
+              if($shipped == 0)
+              {
+                $shipped = '<span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                              To ship
+                            </span>';
+              }
+              else{
+                $shipped = '<span class="bg-green-200 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                              Delivered
+                            </span>';
+              }
               echo '
               <tbody>
                   <tr class="bg-white border-b  dark:border-gray-700">
-                    <td class="py-4 font-semibold">
-                      '.$email.'
+                      <td class="py-4">
+                      <span class="font-semibold">'.$email.'</span> <br>
+                      '.$fname.' '.$lname.'
+                    </td>
+                    <td class="py-4">
+                      '.$address.'
                     </td>
                     <td class="py-4 font-semibold">
                         #<span class="text-blue-700"> '.$order_id.' </span>
@@ -1453,12 +1621,10 @@ if(isset($_GET['tab']))
                         '.$formattedDate.'
                     </td>
                     <td class="py-4">
-                        <span class="bg-orange-200 text-orange-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                            To ship
-                        </span>
+                        '.$shipped.'
                     </td>
                     <td class="">
-                      <a href="admin.php?tab=transactions&order_id='.$order_id.'&user_id='.$user_id.'&email='.$email.'">
+                      <a href="admin.php?tab=orders&order_id='.$order_id.'&user_id='.$user_id.'&email='.$email.'&address='.$address.'">
                           <p class="bg-blue-500 text-white p-1">
                               View Details
                           </p>
@@ -1490,8 +1656,6 @@ if(isset($_GET['tab']))
 
 
 </div>
-
-<!-- SIDEBAR AND NAVBAR-->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
   </body>

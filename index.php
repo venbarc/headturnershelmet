@@ -541,6 +541,7 @@
     include "contact.php";
     include 'include/footer.php';
     include "include/footer_link.php";
+    include "include/messenger.php";
     ?>
 
 </body>

@@ -139,41 +139,73 @@
         $qnty = $_POST['qnty'];
         $size = $_POST['size'];
 
-        foreach ($product_id as $i => $product_ids) 
+        $upload_ext = strtolower(pathinfo($_FILES['proof_image']['name'], PATHINFO_EXTENSION));
+        $upload_name = 'proof-' . rand(10000000,99999999);
+        $proof_image = 'proof_upload/'. $upload_name .'.'. $upload_ext;
+
+        if(!in_array($upload_ext, array('jpg','jpeg', 'png')))
         {
-          // place order query 
-          $stmt_place_order = $conn->prepare("insert into place_order set user_id = ?, product_id = ?, order_id = ?, qnty = ?, size = ?, total_bill = ?, pay_method = ?");
-          $stmt_place_order->execute([$user_id, $product_ids, $order_id, $qnty[$i], $size[$i], $total_bill, $pay_method]);
-
-          // delete from order query 
-          $stmt_place_order = $conn->prepare("delete from orders where user_id = ? and product_id = ? ");
-          $stmt_place_order->execute([$user_id, $product_ids]);
-
-          // delete from cart query 
-          $stmt_place_order = $conn->prepare("delete from cart where user_id = ? and product_id = ? and in_order = 1");
-          $stmt_place_order->execute([$user_id, $product_ids]);
-
-          // update product quantity 
-          $stmt_product_qnty = $conn->prepare("update products set ".$size[$i]."_avail = (".$size[$i]."_avail - $qnty[$i]) where product_id = ?");
-          $stmt_product_qnty->execute([$product_ids]);
-
-          if($stmt_place_order->affected_rows > 0)
+          echo '
+          <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400  dark:border-red-800" role="alert">
+              <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+              <div class="ml-3 text-sm font-medium">
+                Only JPG, JPEG, and PNG files are allowed.
+              </div>
+              <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8  dark:text-red-400 dark:hover:bg-gray-500"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                  <span class="sr-only">Dismiss</span>
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+          </div>';
+        }
+        else if($_FILES['proof_image']['size'] > 2000000)
+        {
+          echo '
+          <div id="alert-border-3" class="flex p-4 mb-4 mt-4 text-red-800 border-t-4 border-red-300 bg-red-50 dark:text-red-400  dark:border-red-800" role="alert">
+              <svg class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+              <div class="ml-3 text-sm font-medium">
+                Maximum of 2MB sizes.
+              </div>
+              <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8  dark:text-red-400 dark:hover:bg-gray-500"  data-dismiss-target="#alert-border-3" aria-label="Close">
+                  <span class="sr-only">Dismiss</span>
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+          </div>';
+        }
+        else if(move_uploaded_file($_FILES['proof_image']['tmp_name'], $proof_image))
+        {
+          foreach ($product_id as $i => $product_ids) 
           {
-            ?>
-              <script>
-                location.href = "profile.php?tab=to_ship";
-              </script>
-            <?php
+            // place order query 
+            $stmt_place_order = $conn->prepare("INSERT into place_order set 
+                                                user_id = ?, product_id = ?, order_id = ?, qnty = ?, size = ?, total_bill = ?, proof_image = ?, pay_method = ?");
+            $stmt_place_order->execute([$user_id, $product_ids, $order_id, $qnty[$i], $size[$i], $total_bill, $proof_image, $pay_method]);
+            // delete from order query 
+            $stmt_place_order = $conn->prepare("delete from orders where user_id = ? and product_id = ? ");
+            $stmt_place_order->execute([$user_id, $product_ids]);
+            // delete from cart query 
+            $stmt_place_order = $conn->prepare("delete from cart where user_id = ? and product_id = ? and in_order = 1");
+            $stmt_place_order->execute([$user_id, $product_ids]);
+            // update product quantity 
+            $stmt_product_qnty = $conn->prepare("update products set ".$size[$i]."_avail = (".$size[$i]."_avail - $qnty[$i]) where product_id = ?");
+            $stmt_product_qnty->execute([$product_ids]);
+
+            if($stmt_place_order->affected_rows > 0)
+            {
+              ?>
+                <script>
+                  location.href = "profile.php?tab=to_ship";
+                </script>
+              <?php
+            }
           }
         }
-    
       }
 
       // navigation bar 
       include 'include/navbar.php';
     ?>
     <section class="w-full h-full bg-gray-200 pt-14">
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
         <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pt-14">
           <!-- order summary  -->
           <div class="px-4 pt-8">
@@ -520,7 +552,7 @@
               <!-- total bill  -->
               <div class="flex items-center justify-between mt-6 mb-5">
                 <p class="text-sm font-medium text-gray-900">Total bill</p>
-                <p class="text-2xl font-semibold text-gray-900">
+                <p class="text-2xl font-semibold text-red-800">
                   ₱<?php echo $total_bill_format ?>
                 </p>
               </div>
@@ -533,14 +565,42 @@
                   if($total_bill_format > 0)
                   {
                     ?>
-                    <!-- place order submit button -->
-                    <button type="submit" name="place_order" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
-                      <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                      <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                      <span class="relative text-black group-hover:text-white">
-                        Place Order
-                      </span>
-                    </button>
+                     <!-- QR images for Maya and Gcash -->
+                      <div class="flex justify-center items-center">
+                        <img src="assets/images/pay_method/paymaya_qr.jpg" class="w-[30%] h-auto object-contain" id="mayaQR" />
+                        <img src="assets/images/pay_method/gcash_qr.jpg" class="w-[30%] h-auto object-contain" id="gcashQR" style="display: none;" />
+                      </div>
+                      <!-- JavaScript to show the QR image based on the selected radio button -->
+                      <script>
+                        const mayaRadio = document.getElementById("maya");
+                        const gcashRadio = document.getElementById("gcash");
+                        const mayaQR = document.getElementById("mayaQR");
+                        const gcashQR = document.getElementById("gcashQR");
+
+                        mayaRadio.addEventListener("change", function () {
+                          if (mayaRadio.checked) {
+                            mayaQR.style.display = "block";
+                            gcashQR.style.display = "none";
+                          }
+                        });
+
+                        gcashRadio.addEventListener("change", function () {
+                          if (gcashRadio.checked) {
+                            gcashQR.style.display = "block";
+                            mayaQR.style.display = "none";
+                          }
+                        });
+                      </script> 
+                      <label for="proof" class="font-bold">Proof of Payment :</label>
+                      <input type="file" id="proof" name="proof_image" required> 
+                      <!-- place order submit button -->
+                      <button type="submit" name="place_order" class="flex justify-center relative inline-block px-4 py-2 font-medium group">
+                        <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                        <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                        <span class="relative text-black group-hover:text-white">
+                          Place Order
+                        </span>
+                      </button>
                     <?php
                   }
                   else{

@@ -750,7 +750,7 @@
                                                 $stmt_sel_place_order = $conn->prepare("SELECT COUNT(order_id), 
                                                                                                ANY_VALUE(order_id) AS order_id, 
                                                                                                ANY_VALUE(qnty) AS qnty, 
-                                                                                               ANY_VALUE(total_bill) AS total_bill, 
+                                                                                               ANY_VALUE(total_bill) AS total_bill,
                                                                                                ANY_VALUE(pay_method) AS pay_method, 
                                                                                                ANY_VALUE(order_date) AS order_date 
                                                                                                     from place_order 
@@ -824,7 +824,6 @@
                                                                 <td class="py-4">
                                                                     '.$formattedDate.'
                                                                 </td>
-                                                              
                                                                 <td class="py-1">
                                                                     <a href="profile.php?tab='.$tab.'&order_id='.$order_id.'" >
                                                                         <p class="bg-blue-500 text-white p-1">
@@ -832,7 +831,7 @@
                                                                         </p>
                                                                     </a>
                                                                 </td>
-                                                               
+                                                                
                                                             </tr>
                                                         </tbody>
                                                         ';
@@ -857,8 +856,8 @@
                                                 {
                                                     $order_id = $_GET['order_id'];
 
-                                                    $stmt_get_order_details = $conn->prepare("select po.*,p.* from place_order po join products p on po.product_id = p.product_id
-                                                                                            where po.user_id = ? and po.order_id = ?");
+                                                    $stmt_get_order_details = $conn->prepare("SELECT po.*,p.* from place_order po join products p on po.product_id = p.product_id
+                                                                                                where po.user_id = ? and po.order_id = ?");
                                                     $stmt_get_order_details->execute([$user_id, $order_id]);
                                                     $res_get_order_details = $stmt_get_order_details->get_result();
 
@@ -905,6 +904,7 @@
                                                             $price = $row2['price'];
                                                             $pay_method = $row2['pay_method'];
                                                             $total_bill = $row2['total_bill'];
+                                                            $proof_image = $row2['proof_image'];
 
                                                             // total price 
                                                             $ttl_price = ($price * $qnty);
@@ -934,6 +934,7 @@
                                                                     <td class="py-4 font-bold text-red-600">
                                                                         ₱ '.$ttl_price_format.' 
                                                                     </td>
+                                                                    
                                                                 </tr>
                                                             ';
                                                         }
@@ -946,13 +947,15 @@
                                                                         </span> 
                                                                     </td>
                                                                     <td class="py-4 font-bold bg-red-600 text-white">
-                                                                    <a href="profile.php?tab='.$tab.'">
-                                                                        Close X
-                                                                    </a>
-                                                                </td>
+                                                                        <a href="profile.php?tab='.$tab.'">
+                                                                            Close X
+                                                                        </a>
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+                                                        <h2 class="pb-5 pt-[50px] font-semibold text-xl">Proof of payment :</h2>
+                                                        <img src="'.$proof_image.'" alt="" class="h-[40%] w-auto object-contain">
                                                         ';
                                                     }
                                                 }

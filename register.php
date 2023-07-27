@@ -121,7 +121,8 @@
                     </button>
                   </div>';
                   $error = true;
-                } else if (!$error) {
+                } else if (!$error) 
+                {
                   // insert data
                   $stmt = $conn->prepare('insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ');
                   $stmt->bind_param('sssissi', $email, $fname, $lname, $contact, $address, $hash_pass, $pin);

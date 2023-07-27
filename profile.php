@@ -549,8 +549,8 @@
                                         $contact = $_POST['contact'];
                                         $address = $_POST['address'];
 
-                                        $stmt = $conn->prepare("update users set fname = ?, lname = ?, contact = ?, address = ? ");
-                                        $stmt->execute([$fname,$lname,$contact,$address]);
+                                        $stmt = $conn->prepare("update users set fname = ?, lname = ?, contact = ?, address = ? where id = ?");
+                                        $stmt->execute([$fname,$lname,$contact,$address, $user_id]);
 
                                         if($stmt->affected_rows > 0)
                                         {

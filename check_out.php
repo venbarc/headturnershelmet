@@ -214,7 +214,7 @@
 
             <div class="px-2 py-4 mt-8 space-y-3 bg-white border rounded-lg sm:px-6">
               <?php
-                $stmt = $conn->prepare("select o.*,c.*,p.* 
+                $stmt = $conn->prepare("SELECT o.*,c.*,p.* 
                                         from orders o
                                         join cart c on o.product_id = c.product_id
                                         join products p on o.product_id = p.product_id 

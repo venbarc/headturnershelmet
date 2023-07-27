@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/wokolndo/public_html/
+    - /bin/cp -R /home/wokolndo/repositories/headturnershelmet/* $DEPLOYPATH

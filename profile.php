@@ -750,7 +750,7 @@
                                                 $stmt_sel_place_order = $conn->prepare("SELECT COUNT(order_id), 
                                                                                                ANY_VALUE(order_id) AS order_id, 
                                                                                                ANY_VALUE(qnty) AS qnty, 
-                                                                                               ANY_VALUE(total_bill) AS total_bill, 
+                                                                                               ANY_VALUE(total_bill) AS total_bill,
                                                                                                ANY_VALUE(pay_method) AS pay_method, 
                                                                                                ANY_VALUE(order_date) AS order_date 
                                                                                                     from place_order 
@@ -824,7 +824,6 @@
                                                                 <td class="py-4">
                                                                     '.$formattedDate.'
                                                                 </td>
-                                                              
                                                                 <td class="py-1">
                                                                     <a href="profile.php?tab='.$tab.'&order_id='.$order_id.'" >
                                                                         <p class="bg-blue-500 text-white p-1">
@@ -832,7 +831,7 @@
                                                                         </p>
                                                                     </a>
                                                                 </td>
-                                                               
+                                                                
                                                             </tr>
                                                         </tbody>
                                                         ';
@@ -857,8 +856,8 @@
                                                 {
                                                     $order_id = $_GET['order_id'];
 
-                                                    $stmt_get_order_details = $conn->prepare("select po.*,p.* from place_order po join products p on po.product_id = p.product_id
-                                                                                            where po.user_id = ? and po.order_id = ?");
+                                                    $stmt_get_order_details = $conn->prepare("SELECT po.*,p.* from place_order po join products p on po.product_id = p.product_id
+                                                                                                where po.user_id = ? and po.order_id = ?");
                                                     $stmt_get_order_details->execute([$user_id, $order_id]);
                                                     $res_get_order_details = $stmt_get_order_details->get_result();
 
@@ -905,6 +904,7 @@
                                                             $price = $row2['price'];
                                                             $pay_method = $row2['pay_method'];
                                                             $total_bill = $row2['total_bill'];
+                                                            $proof_image = $row2['proof_image'];
 
                                                             // total price 
                                                             $ttl_price = ($price * $qnty);
@@ -934,6 +934,7 @@
                                                                     <td class="py-4 font-bold text-red-600">
                                                                         ₱ '.$ttl_price_format.' 
                                                                     </td>
+                                                                    
                                                                 </tr>
                                                             ';
                                                         }
@@ -946,13 +947,15 @@
                                                                         </span> 
                                                                     </td>
                                                                     <td class="py-4 font-bold bg-red-600 text-white">
-                                                                    <a href="profile.php?tab='.$tab.'">
-                                                                        Close X
-                                                                    </a>
-                                                                </td>
+                                                                        <a href="profile.php?tab='.$tab.'">
+                                                                            Close X
+                                                                        </a>
+                                                                    </td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
+                                                        <h2 class="pb-5 pt-[50px] font-semibold text-xl">Proof of payment :</h2>
+                                                        <img src="'.$proof_image.'" alt="" class="h-[40%] w-auto object-contain">
                                                         ';
                                                     }
                                                 }
@@ -1176,11 +1179,6 @@
                                                                             ₱ '.$total_bill_format.' 
                                                                         </span> 
                                                                     </td>
-                                                                    <td class="py-4 font-bold bg-green-600 text-white">
-                                                                        <a href="review.php?order_id='.$order_id.'&user_id='.$user_id.'" class="">
-                                                                            Write a Review
-                                                                        </a>
-                                                                    </td>
                                                                     <td class="py-4 font-bold bg-red-600 text-white">
                                                                         <a href="profile.php?tab='.$tab.'">
                                                                             Close X
@@ -1190,9 +1188,181 @@
                                                             </tbody>
                                                         </table>
                                                         ';
+
+                                                        // check if rated using user_id and order id
+                                                        $stmt_rating = $conn->prepare("SELECT * from reviews where user_id =  ? and order_id = ?");
+                                                        $stmt_rating->execute([$user_id, $order_id]);
+                                                        $res_rating = $stmt_rating->get_result();
+
+                                                        if($res_rating->num_rows > 0)
+                                                        {
+                                                            while($row_rating = $res_rating->fetch_assoc())
+                                                            {
+                                                                $message = $row_rating['message'];
+                                                                $img = $row_rating['img'];
+                                                                $rating = $row_rating['rating'];
+                                                                $date = $row_rating['date'];
+
+                                                                // format date 
+                                                                $dateTime = new DateTime($date);
+                                                                $formattedDate = $dateTime->format("F j, Y");
+
+                                                                if(empty($img))
+                                                                {
+                                                                    $img_show = '';
+                                                                }else{
+                                                                    $img_show = '
+                                                                    <img src="'.$img.'" class="object-cover w-[200px] h-auto">
+                                                                    ';
+                                                                }
+                                                                ?>
+                                                                <div class="cont" id="rating">
+                                                                    <div class="stars">
+                                                                        <h2 class="mt-5 text-2xl tracking-tight font-bold">
+                                                                            (<?php echo $rating ?>) Star Rating
+                                                                        </h2>
+                                                                        <div class="text-red-500 font-semibold"><?php echo $formattedDate ?></div>
+                                                                        <input class="star star-5" id="star-5" type="radio" name="star" <?php echo ($rating == 5) ? 'checked' : ''; ?> disabled/>
+                                                                        <label class="star star-5" for="star-5"></label>
+                                                                        <input class="star star-4" id="star-4" type="radio" name="star" <?php echo ($rating == 4) ? 'checked' : ''; ?> disabled/>
+                                                                        <label class="star star-4" for="star-4"></label>
+                                                                        <input class="star star-3" id="star-3" type="radio" name="star" <?php echo ($rating == 3) ? 'checked' : ''; ?> disabled/>
+                                                                        <label class="star star-3" for="star-3"></label>
+                                                                        <input class="star star-2" id="star-2" type="radio" name="star" <?php echo ($rating == 2) ? 'checked' : ''; ?> disabled/>
+                                                                        <label class="star star-2" for="star-2"></label>
+                                                                        <input class="star star-1" id="star-1" type="radio" name="star" <?php echo ($rating == 1) ? 'checked' : ''; ?> disabled/>
+                                                                        <label class="star star-1" for="star-1"></label>
+                                                                    </div>
+                                                                    <p class="mb-5">
+                                                                        <span class="font-bold">Comment:</span> <br>
+                                                                        <?php echo $message ?>
+                                                                    </p>
+                                                                    <?php echo $img_show ?>
+                                                                </div>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        else{
+                                                            ?>
+                                                            <section class="bg-white dark:bg-gray-900" id="rating">
+                                                                <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+                                                                    <h2 class="mb-4 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
+                                                                        Product Review
+                                                                    </h2>
+                                                                    <p class="mb-1 lg:mb-1 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
+                                                                        Send us a feedback to improve our service.
+                                                                    </p>
+                                                                    <form method="post" enctype="multipart/form-data">
+                                                                        <div class="cont">
+                                                                            <div class="stars">
+                                                                                <input class="star star-5" id="star-5" type="radio" name="star" value="5" required/>
+                                                                                <label class="star star-5" for="star-5"></label>
+                                                                                <input class="star star-4" id="star-4" type="radio" name="star" value="4" required/>
+                                                                                <label class="star star-4" for="star-4"></label>
+                                                                                <input class="star star-3" id="star-3" type="radio" name="star" value="3" required/>
+                                                                                <label class="star star-3" for="star-3"></label>
+                                                                                <input class="star star-2" id="star-2" type="radio" name="star" value="2" required/>
+                                                                                <label class="star star-2" for="star-2"></label>
+                                                                                <input class="star star-1" id="star-1" type="radio" name="star" value="1" required/>
+                                                                                <label class="star star-1" for="star-1"></label>
+                                                                                <!-- hidden comment and submit  -->
+                                                                                <div class="rev-box">
+                                                                                    <div class="sm:col-span-2">
+                                                                                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
+                                                                                            Review Comment
+                                                                                        </label>
+                                                                                        <textarea id="message" rows="6" name="message" maxlength="350" required class="block p-2.5 mb-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Leave a comment..."></textarea>
+                                                                                    </div>
+                                                                                    <input type="file" name="upload_feedback">
+                                                                                    <button type="submit" name="submit_feedback" class="py-3 px-5 text-sm font-medium text-center text-gray-200 mt-4 rounded-lg bg-blue-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                                                        Submit Review
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                <!-- if submit feedback is posted  -->
+                                                                <?php
+                                                                    if(isset($_POST['submit_feedback']))
+                                                                    {
+                                                                        $star = $_POST['star'];
+                                                                        $message = $_POST['message'];
+
+                                                                        if (isset($_FILES['upload_feedback']['name']) && !empty($_FILES['upload_feedback']['name'])) 
+                                                                        {
+                                                                            $upload_ext = strtolower(pathinfo($_FILES['upload_feedback']['name'], PATHINFO_EXTENSION));
+                                                                            $upload_name = 'feed_back-' . rand(10000000,99999999);
+                                                                            $upload_feedback = 'feedback_upload/'. $upload_name .'.'. $upload_ext;
+                                                                    
+                                                                            if (!in_array($upload_ext, array('jpg', 'jpeg', 'png'))) 
+                                                                            {
+                                                                                echo '
+                                                                                    <div class="msg_001">
+                                                                                        Only JPG, JPEG, and PNG files are allowed.
+                                                                                    </div>
+                                                                                ';
+                                                                            } 
+                                                                            else if ($_FILES['upload_feedback']['size'] > 2000000) 
+                                                                            {
+                                                                                echo '
+                                                                                    <div class="msg_001">
+                                                                                        File size should be less than 2MB.
+                                                                                    </div>
+                                                                                ';
+                                                                            } 
+                                                                            else if (move_uploaded_file($_FILES['upload_feedback']['tmp_name'], $upload_feedback)) 
+                                                                            {
+                                                                                $stmt_rating_insert = $conn->prepare("INSERT INTO 
+                                                                                    reviews(user_id, order_id, message, img, rating) 
+                                                                                    VALUES(?,?,?,?,?) ");
+                                                                                $stmt_rating_insert->execute([$user_id, $order_id, $message, $upload_feedback, $star]);
+
+                                                                                if($stmt_rating_insert->affected_rows > 0)
+                                                                                {
+                                                                                    ?>
+                                                                                    <script>
+                                                                                        location.href = "profile.php?tab=<?php echo $tab?>&order_id=<?php echo $order_id?>";
+                                                                                    </script>
+                                                                                    <?php
+                                                                                }  
+                                                                            } 
+                                                                            else {
+                                                                                echo '
+                                                                                    <div class="msg_001">
+                                                                                        Error uploading the image. Review not submitted.
+                                                                                    </div>
+                                                                                ';
+                                                                            }
+                                                                        }
+                                                                        else{
+                                                                            $stmt_rating_insert = $conn->prepare("INSERT INTO 
+                                                                                reviews(user_id, order_id, message, img, rating) 
+                                                                                VALUES(?,?,?,?,?) ");
+                                                                            $stmt_rating_insert->execute([$user_id, $order_id, $message, " ", $star]);
+
+                                                                            if($stmt_rating_insert->affected_rows > 0)
+                                                                            {
+                                                                                ?>
+                                                                                <script>
+                                                                                    location.href = "profile.php?tab=<?php echo $tab?>&order_id=<?php echo $order_id?>";
+                                                                                </script>
+                                                                                <?php
+                                                                            }  
+                                                                        }
+                                                                    
+                                                                         
+                                                                        
+                                                                    }
+                                                                ?>
+                                                            </section>
+                                                            <?php
+                                                        }
+                                                        
                                                     }
                                                 }
                                             ?>
+                                            
                                         </div>
                                     </div>
                                     

@@ -107,7 +107,7 @@
             <a href="shop.php?product=shoei" class="block px-4 py-2 hover:bg-gray-100">SHOEI</a>
           </li>
           <li>
-            <a href="shop.php?product=avg" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
+            <a href="shop.php?product=agv" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
           </li>
           <li>
             <a href="shop.php?product=arai" class="block px-4 py-2 hover:bg-gray-100">ARAI</a>
@@ -550,7 +550,7 @@
                                         $address = $_POST['address'];
 
                                         $stmt = $conn->prepare("update users set fname = ?, lname = ?, contact = ?, address = ? where id = ?");
-                                        $stmt->execute([$fname,$lname,$contact,$address, $user_id]);
+                                        $stmt->execute([$fname,$lname,$contact,$address,$user_id]);
 
                                         if($stmt->affected_rows > 0)
                                         {

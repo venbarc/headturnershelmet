@@ -426,7 +426,8 @@ if(isset($_GET['tab']))
                                                                 ANY_VALUE (po.total_bill) AS total_bill,
                                                                 ANY_VALUE (po.pay_method) AS pay_method,
                                                                 ANY_VALUE (po.order_date) AS order_date
-                                                                    from users u join place_order po on po.user_id = u.id 
+                                                                    from users u join place_order po on po.user_id = u.id
+                                                                    where shipped = 0 
                                                                         group by po.order_id");
                     $stmt_sel_place_order->execute();
                     $res_sel_place_order = $stmt_sel_place_order->get_result();
@@ -788,27 +789,27 @@ if(isset($_GET['tab']))
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                qnty <span class="text-red-600 text-lg"> ('.$xs_avail.')</span> 
+                                 <span class="text-red-600 text-lg"> ('.$xs_avail.')</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                qnty <span class="text-red-600 text-lg"> ('.$sm_avail.')</span> 
+                                 <span class="text-red-600 text-lg"> ('.$sm_avail.')</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                qnty <span class="text-red-600 text-lg"> ('.$md_avail.')</span> 
+                                 <span class="text-red-600 text-lg"> ('.$md_avail.')</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                qnty <span class="text-red-600 text-lg"> ('.$lg_avail.')</span> 
+                                 <span class="text-red-600 text-lg"> ('.$lg_avail.')</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                qnty <span class="text-red-600 text-lg"> ('.$xlg_avail.')</span> 
+                                 <span class="text-red-600 text-lg"> ('.$xlg_avail.')</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
@@ -859,7 +860,7 @@ if(isset($_GET['tab']))
                               <label for="category" class="block mb-2 text-sm font-medium text-gray-900 ">Brand</label>
                               <select id="category" name="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <option value="shark" selected>Shark</option>
-                                <option value="avg">Agv</option>
+                                <option value="agv">Agv</option>
                                 <option value="arai">Arai</option>
                                 <option value="shoei">Shoei</option>
                               </select>

@@ -24,7 +24,7 @@
                 <a href="shop.php?product=shoei" class="block px-4 py-2 hover:bg-black hover:text-white">SHOEI</a>
               </li>
               <li>
-                <a href="shop.php?product=avg" class="block px-4 py-2 hover:bg-black hover:text-white">AGV</a>
+                <a href="shop.php?product=agv" class="block px-4 py-2 hover:bg-black hover:text-white">AGV</a>
               </li>
               <li>
                 <a href="shop.php?product=arai" class="block px-4 py-2 hover:bg-black hover:text-white">ARAI</a>
@@ -80,7 +80,7 @@
             <a href="shop.php?product=shoei" class="block px-4 py-2 hover:bg-gray-100">SHOEI</a>
           </li>
           <li>
-            <a href="shop.php?product=avg" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
+            <a href="shop.php?product=agv" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
           </li>
           <li>
             <a href="shop.php?product=arai" class="block px-4 py-2 hover:bg-gray-100">ARAI</a>

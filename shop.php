@@ -72,7 +72,7 @@
                         ';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -94,7 +94,7 @@
                         </div>';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -346,7 +346,7 @@
                         ';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shoei#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -368,7 +368,7 @@
                         </div>';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -594,7 +594,7 @@
 
             }
             else
-            if($product == 'avg')
+            if($product == 'agv')
             {
                 if(isset($_POST['add_cart']))
                 {
@@ -618,7 +618,7 @@
                         ';
                         ?>
                         <script>
-                            location.href = "shop.php?product=avg#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -640,7 +640,7 @@
                         </div>';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -654,17 +654,17 @@
                     <section class="py-32 bg-gray-300">
                         <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
                             <!-- title here  -->
-                            <nav id="avg" class="top-0 z-30 w-full px-6 py-1">
+                            <nav id="agv" class="top-0 z-30 w-full px-6 py-1">
                                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
                                     <div class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline ">
-                                        AVG HELMETS
+                                        AGV HELMETS
                                     </div>
                                 </div>
                             </nav>
 
                             <!-- products  -->
                             <?php
-                                $stmt1 = $conn->prepare("select * from products where brand = 'avg' ");
+                                $stmt1 = $conn->prepare("select * from products where brand = 'agv' ");
                                 $stmt1->execute();
                                 $res1 = $stmt1->get_result();
 
@@ -838,7 +838,7 @@
                         </div>
                     </section>
 
-                    <!-- ABOUT AVG HELMET  -->
+                    <!-- ABOUT AGV HELMET  -->
                     <section class="py-8">
                         <div class="container px-6 py-8 mx-auto">
                             <a class="mb-8 text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline"
@@ -893,7 +893,7 @@
                         ';
                         ?>
                         <script>
-                            location.href = "shop.php?product=arai#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -915,7 +915,7 @@
                         </div>';
                         ?>
                         <script>
-                            location.href = "shop.php?product=shark#<?php echo $product_id ?>";
+                            location.href = "shop.php?product=<?php echo $product ?>#<?php echo $product_id ?>";
                         </script>
                         <?php
                     }
@@ -929,7 +929,7 @@
                     <section class="py-32 bg-gray-300">
                         <div class="container flex flex-wrap items-center pt-4 pb-12 mx-auto">
                             <!-- title here  -->
-                            <nav id="avg" class="top-0 z-30 w-full px-6 py-1">
+                            <nav id="agv" class="top-0 z-30 w-full px-6 py-1">
                                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
                                     <div class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline ">
                                         ARAI HELMETS
@@ -1151,6 +1151,7 @@
         include 'contact.php';
         include 'include/footer.php';
         include 'include/footer_link.php';
+        include 'include/messenger.php';
     ?>
     <script>
         // ==========================ajax request starts here 

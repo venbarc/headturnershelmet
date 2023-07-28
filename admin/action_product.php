@@ -148,7 +148,7 @@ if(isset($_GET['tab']) && isset($_GET['action']) && isset($_GET['id']))
 
     $brands = array(
       'shark' => 'Shark',
-      'avg' => 'Avg',
+      'agv' => 'Agv',
       'arai' => 'Arai',
       'shoei' => 'Shoei',
 

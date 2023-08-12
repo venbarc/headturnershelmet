@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"  rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <title>Admin | Headturners</title>
     
@@ -87,6 +88,14 @@ else
                 <path fill-rule="evenodd" d="M8 3H3v3h5V3zM3 2a1 1 0 00-1 1v3a1 1 0 001 1h5a1 1 0 001-1V3a1 1 0 00-1-1H3zm14 12h-5v3h5v-3zm-5-1a1 1 0 00-1 1v3a1 1 0 001 1h5a1 1 0 001-1v-3a1 1 0 00-1-1h-5zm-4-3H3v7h5v-7zM3 9a1 1 0 00-1 1v7a1 1 0 001 1h5a1 1 0 001-1v-7a1 1 0 00-1-1H3zm14-6h-5v7h5V3zm-5-1a1 1 0 00-1 1v7a1 1 0 001 1h5a1 1 0 001-1V3a1 1 0 00-1-1h-5z" clip-rule="evenodd"/>
               </svg>
               <span class="ml-3">Dashboard</span>
+            </a>
+         </li>
+         <li>
+            <a href="admin.php?tab=progress_report" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500">
+              <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 13H4v3h2v-3zm5-4H9v7h2V9zm5-5h-2v12h2V4zm-2-1a1 1 0 00-1 1v12a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1h-2zM8 9a1 1 0 011-1h2a1 1 0 011 1v7a1 1 0 01-1 1H9a1 1 0 01-1-1V9zm-5 4a1 1 0 011-1h2a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z" clip-rule="evenodd"/>
+              </svg>
+              <span class="ml-3">Progress Report</span>
             </a>
          </li>
          <li>
@@ -172,16 +181,51 @@ if(isset($_GET['tab']))
                   </div>
                   <!-- total revenue  -->
                   <?php
-                    $stmt_revenue = $conn->prepare("SELECT SUM(total_bill) AS total_rev FROM place_order");
+                    $stmt_revenue = $conn->prepare("SELECT SUM(total_bill) AS total_rev FROM place_order order by order_date");
                     $stmt_revenue->execute();
                     $res_revenue = $stmt_revenue->get_result();
                     $row_revenue = $res_revenue->fetch_assoc();
                     $total_rev = $row_revenue['total_rev'];
                     $total_rev_format = number_format($total_rev, 2, '.', ',');
-                    echo'
-                    <span class="text-xl font-bold leading-none text-red-500 sm:text-2xl">₱ '. $total_rev_format .'</span>
-                    ';
+                    echo '
+                    <h3 class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">
+                    '. $total_rev_format.'
+                    </h3>';
                   ?>
+                  <!-- Other content -->
+                  <div class="chart-container" style="position: relative; height: 300px; width: 100%;">
+                    <canvas id="revenueChart"></canvas>
+                  </div>
+                  
+                  <!-- Store the total revenue in a JavaScript variable -->
+                  <script>
+                    var totalRevenue = <?php echo $total_rev; ?>;
+                      // Retrieve the canvas element
+                      var ctx = document.getElementById('revenueChart').getContext('2d');
+
+                      // Create the bar chart
+                      var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                          labels: ['Total Revenue'],
+                          datasets: [{
+                            label: 'Total Revenue',
+                            data: [totalRevenue],
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                          }]
+                        },
+                        options: {
+                          scales: {
+                            y: {
+                              beginAtZero: true
+                            }
+                          }
+                        }
+                      });
+                  </script>
+                 
                 </div>
                 <div>
                   <div class="flex gap-3">
@@ -531,7 +575,294 @@ if(isset($_GET['tab']))
     </div>
 		<?php
 	} 
-  else 
+  else
+  if ($tab == 'progress_report') 
+  {
+		?>
+		<!-- Code for the 'progress_report' tab -->
+    <div class="px-4 pt-20 2xl:px-0">
+      <!-- Main widget -->
+      <div class="p-4 bg-gray-200 border border-gray-300 rounded-lg shadow-sm 2xl:col-span-2 sm:p-6 mb-3">
+        <div class="mb-4">
+          <div class="grid grid-cols-1 gap-[10%]">
+              <div class="flex gap-3">
+              <svg width="25" height="25" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 13H4v3h2v-3zm5-4H9v7h2V9zm5-5h-2v12h2V4zm-2-1a1 1 0 00-1 1v12a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1h-2zM8 9a1 1 0 011-1h2a1 1 0 011 1v7a1 1 0 01-1 1H9a1 1 0 01-1-1V9zm-5 4a1 1 0 011-1h2a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z" clip-rule="evenodd"/>
+              </svg>
+                <h3 class="text-xl font-bold leading-none text-gray-900 sm:text-2xl">
+                  Progress Report
+                </h3>
+                <br>
+              </div>
+              <form method="post">
+                <input type="submit" value="Overall" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
+                <input type="submit" value="Daily" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
+                <input type="submit" value="Weekly" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
+                <input type="submit" value="Monthly" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
+                <input type="submit" value="Yearly" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
+              </form>
+          </div>
+          <?php
+            $stmt_report = $conn->prepare("SELECT 
+                                          COUNT(order_id),
+                                          ANY_VALUE(order_id) as order_id,
+                                          SUM(total_bill) as total_bill,
+                                          ANY_VALUE(order_date) as order_date
+                                          FROM place_order group by order_id");
+            $stmt_report->execute([]);
+            $res_report = $stmt_report->get_result();
+
+            if ($res_report->num_rows > 0) 
+            {
+                // Loop through each row and populate the data arrays
+                while ($row_report = $res_report->fetch_assoc()) {
+                    $total_bill = $row_report['total_bill'];
+
+                    $dailyData = [];
+                    $weeklyData = [];
+                    $monthlyData = [];
+                    $yearlyData = [];
+
+                    $daily = $total_bill/ count($row_report);
+                    $weekly = $total_bill / 7;
+                    $monthly = $total_bill / 30;
+                    $yearly = $total_bill / 360;
+
+                    $f_daily = number_format($daily, 2, '.', '');
+                    $f_weekly = number_format($weekly, 2, '.', '');
+                    $f_monthly = number_format($monthly, 2, '.', '');
+                    $f_yearly = number_format($yearly, 2, '.', '');
+
+                    array_push($dailyData, $f_daily);
+                    array_push($weeklyData, $f_weekly);
+                    array_push($monthlyData, $f_monthly);
+                    array_push($yearlyData, $f_yearly);
+                }
+            }
+          ?>
+          <div style="width: 80%; margin: auto;">
+            <canvas id="barChart"></canvas>
+          </div>
+
+          <?php
+            if(isset($_POST['progress']))
+            {
+              $progress = $_POST['progress'];
+
+              if($progress == 'Daily')
+              {
+                ?>
+                <script>
+                  var ctx = document.getElementById('barChart').getContext('2d');
+                  var data = {
+                      labels: ['Daily'],
+                      datasets: [{
+                          label: 'Daily Average Report',
+                          data: 
+                          [
+                            <?php echo implode(',', $dailyData); ?>,
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  };
+                  
+                  var myBarChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: data,
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+                </script>
+                <?php
+              }
+              else if($progress == 'Weekly')
+              {
+                ?>
+                <script>
+                  var ctx = document.getElementById('barChart').getContext('2d');
+                  var data = {
+                      labels: ['Weekly'],
+                      datasets: [{
+                          label: 'Weekly Average Report',
+                          data: 
+                          [
+                            <?php echo implode(',', $weeklyData); ?>
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  };
+                  
+                  var myBarChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: data,
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+                </script>
+                <?php
+              }
+              else if($progress == 'Monthly')
+              {
+                ?>
+                <script>
+                  var ctx = document.getElementById('barChart').getContext('2d');
+                  var data = {
+                      labels: [ 'Monthly'],
+                      datasets: [{
+                          label: 'Monthly Average Report',
+                          data: 
+                          [
+                            <?php echo implode(',', $monthlyData); ?>
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  };
+                  
+                  var myBarChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: data,
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+                </script>
+                <?php
+              }
+              else if($progress == 'Yearly')
+              {
+                ?>
+                <script>
+                  var ctx = document.getElementById('barChart').getContext('2d');
+                  var data = {
+                      labels: ['Yearly'],
+                      datasets: [{
+                          label: 'Average Report Yearly',
+                          data: 
+                          [
+                            <?php echo implode(',', $yearlyData); ?>,
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  };
+                  
+                  var myBarChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: data,
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+                </script>
+                <?php
+              }
+              else if($progress == "Overall")
+              {
+                ?>
+                <script>
+                  var ctx = document.getElementById('barChart').getContext('2d');
+                  var data = {
+                      labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
+                      datasets: [{
+                          label: 'Over all Average Report',
+                          data: 
+                          [
+                            <?php echo implode(',', $dailyData); ?>,
+                            <?php echo implode(',', $weeklyData); ?>,
+                            <?php echo implode(',', $monthlyData); ?>,
+                            <?php echo implode(',', $yearlyData); ?>
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  };
+                  
+                  var myBarChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: data,
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+                </script>
+                <?php 
+              }
+            }
+            else
+            {
+              ?>
+              <script>
+                var ctx = document.getElementById('barChart').getContext('2d');
+                var data = {
+                    labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
+                    datasets: [{
+                        label: 'Overall Average Report',
+                        data: 
+                        [
+                          <?php echo implode(',', $dailyData); ?>,
+                          <?php echo implode(',', $weeklyData); ?>,
+                          <?php echo implode(',', $monthlyData); ?>,
+                          <?php echo implode(',', $yearlyData); ?>
+                        ],
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                };
+                
+                var myBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+              </script>
+              <?php
+            }
+          ?>
+
+          
+        </div>
+      </div>
+    </div>
+		<?php
+	} 
+  else  
   if($tab == 'products') 
   {
 		?>

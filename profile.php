@@ -1374,15 +1374,6 @@
                     <?php
                 }
                 else
-                if($tab == 'order_history')
-                {
-                    echo '
-                        <h1 class="text-white p-5 bg-gray-500 text-lg mb-[70%] tetx-center">
-                            No order history yet!
-                        </h1>
-                    ';
-                }
-                else
                 if($tab == 'change_password')
                 {
                     ?>

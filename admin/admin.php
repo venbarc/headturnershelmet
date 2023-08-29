@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css"  rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Admin | Headturners</title>
     
@@ -243,8 +244,265 @@ if(isset($_GET['tab']))
                     $res_cnt_users = $stmt_cnt_users->get_result();
                     $row_cnt_user = $res_cnt_users->fetch_assoc();
                     $userCount = $row_cnt_user['user_count'];
-                    echo '<span class="text-xl font-bold leading-none text-red-500 sm:text-2xl">( '. $userCount .' )</span>';
+                    echo '<span class="text-xl font-bold leading-none sm:text-2xl"> '. $userCount .' </span>';
                   ?>
+
+                  <!-- Start Sales report  -->
+                  <?php
+                    $stmt_report = $conn->prepare("SELECT 
+                                                  COUNT(order_id),
+                                                  ANY_VALUE(order_id) as order_id,
+                                                  SUM(total_bill) as total_bill,
+                                                  ANY_VALUE(order_date) as order_date
+                                                  FROM place_order group by order_id");
+                    $stmt_report->execute([]);
+                    $res_report = $stmt_report->get_result();
+
+                    if ($res_report->num_rows > 0) 
+                    {
+                        // Loop through each row and populate the data arrays
+                        while ($row_report = $res_report->fetch_assoc()) {
+                            $total_bill = $row_report['total_bill'];
+
+                            $dailyData = [];
+                            $weeklyData = [];
+                            $monthlyData = [];
+                            $yearlyData = [];
+
+                            $daily = $total_bill/ count($row_report);
+                            $weekly = $total_bill / 7;
+                            $monthly = $total_bill / 30;
+                            $yearly = $total_bill / 360;
+
+                            $f_daily = number_format($daily, 2, '.', '');
+                            $f_weekly = number_format($weekly, 2, '.', '');
+                            $f_monthly = number_format($monthly, 2, '.', '');
+                            $f_yearly = number_format($yearly, 2, '.', '');
+
+                            array_push($dailyData, $f_daily);
+                            array_push($weeklyData, $f_weekly);
+                            array_push($monthlyData, $f_monthly);
+                            array_push($yearlyData, $f_yearly);
+                        }
+                    }
+                  ?>
+                  <div style="width: 80%; margin: auto;">
+                    <canvas id="barChart"></canvas>
+                  </div>
+
+                  <?php
+                    if(isset($_POST['progress']))
+                    {
+                      $progress = $_POST['progress'];
+
+                      if($progress == 'Daily')
+                      {
+                        ?>
+                        <script>
+                          var ctx = document.getElementById('barChart').getContext('2d');
+                          var data = {
+                              labels: ['Daily'],
+                              datasets: [{
+                                  label: 'Daily Report',
+                                  data: 
+                                  [
+                                    <?php echo implode(',', $dailyData); ?>,
+                                  ],
+                                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                  borderColor: 'rgba(75, 192, 192, 1)',
+                                  borderWidth: 1
+                              }]
+                          };
+                          
+                          var myBarChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: data,
+                              options: {
+                                  scales: {
+                                      y: {
+                                          beginAtZero: true
+                                      }
+                                  }
+                              }
+                          });
+                        </script>
+                        <?php
+                      }
+                      else if($progress == 'Weekly')
+                      {
+                        ?>
+                        <script>
+                          var ctx = document.getElementById('barChart').getContext('2d');
+                          var data = {
+                              labels: ['Weekly'],
+                              datasets: [{
+                                  label: 'Weekly Report',
+                                  data: 
+                                  [
+                                    <?php echo implode(',', $weeklyData); ?>
+                                  ],
+                                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                  borderColor: 'rgba(75, 192, 192, 1)',
+                                  borderWidth: 1
+                              }]
+                          };
+                          
+                          var myBarChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: data,
+                              options: {
+                                  scales: {
+                                      y: {
+                                          beginAtZero: true
+                                      }
+                                  }
+                              }
+                          });
+                        </script>
+                        <?php
+                      }
+                      else if($progress == 'Monthly')
+                      {
+                        ?>
+                        <script>
+                          var ctx = document.getElementById('barChart').getContext('2d');
+                          var data = {
+                              labels: ['Monthly'],
+                              datasets: [{
+                                  label: 'Monthly Report',
+                                  data: 
+                                  [
+                                    <?php echo implode(',', $monthlyData); ?>
+                                  ],
+                                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                  borderColor: 'rgba(75, 192, 192, 1)',
+                                  borderWidth: 1
+                              }]
+                          };
+                          
+                          var myBarChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: data,
+                              options: {
+                                  scales: {
+                                      y: {
+                                          beginAtZero: true
+                                      }
+                                  }
+                              }
+                          });
+                        </script>
+                        <?php
+                      }
+                      else if($progress == 'Yearly')
+                      {
+                        ?>
+                        <script>
+                          var ctx = document.getElementById('barChart').getContext('2d');
+                          var data = {
+                              labels: ['Yearly'],
+                              datasets: [{
+                                  label: 'Yearly Report',
+                                  data: 
+                                  [
+                                    <?php echo implode(',', $yearlyData); ?>,
+                                  ],
+                                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                  borderColor: 'rgba(75, 192, 192, 1)',
+                                  borderWidth: 1
+                              }]
+                          };
+                          
+                          var myBarChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: data,
+                              options: {
+                                  scales: {
+                                      y: {
+                                          beginAtZero: true
+                                      }
+                                  }
+                              }
+                          });
+                        </script>
+                        <?php
+                      }
+                      else if($progress == "Overall")
+                      {
+                        ?>
+                        <script>
+                          var ctx = document.getElementById('barChart').getContext('2d');
+                          var data = {
+                              labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
+                              datasets: [{
+                                  label: 'Overall Report',
+                                  data: 
+                                  [
+                                    <?php echo implode(',', $dailyData); ?>,
+                                    <?php echo implode(',', $weeklyData); ?>,
+                                    <?php echo implode(',', $monthlyData); ?>,
+                                    <?php echo implode(',', $yearlyData); ?>
+                                  ],
+                                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                  borderColor: 'rgba(75, 192, 192, 1)',
+                                  borderWidth: 1
+                              }]
+                          };
+                          
+                          var myBarChart = new Chart(ctx, {
+                              type: 'bar',
+                              data: data,
+                              options: {
+                                  scales: {
+                                      y: {
+                                          beginAtZero: true
+                                      }
+                                  }
+                              }
+                          });
+                        </script>
+                        <?php 
+                      }
+                    }
+                    else
+                    {
+                      ?>
+                      <script>
+                        var ctx = document.getElementById('barChart').getContext('2d');
+                        var data = {
+                            labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
+                            datasets: [{
+                                label: 'Overall Report',
+                                data: 
+                                [
+                                  <?php echo implode(',', $dailyData); ?>,
+                                  <?php echo implode(',', $weeklyData); ?>,
+                                  <?php echo implode(',', $monthlyData); ?>,
+                                  <?php echo implode(',', $yearlyData); ?>
+                                ],
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        };
+                        
+                        var myBarChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: data,
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                      </script>
+                      <?php
+                    }
+                  ?>
+                  <!-- End Sales report  -->
+
                 </div>
               </div>
             </div>
@@ -252,6 +510,17 @@ if(isset($_GET['tab']))
           <!--Top products and customer -->
           <div class="p-4 bg-gray-200 border border-gray-300 rounded-lg shadow-sm sm:p-6">
             <h3 class="flex items-center mb-4 text-lg font-semibold text-gray-900 ">Top Products and Customer</h3>
+            <?php
+              // $stmt_ttl_cnt = $conn->prepare("SELECT SUM(qnty) AS total_qnty from place_order order by product_id");
+
+              // $stmt_ttl_cnt->execute();
+              // $res_ttl_cnt = $stmt_ttl_cnt->get_result();
+
+              // $row_ttl_cnt = $res_ttl_cnt->fetch_assoc();
+              // $total_qnty = $row_ttl_cnt['total_qnty'];
+
+              // echo '<span class="text-xl font-bold leading-none sm:text-2xl"> '. $total_qnty .' </span>';
+            ?>
             <!-- button switches  -->
             <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
                 <li class="w-full">
@@ -327,11 +596,11 @@ if(isset($_GET['tab']))
                             <td class="text-red-500 text-lg font-semibold">
                               ('.$total_qnty.') items
                             </td>
-                          </tbody>
+                            
                           ';
                         }
-
                         echo '
+                          </tbody>
                         </table>
                         ';
                       }
@@ -361,7 +630,7 @@ if(isset($_GET['tab']))
                                     GROUP BY po.user_id 
                                     ORDER BY total_bill DESC"
                       );
-                    
+
                       $stmt_top_customer->execute();
                       $res_top_customer = $stmt_top_customer->get_result();
                       $count = 1;
@@ -657,7 +926,7 @@ if(isset($_GET['tab']))
                   var data = {
                       labels: ['Daily'],
                       datasets: [{
-                          label: 'Daily Average Report',
+                          label: 'Daily Report',
                           data: 
                           [
                             <?php echo implode(',', $dailyData); ?>,
@@ -690,7 +959,7 @@ if(isset($_GET['tab']))
                   var data = {
                       labels: ['Weekly'],
                       datasets: [{
-                          label: 'Weekly Average Report',
+                          label: 'Weekly Report',
                           data: 
                           [
                             <?php echo implode(',', $weeklyData); ?>
@@ -721,9 +990,9 @@ if(isset($_GET['tab']))
                 <script>
                   var ctx = document.getElementById('barChart').getContext('2d');
                   var data = {
-                      labels: [ 'Monthly'],
+                      labels: ['Monthly'],
                       datasets: [{
-                          label: 'Monthly Average Report',
+                          label: 'Monthly Report',
                           data: 
                           [
                             <?php echo implode(',', $monthlyData); ?>
@@ -756,7 +1025,7 @@ if(isset($_GET['tab']))
                   var data = {
                       labels: ['Yearly'],
                       datasets: [{
-                          label: 'Average Report Yearly',
+                          label: 'Yearly Report',
                           data: 
                           [
                             <?php echo implode(',', $yearlyData); ?>,
@@ -789,7 +1058,7 @@ if(isset($_GET['tab']))
                   var data = {
                       labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
                       datasets: [{
-                          label: 'Over all Average Report',
+                          label: 'Overall Report',
                           data: 
                           [
                             <?php echo implode(',', $dailyData); ?>,
@@ -826,7 +1095,7 @@ if(isset($_GET['tab']))
                 var data = {
                     labels: ['Daily', 'Weekly', 'Monthly', 'Yearly'],
                     datasets: [{
-                        label: 'Overall Average Report',
+                        label: 'Overall Report',
                         data: 
                         [
                           <?php echo implode(',', $dailyData); ?>,
@@ -1003,6 +1272,16 @@ if(isset($_GET['tab']))
 
               }
             ?>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.widgets.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+            <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+        
+
+              <button id="export-button" class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm mb-5 ml-5 font-medium text-white bg-green-600 border border-gray-300 rounded-lg focus:outline-none hover:bg-gray-200 hover:text-black focus:z-10 focus:ring-4 focus:ring-gray-200 transition">
+                Export to Excel
+              </button>
             <div class="overflow-x-auto">
                 <!-- table here  -->
                 <?php
@@ -1021,10 +1300,11 @@ if(isset($_GET['tab']))
                     $stmt_product->execute();
                     $res_product = $stmt_product->get_result();
                   }
+
                   if($res_product->num_rows > 0)
                   {
                     ?>
-                    <table class="w-full text-sm text-left text-gray-500 ">
+                    <table class="w-full text-sm text-left text-gray-500" id="table-to-export">
                       <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                         <tr>
                             <th scope="col" class="p-4">Product ID</th>
@@ -1063,7 +1343,13 @@ if(isset($_GET['tab']))
 
 
                       //price format
-                      $price_format = number_format($price, '2', '.', ',');
+                      $price = number_format($price, '2', '.', ',');
+
+                      $xs_avail = number_format($xs_avail, '0', '.', ',');
+                      $sm_avail = number_format($sm_avail, '0', '.', ',');
+                      $md_avail = number_format($md_avail, '0', '.', ',');
+                      $lg_avail = number_format($lg_avail, '0', '.', ',');
+                      $xlg_avail = number_format($xlg_avail, '0', '.', ',');
 
                       echo '
                       <tbody>
@@ -1115,32 +1401,32 @@ if(isset($_GET['tab']))
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                Php '.$price_format.'
+                                Php '.$price.'
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                 <span class="text-red-600 text-lg"> ('.$xs_avail.')</span> 
+                                 <span class="text-red-600 text-lg">'. $xs_avail .'</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                 <span class="text-red-600 text-lg"> ('.$sm_avail.')</span> 
+                                 <span class="text-red-600 text-lg">'. $sm_avail .'</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                 <span class="text-red-600 text-lg"> ('.$md_avail.')</span> 
+                                 <span class="text-red-600 text-lg">'. $md_avail .'</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                 <span class="text-red-600 text-lg"> ('.$lg_avail.')</span> 
+                                 <span class="text-red-600 text-lg">'. $lg_avail .'</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
                               <div class="flex items-center">
-                                 <span class="text-red-600 text-lg"> ('.$xlg_avail.')</span> 
+                                 <span class="text-red-600 text-lg">'. $xlg_avail .'</span> 
                               </div>
                             </td>
                             <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap">
@@ -1157,6 +1443,26 @@ if(isset($_GET['tab']))
                     ';
                   }
                 ?>
+                <script>
+                  document.getElementById('export-button').addEventListener('click', function () {
+                    // Clone the table to avoid modifying the original table
+                    var $tableToExport = $("#table-to-export").clone();
+
+                    // Remove the "Image," "Update," and "Remove" columns from the cloned table
+                    $tableToExport.find('th:nth-child(6), td:nth-child(6)').remove(); // Remove Remove column
+                    $tableToExport.find('th:nth-child(5), td:nth-child(5)').remove(); // Remove Update column
+                    $tableToExport.find('th:nth-child(2), td:nth-child(2)').remove(); // Remove Image column
+
+                    $tableToExport.find('div:contains("Change ID")').remove();
+
+                    // Export the modified table
+                    $tableToExport.table2excel({
+                      filename: "Headturners_Products",
+                      exclude: ".no-export", // Exclude elements with class "no-export"
+                      preserveColors: false // Preserve cell background colors
+                    });
+                  });
+                </script>
             </div>
           </div>
         <!--product modal (add product) here -->
@@ -1369,7 +1675,8 @@ if(isset($_GET['tab']))
                             </button>
                           </div>';
                           $error = true;
-                        } else if (!$error) {
+                        } 
+                        else if (!$error) {
                           // insert data
                           $stmt = $conn->prepare('insert into users (email, fname, lname, contact, address, pass, pin) values (?,?,?,?,?,?,?) ');
                           $stmt->bind_param('sssissi', $email, $fname, $lname, $contact, $address, $hash_pass, $pin);
@@ -1399,6 +1706,9 @@ if(isset($_GET['tab']))
                               <tr>
                                   <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                       Profile Image
+                                  </th>
+                                  <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
+                                      View
                                   </th>
                                   <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase">
                                       Email
@@ -1441,7 +1751,6 @@ if(isset($_GET['tab']))
                           if(empty($image))
                           {
                             $image_show = '<img src="../assets/images/profile/default_profile.png" class="w-10 h-10 rounded-full">';
-
                           }
                           else{
                             $image_show = '<img src="../'.$image.'" class="w-10 h-10 rounded-full">';
@@ -1462,41 +1771,48 @@ if(isset($_GET['tab']))
                           
                           echo '
                           <tbody class="bg-gray-200 divide-y divide-gray-200  dark:divide-gray-700">
-                              <tr class="hover:bg-gray-200 dark:hover:bg-gray-500">
-                                  <td class="items-center p-4 mr-12 ">
-                                      '.$image_show.'
-                                  </td>
-                                  <td class="max-w-sm p-4 overflow-hidden text-gray-700 font-normal text-gray-500 truncate xl:max-w-xs">
-                                  '.$email.'
-                                  </td>
-                                  <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
-                                  '.$fname.'
-                                  </td>
-                                  <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
-                                  '.$lname.'
-                                  </td>
-                                  <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
-                                  '.$contact.'
-                                  </td>
-                                  <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
-                                  '.$address.'
-                                  </td>
-                                  <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
-                                  '.$date_reg.'
-                                  </td>
-                                  <td class="p-4 space-x-2 whitespace-nowrap">
-                                      <button type="button" data-modal-toggle="edit-user-modal-'.$email.'" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-slate-100 rounded-lg bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 transition">
-                                          <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
-                                          Edit user
-                                      </button>
-                                      
-                                  </td>
-                                  <td>
-                                    <div class="inline-flex items-center px-3 py-2 text-sm font-medium text-center">
-                                      '.$verification_show.'
-                                    </div>
-                                  </td>
-                              </tr>                        
+                            <tr class="hover:bg-blue-100 dark:hover:bg-gray-500">
+                              <td class="items-center p-4 mr-12 ">
+                              '.$image_show.'
+                              </td>
+                              <td class="max-w-sm p-4 overflow-hidden text-blue-500 font-normal truncate xl:max-w-xs">
+                                <a href="admin.php?tab=users_view&user_id='.$row_user['id'].'">
+                                  <svg width="40" height="40" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M12.5 10a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                                    <path fill-rule="evenodd" d="M2 10s3-5.5 8-5.5 8 5.5 8 5.5-3 5.5-8 5.5S2 10 2 10zm8 3.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" clip-rule="evenodd"/>
+                                  </svg>
+                                </a>
+                              </td>
+                              <td class="max-w-sm p-4 overflow-hidden text-gray-700 font-normal text-gray-500 truncate xl:max-w-xs">
+                              '.$email.'
+                              </td>
+                              <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
+                              '.$fname.'
+                              </td>
+                              <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
+                              '.$lname.'
+                              </td>
+                              <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
+                              '.$contact.'
+                              </td>
+                              <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
+                              '.$address.'
+                              </td>
+                              <td class="p-4 text-base font-medium text-gray-700 whitespace-nowrap ">
+                              '.$date_reg.'
+                              </td>
+                              <td class="p-4 space-x-2 whitespace-nowrap">
+                                  <button type="button" data-modal-toggle="edit-user-modal-'.$email.'" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-slate-100 rounded-lg bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 transition">
+                                      <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                                      Edit user
+                                  </button>
+                              </td>
+                              <td>
+                                <div class="inline-flex items-center px-3 py-2 text-sm font-medium text-center">
+                                  '.$verification_show.'
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                           ';
                           ?>
@@ -1643,7 +1959,173 @@ if(isset($_GET['tab']))
 
       
     <?php
-  } 
+  }
+  else 
+  if ($tab == 'users_view') 
+  {
+    if(isset($_GET['user_id']))
+    {
+      $user_id = $_GET['user_id'];
+
+      // users queries 
+      $stmt_view_user = $conn->prepare("SELECT * from users  where id = ?");
+
+      $stmt_view_user->execute([$user_id]);
+      $res_view_user = $stmt_view_user->get_result();
+
+      //count the items bought
+      $stmt_items_bought = $conn->prepare("SELECT SUM(qnty) as items_bought from place_order where user_id = ?");
+      $stmt_items_bought->execute([$user_id]);
+      $res_items_bought = $stmt_items_bought->get_result();
+      $row_items_bought = $res_items_bought->fetch_assoc();
+      $items_bought = $row_items_bought['items_bought'];
+
+      //total spent 
+      $stmt_ttl_spent = $conn->prepare("SELECT COUNT(order_id),
+                                          SUM(total_bill) AS total_bill
+                                              from place_order 
+                                              where user_id = ? 
+                                              GROUP BY user_id 
+                                        ");
+      $stmt_ttl_spent->execute([$user_id]);
+      $res_ttl_spent = $stmt_ttl_spent->get_result();
+      $row_ttl_spent = $res_ttl_spent->fetch_assoc();
+      $total_bill = $row_ttl_spent['total_bill'];
+      $total_bill = number_format($total_bill, "2", ".", ",");
+
+      if($res_view_user->num_rows > 0)
+      {
+        while($row_view_user = $res_view_user->fetch_assoc())
+        {
+          // users 
+          $email = $row_view_user['email'];
+          $fname = $row_view_user['fname'];
+          $lname = $row_view_user['lname'];
+          $contact = $row_view_user['contact'];
+          $address = $row_view_user['address'];
+          $image = $row_view_user['image'];
+          $date_reg = $row_view_user['date_reg'];
+          $date_reg = date("F j, Y");
+
+          // users social 
+          $social_name = $row_view_user['social_name'];
+          $social_link = $row_view_user['social_link'];
+
+          if(empty($image))
+          {
+            $image_show = '<img src="../assets/images/profile/default_profile.png" class="w-50 h-50 rounded-full">';
+          }
+          else{
+            $image_show = '<img src="../'.$image.'" class="w-50 h-50 rounded-full">';
+          }
+
+          ?>
+            <main class="mt-[20%]">
+              <div class="absolute top-0 w-full h-full bg-center bg-cover" style="
+                      background-image: url('https://imgs.search.brave.com/cVMkgetJeqaLlcAZpI9FhmRmbs8yfOBvSCz2rR7NsUs/rs:fit:860:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJzLmNvbS9p/bWFnZXMvZmVhdHVy/ZWQvbW90b3JjeWNs/ZS1sYnBrd21iMXd4/MWw2dW0xLmpwZw');
+                    ">
+                <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
+              </div>
+              <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px" style="transform: translateZ(0px)">
+                <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                  <polygon class="text-blueGray-200 fill-current" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+              </div>
+              <section class="relative py-16 bg-blueGray-200">
+                <div class="container mx-auto px-4">
+                  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64 pt-20">
+                    <div class="px-6">
+                      <div class="flex flex-wrap justify-center">
+                        <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                          <div class="relative">
+                            <?php echo $image_show ?>
+                          </div>
+                        </div>
+                        <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+                          <div class="py-6 px-3 mt-32 sm:mt-0">
+                            <a href="admin.php?tab=users" class="bg-red-500 active:bg-red-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+                              X
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="w-full lg:w-4/12 px-4 lg:order-1">
+                          <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                            <div class="mr-4 p-3 text-center">
+                              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                                <?php echo $items_bought ?>
+                              </span>
+                              <span class="text-sm text-blueGray-400">Items bought</span>
+                            </div>
+                            <div class="mr-4 p-3 text-center">
+                              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+                              <?php echo $total_bill ?>
+                              </span>
+                                <span class="text-sm text-blueGray-400">Total Spent</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center mt-12">
+                        <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                          <?php echo $fname .' '. $lname ?>
+                        </h3>
+                        <div class="mr-4 p-3 text-center">
+                          <span class="text-sm font-bold block tracking-wide text-blueGray-600">
+                            Joined
+                          </span>
+                          <span class="text-sm text-blueGray-400">
+                            <?php echo $date_reg ?>
+                          </span>
+                        </div>
+                        <div class="text-md leading-normal mt-0 mb-2 text-blueGray-400 font-bold">
+                          <i class="fab fa-google"></i>
+                          <span class="text-blue-600"><?php echo $email ?></span>
+                        </div>
+                        <div class="mb-[5%] text-blueGray-600 mt-5">
+                          <i class="fas fa-phone-square"></i> <?php echo $contact ?> | <i class="fas fa-home"></i> <?php echo $address ?>  
+
+                          <!-- users table  -->
+                          <div class="flex flex-col mt-[3%]">
+                              <div class="overflow-x-auto">
+                                  <div class="inline-block min-w-full align-middle">
+                                      <div class="overflow-hidden shadow">
+                                        <?php
+                                          $stmt_show_product = $conn->prepare("SELECT 
+                                                                               COUNT(po.order_id),
+                                                                               ANY_VALUE(po.product_id) as product_id,
+                                                                               ANY_VALUE(po.order_id) as order_id,
+                                                                               ANY_VALUE(po.qnty) as qnty,
+                                                                               ANY_VALUE(po.size) as size,
+                                                                               ANY_VALUE(po.pay_method) as pay_method,
+                                                                               ANY_VALUE(po.order_date) as order_date,
+
+                                                                               ANY_VALUE(p.image) as image
+                                                                               FROM products p join place_order po
+                                                                               ON p.product_id = po.product_id
+                                                                               GROUP BY po.order_id   
+                                                                              ");
+                                        
+                                        ?>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </main>
+          <?php
+        }
+      }
+    }
+  }  
   else
   if ($tab == 'to_ship') 
   {
@@ -1705,22 +2187,22 @@ if(isset($_GET['tab']))
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-1 py-3">
-                                IMAGE 
+                              IMAGE 
                             </th>
                             <th scope="col" class="px-1 py-3">
-                                PRODUCT ID 
+                              PRODUCT ID 
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                QUANTITY
+                              QUANTITY
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                SIZE
+                              SIZE
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                PRICE
+                              PRICE
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                TOTAL PRICE
+                              TOTAL PRICE
                             </th>
                         </tr>
                     </thead>

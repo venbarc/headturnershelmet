@@ -83,13 +83,13 @@
                     <span class="relative text-black group-hover:text-white">About</span>
                 </a>
             </li>
-            <li> 
+            <!-- <li> 
                 <a href="#contact" class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
                     <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                     <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
                     <span class="relative text-black group-hover:text-white">Contact</span>
                 </a>
-            </li>
+            </li> -->
           </ul>
       <!-- dropdown arrow -->
       <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex justify-center gap-1 relative inline-block px-3 py-2 text-sm font-medium group mr-4">
@@ -107,7 +107,7 @@
             <a href="shop.php?product=shoei" class="block px-4 py-2 hover:bg-gray-100">SHOEI</a>
           </li>
           <li>
-            <a href="shop.php?product=agv" class="block px-4 py-2 hover:bg-gray-100">AGV</a>
+            <a href="shop.php?product=avg" class="block px-4 py-2 hover:bg-gray-100">AVG</a>
           </li>
           <li>
             <a href="shop.php?product=arai" class="block px-4 py-2 hover:bg-gray-100">ARAI</a>

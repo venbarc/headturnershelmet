@@ -173,12 +173,8 @@
                 <div class="w-full px-4">
                     <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
                         <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
-                            <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
-                                <span
-                                    class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                <span
-                                    class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                <span class="relative text-black group-hover:text-white">FAQ</span>
+                            <p class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl text-gray-950">
+                                FAQ
                             </p>
                         </span>
                         <h2 class="text-4xl font-extrabold leading-none tracking-tight md:text-5xl text-gray-950">
@@ -193,10 +189,9 @@
             </div>
 
             <div class="flex flex-wrap -mx-4">
-                <div class="w-full px-4 lg:w-1/2">
+                <div class="w-full px-4">
                     <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] p-5 sm:p-8 bg-gray-200"
-                        data-wow-delay=".1s
-                                                  ">
+                        data-wow-delay=".1s ">
                         <button class="flex items-center w-full text-left faq-btn ">
                             <div
                                 class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
@@ -272,7 +267,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full px-4 lg:w-1/2">
+                <div class="w-full px-4">
                     <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
                         data-wow-delay=".1s">
                         <button class="flex items-center w-full text-left faq-btn">
@@ -361,15 +356,6 @@
             <div class="flex flex-wrap">
                 <div class="w-full mx-4">
                     <div class="mx-auto mb-[60px] max-w-[620px] text-center lg:mb-20">
-                        <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
-                            <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
-                                <span
-                                    class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                <span
-                                    class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                <span class="relative text-black group-hover:text-white">Testimonials</span>
-                            </p>
-                        </span>
                         <h2 class="mb-4 text-3xl font-bold text-gray-300 sm:text-4xl md:text-[42px]">
                             What our Customer Say
                         </h2>
@@ -419,9 +405,9 @@
                             </p>
                         </div>
                         <div class="flex items-center ud-testimonial-info">
-                            <div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">
-                                <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/345443603_1880321105687978_3230115869854575744_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEp1xJg8BtzFYqchhJcycbB9jfgkNNWAt72N-CQ01YC3lEagmffTIcWLrOoyIBe_OfnBTQ-YaHvdUXL9BivWoZq&_nc_ohc=r7wIwa_UuUEAX-gg30m&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCqUaW8zfJnSe_emJr39XNiHonE6Q-llAAjvFqIM3fLoQ&oe=64834236" alt="author" />
-                            </div>
+                            <!--<div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">-->
+                                <!--<img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/345443603_1880321105687978_3230115869854575744_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEp1xJg8BtzFYqchhJcycbB9jfgkNNWAt72N-CQ01YC3lEagmffTIcWLrOoyIBe_OfnBTQ-YaHvdUXL9BivWoZq&_nc_ohc=r7wIwa_UuUEAX-gg30m&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCqUaW8zfJnSe_emJr39XNiHonE6Q-llAAjvFqIM3fLoQ&oe=64834236" alt="author" />-->
+                            <!--</div>-->
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Dharlyn Deplomo</h4>
                                 <p class="text-xs text-[#969696]">@darlyngmail.com</p>
@@ -470,9 +456,9 @@
                             </p>
                         </div>
                         <div class="flex items-center ud-testimonial-info">
-                            <div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">
-                                <img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/324399728_1601669876937064_4012079499024036889_n.jpg?_nc_cat=110&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFCqnnJYiTKcvBldN-sRFjKuTshcBUZ0t65OyFwFRnS3l2_TkQLsE7PtGgO7YNj7ThlrWP6SXPhIwjTjeszPIjD&_nc_ohc=4thaTYEAxgcAX-H7-7E&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfA1o6dAAcOv-o0yIjk67O2r-DPJFeUnF5_OHHxkBEEnuQ&oe=6484A621" alt="author" />
-                            </div>
+                            <!--<div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">-->
+                                <!--<img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/324399728_1601669876937064_4012079499024036889_n.jpg?_nc_cat=110&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFCqnnJYiTKcvBldN-sRFjKuTshcBUZ0t65OyFwFRnS3l2_TkQLsE7PtGgO7YNj7ThlrWP6SXPhIwjTjeszPIjD&_nc_ohc=4thaTYEAxgcAX-H7-7E&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfA1o6dAAcOv-o0yIjk67O2r-DPJFeUnF5_OHHxkBEEnuQ&oe=6484A621" alt="author" />-->
+                            <!--</div>-->
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">delposo </h4>
                                 <p class="text-xs text-[#969696]">uwu @ UI Hunter</p>
@@ -517,13 +503,13 @@
                         </div>
                         <div class="mb-6 ud-testimonial-content">
                             <p class="text-base tracking-wide text-body-color">
-                                “Even though I got hit by a bus, my helmet remained intact but I am already dead."
+                                “Grabe ang ganda ng product, matibay at comfortable."
                             </p>
                         </div>
                         <div class="flex items-center ud-testimonial-info">
-                            <div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">
-                                <img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/212608328_4414181658625598_6599249126382701257_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=174925&_nc_eui2=AeGBCssf__cmU_Bdkj3d4Z1UMaF7QCbCvKYxoXtAJsK8pjsQX3UTcZaKUvX4NHhYMqxxYimWGoLxMjvyecg9GITe&_nc_ohc=hw5TxLtEcDkAX8CJ8La&_nc_ht=scontent.fmnl17-1.fna&oh=00_AfDas_fi7FS2Esgk7Ej80EV3QAxPSLcmBGyHl5ivTOEUPg&oe=64846BD5" alt="author" />
-                            </div>
+                            <!--<div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">-->
+                                <!--<img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/212608328_4414181658625598_6599249126382701257_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=174925&_nc_eui2=AeGBCssf__cmU_Bdkj3d4Z1UMaF7QCbCvKYxoXtAJsK8pjsQX3UTcZaKUvX4NHhYMqxxYimWGoLxMjvyecg9GITe&_nc_ohc=hw5TxLtEcDkAX8CJ8La&_nc_ht=scontent.fmnl17-1.fna&oh=00_AfDas_fi7FS2Esgk7Ej80EV3QAxPSLcmBGyHl5ivTOEUPg&oe=64846BD5" alt="author" />-->
+                            <!--</div>-->
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Ben</h4>
                                 <p class="text-xs text-[#969696]">ben @ obre</p>

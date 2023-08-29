@@ -7,10 +7,8 @@
                     <div class="items-center justify-between overflow-hidden border lg:flex">
                         <div class="w-full py-12 px-7 sm:px-12 md:p-16 lg:max-w-[565px] lg:py-9 lg:px-16 xl:max-w-[640px] xl:p-[70px]">
                             <span class="inline-block px-5 py-2 mb-5 text-sm font-medium text-white">
-                                <p href="#_" class="relative inline-block px-4 py-2 font-medium group">
-                                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
-                                    <span class="relative text-black group-hover:text-white">About Us</span>
+                                <p class="relative inline-block px-4 py-2 text-4xl text-dark group">
+                                    About Us
                                 </p>
                             </span>
                             <h2 class="mb-6 text-3xl font-bold text-dark sm:text-4xl sm:leading-snug 2xl:text-[40px]">
@@ -29,7 +27,7 @@
                         </div>
                         <div class="text-center">
                             <div class="relative z-10 inline-block">
-                                <img src="assets/images/about/about-image.svg" alt="image" class="mx-auto lg:ml-auto" />
+                                <img src="assets/images/about/about_bg_img.jpg" alt="image" class="mx-auto lg:ml-auto h-[500px]" />
                             </div>
                         </div>
                     </div>

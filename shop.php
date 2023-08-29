@@ -594,7 +594,7 @@
 
             }
             else
-            if($product == 'agv')
+            if($product == 'avg')
             {
                 if(isset($_POST['add_cart']))
                 {
@@ -657,14 +657,14 @@
                             <nav id="agv" class="top-0 z-30 w-full px-6 py-1">
                                 <div class="container flex flex-wrap items-center justify-between w-full px-2 py-3 mx-auto mt-0">
                                     <div class="text-xl font-bold tracking-wide text-gray-800 no-underline uppercase hover:no-underline ">
-                                        AGV HELMETS
+                                        AVG HELMETS
                                     </div>
                                 </div>
                             </nav>
 
                             <!-- products  -->
                             <?php
-                                $stmt1 = $conn->prepare("select * from products where brand = 'agv' ");
+                                $stmt1 = $conn->prepare("select * from products where brand = 'avg' ");
                                 $stmt1->execute();
                                 $res1 = $stmt1->get_result();
 

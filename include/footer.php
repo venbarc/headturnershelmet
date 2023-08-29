@@ -7,6 +7,7 @@
                         <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="FlowBite Logo" /> -->
                         <span class="self-center text-2xl font-extrabold text-gray-300 whitespace-nowrap">HEADTURNERS</span>
                     </a>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15466.069496296193!2d121.1193527655371!3d14.281345165062978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d93269b7a455%3A0x8b0fe8f840ace37a!2sBella%20Solana!5e0!3m2!1sen!2sph!4v1693035438177!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                     <div>

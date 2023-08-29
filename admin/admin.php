@@ -11,6 +11,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <!-- for datepicker  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+
     <title>Admin | Headturners</title>
     
   </head>
@@ -549,8 +552,8 @@ if(isset($_GET['tab']))
                               SUM(po.qnty) AS total_qnty
                                   FROM place_order po
                                   JOIN products p ON p.product_id = po.product_id
-                                    GROUP BY p.product_id
-                                    ORDER BY qnty DESC"
+                                    GROUP BY product_id
+                                    ORDER BY total_qnty DESC"
                       );
                     
                       $stmt_top_product->execute();
@@ -870,6 +873,7 @@ if(isset($_GET['tab']))
                 <input type="submit" value="Monthly" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
                 <input type="submit" value="Yearly" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
               </form>
+
           </div>
           <?php
             $stmt_report = $conn->prepare("SELECT 
@@ -1125,7 +1129,76 @@ if(isset($_GET['tab']))
             }
           ?>
 
+          <form method="post" class="px-4 py-2">
+            <select name="select_date" class="block w-full p-2 mb-3 border rounded-lg shadow-md focus:ring focus:ring-blue-400 focus:border-blue-500" required>
+              <option value="" disabled selected>Select Date</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <select name="select_year" class="block w-full p-2 border rounded-lg shadow-md focus:ring focus:ring-blue-400 focus:border-blue-500" required>
+              <option value="" disabled selected>Select Year</option>
+              <?php
+                $year = 2022;
+                while($year <= 2024)
+                {
+                  echo '
+                    <option value="'.$year.'">'.$year.'</option>
+                  ';
+                  $year++;
+                }
+              ?>
+            </select>
+
+            <input type="submit" value="Submit" class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          </form>
           
+          <?php
+            if(isset($_POST['select_date']) && isset($_POST['select_year']))
+            {
+              $select_date = $_POST['select_date'];
+              $select_year = $_POST['select_year'];
+              $complete_date = $select_year .'-'. $select_date;
+              $complete_date_f = date("F Y", strtotime($complete_date));
+
+
+              $stmt_choose = $conn->prepare("SELECT 
+                                            SUM(total_bill) as total_bill
+                                            FROM place_order where order_date like '%$complete_date%' ");
+              $stmt_choose->execute();
+              $res_choose = $stmt_choose->get_result();
+
+              if($res_choose->num_rows > 0)
+              {
+                while($row_choose = $res_choose->fetch_assoc())
+                {
+                  $total_bill = $row_choose['total_bill'];
+                  $total_bill = number_format($total_bill, '2','.', ',');
+                  echo '
+                  <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                      <p class="text-lg font-semibold">Total sales from ' . $complete_date_f . ' are:</p>
+                      <p class="text-xl font-bold text-blue-700">' . $total_bill . '</p>
+                  </div>';
+                }
+              }
+              else{
+                echo '
+                  <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                      <p class="text-lg font-bold">There are no record from ' . $complete_date_f . ' </p>
+                  </div>';
+              }
+             
+            }
+          ?>
         </div>
       </div>
     </div>
@@ -2013,10 +2086,10 @@ if(isset($_GET['tab']))
 
           if(empty($image))
           {
-            $image_show = '<img src="../assets/images/profile/default_profile.png" class="w-50 h-50 rounded-full">';
+            $image_show = '../assets/images/profile/default_profile.png';
           }
           else{
-            $image_show = '<img src="../'.$image.'" class="w-50 h-50 rounded-full">';
+            $image_show = '../'.$image.'';
           }
 
           ?>
@@ -2038,7 +2111,7 @@ if(isset($_GET['tab']))
                       <div class="flex flex-wrap justify-center">
                         <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                           <div class="relative">
-                            <?php echo $image_show ?>
+                            <img src="<?php echo $image_show ?>" class="w-80 h-80 rounded-full" style="width: 80px; height:80px;">
                           </div>
                         </div>
                         <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
@@ -2091,21 +2164,30 @@ if(isset($_GET['tab']))
                                   <div class="inline-block min-w-full align-middle">
                                       <div class="overflow-hidden shadow">
                                         <?php
-                                          $stmt_show_product = $conn->prepare("SELECT 
-                                                                               COUNT(po.order_id),
-                                                                               ANY_VALUE(po.product_id) as product_id,
-                                                                               ANY_VALUE(po.order_id) as order_id,
-                                                                               ANY_VALUE(po.qnty) as qnty,
-                                                                               ANY_VALUE(po.size) as size,
-                                                                               ANY_VALUE(po.pay_method) as pay_method,
-                                                                               ANY_VALUE(po.order_date) as order_date,
+                                          // $stmt_show_product = $conn->prepare("SELECT 
+                                          //                                      COUNT(po.order_id),
+                                          //                                      ANY_VALUE(po.product_id) as product_id,
+                                          //                                      ANY_VALUE(po.order_id) as order_id,
+                                          //                                      ANY_VALUE(po.qnty) as qnty,
+                                          //                                      ANY_VALUE(po.size) as size,
+                                          //                                      ANY_VALUE(po.pay_method) as pay_method,
+                                          //                                      ANY_VALUE(po.order_date) as order_date,
 
-                                                                               ANY_VALUE(p.image) as image
-                                                                               FROM products p join place_order po
-                                                                               ON p.product_id = po.product_id
-                                                                               GROUP BY po.order_id   
-                                                                              ");
-                                        
+                                          //                                      ANY_VALUE(p.image) as image
+                                          //                                      FROM products p join place_order po
+                                          //                                      ON p.product_id = po.product_id
+                                          //                                      GROUP BY po.order_id   
+                                          //                                     ");
+                                          // $stmt_show_product->execute();
+                                          // $res_show_product = $stmt_show_product->get_result();
+
+                                          // if($res_show_product->num_rows > 0)
+                                          // {
+                                          //   while($row_show_product)
+                                          //   {
+
+                                          //   }
+                                          // }
                                         ?>
                                       </div>
                                   </div>

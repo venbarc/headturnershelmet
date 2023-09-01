@@ -23,7 +23,6 @@
                             <p class="text-base leading-relaxed mb-9 text-body-color">
                                 We believe that safety should always come first, which is why we only sell helmets that meet safety standards such as DOT, ECE, or Snell. We also understand that comfort and style are important factors when choosing a helmet, so we offer a range of materials and designs to suit your preferences.
                             </p>
-
                         </div>
                         <div class="text-center">
                             <div class="relative z-10 inline-block">

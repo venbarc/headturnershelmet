@@ -90,6 +90,14 @@ else
             </a>
          </li>
          <li>
+            <a href="admin.php?tab=progress_report" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-500">
+              <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 13H4v3h2v-3zm5-4H9v7h2V9zm5-5h-2v12h2V4zm-2-1a1 1 0 00-1 1v12a1 1 0 001 1h2a1 1 0 001-1V4a1 1 0 00-1-1h-2zM8 9a1 1 0 011-1h2a1 1 0 011 1v7a1 1 0 01-1 1H9a1 1 0 01-1-1V9zm-5 4a1 1 0 011-1h2a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3z" clip-rule="evenodd"/>
+              </svg>
+              <span class="ml-3">Progress Report</span>
+            </a>
+         </li>
+         <li>
             <a href="admin.php?tab=products" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-500">
                <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M5.81 6.063A1.5 1.5 0 016.98 5.5h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624a.5.5 0 00-.39-.188H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
@@ -107,13 +115,82 @@ else
             </a>
          </li>
          <li>
-            <a href="admin.php?tab=transactions" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-500">
-              <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M3.5 5a.5.5 0 00-.5.5v2h5a.5.5 0 01.5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 01.5-.5h5v-2a.5.5 0 00-.5-.5h-13zM17 8.5h-4.551a2.678 2.678 0 01-.443 1.042c-.393.546-1.043.958-2.006.958-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 017.551 8.5H3v6a.5.5 0 00.5.5h13a.5.5 0 00.5-.5v-6zm-15-3A1.5 1.5 0 013.5 4h13A1.5 1.5 0 0118 5.5v9a1.5 1.5 0 01-1.5 1.5h-13A1.5 1.5 0 012 14.5v-9z" clip-rule="evenodd"/>
+          <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100  dark:hover:bg-gray-500" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
+              <svg width="30" height="30" fill="black" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
+                  <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
               </svg>
-              <span class="flex-1 ml-3 whitespace-nowrap">Transactions</span>
+              <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Orders</span>
+              <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+          </button>
+          <ul id="dropdown-crud" class="space-y-2 py-2">
+              <li>
+                  <a href="admin.php?tab=to_ship" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
+                    <img src="../assets/images/shipping_icon/to_ship.png"> &nbsp;&nbsp; 
+                      <?php 
+                          // count place order 
+                          $stmt_count_to_ship = $conn->prepare("SELECT count(order_id) from place_order where shipped = 0 group by order_id");
+                          $stmt_count_to_ship->execute();
+                          $res_count_to_ship = $stmt_count_to_ship->get_result();
+                          $count_to_ship = $res_count_to_ship->num_rows > 0 ? $res_count_to_ship->num_rows : 0;
+                      ?>
+                      To ship &nbsp; <span class="text-red-500"> <?php echo $count_to_ship ?> </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="admin.php?tab=completed" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
+                      <img src="../assets/images/shipping_icon/shipped.png"> &nbsp;&nbsp; 
+                     <?php 
+                          // count place order 
+                          $stmt_count_complete = $conn->prepare("SELECT count(order_id) from place_order where shipped = 1 group by order_id");
+                          $stmt_count_complete->execute();
+                          $res_count_complete = $stmt_count_complete->get_result();
+                          $count_complete = $res_count_complete->num_rows > 0 ? $res_count_complete->num_rows : 0;
+                      ?>
+                      Completed &nbsp; <span class="text-red-500"> <?php echo $count_complete ?> </span>
+                  </a>
+              </li>
+              <li>
+                  <a href="admin.php?tab=revoked" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11  dark:hover:bg-gray-500 ">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm3.354 4.646L10 9.293l2.646-2.647a.5.5 0 01.708.708L10.707 10l2.647 2.646a.5.5 0 01-.708.708L10 10.707l-2.646 2.647a.5.5 0 01-.708-.708L9.293 10 6.646 7.354a.5.5 0 11.708-.708z" clip-rule="evenodd"/>
+                    </svg>&nbsp;&nbsp;
+                     <?php 
+                          // count place order 
+                          $stmt_count_revoked = $conn->prepare("SELECT count(order_id) from place_order where shipped = 2 group by order_id");
+                          $stmt_count_revoked->execute();
+                          $res_count_revoked = $stmt_count_revoked->get_result();
+                          $count_revoked = $res_count_revoked->num_rows > 0 ? $res_count_revoked->num_rows : 0;
+                      ?>
+                      Revoked &nbsp; <span class="text-red-500"> <?php echo $count_revoked ?> </span>
+                  </a>
+              </li>
+             
+          </ul>
+          </li>
+
+          <li>
+            <a href="admin.php?tab=notif" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-500">
+              <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9.938 4.016a.146.146 0 00-.054.057L3.027 15.74a.176.176 0 00-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 00.066-.017.163.163 0 00.055-.06.176.176 0 00-.003-.183L10.12 4.073a.146.146 0 00-.054-.057.13.13 0 00-.063-.016.13.13 0 00-.064.016zm1.043-.45a1.13 1.13 0 00-1.96 0L2.166 15.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L10.982 3.566z" clip-rule="evenodd"/>
+                  <rect width="2" height="2" x="9.002" y="13" rx="1"/>
+                <path d="M9.1 7.995a.905.905 0 111.8 0l-.35 3.507a.553.553 0 01-1.1 0L9.1 7.995z"/>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Notifications</span>
+              <?php 
+              // Count notification
+              $stmt_count_notif = $conn->prepare("SELECT COUNT(*) AS product_count FROM products 
+                                                  WHERE (xs_avail + sm_avail + md_avail + lg_avail + xlg_avail) <= 3");
+              $stmt_count_notif->execute();
+              $res_count_notif = $stmt_count_notif->get_result();
+              $count_notif = $res_count_notif->num_rows > 0 ? $res_count_notif->fetch_assoc()['product_count'] : 0;
+              ?>
+
+              &nbsp; <span class="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-md font-bold"> 
+                <?php echo $count_notif ?> 
+              </span>
             </a>
-         </li>
+          </li>
       </ul>
    </div>
 </aside>

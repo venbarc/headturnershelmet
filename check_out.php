@@ -47,6 +47,11 @@
         <?php
       }
 
+      // email set up /////////////////////////////////////////////////
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
+    require 'PHPMailer-master/src/Exception.php';
+
     ?>
 </head>
 
@@ -180,23 +185,119 @@
                                                 user_id = ?, product_id = ?, order_id = ?, qnty = ?, size = ?, total_bill = ?, proof_image = ?, pay_method = ?");
             $stmt_place_order->execute([$user_id, $product_ids, $order_id, $qnty[$i], $size[$i], $total_bill, $proof_image, $pay_method]);
             // delete from order query 
-            $stmt_place_order = $conn->prepare("delete from orders where user_id = ? and product_id = ? ");
+            $stmt_place_order = $conn->prepare("DELETE from orders where user_id = ? and product_id = ? ");
             $stmt_place_order->execute([$user_id, $product_ids]);
             // delete from cart query 
-            $stmt_place_order = $conn->prepare("delete from cart where user_id = ? and product_id = ? and in_order = 1");
+            $stmt_place_order = $conn->prepare("DELETE from cart where user_id = ? and product_id = ? and in_order = 1");
             $stmt_place_order->execute([$user_id, $product_ids]);
             // update product quantity 
-            $stmt_product_qnty = $conn->prepare("update products set ".$size[$i]."_avail = (".$size[$i]."_avail - $qnty[$i]) where product_id = ?");
-            $stmt_product_qnty->execute([$product_ids]);
+            $stmt_place_order = $conn->prepare("UPDATE products set ".$size[$i]."_avail = (".$size[$i]."_avail - $qnty[$i]) where product_id = ?");
+            $stmt_place_order->execute([$product_ids]);
 
             if($stmt_place_order->affected_rows > 0)
             {
+              if($qnty[$i] <= 3)
+              {
+                // Threshold quantity
+                $thresholdQuantity = 3;
+                $stmt_notif = $conn->prepare("SELECT * FROM products 
+                                              WHERE (xs_avail + sm_avail + md_avail + lg_avail + xlg_avail) <= ? and product_id = ?
+                                              ");
+                $stmt_notif->execute([$thresholdQuantity, $product_ids]);
+                $res_notif = $stmt_notif->get_result();
+
+                if($res_notif->num_rows > 0)
+                {
+                  while($row = $res_notif->fetch_assoc())
+                  {
+                      $product_id = $row['product_id'];
+                      $image = $row['image'];
+                      $brand = $row['brand'];
+                      $name = $row['name'];
+                      $price = $row['product_id'];
+        
+                      $name = $row['name'];
+        
+                      $xs_avail = $row['xs_avail'];
+                      $sm_avail = $row['sm_avail'];
+                      $md_avail = $row['md_avail'];
+                      $lg_avail = $row['lg_avail'];
+                      $xlg_avail = $row['xlg_avail'];
+        
+                      $total = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
+        
+                      // Store product details in arrays
+                      $product_ids_mail[] = $product_id;
+                      
+                      $names[] = $name;
+                      $xs_avails[] = $xs_avail;
+                      $sm_avails[] = $sm_avail;
+                      $md_avails[] = $md_avail;
+                      $lg_avails[] = $lg_avail;
+                      $xlg_avails[] = $xlg_avail;
+                      $totals[] = $total;
+        
+                  }
+        
+                  // Create email content
+                  $emailContent = '<div style="border: 5px dashed black; padding: 5%; margin: 0 15%">';
+                  foreach ($product_ids_mail as $index => $product_id) 
+                  {
+                      $productName = $names[$index];
+                      $xsAvail = $xs_avails[$index];
+                      $smAvail = $sm_avails[$index];
+                      $mdAvail = $md_avails[$index];
+                      $lgAvail = $lg_avails[$index];
+                      $xlgAvail = $xlg_avails[$index];
+                      $total = $totals[$index];
+        
+                      $emailContent .= "
+                          <h1 style='color:navy'>Product ID : $product_id </h1>
+                          <h2>Name : $productName</h2>
+                          <h3>
+                              Extra Small : $xsAvail <br>
+                              Small : $smAvail <br>
+                              Medium : $mdAvail <br>
+                              Large : $lgAvail <br>
+                              Extra Large : $xlgAvail <br>
+                              <span style='color: red;'>Total : $total <br></span>
+                          </h3>
+                      ";
+                  }
+                  $emailContent .= '</div>';
+        
+                  // SMTP settings
+                  $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+                  $mail->isSMTP();
+                  $mail->Host = 'smtp.gmail.com';
+                  $mail->SMTPAuth = true;
+        
+                  // headturners password form gmail
+                  $mail->Username = 'headturners09@gmail.com';
+                  $mail->Password = 'hbmjzwzpjjlxxhsg';
+                  $mail->SMTPSecure = 'tls';
+                  $mail->Port = 587;
+        
+                  $mail->setFrom('headturners09@gmail.com', 'Headturners Notification');
+                  
+                  // users email
+                  $mail->addAddress('headturners09@gmail.com');
+                  $mail->isHTML(true);
+                  $mail->Subject = 'Products need to be restock!';
+                  $mail->Body = $emailContent;
+        
+                  // Send email
+                  $mail->send();
+                }
+              }
               ?>
                 <script>
                   location.href = "profile.php?tab=to_ship";
                 </script>
               <?php
             }
+
+            
           }
         }
       }

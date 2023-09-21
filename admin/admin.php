@@ -15,6 +15,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 
     <title>Admin | Headturners</title>
+
+    
     
   </head>
   <body>
@@ -34,6 +36,11 @@ else
   </script>
   <?php
 }
+
+// email set up /////////////////////////////////////////////////
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+require '../PHPMailer-master/src/Exception.php';
 
 ?>
 <!-- SIDEBAR AND NAVBAR-->
@@ -121,7 +128,7 @@ else
          </li>
          <li>
           <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100  dark:hover:bg-gray-500" aria-controls="dropdown-crud" data-collapse-toggle="dropdown-crud">
-              <svg width="20" height="20" fill="black" viewBox="0 0 20 20">
+              <svg width="30" height="30" fill="black" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M2.125 13.17A.5.5 0 012.5 13H8a.5.5 0 01.5.5 1.5 1.5 0 003 0 .5.5 0 01.5-.5h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 18H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393zM5.81 2.563A1.5 1.5 0 016.98 2h6.04a1.5 1.5 0 011.17.563l3.7 4.625a.5.5 0 11-.78.624l-3.7-4.624A.5.5 0 0013.02 3H6.98a.5.5 0 00-.39.188l-3.7 4.624a.5.5 0 11-.78-.624l3.7-4.625z" clip-rule="evenodd"/>
                   <path fill-rule="evenodd" d="M2.125 7.17A.5.5 0 012.5 7H8a.5.5 0 01.5.5 1.5 1.5 0 003 0A.5.5 0 0112 7h5.5a.5.5 0 01.496.562l-.39 3.124A1.5 1.5 0 0116.117 12H3.883a1.5 1.5 0 01-1.489-1.314l-.39-3.124a.5.5 0 01.121-.393z" clip-rule="evenodd"/>
               </svg>
@@ -170,8 +177,32 @@ else
                       Revoked &nbsp; <span class="text-red-500"> <?php echo $count_revoked ?> </span>
                   </a>
               </li>
+             
           </ul>
-      </li>
+          </li>
+
+          <li>
+            <a href="admin.php?tab=notif" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-200 dark:hover:bg-gray-500">
+              <svg width="30" height="30" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M9.938 4.016a.146.146 0 00-.054.057L3.027 15.74a.176.176 0 00-.002.183c.016.03.037.05.054.06.015.01.034.017.066.017h13.713a.12.12 0 00.066-.017.163.163 0 00.055-.06.176.176 0 00-.003-.183L10.12 4.073a.146.146 0 00-.054-.057.13.13 0 00-.063-.016.13.13 0 00-.064.016zm1.043-.45a1.13 1.13 0 00-1.96 0L2.166 15.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L10.982 3.566z" clip-rule="evenodd"/>
+                  <rect width="2" height="2" x="9.002" y="13" rx="1"/>
+                <path d="M9.1 7.995a.905.905 0 111.8 0l-.35 3.507a.553.553 0 01-1.1 0L9.1 7.995z"/>
+              </svg>
+              <span class="flex-1 ml-3 whitespace-nowrap">Notifications</span>
+              <?php 
+              // Count notification
+              $stmt_count_notif = $conn->prepare("SELECT COUNT(*) AS product_count FROM products 
+                                                  WHERE (xs_avail + sm_avail + md_avail + lg_avail + xlg_avail) <= 3");
+              $stmt_count_notif->execute();
+              $res_count_notif = $stmt_count_notif->get_result();
+              $count_notif = $res_count_notif->num_rows > 0 ? $res_count_notif->fetch_assoc()['product_count'] : 0;
+              ?>
+
+              &nbsp; <span class="w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center text-md font-bold"> 
+                <?php echo $count_notif ?> 
+              </span>
+            </a>
+          </li>
       </ul>
    </div>
 </aside>
@@ -882,6 +913,11 @@ if(isset($_GET['tab']))
                 <br>
               </div>
               <form method="post">
+                <!-- hidden inputs  -->
+                <input type="hidden" name="select_date" value="">
+                <input type="hidden" name="select_year" value="">
+                <input type="hidden" name="complete_date" value="">
+
                 <input type="submit" value="Overall" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
                 <input type="submit" value="Daily" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
                 <input type="submit" value="Weekly" name="progress" class="bg-gray-500 hover:bg-blue-500 text-white font-semibold py-2 px-4 mx-3 rounded">
@@ -932,10 +968,92 @@ if(isset($_GET['tab']))
             <canvas id="barChart"></canvas>
           </div>
 
+          <form method="post" class="px-4 py-2">
+            <select name="select_date" class="block w-full p-2 mb-3 border rounded-lg shadow-md focus:ring focus:ring-blue-400 focus:border-blue-500" required>
+              <option value="" disabled selected>Select Date</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+            <select name="select_year" class="block w-full p-2 border rounded-lg shadow-md focus:ring focus:ring-blue-400 focus:border-blue-500" required>
+              <option value="" disabled selected>Select Year</option>
+              <?php
+                $year = 2022;
+                while($year <= 2024)
+                {
+                  echo '
+                    <option value="'.$year.'">'.$year.'</option>
+                  ';
+                  $year++;
+                }
+              ?>
+            </select>
+            <input type="hidden" name="progress" value="none">
+            <input type="submit" value="Submit" name="year_date_submit" class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          </form>
+
+          <!-- date and year  -->
           <?php
-            if(isset($_POST['progress']))
+            if(isset($_POST['year_date_submit']))
+            {
+              $select_date = $_POST['select_date'];
+              $select_year = $_POST['select_year'];
+              $complete_date = $select_year .'-'. $select_date;
+              $complete_date_f = date("F Y", strtotime($complete_date));
+
+              $stmt_choose = $conn->prepare("SELECT 
+                                            SUM(total_bill) as total_bill
+                                            FROM place_order where order_date like '%$complete_date%' ");
+              $stmt_choose->execute();
+              $res_choose = $stmt_choose->get_result();
+
+              if($res_choose->num_rows > 0)
+              {
+                while($row_choose = $res_choose->fetch_assoc())
+                {
+                  $total_billData = [];
+
+                  $total_bill = $row_choose['total_bill'];
+                  $f_total_bill = number_format($total_bill, '2','.', ',');
+
+                  array_push($total_billData, $total_bill);
+
+                  echo '
+                  <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                      <p class="text-lg font-semibold">Total sales from ' . $complete_date_f . ' are:</p>
+                      <p class="text-xl font-bold text-blue-700">' . $f_total_bill . '</p>
+                  </div>';
+                }
+              }
+              else{
+                echo '
+                  <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+                      <p class="text-lg font-bold">There are no record from ' . $complete_date_f . ' </p>
+                  </div>';
+              }
+             
+            }
+          ?>
+
+          <!-- progress report  -->
+          <?php
+            if(isset($_POST['progress']) || isset($_POST['year_date_submit']))
             {
               $progress = $_POST['progress'];
+
+              $select_date = $_POST['select_date'];
+              $select_year = $_POST['select_year'];
+              $complete_date = $select_year .'-'. $select_date;
+              $complete_date_f = date("F Y", strtotime($complete_date));
 
               if($progress == 'Daily')
               {
@@ -1105,6 +1223,39 @@ if(isset($_GET['tab']))
                 </script>
                 <?php 
               }
+              else if($progress == "none")
+              {
+                ?>
+                <script>
+                  var ctx = document.getElementById('barChart').getContext('2d');
+                  var data = {
+                      labels: [''],
+                      datasets: [{
+                          label: 'This <?php echo $complete_date_f ?> ',
+                          data: 
+                          [
+                            <?php echo implode(',', $total_billData); ?>,
+                          ],
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 1
+                      }]
+                  };
+                  
+                  var myBarChart = new Chart(ctx, {
+                      type: 'bar',
+                      data: data,
+                      options: {
+                          scales: {
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+                </script>
+                <?php
+              }
             }
             else
             {
@@ -1141,77 +1292,6 @@ if(isset($_GET['tab']))
                 });
               </script>
               <?php
-            }
-          ?>
-
-          <form method="post" class="px-4 py-2">
-            <select name="select_date" class="block w-full p-2 mb-3 border rounded-lg shadow-md focus:ring focus:ring-blue-400 focus:border-blue-500" required>
-              <option value="" disabled selected>Select Date</option>
-              <option value="01">January</option>
-              <option value="02">February</option>
-              <option value="03">March</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">August</option>
-              <option value="09">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
-            </select>
-            <select name="select_year" class="block w-full p-2 border rounded-lg shadow-md focus:ring focus:ring-blue-400 focus:border-blue-500" required>
-              <option value="" disabled selected>Select Year</option>
-              <?php
-                $year = 2022;
-                while($year <= 2024)
-                {
-                  echo '
-                    <option value="'.$year.'">'.$year.'</option>
-                  ';
-                  $year++;
-                }
-              ?>
-            </select>
-
-            <input type="submit" value="Submit" class="mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          </form>
-          
-          <?php
-            if(isset($_POST['select_date']) && isset($_POST['select_year']))
-            {
-              $select_date = $_POST['select_date'];
-              $select_year = $_POST['select_year'];
-              $complete_date = $select_year .'-'. $select_date;
-              $complete_date_f = date("F Y", strtotime($complete_date));
-
-
-              $stmt_choose = $conn->prepare("SELECT 
-                                            SUM(total_bill) as total_bill
-                                            FROM place_order where order_date like '%$complete_date%' ");
-              $stmt_choose->execute();
-              $res_choose = $stmt_choose->get_result();
-
-              if($res_choose->num_rows > 0)
-              {
-                while($row_choose = $res_choose->fetch_assoc())
-                {
-                  $total_bill = $row_choose['total_bill'];
-                  $total_bill = number_format($total_bill, '2','.', ',');
-                  echo '
-                  <div class="mt-4 p-4 bg-gray-100 rounded-lg">
-                      <p class="text-lg font-semibold">Total sales from ' . $complete_date_f . ' are:</p>
-                      <p class="text-xl font-bold text-blue-700">' . $total_bill . '</p>
-                  </div>';
-                }
-              }
-              else{
-                echo '
-                  <div class="mt-4 p-4 bg-gray-100 rounded-lg">
-                      <p class="text-lg font-bold">There are no record from ' . $complete_date_f . ' </p>
-                  </div>';
-              }
-             
             }
           ?>
         </div>
@@ -2796,7 +2876,6 @@ if(isset($_GET['tab']))
                 ';
             }
         }
-
       ?>
       
         <!-- Table -->
@@ -2876,6 +2955,9 @@ if(isset($_GET['tab']))
                 <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
                   ORDER DATE
                 </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  Details
+                </th>
               </tr>
             </thead>
           ';
@@ -2937,6 +3019,13 @@ if(isset($_GET['tab']))
                     </td>
                     <td class="py-4">
                         '.$formattedDate.'
+                    </td>
+                    <td class="">
+                      <a href="admin.php?tab='.$tab.'&order_id='.$order_id.'&user_id='.$user_id.'&email='.$email.'&address='.$address.'">
+                          <p class="bg-blue-500 text-white p-1">
+                              View Details
+                          </p>
+                      </a>
                     </td>
                   </tr>
               </tbody>
@@ -3281,6 +3370,199 @@ if(isset($_GET['tab']))
           ?>
           <h1 class="bg-gray-500 p-[5%] text-white w-[100%] text-center text-3xl font-bold">
             There are no completed records yet.
+          </h1>
+          <?php
+        }
+      ?>
+
+    </div>
+    <?php
+  } 
+  else
+  if ($tab == 'notif') 
+  {
+    ?>
+    <!-- Code for the 'payment' tab -->
+    <div class="p-4 mt-20 bg-gray-200 border border-gray-300 rounded-lg shadow-sm  sm:p-6">
+      <!-- Card header -->
+      <div class="items-center justify-between lg:flex">
+        <div class="mb-4 lg:mb-0">
+          <span class="bg-orange-200 text-orange-800 text-lg font-medium px-5 py-3 rounded-full dark:bg-orange-900 dark:text-orange-300">
+            System Notification
+          </span>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <?php
+        // Threshold quantity
+        $thresholdQuantity = 3;
+
+        $stmt_notif = $conn->prepare("SELECT * FROM products 
+                                      WHERE (xs_avail + sm_avail + md_avail + lg_avail + xlg_avail) <= ?
+                                      ");
+        $stmt_notif->execute([$thresholdQuantity]);
+        $res_notif = $stmt_notif->get_result();
+
+        if($res_notif->num_rows > 0)
+        {
+          $num = 1;
+          echo '
+          <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600 text-center mt-5">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  #
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  PRODUCT ID
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  NAME
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  EXTRA SMALL
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  SMALL
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  MEDIUM
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  LARGE
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  EXTRA LARGE
+                </th>
+                <th scope="col" class="p-4 text-xs font-medium tracking-wider text-gray-500 uppercase ">
+                  TOTAL
+                </th>
+              </tr>
+            </thead>
+          ';
+          while($row = $res_notif->fetch_assoc())
+          {
+              $product_id = $row['product_id'];
+              $image = $row['image'];
+              $brand = $row['brand'];
+              $name = $row['name'];
+              $price = $row['product_id'];
+
+              $name = $row['name'];
+
+              $xs_avail = $row['xs_avail'];
+              $sm_avail = $row['sm_avail'];
+              $md_avail = $row['md_avail'];
+              $lg_avail = $row['lg_avail'];
+              $xlg_avail = $row['xlg_avail'];
+
+              $total = ($xs_avail + $sm_avail + $md_avail + $lg_avail + $xlg_avail);
+
+              // Store product details in arrays
+              $product_ids[] = $product_id;
+              
+              $names[] = $name;
+              $xs_avails[] = $xs_avail;
+              $sm_avails[] = $sm_avail;
+              $md_avails[] = $md_avail;
+              $lg_avails[] = $lg_avail;
+              $xlg_avails[] = $xlg_avail;
+              $totals[] = $total;
+
+              echo '
+              <tbody>
+                  <tr class="bg-white border-b  dark:border-gray-700">
+                    <td class="py-4 text-lg text-blue-600 font-semibold">
+                      '.$num++.'
+                    </td>
+                    <td class="py-4">
+                      '.$product_id.'
+                    </td>
+                    <td class="py-4">
+                      '.$name.'
+                    </td>
+                    <td class="py-4">
+                      '.$xs_avail.'
+                    </td>
+                    <td class="py-4">
+                      '.$sm_avail.'
+                    </td>
+                    <td class="py-4">
+                      '.$md_avail.'
+                    </td>
+                    <td class="py-4">
+                      '.$lg_avail.'
+                    </td>
+                    <td class="py-4">
+                      '.$xlg_avail.'
+                    </td>
+                    <td class="py-4 text-lg text-red-600 font-semibold">
+                      '.$total.'
+                    </td>
+                  </tr>
+              </tbody>
+              ';
+          }
+          echo'
+          </table>
+          ';
+
+          // // Create email content
+          // $emailContent = '<div style="border: 5px dashed black; padding: 5%; margin: 0 15%">';
+          // foreach ($product_ids as $index => $product_id) 
+          // {
+          //     $productName = $names[$index];
+          //     $xsAvail = $xs_avails[$index];
+          //     $smAvail = $sm_avails[$index];
+          //     $mdAvail = $md_avails[$index];
+          //     $lgAvail = $lg_avails[$index];
+          //     $xlgAvail = $xlg_avails[$index];
+          //     $total = $totals[$index];
+
+          //     $emailContent .= "
+          //         <h1 style='color:navy'>Product ID : $product_id </h1>
+          //         <h2>Name : $productName</h2>
+          //         <h3>
+          //             Extra Small : $xsAvail <br>
+          //             Small : $smAvail <br>
+          //             Medium : $mdAvail <br>
+          //             Large : $lgAvail <br>
+          //             Extra Large : $xlgAvail <br>
+          //             <span style='color: red;'>Total : $total <br></span>
+          //         </h3>
+          //     ";
+          // }
+          // $emailContent .= '</div>';
+
+          // // SMTP settings
+          // $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+          // $mail->isSMTP();
+          // $mail->Host = 'smtp.gmail.com';
+          // $mail->SMTPAuth = true;
+
+          // // headturners password form gmail
+          // $mail->Username = 'headturners09@gmail.com';
+          // $mail->Password = 'hbmjzwzpjjlxxhsg';
+          // $mail->SMTPSecure = 'tls';
+          // $mail->Port = 587;
+
+          // $mail->setFrom('headturners09@gmail.com', 'Headturners Notification');
+          
+          // // users email
+          // $mail->addAddress('headturners09@gmail.com');
+          // $mail->isHTML(true);
+          // $mail->Subject = 'Products need to be restock!';
+          // $mail->Body = $emailContent;
+
+          // // Send email
+          // $mail->send();
+         
+        }
+        else{
+          ?>    
+          <h1 class="bg-gray-500 p-[5%] text-white w-[100%] text-center text-3xl font-bold">
+            There are no Notification records yet.
           </h1>
           <?php
         }

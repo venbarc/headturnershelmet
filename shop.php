@@ -11,6 +11,11 @@
     include "connect.php";
     include "include/header_link.php";
 
+    // email set up /////////////////////////////////////////////////
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
+    require 'PHPMailer-master/src/Exception.php';
+
     // Check if user is signed in
     if (isset($_SESSION['user_id'])) 
     {

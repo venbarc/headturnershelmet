@@ -310,14 +310,6 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="profile.php?tab=order_history" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group  dark:hover:bg-gray-500 {{ if eq $page_slug "settings" }} bg-gray-100  {{ end }}">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM5.5 9.5h4v-5a.5.5 0 011 0V10a.5.5 0 01-.5.5H5.5a.5.5 0 010-1z" clip-rule="evenodd"/>
-                        </svg>    
-                        <span class="ml-3" sidebar-toggle-item>Order History</span>
-                    </a>
-                </li>
-                <li>
                     <a href="profile.php?tab=change_password" class="flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group  dark:hover:bg-gray-500 {{ if eq $page_slug "settings" }} bg-gray-100  {{ end }}">
                         <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
                             <rect width="11" height="9" x="4.5" y="8" rx="2"/>
@@ -848,7 +840,6 @@
                                                                         </p>
                                                                     </a>
                                                                 </td>
-                                                                
                                                             </tr>
                                                         </tbody>
                                                         ';
@@ -1437,6 +1428,9 @@
                                                                 <th scope="col" class="px-6 py-3">
                                                                     ORDER DATE 
                                                                 </th>
+                                                                <th scope="col" class="px-6 py-3">
+                                                                    DETAILS 
+                                                                </th>
                                                             </tr>
                                                         </thead>
                                                     ';
@@ -1477,6 +1471,13 @@
                                                                 <td class="py-4">
                                                                     '.$formattedDate.'
                                                                 </td>
+                                                                <td class="py-1">
+                                                                    <a href="profile.php?tab='.$tab.'&order_id='.$order_id.'" >
+                                                                        <p class="bg-blue-500 text-white p-1">
+                                                                            View Details
+                                                                        </p>
+                                                                    </a>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                         ';
@@ -1488,16 +1489,126 @@
                                                 else{
                                                     ?>
                                                     <h4 class="text-white p-10 bg-gray-500 text-center font-semibold text-xl">
-                                                        There are no pending deliveries.
+                                                        There are no revoked deliveries.
                                                     </h4>
                                                     <?php
                                                 }
                                             ?>
                                         </div>
+                                        <!-- right  -->
+                                        <div>
+                                            <?php
+                                                if(isset($_GET['order_id']))
+                                                {
+                                                    $order_id = $_GET['order_id'];
+
+                                                    $stmt_get_order_details = $conn->prepare("SELECT po.*,p.* from place_order po join products p on po.product_id = p.product_id
+                                                                                                where po.user_id = ? and po.order_id = ?");
+                                                    $stmt_get_order_details->execute([$user_id, $order_id]);
+                                                    $res_get_order_details = $stmt_get_order_details->get_result();
+
+                                                    if($res_get_order_details->num_rows > 0)
+                                                    {
+                                                        echo '
+                                                        <h3 class="mb-4 text-xl font-semibold ">
+                                                            Details
+                                                        </h3>
+                                                        <h4 class="">
+                                                            Shipping fee: <span class="text-red-600">+₱38.00</span><br>
+                                                            Order: <span class="text-blue-700"> #'.$order_id.' </span>
+                                                        </h4>
+                                                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 text-center">
+                                                            <thead class="text-xs text-gray-700 uppercase bg-gray-50  dark:text-gray-400">
+                                                                <tr>
+                                                                    <th scope="col" class="px-1 py-3">
+                                                                        IMAGE 
+                                                                    </th>
+                                                                    <th scope="col" class="px-1 py-3">
+                                                                        PRODUCT ID 
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        QUANTITY
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        SIZE
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        PRICE
+                                                                    </th>
+                                                                    <th scope="col" class="px-6 py-3">
+                                                                        TOTAL PRICE
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                        ';
+                                                        while($row2 = $res_get_order_details->fetch_assoc())
+                                                        {
+                                                            $image = $row2['image'];
+                                                            $product_id = $row2['product_id'];
+                                                            $qnty = $row2['qnty'];
+                                                            $size = $row2['size'];
+                                                            $price = $row2['price'];
+                                                            $pay_method = $row2['pay_method'];
+                                                            $total_bill = $row2['total_bill'];
+                                                            $proof_image = $row2['proof_image'];
+
+                                                            // total price 
+                                                            $ttl_price = ($price * $qnty);
+                                                            // formats 
+                                                            $price_format = number_format($price, 2, '.', ',');
+                                                            $ttl_price_format = number_format($ttl_price, 2, '.', ',');
+                                                            $total_bill_format = number_format($total_bill, 2, '.', ',');
+
+                                                            echo '
+                                                            <tbody>
+                                                                <tr class="bg-white border-b  dark:border-gray-700">
+                                                                    <th class="py-4">
+                                                                        <img src="'.$image.'" class="h-20 mx-auto">
+                                                                    </th>
+                                                                    <td class="py-4 font-semibold">
+                                                                        '.$product_id.'
+                                                                    </td>
+                                                                    <td class="py-4 font-semibold">
+                                                                        '.$qnty.' item/s
+                                                                    </td>
+                                                                    <td class="py-4 font-semibold">
+                                                                        '.$size.'
+                                                                    </td>
+                                                                    <td class="py-4 font-semibold">
+                                                                        ₱ '.$price_format.' 
+                                                                    </td>
+                                                                    <td class="py-4 font-bold text-red-600">
+                                                                        ₱ '.$ttl_price_format.' 
+                                                                    </td>
+                                                                    
+                                                                </tr>
+                                                            ';
+                                                        }
+                                                        echo'
+                                                                <tr class="">
+                                                                    <td class="py-4 font-bold">
+                                                                        Total Bill :
+                                                                        <span class="text-red-600">
+                                                                            ₱ '.$total_bill_format.' 
+                                                                        </span> 
+                                                                    </td>
+                                                                    <td class="py-4 font-bold bg-red-600 text-white">
+                                                                        <a href="profile.php?tab='.$tab.'">
+                                                                            Close X
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <h2 class="pb-5 pt-[50px] font-semibold text-xl">Proof of payment :</h2>
+                                                        <img src="'.$proof_image.'" alt="" class="h-[40%] w-auto object-contain">
+                                                        ';
+                                                    }
+                                                }
+                                            ?>
+                                        </div>
                                     </div>
                                     
-                                    
-                                        
                                 </div>
                             </div>
                         </div>

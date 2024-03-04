@@ -44,55 +44,42 @@
 
 <body class="antialiased ">
     <!-- ======  hero Start -->
-    <section id="hero" class="bg-gray-950 pt-32 pb-20 lg:pt-[220px] lg:pb-[120px] bg-fixed bg-cover"
-        style="background-image: url('header7.png');">
+    <section id="hero" class="bg-gray-950 pt-32 pb-20 lg:pt-[220px] lg:pb-[120px] bg-fixed bg-cover" style="background-image: url('header7.png');">
         <div class="container">
             <div class="wow fadeInUp" data-wow-delay=".2s">
                 <div class="flex flex-wrap -mx-4">
                     <div class="w-full px-4">
                         <div class="items-center justify-between overflow-hidden lg:flex">
-                            <div
-                                class="w-full py-12 px-7 sm:px-12 md:p-16 lg:max-w-[565px] lg:py-9 lg:px-16 xl:max-w-[640px] xl:p-[70px]">
-                                <h1
-                                    class="my-3 text-sm font-bold leading-tight text-center text-gray-300 opacity-75 md:text-xl md:text-left ">
+                            <div class="w-full py-12 px-7 sm:px-12 md:p-16 lg:max-w-[565px] lg:py-9 lg:px-16 xl:max-w-[640px] xl:p-[70px]">
+                                <h1 class="my-3 text-sm font-bold leading-tight text-center text-gray-300 opacity-75 md:text-xl md:text-left ">
                                     Discover style and safety at
-                                    <span
-                                        class="text-3xl font-extrabold text-transparent max-[320px]:text-3xl lg:text-6xl xl:text-8xl 2xl:text-9xl  md:text-6xl bg-clip-text bg-gradient-to-r from-white via-gray-500 to-gray-300 max-[760px]:text-5xl">
-                                        HEADTURNERS
+                                    <span class="text-3xl font-extrabold text-transparent max-[320px]:text-3xl lg:text-6xl xl:text-8xl 2xl:text-9xl  md:text-6xl bg-clip-text bg-gradient-to-r from-white via-gray-500 to-gray-300 max-[760px]:text-5xl">
+                                        THIS IS SAMPLE
                                     </span>
                                 </h1>
 
-                                <p
-                                    class="mb-8 text-sm leading-normal text-center text-gray-300 opacity-75 md:text-lg md:text-left">
+                                <p class="mb-8 text-sm leading-normal text-center text-gray-300 opacity-75 md:text-lg md:text-left">
                                     We offer premium, original motorcycle helmets from Japan with a
                                     focus on quality and safety. Trust us for the best products and
                                     customer service.
                                 </p>
                                 <!--SOCIAL MEDIA   -->
-                                <div
-                                    class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start sm:mt-0">
-                                    <a href="https://www.facebook.com/HeadTurnerMCgears" target="_blank"
-                                        class="text-gray-200 hover:text-black ">
+                                <div class="flex justify-center mt-4 space-x-6 text-center lg:justify-start md:justify-start sm:mt-0">
+                                    <a href="https://www.facebook.com/HeadTurnerMCgears" target="_blank" class="text-gray-200 hover:text-black ">
                                         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" aria-hidden="true">
-                                            <path fill-rule="evenodd"
-                                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                                clip-rule="evenodd" />
+                                            <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
                                         </svg>
                                         <span class="sr-only">Facebook page</span>
                                     </a>
-                                    <a href="https://www.instagram.com/headturnerpremiumhelmets/" target="_blank"
-                                        class="text-gray-200 hover:text-red-500 ">
+                                    <a href="https://www.instagram.com/headturnerpremiumhelmets/" target="_blank" class="text-gray-200 hover:text-red-500 ">
                                         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" aria-hidden="true">
-                                            <path fill-rule="evenodd"
-                                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                                clip-rule="evenodd" />
+                                            <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
                                         </svg>
                                         <span class="sr-only">Instagram page</span>
                                     </a>
                                     <a href="#" class="text-gray-200 hover:text-blue-600 ">
                                         <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24" aria-hidden="true">
-                                            <path
-                                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
                                         </svg>
                                         <span class="sr-only">Twitter page</span>
                                     </a>
@@ -116,33 +103,23 @@
                                             <div class="relative overflow-hidden rounded-lg h-50 w-50 md:h-96 md:w-96">
                                                 <!-- Item 1 -->
                                                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                    <img src="https://i.ibb.co/ZdZYj8w/product6-neotec.png"
-                                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                        alt="...">
+                                                    <img src="https://i.ibb.co/ZdZYj8w/product6-neotec.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                                                 </div>
                                                 <!-- Item 2 -->
                                                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                    <img src="https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png"
-                                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                        alt="...">
+                                                    <img src="https://i.ibb.co/Zf240Jj/shark-racerpro-gp-martinator.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                                                 </div>
                                                 <!-- Item 3 -->
                                                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                    <img src="https://i.ibb.co/3cfpzSG/product2-classic.png"
-                                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                        alt="...">
+                                                    <img src="https://i.ibb.co/3cfpzSG/product2-classic.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                                                 </div>
                                                 <!-- Item 4 -->
                                                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                    <img src="https://i.ibb.co/KbQcdfR/product2-cheeta.png"
-                                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                        alt="...">
+                                                    <img src="https://i.ibb.co/KbQcdfR/product2-cheeta.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                                                 </div>
                                                 <!-- Item 5 -->
                                                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                    <img src="https://i.ibb.co/wKkbqxT/shark-spartan-gt-carbon-full-face-helmet.png"
-                                                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                        alt="...">
+                                                    <img src="https://i.ibb.co/wKkbqxT/shark-spartan-gt-carbon-full-face-helmet.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
                                                 </div>
                                             </div>
 
@@ -161,9 +138,9 @@
     </section>
 
     <?php
-        include 'include/Feature.php';
-        include 'include/sample_product.php';
-        include "about.php";
+    include 'include/Feature.php';
+    include 'include/sample_product.php';
+    include "about.php";
     ?>
 
     <!-- ====== Faq Section Start -->
@@ -190,15 +167,11 @@
 
             <div class="flex flex-wrap -mx-4">
                 <div class="w-full px-4">
-                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] p-5 sm:p-8 bg-gray-200"
-                        data-wow-delay=".1s ">
+                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE] p-5 sm:p-8 bg-gray-200" data-wow-delay=".1s ">
                         <button class="flex items-center w-full text-left faq-btn ">
-                            <div
-                                class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
+                            <div class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
                                 <svg width="17" height="10" viewbox="0 0 17 10" class="fill-current icon">
-                                    <path
-                                        d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                                        fill="#3056D3" stroke="#3056D3" />
+                                    <path d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z" fill="#3056D3" stroke="#3056D3" />
                                 </svg>
                             </div>
                             <div class="w-full">
@@ -215,15 +188,11 @@
                             </p>
                         </div>
                     </div>
-                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".15s">
+                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200" data-wow-delay=".15s">
                         <button class="flex items-center w-full text-left faq-btn">
-                            <div
-                                class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
+                            <div class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
                                 <svg width="17" height="10" viewbox="0 0 17 10" class="fill-current icon">
-                                    <path
-                                        d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                                        fill="#3056D3" stroke="#3056D3" />
+                                    <path d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z" fill="#3056D3" stroke="#3056D3" />
                                 </svg>
                             </div>
                             <div class="w-full">
@@ -240,16 +209,12 @@
                             </p>
                         </div>
                     </div>
-                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".2s
+                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200" data-wow-delay=".2s
                                                   ">
                         <button class="flex items-center w-full text-left faq-btn">
-                            <div
-                                class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
+                            <div class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
                                 <svg width="17" height="10" viewbox="0 0 17 10" class="fill-current icon">
-                                    <path
-                                        d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                                        fill="#3056D3" stroke="#3056D3" />
+                                    <path d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z" fill="#3056D3" stroke="#3056D3" />
                                 </svg>
                             </div>
                             <div class="w-full">
@@ -268,15 +233,11 @@
                     </div>
                 </div>
                 <div class="w-full px-4">
-                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".1s">
+                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200" data-wow-delay=".1s">
                         <button class="flex items-center w-full text-left faq-btn">
-                            <div
-                                class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
+                            <div class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
                                 <svg width="17" height="10" viewbox="0 0 17 10" class="fill-current icon">
-                                    <path
-                                        d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                                        fill="#3056D3" stroke="#3056D3" />
+                                    <path d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z" fill="#3056D3" stroke="#3056D3" />
                                 </svg>
                             </div>
                             <div class="w-full">
@@ -293,15 +254,11 @@
                             </p>
                         </div>
                     </div>
-                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200"
-                        data-wow-delay=".15s">
+                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200" data-wow-delay=".15s">
                         <button class="flex items-center w-full text-left faq-btn">
-                            <div
-                                class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
+                            <div class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
                                 <svg width="17" height="10" viewbox="0 0 17 10" class="fill-current icon">
-                                    <path
-                                        d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                                        fill="#3056D3" stroke="#3056D3" />
+                                    <path d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z" fill="#3056D3" stroke="#3056D3" />
                                 </svg>
                             </div>
                             <div class="w-full">
@@ -318,15 +275,11 @@
                             </p>
                         </div>
                     </div>
-                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200 "
-                        data-wow-delay=".2s">
+                    <div class="single-faq wow fadeInUp mb-8 w-full rounded-lg border border-[#F3F4FE]  p-5 sm:p-8  bg-gray-200 " data-wow-delay=".2s">
                         <button class="flex items-center w-full text-left faq-btn">
-                            <div
-                                class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
+                            <div class="mr-5 flex h-10 w-full max-w-[40px] items-center justify-center rounded-lg bg-primary bg-opacity-5 text-gray-200">
                                 <svg width="17" height="10" viewbox="0 0 17 10" class="fill-current icon">
-                                    <path
-                                        d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z"
-                                        fill="#3056D3" stroke="#3056D3" />
+                                    <path d="M7.28687 8.43257L7.28679 8.43265L7.29496 8.43985C7.62576 8.73124 8.02464 8.86001 8.41472 8.86001C8.83092 8.86001 9.22376 8.69083 9.53447 8.41713L9.53454 8.41721L9.54184 8.41052L15.7631 2.70784L15.7691 2.70231L15.7749 2.69659C16.0981 2.38028 16.1985 1.80579 15.7981 1.41393C15.4803 1.1028 14.9167 1.00854 14.5249 1.38489L8.41472 7.00806L2.29995 1.38063L2.29151 1.37286L2.28271 1.36548C1.93092 1.07036 1.38469 1.06804 1.03129 1.41393L1.01755 1.42738L1.00488 1.44184C0.69687 1.79355 0.695778 2.34549 1.0545 2.69659L1.05999 2.70196L1.06565 2.70717L7.28687 8.43257Z" fill="#3056D3" stroke="#3056D3" />
                                 </svg>
                             </div>
                             <div class="w-full">
@@ -350,8 +303,7 @@
     <!-- ====== Faq Section End -->
 
     <!-- ====== Testimonials Start ====== -->
-    <section id="testimonials" class="pt-20 md:pt-[120px] bg-cover bg-fixed"
-        style="background-image: url('header7.png');">
+    <section id="testimonials" class="pt-20 md:pt-[120px] bg-cover bg-fixed" style="background-image: url('header7.png');">
         <div class="container px-4">
             <div class="flex flex-wrap">
                 <div class="w-full mx-4">
@@ -370,32 +322,27 @@
                         <div class="flex items-center mb-3 ud-testimonial-ratings">
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                         </div>
@@ -406,7 +353,7 @@
                         </div>
                         <div class="flex items-center ud-testimonial-info">
                             <!--<div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">-->
-                                <!--<img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/345443603_1880321105687978_3230115869854575744_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEp1xJg8BtzFYqchhJcycbB9jfgkNNWAt72N-CQ01YC3lEagmffTIcWLrOoyIBe_OfnBTQ-YaHvdUXL9BivWoZq&_nc_ohc=r7wIwa_UuUEAX-gg30m&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCqUaW8zfJnSe_emJr39XNiHonE6Q-llAAjvFqIM3fLoQ&oe=64834236" alt="author" />-->
+                            <!--<img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/345443603_1880321105687978_3230115869854575744_n.jpg?_nc_cat=107&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeEp1xJg8BtzFYqchhJcycbB9jfgkNNWAt72N-CQ01YC3lEagmffTIcWLrOoyIBe_OfnBTQ-YaHvdUXL9BivWoZq&_nc_ohc=r7wIwa_UuUEAX-gg30m&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCqUaW8zfJnSe_emJr39XNiHonE6Q-llAAjvFqIM3fLoQ&oe=64834236" alt="author" />-->
                             <!--</div>-->
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Dharlyn Deplomo</h4>
@@ -421,32 +368,27 @@
                         <div class="flex items-center mb-3 ud-testimonial-ratings">
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                         </div>
@@ -457,7 +399,7 @@
                         </div>
                         <div class="flex items-center ud-testimonial-info">
                             <!--<div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">-->
-                                <!--<img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/324399728_1601669876937064_4012079499024036889_n.jpg?_nc_cat=110&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFCqnnJYiTKcvBldN-sRFjKuTshcBUZ0t65OyFwFRnS3l2_TkQLsE7PtGgO7YNj7ThlrWP6SXPhIwjTjeszPIjD&_nc_ohc=4thaTYEAxgcAX-H7-7E&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfA1o6dAAcOv-o0yIjk67O2r-DPJFeUnF5_OHHxkBEEnuQ&oe=6484A621" alt="author" />-->
+                            <!--<img src="https://scontent.fmnl17-3.fna.fbcdn.net/v/t39.30808-6/324399728_1601669876937064_4012079499024036889_n.jpg?_nc_cat=110&cb=99be929b-3346023f&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFCqnnJYiTKcvBldN-sRFjKuTshcBUZ0t65OyFwFRnS3l2_TkQLsE7PtGgO7YNj7ThlrWP6SXPhIwjTjeszPIjD&_nc_ohc=4thaTYEAxgcAX-H7-7E&_nc_ht=scontent.fmnl17-3.fna&oh=00_AfA1o6dAAcOv-o0yIjk67O2r-DPJFeUnF5_OHHxkBEEnuQ&oe=6484A621" alt="author" />-->
                             <!--</div>-->
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">delposo </h4>
@@ -472,32 +414,27 @@
                         <div class="flex items-center mb-3 ud-testimonial-ratings">
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                             <span class="mr-1 text-[#fbb040]">
                                 <svg width="18" height="16" viewbox="0 0 18 16" class="fill-current">
-                                    <path
-                                        d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
+                                    <path d="M9.09815 0.360596L11.1054 6.06493H17.601L12.3459 9.5904L14.3532 15.2947L9.09815 11.7693L3.84309 15.2947L5.85035 9.5904L0.595291 6.06493H7.0909L9.09815 0.360596Z" />
                                 </svg>
                             </span>
                         </div>
@@ -508,7 +445,7 @@
                         </div>
                         <div class="flex items-center ud-testimonial-info">
                             <!--<div class="ud-testimonial-image mr-5 h-[50px] w-[50px] overflow-hidden rounded-full">-->
-                                <!--<img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/212608328_4414181658625598_6599249126382701257_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=174925&_nc_eui2=AeGBCssf__cmU_Bdkj3d4Z1UMaF7QCbCvKYxoXtAJsK8pjsQX3UTcZaKUvX4NHhYMqxxYimWGoLxMjvyecg9GITe&_nc_ohc=hw5TxLtEcDkAX8CJ8La&_nc_ht=scontent.fmnl17-1.fna&oh=00_AfDas_fi7FS2Esgk7Ej80EV3QAxPSLcmBGyHl5ivTOEUPg&oe=64846BD5" alt="author" />-->
+                            <!--<img src="https://scontent.fmnl17-1.fna.fbcdn.net/v/t39.30808-6/212608328_4414181658625598_6599249126382701257_n.jpg?_nc_cat=108&cb=99be929b-3346023f&ccb=1-7&_nc_sid=174925&_nc_eui2=AeGBCssf__cmU_Bdkj3d4Z1UMaF7QCbCvKYxoXtAJsK8pjsQX3UTcZaKUvX4NHhYMqxxYimWGoLxMjvyecg9GITe&_nc_ohc=hw5TxLtEcDkAX8CJ8La&_nc_ht=scontent.fmnl17-1.fna&oh=00_AfDas_fi7FS2Esgk7Ej80EV3QAxPSLcmBGyHl5ivTOEUPg&oe=64846BD5" alt="author" />-->
                             <!--</div>-->
                             <div class="ud-testimonial-meta">
                                 <h4 class="text-sm font-semibold">Ben</h4>
